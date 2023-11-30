@@ -18,3 +18,4 @@ public class BoardVO {
 	private int secretYn; //게시물 비밀글 여부
 	private int secretPw; //게시물 비밀글 비밀번호
 }
+
