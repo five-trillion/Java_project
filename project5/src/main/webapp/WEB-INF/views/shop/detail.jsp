@@ -26,7 +26,7 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="${contextPath}/resources/shop/img/product/${prodd.prodMainImg}" alt="">
+                                src="${contextPath}/resources/shop/img/product/${prd.prodMainImg}" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="${contextPath}/resources/shop/img/product/details/product-details-2.jpg"
@@ -42,8 +42,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                    	<input type="hidden" name="prodNo" value="${prodd.prodNo}">
-                        <h3>${prodd.prodName}</h3>
+                        <h3>${prd.prodName}</h3>
                         <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -52,9 +51,9 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18<!-- 리뷰 개수 --> reviews)</span>
                         </div>
-                        <div class="product__details__price">${prodd.salePrice}</div>
+                        <div class="product__details__price">${prd.salePrice}</div>
                         <p>제품설명
-                        ${prodd.prodInfo}</p>
+                        ${prd.prodInfo}</p>
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
@@ -74,16 +73,12 @@
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
-                                    aria-selected="true">Description</a>
+                                <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab"
+                                    aria-selected="false">상세정보</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                    aria-selected="false">Information</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
-                                    aria-selected="false">Reviews <span>(1)</span></a>
+                                    aria-selected="false">Review <span>(0)<!-- 리뷰개수 --></span></a>
                             </li>
                         </ul>
                         <div class="tab-content">

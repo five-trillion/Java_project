@@ -65,14 +65,14 @@
 	</select>
 	
 	<!-- 상세조회 -->
-	<select id="prodDetail" parameterType="java.lang.Integer" resultType="com.shop.domain.ProductVO">
+	<select id="prodDetail" parameterType="java.lang.String" resultType="com.shop.domain.ProductVO">
 		select * 
 		from product
 		where prodNo = #{prodNo}
 	</select>
 	
 	<!-- 조회수 증가 -->
-	<update id="updateProdCnt" parameterType="java.lang.Integer">
+	<update id="updateProdCnt" parameterType="java.lang.String"> <!-- 파라미터 타입 주의 -->
 		update product
 		   set prodCnt = prodCnt + 1
 		 where prodNo = #{prodNo}

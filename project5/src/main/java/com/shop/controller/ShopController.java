@@ -44,12 +44,15 @@ public class ShopController {
 		}
 	}
 	@RequestMapping(value = "shop/detail", method = RequestMethod.GET)
-	public String detail(String prodNo, Model model) throws Exception {
-	    // prodCnt가 null이면 0으로 설정
-        ProductVO proddetail = service.prodDetail(prodNo);
-        model.addAttribute("prodd", proddetail);
-        service.updateProdCnt(prodNo);
-	    return "shop/detail";
+	public String detail(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
+		if (prodNo == null) {
+	        log.error("Invalid prodNo: " + prodNo);
+	    } else {
+	        service.updateProdCnt(prodNo); // 조회 수 업데이트
+	        ProductVO proddetail = service.prodDetail(prodNo); // 상세 정보 조회
+	        model.addAttribute("prd", proddetail);
+	    }
+		return "shop/detail";
 	}
 	@RequestMapping(value="shop/cart", method = RequestMethod.GET)
 	public void cart() {

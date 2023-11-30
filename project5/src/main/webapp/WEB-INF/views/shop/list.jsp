@@ -79,7 +79,7 @@
 	                                </div>
 	                                <div class="product__item__text">
 	                                	<input type="hidden" name="prodNo" value="${prd.prodNo}">
-	                                    <h6><a href="/shop/detail">${prd.prodName}</a></h6>
+	                                    <h6><a href="/shop/detail?prodNo=${prd.prodNo}">${prd.prodName}</a></h6>
 	                                    <h5>${prd.salePrice}</h5>
 	                                </div>
 	                            </div>
