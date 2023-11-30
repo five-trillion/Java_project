@@ -21,5 +21,11 @@ public class JoinServiceImpl implements JoinService {
 	public int idCheck(String userId) throws Exception {
 		return joinmapper.idCheck(userId);
 	}
+	
+	@Override
+	public UsersVO loginUser(UsersVO user) throws Exception {
+		return joinmapper.loginUser(user);
+	}
+ 	
  	
 }

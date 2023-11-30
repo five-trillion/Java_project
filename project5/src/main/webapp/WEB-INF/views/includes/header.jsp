@@ -66,7 +66,7 @@
                             <li>
                             	<c:if test="${empty loginUser}">
 	                            	<div class="header__top__right__auth">
-	                            		<a href="/shop/mypage"><i class="fa fa-user"></i>Login</a>
+	                            		<a href="/shop/login"><i class="fa fa-user"></i>Login</a>
 	                            	</div>
                             	</c:if>
                             	<c:if test="${!empty loginUser}">

@@ -1,5 +1,8 @@
 package com.shop.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,7 @@ public class JoinController {
 	//회원가입 페이지 이동
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public void loginGET() {
+		
 		logger.info("회원가입 페이지 진입");
 	}
 	
@@ -67,5 +71,13 @@ public class JoinController {
 		} else {
 			return "success"; //중복 아이디X
 		}
+	}
+	//로그아웃
+	@RequestMapping(value="logout", method=RequestMethod.GET)
+	public String logoutGET(HttpServletRequest request) throws Exception {
+		logger.info("logoutGET 메서드 진입");
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:/";
 	}
 }

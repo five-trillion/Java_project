@@ -30,17 +30,9 @@
 			insert into users values (default, #{userId}, #{userPw}, #{userName}, #{tel}, #{phone}, #{email}, #{address}, #{zip}, #{nick}, #{eventYn}, default, #{birth}, 10000, 1)
 		</insert>	
 		
-		<!-- <select id="getUserNo" resultType="com.shop.domain.UsersVO">
-			select userNo from users where userId = #{userId}
-		</select>
-		
-		<insert id="insertPet">
-			insert into pet values (#{petNo}, #{userNo}, #{petName}, #{petKind}, #{petAge}) 
-		</insert> -->
-		
 		<!--  로그인 -->
-		<select id="login" resultType="com.shop.domain.UsersVO">
-			select userId, userPw from Users where userId = #{userId} and userPw = #{userPw} 
+		<select id="loginUser" resultType="com.shop.domain.UsersVO">
+			select userId, userPw, admin from Users where userId = #{userId} and userPw = #{userPw} 
 		</select>
 		
 		<!-- 아이디 중복 검사 -->
