@@ -78,118 +78,32 @@
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".feeds">사료</li>
-                            <li data-filter=".snacks">간식</li>
-                            <li data-filter=".nutris">영양제</li>
+                            <li data-filter=".fe">사료</li>
+                            <li data-filter=".sn">간식</li>
+                            <li data-filter=".nu">영양제</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix feeds">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-1.jpg">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix feeds">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-2.png">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix feeds">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-3.png">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix snacks">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-4.jpg">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix snacks">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-5.jpg">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix snacks">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-6.jpg">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix nutris">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-7.jpg">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix nutris">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-8.jpg">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
+            	<c:forEach items="${list}" var="prdl">
+	                <div class="col-lg-3 col-md-4 col-sm-6 mix ${prdl.category}">
+	                    <div class="featured__item">
+	                    	<div class="click-area" onclick="location.href='/shop/detail?prodNo=${prdl.prodNo}'">
+		                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/thumbnails/${prdl.prodMainImg}">
+		                        	<ul class="product__item__pic__hover">
+	                               		<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+		                            </ul>
+		                        </div>
+		                        <div class="featured__item__text">
+		                            <h6>${prdl.prodName}</h6>
+		                            <h5>${prdl.salePrice}</h5>
+		                        </div>
+	                        </div>
+	                    </div>
+	                </div>
+                </c:forEach>
+                
             </div>
         </div>
     </section>

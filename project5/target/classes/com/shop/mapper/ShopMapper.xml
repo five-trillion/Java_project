@@ -78,6 +78,13 @@
 		 where prodNo = #{prodNo}
 	</update>
 	
+	<!-- 인기상품 메인페이지 출력 -->
+	<select id="prodpopList" resultType="com.shop.domain.ProductVO">
+		select * 
+		from product
+		order by prodCnt desc
+		limit 8
+	</select>
 	
 	<!-- ==================================================================== -->
 	<!-- 회원 -->

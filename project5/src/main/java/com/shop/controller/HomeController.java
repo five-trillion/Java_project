@@ -15,11 +15,14 @@ import com.shop.domain.BoardVO;
 import com.shop.domain.ProductVO;
 import com.shop.service.ShopService;
 
+import lombok.extern.log4j.Log4j;
+
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
+@Log4j
 @ComponentScan(basePackages = "com.shop")
 public class HomeController {
 	
@@ -35,6 +38,10 @@ public class HomeController {
             logger.info("=====Controller.freepoplist=====");
             List<BoardVO> freelist = service.freepopList();
             model.addAttribute("freelist", freelist);
+            
+            log.info("=====Controller.prdpoplist=====");
+            List<ProductVO> list = service.prodpopList();
+            model.addAttribute("list", list);
             return "home";
         } catch (Exception e) {
             // 예외가 발생한 경우, 로깅하고 오류 페이지로 이동

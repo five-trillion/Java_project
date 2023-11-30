@@ -36,14 +36,8 @@ public interface ShopMapper {
 	//조회수 증가를 위한 메소드 
 	public int updateProdCnt(String prodNo) throws Exception;
 	
-	 //상품 등록을 위한 메소드 
-	 public int prodRegister(ProductVO productVO) throws Exception;
-	 
-	 //상품 수정을 위한 메소드 
-	 public int prodUpdate(ProductVO productVO) throws Exception;
-
-	 //상품 삭제를 위한 메소드 
-	 public int prodDelete(int prodNo) throws Exception;
+	//메인페이지 인기상품 출력을 위한 메소드
+	public List<ProductVO> prodpopList() throws Exception;
 	 
 	//---------------------------------------------------------------------------
 	 

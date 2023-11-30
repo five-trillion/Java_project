@@ -71,7 +71,6 @@ public class ShopServiceImpl implements ShopService {
 		      log.error("Error fetching prodlist", e);
 		      return null;
 		}
-		
 	}
 	
 	@Override
@@ -93,6 +92,17 @@ public class ShopServiceImpl implements ShopService {
 		} catch (Exception e) {
 		      log.error("Error fetching prodcnt", e);
 		      return 0;
+		}
+	}
+	
+	@Override
+	public List<ProductVO> prodpopList() throws Exception {
+		try {
+			System.out.println("=====Service.prodpopList=====");
+			return mapper.prodpopList();
+		} catch (Exception e) {
+		      log.error("Error fetching prodpoplist", e);
+		      return null;
 		}
 	}
 	

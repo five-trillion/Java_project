@@ -70,7 +70,7 @@
                     <div class="row">
                         <c:forEach items="${prodlist}" var="prd">
 	                        <div class="col-lg-4 col-md-6 col-sm-6">
-	                        	<div class="click-area" onclick="location.href='/shop/detail?prodNo=${prd.prodNo}'" style="cursor: pointer;">
+	                        	<div class="click-area" onclick="location.href='/shop/detail?prodNo=${prd.prodNo}'">
 		                            <div class="product__item">
 		                                <div class="product__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/product/thumbnails/${prd.prodMainImg}">
 		                                    <ul class="product__item__pic__hover">

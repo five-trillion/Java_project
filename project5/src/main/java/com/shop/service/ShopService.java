@@ -36,4 +36,7 @@ public interface ShopService {
 	
 	//조회수 증가를 위한 메소드
 	public int updateProdCnt(String prodNo) throws Exception;
+	
+	//메인페이지 인기상품 출력을 위한 메소드
+	public List<ProductVO> prodpopList() throws Exception;
 }
