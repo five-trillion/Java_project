@@ -14,8 +14,10 @@ public class ProductVO {
 	private int netPrice; //공시가
 	private int salePrice; //할인판매가
 	private String prodMainImg; //
-	private String prodTopImg; //
-	private String prodMiniImg; //
+	private String prodImg1; //
+	private String prodImg2; //
+	private String prodImg3; //
+	private String prodImg4; //
 	private String prodInfo; //상품설명
 	private Date prodReg; //등록일
 	private Date prodUpdate; //업데이트일

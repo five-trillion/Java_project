@@ -26,17 +26,17 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="${contextPath}/resources/shop/img/product/${prd.prodMainImg}" alt="">
+                                src="${contextPath}/resources/shop/img/product/${prd.prodImg1}" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
-                            <img data-imgbigurl="${contextPath}/resources/shop/img/product/details/product-details-2.jpg"
-                                src="${contextPath}/resources/shop/img/product/details/thumb-1.jpg" alt="">
-                            <img data-imgbigurl="${contextPath}/resources/shop/img/product/details/product-details-3.jpg"
-                                src="${contextPath}/resources/shop/img/product/details/thumb-2.jpg" alt="">
-                            <img data-imgbigurl="${contextPath}/resources/shop/img/product/details/product-details-5.jpg"
-                                src="${contextPath}/resources/shop/img/product/details/thumb-3.jpg" alt="">
-                            <img data-imgbigurl="${contextPath}/resources/shop/img/product/details/product-details-4.jpg"
-                                src="${contextPath}/resources/shop/img/product/details/thumb-4.jpg" alt="">
+                        	<img data-imgbigurl="${contextPath}/resources/shop/img/product/${prd.prodImg1}"
+                                src="${contextPath}/resources/shop/img/product/${prd.prodImg1}" alt="">
+                            <img data-imgbigurl="${contextPath}/resources/shop/img/product/${prd.prodImg2}"
+                                src="${contextPath}/resources/shop/img/product/${prd.prodImg2}" alt="">
+                            <img data-imgbigurl="${contextPath}/resources/shop/img/product/${prd.prodImg3}"
+                                src="${contextPath}/resources/shop/img/product/${prd.prodImg3}" alt="">
+                            <img data-imgbigurl="${contextPath}/resources/shop/img/product/${prd.prodImg4}"
+                                src="${contextPath}/resources/shop/img/product/${prd.prodImg4}" alt="">
                         </div>
                     </div>
                 </div>
@@ -52,8 +52,7 @@
                             <span>(18<!-- 리뷰 개수 --> reviews)</span>
                         </div>
                         <div class="product__details__price">${prd.salePrice}</div>
-                        <p>제품설명
-                        ${prd.prodInfo}</p>
+                        <p>${prd.prodInfo}</p>
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">

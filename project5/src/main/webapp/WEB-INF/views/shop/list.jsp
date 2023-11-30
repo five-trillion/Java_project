@@ -70,18 +70,19 @@
                     <div class="row">
                         <c:forEach items="${prodlist}" var="prd">
 	                        <div class="col-lg-4 col-md-6 col-sm-6">
-	                            <div class="product__item">
-	                                <div class="product__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/product/${prd.prodMainImg}">
-	                                    <a href="/shop/detail"></a>
-	                                    <ul class="product__item__pic__hover">
-	                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-	                                    </ul>
-	                                </div>
-	                                <div class="product__item__text">
-	                                	<input type="hidden" name="prodNo" value="${prd.prodNo}">
-	                                    <h6><a href="/shop/detail?prodNo=${prd.prodNo}">${prd.prodName}</a></h6>
-	                                    <h5>${prd.salePrice}</h5>
-	                                </div>
+	                        	<div class="click-area" onclick="location.href='/shop/detail?prodNo=${prd.prodNo}'" style="cursor: pointer;">
+		                            <div class="product__item">
+		                                <div class="product__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/product/thumbnails/${prd.prodMainImg}">
+		                                    <ul class="product__item__pic__hover">
+		                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+		                                    </ul>
+		                                </div>
+		                                <div class="product__item__text">
+		                                	<input type="hidden" name="prodNo" value="${prd.prodNo}">
+		                                    <h6>${prd.prodName}</h6>
+		                                    <h5>${prd.salePrice}</h5>
+		                                </div>
+		                            </div>
 	                            </div>
 	                        </div>
                         </c:forEach>
