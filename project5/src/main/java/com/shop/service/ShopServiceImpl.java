@@ -76,12 +76,24 @@ public class ShopServiceImpl implements ShopService {
 	
 	@Override
 	public ProductVO prodDetail(String prodNo) throws Exception{
-		return mapper.prodDetail(prodNo);
+		try {
+			System.out.println("=====Service.prodDetail=====");
+			return mapper.prodDetail(prodNo);
+		} catch (Exception e) {
+		      log.error("Error fetching proddetail", e);
+		      return null;
+		}
 	}
 	
 	@Override
-	public int updateProdCnt(int prodCnt) throws Exception {
-		return mapper.updateProdCnt(prodCnt);
+	public int updateProdCnt(String prodNo) throws Exception {
+		try {
+			System.out.println("=====Service.prodcnt=====");
+			return mapper.updateProdCnt(prodNo);
+		} catch (Exception e) {
+		      log.error("Error fetching prodcnt", e);
+		      return 0;
+		}
 	}
 	
 }

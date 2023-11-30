@@ -31,29 +31,6 @@ public class ShopController {
 	@Autowired
 	ShopService service;
 	
-	/* @RequestMapping(value="/", method = RequestMethod.GET)
-	public String home(Model model) throws Exception {
-	      
-	      log.info("=====Controller.freelist=====");
-	      List<BoardVO> freelist = service.freeList();
-	      if (freelist != null) {
-	          model.addAttribute("freelist", freelist);
-	          return "freelist";
-	       } else {
-	          // Handle the case where freelist is null, perhaps by redirecting or showing an error page
-	          return "error";
-	       }
-	      /* ModelAndView mav = new ModelAndView();
-	      
-	      List<BoardVO> freelist = service.freeList();
-	      mav.addObject("freelist", freelist);
-	      mav.setViewName("freelist");
-	      
-	      List<ProductVO> prodlist = service.prodList();
-	      mav.addObject("prodlist", prodlist);
-	      mav.setViewName("prodlist"); */
-	      
-	/* } */
 	@RequestMapping(value="shop/list", method = RequestMethod.GET)
 	public String list(Model model) throws Exception {
 		try {
@@ -67,12 +44,11 @@ public class ShopController {
 		}
 	}
 	@RequestMapping(value = "shop/detail", method = RequestMethod.GET)
-	public String detail(Integer prodCnt, String prodNo, Model model) throws Exception {
+	public String detail(String prodNo, Model model) throws Exception {
 	    // prodCnt가 null이면 0으로 설정
-	    service.updateProdCnt(prodCnt);
         ProductVO proddetail = service.prodDetail(prodNo);
         model.addAttribute("prodd", proddetail);
-	    
+        service.updateProdCnt(prodNo);
 	    return "shop/detail";
 	}
 	@RequestMapping(value="shop/cart", method = RequestMethod.GET)
