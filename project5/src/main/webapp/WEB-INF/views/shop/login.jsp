@@ -18,6 +18,13 @@
     <link rel="stylesheet" href="${contextPath}/resources/shop/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${contextPath}/resources/shop/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${contextPath}/resources/shop/css/style.css" type="text/css">
+    <style>
+    	.login_warn {
+    		margin : 10px 0;
+    		text-align : center;
+    		color : red;
+    	}
+    </style>
 </head>
 <body>
 	<%@ include file="../includes/header.jsp" %>
@@ -39,6 +46,9 @@
                 	<input type="text" name="userPw" placeholder="비밀번호">
 				</div>
                 <input type="checkbox" id="saveId"> 아이디 저장
+                <c:if test = "${result == 0}">
+                	<div class="login_warn"> 아이디 혹은 비밀번호를 잘못 입력하셨습니다.</div>
+                </c:if>
 	            <div class="col-lg-8 col-md-6">
 	            	<div class="checkout__input">
 	            		<input type="submit" value="로그인">

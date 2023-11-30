@@ -64,16 +64,16 @@
                             <li><a href="/shop/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
                             <li></li>
                             <li>
-                            	<c:if test="${empty loginUser}">
+                            	<c:if test="${user == null}">
 	                            	<div class="header__top__right__auth">
 	                            		<a href="/shop/login"><i class="fa fa-user"></i>Login</a>
 	                            	</div>
                             	</c:if>
-                            	<c:if test="${!empty loginUser}">
+                            	<c:if test="${user != null}">
 	                            	<div class="header__top__right">
 			                            <ul>
 			                                <li><a href="/shop/mypage"><i class="fa fa-user"></i>Mypage</a></li>
-			                                <li><a href="#">Logout</a></li>
+			                                <li><a href="/shop/logout">Logout</a></li>
 			                            </ul>
 			                        </div>
                             	</c:if>

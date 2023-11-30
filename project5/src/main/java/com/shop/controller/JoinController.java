@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.UsersVO;
 import com.shop.service.JoinService;
@@ -55,8 +56,19 @@ public class JoinController {
 		logger.info("로그인 페이지 진입");
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public void loginPOST() {
+	public String loginPOST(HttpServletRequest request, UsersVO user, RedirectAttributes rttr) throws Exception {
+		HttpSession session = request.getSession();
+		UsersVO uVo = joinservice.loginUser(user);
+		//아이디나 비밀번호가 일치하지 않을 때
+		if(uVo == null) {
+			int result = 0;
+			rttr.addFlashAttribute("result", result);
+			return "redirect:/shop/login";
+		}
+		//아이디와 비밀번호가 일치할 때
+		session.setAttribute("user", uVo);
 		logger.info("login Service 성공");
+		return "redirect:/";
 	}
 	
 	//아이디 중복 검사 
