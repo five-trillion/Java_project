@@ -12,4 +12,7 @@ public interface JoinMapper {
 	//아이디 중복 검사
 	public int idCheck(String userId);
 	
+	// 회원정보 수정
+	public void updateUser(UsersVO user) throws Exception;
+	
 }

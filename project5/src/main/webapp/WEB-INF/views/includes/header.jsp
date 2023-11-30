@@ -70,12 +70,22 @@
 	                            	</div>
                             	</c:if>
                             	<c:if test="${user != null}">
-	                            	<div class="header__top__right">
-			                            <ul>
-			                                <li><a href="/shop/mypage"><i class="fa fa-user"></i>Mypage</a></li>
-			                                <li><a href="/shop/logout">Logout</a></li>
-			                            </ul>
-			                        </div>
+                            		<c:if test="${user.admin == 0}">
+		                            	<div class="header__top__right">
+				                            <ul>
+				                                <li><a href="/admin">관리자페이지</a></li>
+				                                <li><a href="/shop/logout">Logout</a></li>
+				                            </ul>
+				                        </div>
+			                        </c:if>
+                            		<c:if test="${user.admin == 1}">
+		                            	<div class="header__top__right">
+				                            <ul>
+				                                <li><a href="/shop/mypage"><i class="fa fa-user"></i>Mypage</a></li>
+				                                <li><a href="/shop/logout">Logout</a></li>
+				                            </ul>
+				                        </div>
+			                        </c:if>
                             	</c:if>
                             </li>
                         </ul>

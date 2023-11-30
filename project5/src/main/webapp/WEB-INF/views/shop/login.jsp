@@ -43,7 +43,7 @@
                 	<input type="text" name="userId" placeholder="아이디">
                 </div>
                 <div class="checkout__input">
-                	<input type="text" name="userPw" placeholder="비밀번호">
+                	<input type="password" name="userPw" placeholder="비밀번호">
 				</div>
                 <input type="checkbox" id="saveId"> 아이디 저장
                 <c:if test = "${result == 0}">

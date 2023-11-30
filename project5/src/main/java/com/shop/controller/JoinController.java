@@ -92,4 +92,17 @@ public class JoinController {
 		session.invalidate();
 		return "redirect:/";
 	}
+	//마이페이지 - 회원정보 수정 페이지 이동
+	@RequestMapping(value="/mypage-modify", method = RequestMethod.GET)
+	public void modifyGet() {
+		logger.info("회원정보 수정 페이지 진입");
+	}
+	
+	//회원정보 수정 
+	@RequestMapping(value="/mypage-modify", method = RequestMethod.POST)
+	public String modifyPost(UsersVO user) throws Exception {
+		joinservice.updateUser(user);
+		logger.info("회원정보 수정 성공");
+		return "redirect:shop/mypage-modify";
+	}		
 }

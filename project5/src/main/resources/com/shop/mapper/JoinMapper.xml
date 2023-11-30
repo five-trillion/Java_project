@@ -27,16 +27,40 @@
 	<mapper namespace="com.shop.mapper.JoinMapper">
 		<!--  회원가입 -->
 		<insert id="insertUser">
-			insert into users values (default, #{userId}, #{userPw}, #{userName}, #{tel}, #{phone}, #{email}, #{address}, #{zip}, #{nick}, #{eventYn}, default, #{birth}, 10000, 1)
+			insert into users 
+			values (default, #{userId}, #{userPw}, #{userName}, #{tel}, #{phone}, #{email}, #{address}, #{zip}, #{nick}, #{eventYn}, default, #{birth}, 10000, 1)
 		</insert>	
 		
 		<!--  로그인 -->
 		<select id="loginUser" resultType="com.shop.domain.UsersVO">
-			select userId, userPw, admin from Users where userId = #{userId} and userPw = #{userPw} 
+			select *
+			from Users 
+			where userId = #{userId} and userPw = #{userPw} 
 		</select>
 		
 		<!-- 아이디 중복 검사 -->
 		<select id="idCheck" resultType="int">
-			select count(*) from users where userId = #{userId}
+			select count(*) 
+			from users 
+			where userId = #{userId}
 		</select>
+		
+		<!-- 회원정보 수정 -->
+		<update id="updateUser">
+			update users 
+			set userPw = #{userPw}, 
+			userName = #{userName}, 
+			tel = #{tel}, 
+			phone = #{phone}, 
+			email = #{email},
+			address = #{address},
+			nick = #{nick},
+			birth = #{birth} 
+		</update>
+		
+		<!-- 애완동물 정보 입력 -->
+		<insert id="insertPet">
+			insert into pet 
+			values (default, #{userNo}, #{petName}, #{petKind}, #{petAge})
+		</insert>
 	</mapper>

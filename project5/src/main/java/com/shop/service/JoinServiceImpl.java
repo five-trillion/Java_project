@@ -26,6 +26,10 @@ public class JoinServiceImpl implements JoinService {
 	public UsersVO loginUser(UsersVO user) throws Exception {
 		return joinmapper.loginUser(user);
 	}
- 	
- 	
+	
+	@Override 
+	public void updateUser(UsersVO user) throws Exception {
+		joinmapper.updateUser(user);
+	}
+ 		
 }

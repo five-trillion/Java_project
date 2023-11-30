@@ -11,4 +11,7 @@ public interface JoinService {
 	
 	//로그인 
 	public UsersVO loginUser(UsersVO user) throws Exception;
+	
+	//회원정보 수정
+	public void updateUser(UsersVO user) throws Exception;
 }
