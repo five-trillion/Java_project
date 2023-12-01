@@ -3,6 +3,7 @@ package com.shop.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shop.domain.PetVO;
 import com.shop.domain.UsersVO;
 import com.shop.mapper.JoinMapper;
 
@@ -26,5 +27,16 @@ public class JoinServiceImpl implements JoinService {
 	public UsersVO loginUser(UsersVO user) throws Exception {
 		return joinmapper.loginUser(user);
 	}
- 	
+
+	
+	@Override 
+	public void updateUser(UsersVO user) throws Exception {
+		joinmapper.updateUser(user);
+	}
+	
+	@Override
+	public void insertPet(PetVO pet) throws Exception {
+		joinmapper.insertPet(pet);
+	}
+ 		
 }

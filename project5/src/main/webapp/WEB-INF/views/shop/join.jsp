@@ -240,7 +240,7 @@
     		}
     		var address1 = document.getElementById('address1').value;
     		var address2 = document.getElementById('address2').value;
-    		var address = address1 + address2;
+    		var address = address1 + "  " + address2;
     		document.getElementById('address').value = address;
     		if(document.frm.address1.value == "") {
     			alert("주소를 입력해주세요.");
