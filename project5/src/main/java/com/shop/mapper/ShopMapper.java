@@ -4,11 +4,15 @@ import java.util.List;
 
 import com.shop.domain.BoardVO;
 import com.shop.domain.ProductVO;
+import com.shop.domain.ReviewVO;
 
 public interface ShopMapper {
 	
-	//자유게시판 전체목록 처리를 위한 메소드 
+	//메인페이지 자유게시판 인기게시물 노출을 위한 메소드 
 	public List<BoardVO> freepopList() throws Exception;
+	
+	//자유게시판 전체목록 처리를 위한 메소드 
+	public List<BoardVO> freeList() throws Exception;
 	
 	//자유게시판 선택목록(글읽기)을 위한 메소드 
 	public BoardVO freeDetail(int boardNo) throws Exception;
@@ -40,6 +44,25 @@ public interface ShopMapper {
 	public List<ProductVO> prodpopList() throws Exception;
 	 
 	//---------------------------------------------------------------------------
+	
+	//자유게시판 전체목록 처리를 위한 메소드 
+	public List<ReviewVO> reviewList() throws Exception;
+	
+	//자유게시판 선택목록(글읽기)을 위한 메소드 
+	public ReviewVO reviewDetail(int reviNo) throws Exception;
+	
+	//자유게시판 조회수 증가를 위한 메소드 
+	public int updateReviewCnt(int reviNo) throws Exception;
+	
+	//자유게시판 글쓰기를 위한 메소드 
+	public int reviewRegister(ReviewVO reviVO) throws Exception;
 	 
+	//자유게시판 글수정을 위한 메소드 
+	public int reviewUpdate(ReviewVO reviVO) throws Exception;
 	 
+	//자유게시판 글삭제를 위한 메소드 
+	public int reviewDelete(int reviNo) throws Exception;
+	
+	//---------------------------------------------------------------------------
+	
 }

@@ -58,20 +58,20 @@ public class ShopController {
 	public void cart() {
 		log.info("========cart========");
 	}
-	@RequestMapping(value="shop/mypage", method = RequestMethod.GET)
-	public void mypage() {
-		
+	@RequestMapping(value="mypage/", method = RequestMethod.GET)
+	public String mypage() {
+		return "mypage/mypage";
 	}
-	@RequestMapping(value="shop/mypage-content", method = RequestMethod.GET)
+	@RequestMapping(value="mypage/content", method = RequestMethod.GET)
 	public void mypage_content() {
 		
-	}@RequestMapping(value="shop/mypage-order", method = RequestMethod.GET)
+	}@RequestMapping(value="mypage/order", method = RequestMethod.GET)
 	public void mypage_order() {
 		
-	}@RequestMapping(value="shop/mypage-point", method = RequestMethod.GET)
+	}@RequestMapping(value="mypage/point", method = RequestMethod.GET)
 	public void mypage_point() {
 		
-	}@RequestMapping(value="shop/mypage-user", method = RequestMethod.GET)
+	}@RequestMapping(value="mypage/user", method = RequestMethod.GET)
 	public void mypage_user() {
 		
 	}

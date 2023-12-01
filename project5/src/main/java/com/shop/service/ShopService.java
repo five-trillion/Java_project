@@ -8,8 +8,11 @@ import com.shop.domain.ProductVO;
 public interface ShopService {
 	
 	// ======================자유게시판======================
-	//전체목록 처리를 위한 메소드
+	//메인페이지 인기글 처리를 위한 메소드
 	public List<BoardVO> freepopList() throws Exception;
+	
+	//전체목록 처리를 위한 메소드
+	public List<BoardVO> freeList() throws Exception;
 	
 	//선택목록(글읽기)을 위한 메소드
 	public BoardVO freeDetail(int boardNo) throws Exception;
