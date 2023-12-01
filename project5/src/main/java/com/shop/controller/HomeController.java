@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.shop.domain.BoardVO;
-import com.shop.domain.ProductVO;
 import com.shop.service.ShopService;
 
 import lombok.extern.log4j.Log4j;
@@ -49,6 +48,5 @@ public class HomeController {
             return "error";
         }
 	}
-	
 	
 }

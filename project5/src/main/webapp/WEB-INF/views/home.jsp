@@ -118,6 +118,7 @@
     <!-- Blog Section Begin -->
     <section class="from-blog spad">
         <div class="container">
+        
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title from-blog__title">
@@ -125,37 +126,35 @@
                     </div>
                 </div>
             </div>
-            	<div class="row">
-	                <div class="col-lg-12">
-	                    <div class="shoping__cart__table">
-	                    	
-	                        <table>
-	                            <tbody>
-	                            	<c:forEach items="${freelist}" var="free">
-	                                <tr>
-	                                    <td class="shoping__cart__item">
-	                                        <%-- <img src="${contextPath}/resources/shop/img/cart/cart-1.jpg" alt=""> --%>
-	                                        <h5>${free.boardTitle}</h5>
-	                                        <p>${free.boardContent}</p>
-	                                    </td>
-	                                    <td class="shoping__cart__quantity">
-	                                        ${free.userNo}
-	                                    </td>
-	                                    <td class="shoping__cart__quantity">
-	                                        댓글 : 0
-	                                    </td>
-	                                    <td class="shoping__cart__quantity">
-	                                        <fmt:formatDate pattern="yyyy-MM-dd" value="${free.boardReg}"/>
-	                                    </td>
-	                                </tr>
-	                                </c:forEach>
-	                                
-	                            </tbody>
-	                        </table>
-	                    </div>
-	                </div>
-            	</div>
-            	
+            
+           	<div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                    	<table>
+                            <tbody>
+                            	<c:forEach items="${freelist}" var="free">
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <%-- <img src="${contextPath}/resources/shop/img/cart/cart-1.jpg" alt=""> --%>
+                                        <h5>${free.boardTitle}</h5>
+                                        <p>${free.boardContent}</p>
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        ${free.userNo}
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        댓글 : 0
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        <fmt:formatDate pattern="yyyy-MM-dd" value="${free.boardReg}"/>
+                                    </td>
+                                </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+           	</div>
         </div>
     </section>
     <!-- Blog Section End -->

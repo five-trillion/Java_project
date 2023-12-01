@@ -2,9 +2,12 @@ package com.shop.controller;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.annotations.Param;
+=======
+>>>>>>> master
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +15,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.shop.domain.BoardVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
 import com.shop.service.ShopService;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j;
 
 @Controller
-@Log4j
 @AllArgsConstructor
 public class ShopController {
 	private static final Logger logger = LoggerFactory.getLogger(ShopController.class);
@@ -32,18 +30,46 @@ public class ShopController {
 	@Autowired
 	ShopService service;
 	
+<<<<<<< HEAD
 	@RequestMapping(value="shop", method = RequestMethod.GET)
+=======
+	/* @RequestMapping(value="/", method = RequestMethod.GET)
+	public String home(Model model) throws Exception {
+	      
+	      log.info("=====Controller.freelist=====");
+	      List<BoardVO> freelist = service.freeList();
+	      if (freelist != null) {
+	          model.addAttribute("freelist", freelist);
+	          return "freelist";
+	       } else {
+	          // Handle the case where freelist is null, perhaps by redirecting or showing an error page
+	          return "error";
+	       }
+	      /* ModelAndView mav = new ModelAndView();
+	      
+	      List<BoardVO> freelist = service.freeList();
+	      mav.addObject("freelist", freelist);
+	      mav.setViewName("freelist");
+	      
+	      List<ProductVO> prodlist = service.prodList();
+	      mav.addObject("prodlist", prodlist);
+	      mav.setViewName("prodlist"); */
+	      
+	/* } */
+	@RequestMapping(value="shop//list", method = RequestMethod.GET)
+>>>>>>> master
 	public String list(Model model) throws Exception {
 		try {
 			logger.info("=======controller.prodlist========");
 			List<ProductVO> prodlist = service.prodList();
 			model.addAttribute("prodlist", prodlist);
-			return "shop/list";
+			return "return shop/list";
 		} catch(Exception e) {
 			logger.error("Error fetching prodlist", e);
             return "error";
 		}
 	}
+<<<<<<< HEAD
 	@RequestMapping(value = "shop/detail", method = RequestMethod.GET)
 	public String detail(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
 		if (prodNo == null) {
@@ -80,6 +106,26 @@ public class ShopController {
 		
 	}
 	@RequestMapping(value="mypage/user", method = RequestMethod.GET)
+=======
+	@RequestMapping(value="shop/cart", method = RequestMethod.GET)
+	public void cart() {
+		logger.info("========cart========");
+	}
+	@RequestMapping(value="shop//mypage", method = RequestMethod.GET)
+	public void mypage() {
+		
+	}
+	@RequestMapping(value="shop//mypage-content", method = RequestMethod.GET)
+	public void mypage_content() {
+		
+	}@RequestMapping(value="shop//mypage-order", method = RequestMethod.GET)
+	public void mypage_order() {
+		
+	}@RequestMapping(value="shop//mypage-point", method = RequestMethod.GET)
+	public void mypage_point() {
+		
+	}@RequestMapping(value="shop//mypage-user", method = RequestMethod.GET)
+>>>>>>> master
 	public void mypage_user() {
 		
 	}

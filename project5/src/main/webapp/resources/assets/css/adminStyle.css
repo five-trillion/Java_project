@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+/* -----------------------  */
+#container {
+	min-width: 1280px;
+}
+.adminHome .col-lg-8 {
+	width: 100%;
+}
+.adminHome .topBox {
+	width: 25%;
+}
+.adminHome .bottomBox {
+	width: 50%;
+}
+.adminUserManage .userInfo .modal-body .infoTable {
+	background-color: red;
+	border: 1px solid black;
+}
