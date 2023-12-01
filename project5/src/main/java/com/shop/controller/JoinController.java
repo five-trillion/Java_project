@@ -3,8 +3,6 @@ package com.shop.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,13 +14,13 @@ import com.shop.domain.UsersVO;
 import com.shop.service.JoinService;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping(value="/shop/*")
 @AllArgsConstructor
+@Log4j
 public class JoinController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(JoinController.class);
 	
 	@Autowired
 	private JoinService joinservice;
@@ -31,20 +29,20 @@ public class JoinController {
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public void loginGET() {
 		
-		logger.info("회원가입 페이지 진입");
+		log.info("회원가입 페이지 진입");
 	}
 	
 	//회원가입
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String joinPOST(UsersVO user) throws Exception{
 		
-		logger.info("join 진입");
+		log.info("join 진입");
 		
 		
 		// 회원가입 서비스 실행
 		joinservice.insertUser(user);
 		
-		logger.info("join Service 성공");
+		log.info("join Service 성공");
 		
 		return "redirect:/";
 		
@@ -53,7 +51,7 @@ public class JoinController {
 	//로그인 페이지 이동
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public void joinGET() {
-		logger.info("로그인 페이지 진입");
+		log.info("로그인 페이지 진입");
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginPOST(HttpServletRequest request, UsersVO user, RedirectAttributes rttr) throws Exception {
@@ -67,7 +65,7 @@ public class JoinController {
 		}
 		//아이디와 비밀번호가 일치할 때
 		session.setAttribute("user", uVo);
-		logger.info("login Service 성공");
+		log.info("login Service 성공");
 		return "redirect:/";
 	}
 	
@@ -75,9 +73,9 @@ public class JoinController {
 	@RequestMapping(value = "/userIdCk", method=RequestMethod.POST)
 	@ResponseBody
 	public String userIdCkPost(String userId) throws Exception {
-		logger.info("userIdCk() 진입");
+		log.info("userIdCk() 진입");
 		int result = joinservice.idCheck(userId);
-		logger.info("결과값 = "+result);
+		log.info("결과값 = "+result);
 		if(result != 0) {
 			return "fail"; //중복 아이디O
 		} else {
@@ -87,7 +85,7 @@ public class JoinController {
 	//로그아웃
 	@RequestMapping(value="logout", method=RequestMethod.GET)
 	public String logoutGET(HttpServletRequest request) throws Exception {
-		logger.info("logoutGET 메서드 진입");
+		log.info("logoutGET 메서드 진입");
 		HttpSession session = request.getSession();
 		session.invalidate();
 		return "redirect:/";
@@ -95,14 +93,14 @@ public class JoinController {
 	//마이페이지 - 회원정보 수정 페이지 이동
 	@RequestMapping(value="/mypage-modify", method = RequestMethod.GET)
 	public void modifyGet() {
-		logger.info("회원정보 수정 페이지 진입");
+		log.info("회원정보 수정 페이지 진입");
 	}
 	
 	//회원정보 수정 
 	@RequestMapping(value="/mypage-modify", method = RequestMethod.POST)
 	public String modifyPost(UsersVO user) throws Exception {
 		joinservice.updateUser(user);
-		logger.info("회원정보 수정 성공");
-		return "redirect:shop/mypage-modify";
+		log.info("회원정보 수정 성공");
+		return "redirect:/";
 	}		
 }

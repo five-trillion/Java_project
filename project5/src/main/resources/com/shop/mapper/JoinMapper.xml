@@ -56,6 +56,7 @@
 			address = #{address},
 			nick = #{nick},
 			birth = #{birth} 
+			where userId = #{userId} 
 		</update>
 		
 		<!-- 애완동물 정보 입력 -->
