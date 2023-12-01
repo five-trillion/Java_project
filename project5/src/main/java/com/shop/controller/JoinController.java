@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.shop.domain.PetVO;
 import com.shop.domain.UsersVO;
 import com.shop.service.JoinService;
 
@@ -27,7 +28,7 @@ public class JoinController {
 	
 	//회원가입 페이지 이동
 	@RequestMapping(value="/join", method=RequestMethod.GET)
-	public void loginGET() {
+	public void joinGET() {
 		
 		log.info("회원가입 페이지 진입");
 	}
@@ -35,11 +36,7 @@ public class JoinController {
 	//회원가입
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String joinPOST(UsersVO user) throws Exception{
-		
-		log.info("join 진입");
-		
-		
-		// 회원가입 서비스 실행
+	
 		joinservice.insertUser(user);
 		
 		log.info("join Service 성공");
@@ -50,9 +47,11 @@ public class JoinController {
 	
 	//로그인 페이지 이동
 	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public void joinGET() {
+	public void loginGET() {
 		log.info("로그인 페이지 진입");
 	}
+	
+	//로그인 
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginPOST(HttpServletRequest request, UsersVO user, RedirectAttributes rttr) throws Exception {
 		HttpSession session = request.getSession();
@@ -61,6 +60,7 @@ public class JoinController {
 		if(uVo == null) {
 			int result = 0;
 			rttr.addFlashAttribute("result", result);
+			log.info("로그인 실패");
 			return "redirect:/shop/login";
 		}
 		//아이디와 비밀번호가 일치할 때
@@ -82,6 +82,7 @@ public class JoinController {
 			return "success"; //중복 아이디X
 		}
 	}
+	
 	//로그아웃
 	@RequestMapping(value="logout", method=RequestMethod.GET)
 	public String logoutGET(HttpServletRequest request) throws Exception {
@@ -90,15 +91,30 @@ public class JoinController {
 		session.invalidate();
 		return "redirect:/";
 	}
+
+	//반려견 정보 입력 페이지 이동
+	@RequestMapping(value="/mypage-pet", method = RequestMethod.GET)
+	public void petGET() {
+		log.info("반려견 정보입력 페이지 진입");
+	}
+	
+	//반려견 정보 입력
+	@RequestMapping(value="/mypage-pet", method = RequestMethod.POST)
+	public String petPOST(PetVO pet) throws Exception {
+		joinservice.insertPet(pet);
+		log.info("반려견 정보입력 성공");
+		return "redirect:/shop/mypage";
+	}
+
 	//마이페이지 - 회원정보 수정 페이지 이동
 	@RequestMapping(value="/mypage-modify", method = RequestMethod.GET)
-	public void modifyGet() {
+	public void modifyGET() {
 		log.info("회원정보 수정 페이지 진입");
 	}
 	
 	//회원정보 수정 
 	@RequestMapping(value="/mypage-modify", method = RequestMethod.POST)
-	public String modifyPost(UsersVO user) throws Exception {
+	public String modifyPOST(UsersVO user) throws Exception {
 		joinservice.updateUser(user);
 		log.info("회원정보 수정 성공");
 		return "redirect:/";

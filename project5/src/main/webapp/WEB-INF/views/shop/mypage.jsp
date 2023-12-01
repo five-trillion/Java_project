@@ -84,7 +84,10 @@
 				</div>
 		        <div class="right">
 		            <ul class="coldiv-1 gray">
-		            	<li><a href="/shop/mypage-modify" class="fs15 modify">회원정보 수정</a></li>
+		            	<li>
+		            		<div style="display:inline-block; float:right"><a href="/shop/mypage-modify" class="fs15 modify">회원정보 수정</a></div>
+		            		<div style="display:inline-block; float:left"><a href="/shop/mypage-pet" class="fs15">반려견 정보</a></div>
+		            	</li>
 		            </ul>
 		            <ul class="coldiv-1 gray">
 		            	<li><a href="/myshop/order/list.html?mode=cs" class="fs15">취소/교환/반품내역<i class="arrow"></i></a></li>
