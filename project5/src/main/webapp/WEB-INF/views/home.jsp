@@ -24,9 +24,9 @@
                     <div class="hero__item set-bg" data-setbg="${contextPath}/resources/shop/img/hero/main_bnr02.png">
                         <div class="hero__text">
                             <span>MURMUR</span>
-                            <h2>즐거움으로 가득한 반려생활<br/>그 이상을 응원해요</h2>
+                            <h3>즐거움으로 가득한 반려생활<br/>그 이상을 응원해요</h3>
                             <p>Special Event</p>
-                            <a href="shop/list" class="primary-btn">SHOP NOW</a>
+                            <a href="shop" class="primary-btn">SHOP NOW</a>
                         </div>
                     </div>
                 </div>
@@ -78,118 +78,32 @@
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".feeds">사료</li>
-                            <li data-filter=".snacks">간식</li>
-                            <li data-filter=".nutris">영양제</li>
+                            <li data-filter=".fe">사료</li>
+                            <li data-filter=".sn">간식</li>
+                            <li data-filter=".nu">영양제</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix feeds">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-1.jpg">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix feeds">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-2.png">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix feeds">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-3.png">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix snacks">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-4.jpg">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix snacks">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-5.jpg">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix snacks">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-6.jpg">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix nutris">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-7.jpg">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix nutris">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/featured/feature-8.jpg">
-                        	<ul class="product__item__pic__hover">
-                               <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                           </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
+            	<c:forEach items="${list}" var="prdl">
+	                <div class="col-lg-3 col-md-4 col-sm-6 mix ${prdl.category}">
+	                    <div class="featured__item">
+	                    	<div class="click-area" onclick="location.href='/shop/detail?prodNo=${prdl.prodNo}'">
+		                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/upload/product/thumbnails/${prdl.prodMainImg}">
+		                        	<ul class="product__item__pic__hover">
+	                               		<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+		                            </ul>
+		                        </div>
+		                        <div class="featured__item__text">
+		                            <h6>${prdl.prodName}</h6>
+		                            <h5>${prdl.salePrice}</h5>
+		                        </div>
+	                        </div>
+	                    </div>
+	                </div>
+                </c:forEach>
+                
             </div>
         </div>
     </section>
@@ -204,6 +118,7 @@
     <!-- Blog Section Begin -->
     <section class="from-blog spad">
         <div class="container">
+        
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title from-blog__title">
@@ -211,37 +126,35 @@
                     </div>
                 </div>
             </div>
-            	<div class="row">
-	                <div class="col-lg-12">
-	                    <div class="shoping__cart__table">
-	                    	
-	                        <table>
-	                            <tbody>
-	                            	<c:forEach items="${freelist}" var="free">
-	                                <tr>
-	                                    <td class="shoping__cart__item">
-	                                        <%-- <img src="${contextPath}/resources/shop/img/cart/cart-1.jpg" alt=""> --%>
-	                                        <h5>${free.boardTitle}</h5>
-	                                        <p>${free.boardContent}</p>
-	                                    </td>
-	                                    <td class="shoping__cart__quantity">
-	                                        ${free.userNo}
-	                                    </td>
-	                                    <td class="shoping__cart__quantity">
-	                                        댓글 : 0
-	                                    </td>
-	                                    <td class="shoping__cart__quantity">
-	                                        <fmt:formatDate pattern="yyyy-MM-dd" value="${free.boardReg}"/>
-	                                    </td>
-	                                </tr>
-	                                </c:forEach>
-	                                
-	                            </tbody>
-	                        </table>
-	                    </div>
-	                </div>
-            	</div>
-            	
+            
+           	<div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                    	<table>
+                            <tbody>
+                            	<c:forEach items="${freelist}" var="free">
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <%-- <img src="${contextPath}/resources/shop/img/cart/cart-1.jpg" alt=""> --%>
+                                        <h5>${free.boardTitle}</h5>
+                                        <p>${free.boardContent}</p>
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        ${free.userNo}
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        댓글 : 0
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        <fmt:formatDate pattern="yyyy-MM-dd" value="${free.boardReg}"/>
+                                    </td>
+                                </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+           	</div>
         </div>
     </section>
     <!-- Blog Section End -->

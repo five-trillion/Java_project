@@ -36,7 +36,6 @@ public class JoinController {
 	//회원가입
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String joinPOST(UsersVO user) throws Exception{
-	
 		joinservice.insertUser(user);
 		
 		log.info("join Service 성공");
@@ -45,7 +44,7 @@ public class JoinController {
 		
 	}
 	
-	//로그인 페이지 이동
+	// 로그인 페이지 이동
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public void loginGET() {
 		log.info("로그인 페이지 진입");
@@ -120,3 +119,4 @@ public class JoinController {
 		return "redirect:/";
 	}		
 }
+

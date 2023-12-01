@@ -18,4 +18,5 @@ public interface JoinService {
 	
 	// 반려견 정보 기입
 	public void insertPet(PetVO pet) throws Exception;
+
 }
