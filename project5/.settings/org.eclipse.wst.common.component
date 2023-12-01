@@ -1,4 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                    	
+=======
+<<<<<<< HEAD
+                        	
+    
+>>>>>>> master
+    
+    
+    
+    
+    <wb-module deploy-name="controller-1.0.0-BUILD-SNAPSHOT">
+<<<<<<< HEAD
+                                                
+=======
+                                                        
+        
+>>>>>>> master
+        
+        
+        
+        
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+<<<<<<< HEAD
+                                        		
+=======
+                                                		
+        
+>>>>>>> master
+        
+        
+        
+        
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+<<<<<<< HEAD
+                                        		
+=======
+                                                		
+        
+>>>>>>> master
+        
+        
+        
+        
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+<<<<<<< HEAD
+                                        		
+=======
+                                                		
+        
+>>>>>>> master
+        
+        
+        
+        
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+<<<<<<< HEAD
+                                        		
+=======
+                                                		
+        
+>>>>>>> master
+        
+        
+        
+        
+        <property name="java-output-path" value="target/classes"/>
+<<<<<<< HEAD
+        <property name="context-root" value="/"/>
+                                        	
+=======
+        <property name="context-root" value="controller"/>
+                                                	
+    
+    
+=======
+>>>>>>> 18d063642340c9198a4ce8b833e1fdcd0e7631fa
                                 	
     
     
@@ -51,15 +130,26 @@
     
     
     
+>>>>>>> master
     
     
     
     
     </wb-module>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                    
+=======
+<<<<<<< HEAD
+                        
+=======
+>>>>>>> 18d063642340c9198a4ce8b833e1fdcd0e7631fa
                                 
 
 
 
+>>>>>>> master
 
 
 

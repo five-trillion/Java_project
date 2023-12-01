@@ -438,7 +438,7 @@ ol {
 	left: 0;
 	top: 50px;
 	background: #222222;
-	width: 180px;
+	width: 130px;
 	z-index: 9;
 	padding: 5px 0;
 	-webkit-transition: all, 0.3s;
@@ -464,6 +464,7 @@ ol {
 	color: #ffffff;
 	font-weight: 400;
 	padding: 5px 15px;
+	text-align: left;
 }
 
 .header__menu ul li.active a {
@@ -682,10 +683,10 @@ ol {
 }
 
 .hero__search__form form input {
-	width: 70%;
+	width: 85%;
 	border: none;
 	height: 48px;
-	font-size: 16px;
+	font-size: 14px;
 	color: #b2b2b2;
 	padding-left: 20px;
 }
@@ -748,8 +749,8 @@ ol {
 	color: #a9a9a9;
 }
 
-.hero__text h2 {
-	font-size: 46px;
+.hero__text h3 {
+	font-size: 37px;
 	color: #252525;
 	line-height: 52px;
 	font-weight: 700;
@@ -858,6 +859,10 @@ ol {
 
 .featured__item {
 	margin-bottom: 50px;
+}
+
+.click-area {
+	cursor: pointer;
 }
 
 .featured__item:hover .featured__item__pic .featured__item__pic__hover {
@@ -1777,7 +1782,7 @@ ol {
 
 .pro-qty {
 	width: 140px;
-	height: 50px;
+	height: 40px;
 	display: inline-block;
 	position: relative;
 	text-align: center;
@@ -1884,8 +1889,7 @@ ol {
 -----------------------*/
 
 .shoping-cart {
-	padding-top: 80px;
-	padding-bottom: 80px;
+	padding: 20px 80px 80px;
 }
 
 .shoping__cart__table {

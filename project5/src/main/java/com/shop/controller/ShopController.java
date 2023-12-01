@@ -2,6 +2,9 @@ package com.shop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +12,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shop.domain.ProductVO;
+import com.shop.domain.ReviewVO;
 import com.shop.service.ShopService;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 @Controller
 @AllArgsConstructor
 public class ShopController {
@@ -23,30 +30,7 @@ public class ShopController {
 	@Autowired
 	ShopService service;
 	
-	/* @RequestMapping(value="/", method = RequestMethod.GET)
-	public String home(Model model) throws Exception {
-	      
-	      log.info("=====Controller.freelist=====");
-	      List<BoardVO> freelist = service.freeList();
-	      if (freelist != null) {
-	          model.addAttribute("freelist", freelist);
-	          return "freelist";
-	       } else {
-	          // Handle the case where freelist is null, perhaps by redirecting or showing an error page
-	          return "error";
-	       }
-	      /* ModelAndView mav = new ModelAndView();
-	      
-	      List<BoardVO> freelist = service.freeList();
-	      mav.addObject("freelist", freelist);
-	      mav.setViewName("freelist");
-	      
-	      List<ProductVO> prodlist = service.prodList();
-	      mav.addObject("prodlist", prodlist);
-	      mav.setViewName("prodlist"); */
-	      
-	/* } */
-	@RequestMapping(value="shop//list", method = RequestMethod.GET)
+	@RequestMapping(value="shop", method = RequestMethod.GET)
 	public String list(Model model) throws Exception {
 		try {
 			logger.info("=======controller.prodlist========");
@@ -58,28 +42,75 @@ public class ShopController {
             return "error";
 		}
 	}
-	@RequestMapping(value="shop/cart", method = RequestMethod.GET)
-	public void cart() {
-		logger.info("========cart========");
+	@RequestMapping(value = "shop/detail", method = RequestMethod.GET)
+	public String detail(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
+		if (prodNo == null) {
+	        log.error("Invalid prodNo: " + prodNo);
+	    } else {
+	        service.updateProdCnt(prodNo); // 조회 수 업데이트
+	        ProductVO proddetail = service.prodDetail(prodNo); // 상세 정보 조회
+	        model.addAttribute("prd", proddetail);
+	        
+	        List<ReviewVO> revidlist = service.reviewdList(); // 해당상품 리뷰목록구현
+	        model.addAttribute("list", revidlist);
+	    }
+		return "shop/detail";
 	}
-	@RequestMapping(value="shop//mypage", method = RequestMethod.GET)
-	public void mypage() {
-		
+	@RequestMapping(value="/cart", method = RequestMethod.GET)
+	public String cart() {
+		log.info("========cart========");
+		return "shop/cart";
 	}
-	@RequestMapping(value="shop//mypage-content", method = RequestMethod.GET)
+	@RequestMapping(value="mypage", method = RequestMethod.GET)
+	public String mypage() {
+		return "mypage/mypage";
+	}
+	@RequestMapping(value="mypage/content", method = RequestMethod.GET)
 	public void mypage_content() {
 		
-	}@RequestMapping(value="shop//mypage-order", method = RequestMethod.GET)
+	}
+	@RequestMapping(value="mypage/order", method = RequestMethod.GET)
 	public void mypage_order() {
 		
-	}@RequestMapping(value="shop//mypage-point", method = RequestMethod.GET)
+	}
+	@RequestMapping(value="mypage/point", method = RequestMethod.GET)
 	public void mypage_point() {
 		
-	}@RequestMapping(value="shop//mypage-user", method = RequestMethod.GET)
+	}
+	@RequestMapping(value="mypage/user", method = RequestMethod.GET)
 	public void mypage_user() {
 		
 	}
-	/* @RequestMapping(value="shop/freelist", method = RequestMethod.GET)
+	/* @RequestMapping(value="review", method = RequestMethod.GET)
+	public List<ReviewVO> reviewList() throws Exception {
+		return "review";
+	}
+	
+	@RequestMapping(value="review", method = RequestMethod.GET)
+	public ReviewVO reviewDetail(int reviNo) throws Exception {
+		return "review";
+	}
+	
+	@RequestMapping(value="review", method = RequestMethod.GET)
+	public int updateReviewCnt(int reviNo) throws Exception {
+		return "review";
+	}
+	
+	@RequestMapping(value="review", method = RequestMethod.GET)
+	public int reviewRegister(ReviewVO reviVO) throws Exception {
+		return "review";
+	}
+	
+	@RequestMapping(value="review", method = RequestMethod.GET)
+	public int reviewUpdate(ReviewVO reviVO) throws Exception {
+		return "review";
+	}
+	
+	@Override
+	public int reviewDelete(int reviNo) throws Exception {
+		return mapper.reviewDelete(reviNo);
+	}
+	@RequestMapping(value="shop/freelist", method = RequestMethod.GET)
 	public ModelAndView freelist(Model model) throws Exception {
 	      
 	      log.info("=========list==========");

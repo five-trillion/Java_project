@@ -4,11 +4,15 @@ import java.util.List;
 
 import com.shop.domain.BoardVO;
 import com.shop.domain.ProductVO;
+import com.shop.domain.ReviewVO;
 
 public interface ShopMapper {
 	
-	//자유게시판 전체목록 처리를 위한 메소드 
+	//메인페이지 자유게시판 인기게시물 노출을 위한 메소드 
 	public List<BoardVO> freepopList() throws Exception;
+	
+	//자유게시판 전체목록 처리를 위한 메소드 
+	public List<BoardVO> freeList() throws Exception;
 	
 	//자유게시판 선택목록(글읽기)을 위한 메소드 
 	public BoardVO freeDetail(int boardNo) throws Exception;
@@ -31,21 +35,37 @@ public interface ShopMapper {
 	public List<ProductVO> prodList() throws Exception;
 	 
 	//상품 선택목록(상세보기)을 위한 메소드 
-	public ProductVO prodDetail(int prodNo) throws Exception;
+	public ProductVO prodDetail(String prodNo) throws Exception;
 	
 	//조회수 증가를 위한 메소드 
-	//public int updateReadCnt(int prodNo) throws Exception;
+	public int updateProdCnt(String prodNo) throws Exception;
 	
-	 //상품 등록을 위한 메소드 
-	 public int prodRegister(ProductVO productVO) throws Exception;
-	 
-	 //상품 수정을 위한 메소드 
-	 public int prodUpdate(ProductVO productVO) throws Exception;
-
-	 //상품 삭제를 위한 메소드 
-	 public int prodDelete(int prodNo) throws Exception;
+	//메인페이지 인기상품 출력을 위한 메소드
+	public List<ProductVO> prodpopList() throws Exception;
 	 
 	//---------------------------------------------------------------------------
+	
+	//리뷰 전체목록 처리를 위한 메소드 
+	public List<ReviewVO> reviewList() throws Exception;
+	
+	//상품상세페이지 리뷰 처리를 위한 메소드 
+	public List<ReviewVO> reviewdList() throws Exception;
+	
+	//리뷰 선택목록(글읽기)을 위한 메소드 
+	public ReviewVO reviewDetail(int reviNo) throws Exception;
+	
+	//리뷰 조회수 증가를 위한 메소드 
+	public int updateReviewCnt(int reviNo) throws Exception;
+	
+	//리뷰 쓰기를 위한 메소드 
+	public int reviewRegister(ReviewVO reviVO) throws Exception;
 	 
+	//리뷰 수정을 위한 메소드 
+	public int reviewUpdate(ReviewVO reviVO) throws Exception;
 	 
+	//리뷰 삭제를 위한 메소드 
+	public int reviewDelete(int reviNo) throws Exception;
+	
+	//---------------------------------------------------------------------------
+	
 }
