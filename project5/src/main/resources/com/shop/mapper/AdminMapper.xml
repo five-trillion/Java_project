@@ -3,7 +3,18 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.mapper.AdminMapper">
-
+	
+	<!-- 상품 등록 -->
+	<insert id="prodInsert">
+	  	insert into product 
+	  	values (#{prodNo},#{category}, #{brand},  #{prodName},#{costPrice}, #{netPrice}, #{salePrice}, #{prodMainImg}, #{prodImg1}, #{prodImg2}, #{prodImg3}, #{prodImg4}, #{detailImg}, #{prodInfo}, default, default, #{prodRest}, 0)
+  	</insert>
+  	
+  	<!-- 브랜드,카테고리 부르기 -->
+  	<select id="prodCodeInsert" resultType="com.shop.domain.CodeVO">
+  		select * from code where codeId = "brand" or codeId = "category"
+  	</select>
+	
 	<!-- 유저 리스트 -->
 	<select id="getUsers" resultType="com.shop.domain.UsersVO">
 		select * from users

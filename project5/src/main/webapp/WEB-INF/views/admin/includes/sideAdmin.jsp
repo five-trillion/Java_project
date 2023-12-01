@@ -29,9 +29,9 @@
 			</a>
 				<ul id="forms-nav" class="nav-content collapse "
 					data-bs-parent="#sidebar-nav">
-					<li><a href="#"> <i class="bi bi-circle"></i><span>상품 등록</span>
+					<li><a href="adminProdInsert"> <i class="bi bi-circle"></i><span>상품 등록</span>
 					</a></li>
-					<li><a href="#"> <i class="bi bi-circle"></i><span>상품 수정</span>
+					<li><a href="adminProdUpdateForm"> <i class="bi bi-circle"></i><span>상품 수정</span>
 					</a></li>
 					<li><a href="#"> <i class="bi bi-circle"></i><span>상품 삭제</span>
 					</a></li>

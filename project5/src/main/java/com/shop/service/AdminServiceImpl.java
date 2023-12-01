@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.shop.domain.BoardVO;
+import com.shop.domain.CodeVO;
+import com.shop.domain.ProductVO;
 import com.shop.domain.UsersVO;
 import com.shop.mapper.AdminMapper;
 
@@ -17,6 +19,16 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Service
 public class AdminServiceImpl implements AdminService {
+
+	@Override
+	public void prodRegister(ProductVO prodVo) {
+		mapper.prodInsert(prodVo);
+	}
+
+	@Override
+	public List<CodeVO> prodCodeInsert() {
+		return mapper.prodCodeInsert();
+	}
 
 	@Autowired
 	AdminMapper mapper;
