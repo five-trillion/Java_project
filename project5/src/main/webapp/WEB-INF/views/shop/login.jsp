@@ -6,18 +6,81 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
- 	<!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/style.css" type="text/css">
+<%@ include file="../includes/src.jsp" %>
+ 	<style>
+ 		.login_warn {
+ 			margin-top : 10px;
+ 			text-align : center;
+ 			color : red;
+ 		}
+ 	</style>
+<script type="text/javascript">
+	$(function() {
+	    
+	    fnInit();
+	  
+	});
+	
+	function saveIdCk(){
+	  saveid();
+	}
+	
+	function fnInit(){
+		 var cookieid = getCookie("saveid");
+		 console.log(cookieid);
+		 	if(cookieid !=""){
+		     $("input:checkbox[id='saveId']").prop("checked", true);
+		     $('#logId').val(cookieid);
+		 	}
+	}    
+	
+	function setCookie(name, value, expiredays) {
+		 var todayDate = new Date();
+		 todayDate.setTime(todayDate.getTime() + 0);
+		 if(todayDate > expiredays){
+		     document.cookie = name + "=" + escape(value) + "; path=/; expires=" + expiredays + ";";
+		 } else if(todayDate < expiredays){
+		     todayDate.setDate(todayDate.getDate() + expiredays);
+		     document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+		 }
+		 console.log(document.cookie);
+	}
+	
+	function getCookie(Name) {
+	 var search = Name + "=";
+	 console.log("search : " + search);
+	 
+	 if (document.cookie.length > 0) { // 쿠키가 설정되어 있다면 
+	     offset = document.cookie.indexOf(search);
+	     console.log("offset : " + offset);
+	     if (offset != -1) { // 쿠키가 존재하면 
+	         offset += search.length;
+	         // set index of beginning of value
+	         end = document.cookie.indexOf(";", offset);
+	         console.log("end : " + end);
+	         // 쿠키 값의 마지막 위치 인덱스 번호 설정 
+	         if (end == -1)
+	             end = document.cookie.length;
+	         console.log("end위치  : " + end);
+	         
+	         return unescape(document.cookie.substring(offset, end));
+	     }
+	 }
+	 return "";
+	}
+	
+	function saveid() {
+	 var expdate = new Date();
+	 if ($("#saveId").is(":checked")){
+	     expdate.setTime(expdate.getTime() + 1000 * 3600 * 24 * 30);
+	     setCookie("saveid", $("#logId").val(), expdate);
+	     }else{
+	    expdate.setTime(expdate.getTime() - 1000 * 3600 * 24 * 30);
+	     setCookie("saveid", $("#logId").val(), expdate);
+	      
+	 }
+	}
+</script>
 </head>
 <body>
 	<%@ include file="../includes/header.jsp" %>
@@ -30,15 +93,21 @@
 	            </div>
 	        </div>
 	    </div>
-	    <form method="post" action="login" id="frm" name="frm">
+	    <form method="post" action="login" id="frm" name="frm" onsubmit="return saveIdCk()">
 	    	<div class="col-lg-8 col-md-6">
             	<div class="checkout__input">
                 	<input type="text" name="userId" placeholder="아이디">
                 </div>
                 <div class="checkout__input">
-                	<input type="text" name="userPw" placeholder="비밀번호">
+                	<input type="password" name="userPw" placeholder="비밀번호">
 				</div>
-                <input type="checkbox" id="saveId"> 아이디 저장
+				<div class="checkout__input__checkbox">
+	                <input type="checkbox" id="saveId" name="saveId" onclick="saveUserId()"> 아이디 저장
+	                 <span class="checkmark"></span>
+                </div>
+                 <c:if test="${result==0}">
+               		<div class ="login_warn"> 아이디 혹은 비밀번호를 다시 입력해주세요.</div>
+                </c:if>
 	            <div class="col-lg-8 col-md-6">
 	            	<div class="checkout__input">
 	            		<input type="submit" value="로그인">
