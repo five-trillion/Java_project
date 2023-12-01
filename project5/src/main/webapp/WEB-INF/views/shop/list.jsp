@@ -70,26 +70,27 @@
                     <div class="row">
                         <c:forEach items="${prodlist}" var="prd">
 	                        <div class="col-lg-4 col-md-6 col-sm-6">
-	                            <div class="product__item">
-	                                <div class="product__item__pic set-bg" data-setbg="${prd.prodMainImg}">
-	                                    <ul class="product__item__pic__hover">
-	                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-	                                    </ul>
-	                                </div>
-	                                <div class="product__item__text">
-	                                    <h6><a href="#">${prd.prodName}</a></h6>
-	                                    <h5>${prd.salePrice}</h5>
-	                                </div>
+	                        	<div class="click-area" onclick="location.href='/shop/detail?prodNo=${prd.prodNo}'">
+		                            <div class="product__item">
+		                                <div class="product__item__pic set-bg" data-setbg="${contextPath}/resources/upload/product/thumbnails/${prd.prodMainImg}">
+		                                    
+		                                </div>
+		                                <div class="product__item__text">
+		                                	<input type="hidden" name="prodNo" value="${prd.prodNo}">
+		                                    <h6>${prd.prodName}</h6>
+		                                    <h5>${prd.salePrice}</h5>
+		                                </div>
+		                            </div>
 	                            </div>
 	                        </div>
                         </c:forEach>
                     </div>
-                    <div class="product__pagination">
+                    <!-- <div class="product__pagination">
                         <a href="#">1</a>
                         <a href="#">2</a>
                         <a href="#">3</a>
                         <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -97,5 +98,19 @@
     <!-- Product Section End -->
 	
 	<%@include file="../includes/footer.jsp" %>
+	
+	<!-- <script>
+	$('.fa-shopping-cart').on("click",function(e){
+		
+		e.preventDefault();
+		
+		let popUrl = "/shop/popcart";
+		let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
+		
+		window.open(popUrl,"장바구니로 이동",popOption);
+		
+	});
+	</script> -->
+	
 </body>
 </html>
