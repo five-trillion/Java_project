@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.shop.domain.BoardVO;
 import com.shop.domain.ProductVO;
+import com.shop.domain.ReviewVO;
 import com.shop.mapper.ShopMapper;
 
 import lombok.AllArgsConstructor;
@@ -30,6 +31,11 @@ public class ShopServiceImpl implements ShopService {
 		      log.error("Error fetching freelist", e);
 		      return null;
 		}
+	}
+	
+	@Override
+	public List<BoardVO> freeList() throws Exception {
+		return mapper.freeList();
 	}
 
 	@Override
@@ -106,4 +112,33 @@ public class ShopServiceImpl implements ShopService {
 		}
 	}
 	
+	@Override
+	public List<ReviewVO> reviewList() throws Exception {
+		return mapper.reviewList();
+	}
+	
+	@Override
+	public ReviewVO reviewDetail(int reviNo) throws Exception {
+		return mapper.reviewDetail(reviNo);
+	}
+	
+	@Override
+	public int updateReviewCnt(int reviNo) throws Exception {
+		return mapper.updateReviewCnt(reviNo);
+	}
+	
+	@Override
+	public int reviewRegister(ReviewVO reviVO) throws Exception {
+		return mapper.reviewRegister(reviVO);
+	}
+	
+	@Override
+	public int reviewUpdate(ReviewVO reviVO) throws Exception {
+		return mapper.reviewUpdate(reviVO);
+	}
+	
+	@Override
+	public int reviewDelete(int reviNo) throws Exception {
+		return mapper.reviewDelete(reviNo);
+	}
 }

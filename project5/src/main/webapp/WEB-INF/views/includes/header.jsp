@@ -15,11 +15,11 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="/shop/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
+                <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
             </ul>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
-            <ul>
+            <ul class="featured__controls">
                 <li class="active"><a href="../">Home</a></li>
                 <li><a href="/shop/list">Shop</a></li>
                 <li><a href="#">Community</a>
@@ -61,18 +61,18 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="/shop/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
+                            <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
                             <li></li>
                             <li>
                             	<c:if test="${empty loginUser}">
 	                            	<div class="header__top__right__auth">
-	                            		<a href="/shop/mypage"><i class="fa fa-user"></i>Login</a>
+	                            		<a href="/mypage"><i class="fa fa-user"></i>Login</a>
 	                            	</div>
                             	</c:if>
                             	<c:if test="${!empty loginUser}">
 	                            	<div class="header__top__right">
 			                            <ul>
-			                                <li><a href="/shop/mypage"><i class="fa fa-user"></i>Mypage</a></li>
+			                                <li><a href="/mypage"><i class="fa fa-user"></i>Mypage</a></li>
 			                                <li><a href="#">Logout</a></li>
 			                            </ul>
 			                        </div>
@@ -104,9 +104,9 @@
                 </div>
                 <div class="col-lg-5">
                     <nav class="header__menu">
-                        <ul>
+                        <ul class="featured__controls">
                             <li class="active"><a href="../">Home</a></li>
-                            <li><a href="/shop/list">Shop</a>
+                            <li><a href="/shop">Shop</a>
                             	<ul class="header__menu__dropdown">
                                     <li><a href="#">사료</a></li>
                                     <li><a href="#">간식</a></li>

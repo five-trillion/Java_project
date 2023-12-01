@@ -13,13 +13,7 @@
 	
 	<div id="contents" style="padding: 0 0 80px;">
 	
-		<div class="page_title fs60">My page</div>
-		<ul class="mypage_tab"><li class="home"><a href="/shop/mypage" class="fs15">홈</a></li>
-			<li class="order on"><a href="/shop/mypage-order" class="fs15">주문내역</a></li>
-			<li class="mileage"><a href="/shop/mypage-point" class="fs15">적립금</a></li>
-			<li class="modify"><a href="/shop/mypage-user" class="fs15">회원정보</a></li>
-			<li class="board"><a href="/shop/mypage-content" class="fs15">게시물관리</a></li>
-		</ul>
+		<%@include file="../includes/mp_header.jsp" %>
 		<div class="page_wrap">
 		    <div class="xans-element- xans-myshop xans-myshop-orderhistorytab ec-base-tab "><ul class="menu col-2" style="margin-bottom:0;max-width: 100%;padding: 0;">
 		<li class="tab_class selected"><a href="/myshop/order/list.html?history_start_date=2023-08-30&amp;history_end_date=2023-11-28&amp;past_year=2022">주문내역조회 (<span id="xans_myshop_total_orders">0</span>)</a></li>

@@ -19,7 +19,7 @@
 	</select>
 	
 	<!-- 전체목록 조회 -->
-	<select id="freepopList" resultType="com.shop.domain.BoardVO">
+	<select id="freeList" resultType="com.shop.domain.BoardVO">
 		select * 
 		from board
 		order by boardNo desc
@@ -96,6 +96,47 @@
 	<!-- ==================================================================== -->
 	<!-- 리뷰 -->
 	
+	<!-- 전체목록 조회 -->
+	<select id="reviewList" resultType="com.shop.domain.ReviewVO">
+		select * 
+		from review
+		order by reviNo desc
+	</select>
+	
+	<!-- 상세조회 -->
+	<select id="reviewDetail" parameterType="java.lang.Integer" resultType="com.shop.domain.ReviewVO">
+		select * 
+		from review
+		where reviNo = #{reviNo}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateReviewCnt" parameterType="java.lang.Integer">
+		update review
+		   set reviCnt = reviCnt + 1
+		 where reviNo = #{reviNo}
+	</update>
+	
+	<!-- 쓰기 -->
+	<insert id="reviewRegister" parameterType="com.shop.domain.ReviewVO">
+		INSERT INTO review(reviNo, userNo, prodNo, reviTitle, reviContent, reviReg, userImg, reviCnt)
+  		VALUES(#{boardNo},#{userNo}, #{prodNo}, #{reviTitle},#{reviContent},current_timestamp,#{userImg},0)
+  	</insert>
+  	
+  	<!-- 수정 -->
+	<update id="reviewUpdate" parameterType="com.shop.domain.ReviewVO">
+		update review
+		   set reviTitle = #{reviTitle},
+		   		reviContent= #{reviContent},
+		   		userImg = #{userImg}
+		 where reviNo = #{reviNo}
+	</update>
+	
+	<!-- 글 삭제 -->
+	<update id="reviewDelete" parameterType="java.lang.Integer">
+		UPDATE review SET del = 1
+		WHERE reviNo = #{reviNo};
+	</update>
 	
 	<!-- ==================================================================== -->
 	<!-- 리뷰댓글 -->

@@ -31,7 +31,7 @@ public class ShopController {
 	@Autowired
 	ShopService service;
 	
-	@RequestMapping(value="shop/list", method = RequestMethod.GET)
+	@RequestMapping(value="shop", method = RequestMethod.GET)
 	public String list(Model model) throws Exception {
 		try {
 			logger.info("=======controller.prodlist========");
@@ -54,11 +54,12 @@ public class ShopController {
 	    }
 		return "shop/detail";
 	}
-	@RequestMapping(value="shop/cart", method = RequestMethod.GET)
-	public void cart() {
+	@RequestMapping(value="/cart", method = RequestMethod.GET)
+	public String cart() {
 		log.info("========cart========");
+		return "shop/cart";
 	}
-	@RequestMapping(value="mypage/", method = RequestMethod.GET)
+	@RequestMapping(value="mypage", method = RequestMethod.GET)
 	public String mypage() {
 		return "mypage/mypage";
 	}

@@ -45,22 +45,22 @@ public interface ShopMapper {
 	 
 	//---------------------------------------------------------------------------
 	
-	//자유게시판 전체목록 처리를 위한 메소드 
+	//리뷰 전체목록 처리를 위한 메소드 
 	public List<ReviewVO> reviewList() throws Exception;
 	
-	//자유게시판 선택목록(글읽기)을 위한 메소드 
+	//리뷰 선택목록(글읽기)을 위한 메소드 
 	public ReviewVO reviewDetail(int reviNo) throws Exception;
 	
-	//자유게시판 조회수 증가를 위한 메소드 
+	//리뷰 조회수 증가를 위한 메소드 
 	public int updateReviewCnt(int reviNo) throws Exception;
 	
-	//자유게시판 글쓰기를 위한 메소드 
+	//리뷰 쓰기를 위한 메소드 
 	public int reviewRegister(ReviewVO reviVO) throws Exception;
 	 
-	//자유게시판 글수정을 위한 메소드 
+	//리뷰 수정을 위한 메소드 
 	public int reviewUpdate(ReviewVO reviVO) throws Exception;
 	 
-	//자유게시판 글삭제를 위한 메소드 
+	//리뷰 삭제를 위한 메소드 
 	public int reviewDelete(int reviNo) throws Exception;
 	
 	//---------------------------------------------------------------------------

@@ -17,14 +17,7 @@
 		-->
 		</div>
 		
-		<div class="page_title fs60">My page</div>
-		<ul class="mypage_tab">
-			<li class="home on"><a href="/shop/mypage" class="fs15">홈</a></li>
-			<li class="order"><a href="/shop/mypage-order" class="fs15">주문내역</a></li>
-			<li class="mileage"><a href="/shop/mypage-point" class="fs15">적립금</a></li>
-			<li class="modify"><a href="/shop/mypage-user" class="fs15">회원정보</a></li>
-			<li class="board"><a href="/shop/mypage-content" class="fs15">게시물관리</a></li>
-		</ul>
+		<%@include file="../includes/mp_header.jsp" %>
 		<div class="xans-element- xans-myshop xans-myshop-asyncbenefit page_wrap"><div class="ec-base-box typeMember gMessage displaynone">
 		        <div class="information">
 		            <p class="thumbnail"><img src="//fnfn.kr/web/upload/mg_img_1.png" alt="" onerror="this.src='//img.echosting.cafe24.com/skin/base/member/img_member_default.gif';" class="myshop_benefit_group_image_tag"></p>

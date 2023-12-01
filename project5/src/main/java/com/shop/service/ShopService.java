@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.shop.domain.BoardVO;
 import com.shop.domain.ProductVO;
+import com.shop.domain.ReviewVO;
 
 public interface ShopService {
 	
@@ -42,4 +43,23 @@ public interface ShopService {
 	
 	//메인페이지 인기상품 출력을 위한 메소드
 	public List<ProductVO> prodpopList() throws Exception;
+	
+	// ======================리뷰======================
+	//리뷰 전체목록 처리를 위한 메소드 
+	public List<ReviewVO> reviewList() throws Exception;
+	
+	//리뷰 선택목록(글읽기)을 위한 메소드 
+	public ReviewVO reviewDetail(int reviNo) throws Exception;
+	
+	//리뷰 조회수 증가를 위한 메소드 
+	public int updateReviewCnt(int reviNo) throws Exception;
+	
+	//리뷰 쓰기를 위한 메소드 
+	public int reviewRegister(ReviewVO reviVO) throws Exception;
+	 
+	//리뷰 수정을 위한 메소드 
+	public int reviewUpdate(ReviewVO reviVO) throws Exception;
+	 
+	//리뷰 삭제를 위한 메소드 
+	public int reviewDelete(int reviNo) throws Exception;
 }

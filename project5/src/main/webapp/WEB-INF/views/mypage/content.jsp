@@ -17,14 +17,7 @@
 		-->
 		</div>
 	
-	<div class="page_title fs60">My page</div>
-		<ul class="mypage_tab">
-			<li class="home"><a href="/shop/mypage" class="fs15">홈</a></li>
-			<li class="order"><a href="/shop/mypage-order" class="fs15">주문내역</a></li>
-			<li class="mileage"><a href="/shop/mypage-point" class="fs15">적립금</a></li>
-			<li class="modify"><a href="/shop/mypage-user" class="fs15">회원정보</a></li>
-			<li class="board on"><a href="/shop/mypage-content" class="fs15">게시물관리</a></li>
-		</ul>
+	<%@include file="../includes/mp_header.jsp" %>
 		
 		<div class="sf_main_review"> <div id="tab_area">
 	 <div class="tab writable selected" data-type="writable">

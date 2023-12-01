@@ -26,17 +26,17 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="${contextPath}/resources/shop/img/product/${prd.prodImg1}" alt="">
+                                src="${contextPath}/resources/upload/product/${prd.prodImg1}" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
-                        	<img data-imgbigurl="${contextPath}/resources/shop/img/product/${prd.prodImg1}"
-                                src="${contextPath}/resources/shop/img/product/${prd.prodImg1}" alt="">
-                            <img data-imgbigurl="${contextPath}/resources/shop/img/product/${prd.prodImg2}"
-                                src="${contextPath}/resources/shop/img/product/${prd.prodImg2}" alt="">
-                            <img data-imgbigurl="${contextPath}/resources/shop/img/product/${prd.prodImg3}"
-                                src="${contextPath}/resources/shop/img/product/${prd.prodImg3}" alt="">
+                        	<img data-imgbigurl="${contextPath}/resources/upload/product/${prd.prodImg1}"
+                                src="${contextPath}/resources/upload/product/${prd.prodImg1}" alt="">
+                            <img data-imgbigurl="${contextPath}/resources/upload/product/${prd.prodImg2}"
+                                src="${contextPath}/resources/upload/product/${prd.prodImg2}" alt="">
+                            <img data-imgbigurl="${contextPath}/resources/upload/product/${prd.prodImg3}"
+                                src="${contextPath}/resources/upload/product/${prd.prodImg3}" alt="">
                             <img data-imgbigurl="${contextPath}/resources/shop/img/product/${prd.prodImg4}"
-                                src="${contextPath}/resources/shop/img/product/${prd.prodImg4}" alt="">
+                                src="${contextPath}/resources/upload/product/${prd.prodImg4}" alt="">
                         </div>
                     </div>
                 </div>

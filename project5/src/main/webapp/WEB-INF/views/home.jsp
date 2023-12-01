@@ -26,7 +26,7 @@
                             <span>MURMUR</span>
                             <h3>즐거움으로 가득한 반려생활<br/>그 이상을 응원해요</h3>
                             <p>Special Event</p>
-                            <a href="shop/list" class="primary-btn">SHOP NOW</a>
+                            <a href="shop" class="primary-btn">SHOP NOW</a>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
 	                <div class="col-lg-3 col-md-4 col-sm-6 mix ${prdl.category}">
 	                    <div class="featured__item">
 	                    	<div class="click-area" onclick="location.href='/shop/detail?prodNo=${prdl.prodNo}'">
-		                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/product/thumbnails/${prdl.prodMainImg}">
+		                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/upload/product/thumbnails/${prdl.prodMainImg}">
 		                        	<ul class="product__item__pic__hover">
 	                               		<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
 		                            </ul>
