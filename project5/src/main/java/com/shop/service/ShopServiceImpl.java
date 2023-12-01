@@ -118,6 +118,11 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
+	public List<ReviewVO> reviewdList() throws Exception {
+		return mapper.reviewdList();
+	}
+	
+	@Override
 	public ReviewVO reviewDetail(int reviNo) throws Exception {
 		return mapper.reviewDetail(reviNo);
 	}

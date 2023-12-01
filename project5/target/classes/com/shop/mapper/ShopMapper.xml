@@ -103,6 +103,14 @@
 		order by reviNo desc
 	</select>
 	
+	<!-- 상품상세페이지 리뷰 조회 -->
+	<select id="reviewdList" resultType="com.shop.domain.ReviewVO">
+		select * 
+		from review
+		where prodNo = #{prodNo}
+		order by reviNo desc
+	</select>
+	
 	<!-- 상세조회 -->
 	<select id="reviewDetail" parameterType="java.lang.Integer" resultType="com.shop.domain.ReviewVO">
 		select * 

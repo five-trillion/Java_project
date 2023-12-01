@@ -438,7 +438,7 @@ ol {
 	left: 0;
 	top: 50px;
 	background: #222222;
-	width: 180px;
+	width: 130px;
 	z-index: 9;
 	padding: 5px 0;
 	-webkit-transition: all, 0.3s;
@@ -464,6 +464,7 @@ ol {
 	color: #ffffff;
 	font-weight: 400;
 	padding: 5px 15px;
+	text-align: left;
 }
 
 .header__menu ul li.active a {

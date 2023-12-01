@@ -18,6 +18,7 @@ public class ProductVO {
 	private String prodImg2; //
 	private String prodImg3; //
 	private String prodImg4; //
+	private String detailImg; //
 	private String prodInfo; //상품설명
 	private Date prodReg; //등록일
 	private Date prodUpdate; //업데이트일
