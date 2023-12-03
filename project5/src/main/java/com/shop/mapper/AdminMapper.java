@@ -12,6 +12,8 @@ public interface AdminMapper {
 	public List<UsersVO> getUsers();
 
 	public List<BoardVO> getNotiBoard(String boardClass);
+	
+	public void userDelete(long userNo);
 	// end 회원관리--------
 	
 	// 상품관리----------

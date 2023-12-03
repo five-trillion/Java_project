@@ -17,6 +17,8 @@ public interface AdminService {
 
 	public List<BoardVO> getNotiBoard(String boardClass);
 	
+	public void userDelete(long userNo);
+	
 	public void prodRegister (ProductVO prodVo);
 	
 	public List<CodeVO> prodCodeInsert();
