@@ -26,6 +26,12 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public void userDelete(long userNo) {
+		// TODO Auto-generated method stub
+		mapper.userDelete(userNo);
+	}
+
+	@Override
 	public List<CodeVO> prodCodeInsert() {
 		return mapper.prodCodeInsert();
 	}

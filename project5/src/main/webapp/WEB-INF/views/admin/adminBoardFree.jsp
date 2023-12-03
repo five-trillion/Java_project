@@ -12,11 +12,11 @@
 		<main id="main" class="main adminUserManage">
 
 			<div class="pagetitle">
-				<h1>공지게시판</h1>
+				<h1>자유게시판</h1>
 				<nav>
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="index.html">게시판관리</a></li>
-						<li class="breadcrumb-item active">공지</li>
+						<li class="breadcrumb-item active">자유</li>
 					</ol>
 				</nav>
 			</div>
@@ -58,7 +58,7 @@
 												<th scope="row">${board.boardNo}</th>
 												<td>${board.boardTitle}</td>
 												<td><fmt:formatDate value="${board.boardReg}" type="date"></fmt:formatDate></td>
-												<td>리뷰</td>
+												<td><i class="ri ri-ball-pen-fill"></td>
 												<td>${board.boardCnt}</td>
 												<td>
 													<!-- Large Modal -->
