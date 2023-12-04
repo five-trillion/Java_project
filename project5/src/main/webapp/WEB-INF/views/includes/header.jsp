@@ -57,35 +57,38 @@
                         <a href="../"><img src="${contextPath}/resources/shop/img/murmur.png" alt=""></a>
                     </div>
                 </div>
-                <div class="col-lg-1"></div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="header__cart">
                         <ul>
                             <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
                             <li></li>
                             <li>
-
                             	<c:if test = "${user == null}">
-
-	                            	<div class="header__top__right__auth">
+									<div class="header__top__right__auth">
 	                            		<a href="/shop/login"><i class="fa fa-user"></i>Login</a>
 	                            	</div>
                             	</c:if>
 								<c:if test = "${user != null}">
                             		 <c:if test = "${user.admin == 1}"> 
 		                            	<div class="header__top__right">
-				                            <ul>
-				                                <li><a href="/shop/mypage"><i class="fa fa-user"></i>Mypage</a></li>
-				                                <li><a href="/shop/logout" id="logoutBtn">Logout</a></li>
-				                            </ul>
+				                            <div class="header__top__right__auth">
+	                            				<a href="/mypage"><i class="fa fa-user"></i>Mypage</a>
+	                            			</div>
+	                            			&nbsp;
+				                            <div class="header__top__right__auth">
+				                            	<a href="/shop/logout" id="logoutBtn">Logout</a>
+				                            </div>
 				                       	</div>
-	                            	<</c:if>
+	                            	</c:if>
                             		<c:if test = "${user.admin == 0}">
                             			<div class="header__top__right">
-                            				<ul>
-                            					<li><a href="/admin/main">admin</a>
-                            					<li><a href="/shop/logout" id="logoutBtn">Logout</a></li>
-                            				</ul>
+                            				<div class="header__top__right__auth">
+				                            	<a href="/admin/main" id="logoutBtn">admin</a>
+				                            </div>
+				                            &nbsp;
+				                            <div class="header__top__right__auth">
+				                            	<a href="/shop/logout" id="logoutBtn">Logout</a>
+				                            </div>
                             			</div>
                             		</c:if> 
                             	</c:if>	

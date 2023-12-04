@@ -65,8 +65,17 @@
                         <a href="#" class="primary-btn">ADD TO CART</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
-                            <li><b>재고</b> <span><%-- ${code.} --%></span></li>
-                            <li><b>배송</b> <span>2일 예상 <samp>무료배송</samp></span></li>
+                            <li><b>재고</b> <span><%-- ${product.prodRest} --%></span></li>
+                            <div class="deli">
+	                            <li><b>배송</b>
+		                            <span>
+	                            		<strong>오늘출발 상품</strong> 오늘 15:00까지 결제시 오늘 바로 발송됩니다.
+	                            	</span>
+	                            	<!-- <span>2일 예상 <samp>무료배송</samp></span> -->
+                            	</li>
+                            	
+                            	
+                            </div>
                         </ul>
                     </div>
                 </div>
