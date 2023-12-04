@@ -24,6 +24,12 @@
 	<update id="adminChange">
 		update users set admin = #{admin} where userNo = #{userNo}
 	</update>
+	
+	<!-- 유저 삭제 -->
+	<delete parameterType="long" id="userDelete">
+		delete from users where userNo = #{userNo}
+	</delete>
+	
 	<!-- 게시판 자료 부르기 -->
 	<!-- 공지 -->
 	<select id="getNotiBoard" resultType="com.shop.domain.BoardVO">

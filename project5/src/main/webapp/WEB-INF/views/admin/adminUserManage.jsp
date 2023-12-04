@@ -50,7 +50,12 @@
 												<td>${user.userName}</td>
 												<td>${user.nick}</td>
 												<td><fmt:formatDate value="${user.regDate}" type="date"></fmt:formatDate></td>
-												<td>${user.admin}</td>
+												<td>
+													<c:choose>
+														<c:when test="${user.admin == 0}">관리자</c:when>
+														<c:otherwise>고객</c:otherwise>
+													</c:choose>
+												</td>
 												<td>
 													<!-- Large Modal -->
 													<div class="btn btn-primary modalBtn">

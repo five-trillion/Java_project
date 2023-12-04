@@ -98,6 +98,14 @@ public class AdminController {
 		request.setAttribute("userList", userList); 
 	}
 	
+	// 회원관리 삭제
+	@GetMapping("/adminUserDelete")
+	public String adminUserDelete(@RequestParam("userNo") long userNo) {
+		adminService.userDelete(userNo);
+		
+		return "redirect:/admin/adminUserManage";
+	}
+	
 	// 게시판관리 이동 (공지)
 	@GetMapping("/adminBoardNoti")
 	public void adminBoardNoti(HttpServletRequest request)  throws Exception {
@@ -110,16 +118,18 @@ public class AdminController {
 	// 게시판관리 이동 (자유)
 	@GetMapping("/adminBoardFree")
 	public void adminBoardFree(HttpServletRequest request)  throws Exception {
-		List<BoardVO> notiList = adminService.getNotiBoard("2");
+		List<BoardVO> freeList = adminService.getNotiBoard("2");
 		
-		request.setAttribute("boardList", notiList);
+		request.setAttribute("boardList", freeList);
 		log.info("adminBoardFree 도착");
 	}
 	
 	// 게시판관리 이동 (질의)
 	@GetMapping("/adminBoardQna")
 	public void adminBoardQna(HttpServletRequest request)  throws Exception {
+		List<BoardVO> qnaList = adminService.getNotiBoard("3");
 		
+		request.setAttribute("boardList", qnaList);
 		log.info("adminBoardQna 도착");
 	}
 	// 게시판관리 이동 (신고관리)
