@@ -51,9 +51,9 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-o"></i>
-                            <span>(18<!-- 리뷰 개수 --> reviews)</span>
+                            <span>(0<!-- 리뷰 개수 --> reviews)</span>
                         </div>
-                        <div class="product__details__price">${prd.salePrice}</div>
+                        <div class="product__details__price">${prd.salePrice}원</div>
                         <p>${prd.prodInfo}</p>
                         <div class="product__details__quantity">
                             <div class="quantity">
@@ -68,7 +68,7 @@
                             <div class="deli">
 	                            <li><b>배송</b>
 		                            <span>
-	                            		<strong>오늘출발 상품</strong> 오늘 15:00까지 결제시 오늘 바로 발송됩니다.
+	                            		<strong>오늘출발 상품</strong> 오늘 15:00까지 결제시 오늘 바로 발송
 	                            	</span>
 	                            	<!-- <span>2일 예상 <samp>무료배송</samp></span> -->
                             	</li>
@@ -87,7 +87,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                    aria-selected="false">Review <span>(0)<!-- 리뷰개수 --></span></a>
+                                    aria-selected="false">Review <span>(<c:out value="${status.end}"/>)</span></a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -120,28 +120,40 @@
                                 <div class="product__details__tab__desc">
                                     <div class="shoping__cart__table">
 				                        <table>
-				                            <tbody>
-				                            	<c:forEach items="${rlist}" var="rlist">
-				                                <tr>
-				                                    <td class="shoping__cart__item">
-				                                    <input type="hidden" value="${rlist.prodNo}">
-				                                        <img src="${contextPath}/resources/upload/review/${rlist.userImg}" alt="">
-				                                    </td>
-				                                    <td class="shoping__cart__quantity">
-				                                        <h5>${rlist.reviTitle}</h5>
-				                                        <p>${rlist.rating}
-				                                        <p>${rlist.reviContent}</p>
-				                                        ${rlist.userNo}
-				                                    </td>
-				                                    <td class="shoping__cart__quantity">
-				                                        댓글 : 0
-				                                    </td>
-				                                    <td class="shoping__cart__quantity">
-				                                        <fmt:formatDate pattern="yyyy-MM-dd" value="${rlist.reviReg}"/>
-				                                    </td>
-				                                </tr>
-				                                </c:forEach>
-			                            	</tbody>
+				                        	<c:if test="${rilst == null } ">
+				                        		<div> 포토 구매평만 보기</div>
+				                        		<div>등록된 구매평이 없습니다.</div>
+				                        	</c:if>
+				                        	<c:if test="${rlist != null}">
+					                            <tbody>
+					                            	<c:forEach items="${rlist}" var="rlist" varStatus="status">
+						                                <tr>
+						                                    <td class="shoping__cart__item">
+						                                    <input type="hidden" value="${rlist.prodNo}">
+						                                        <img src="${contextPath}/resources/upload/review/${rlist.userImg}" alt="">
+						                                    </td>
+						                                    <td class="shoping__cart__quantity">
+						                                        <h5>${rlist.reviTitle}</h5>
+						                                        <p>${rlist.rating}</p>
+						                                        <div class="product__details__rating">
+		                            								<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+		                        								</div>
+						                                        <p><fmt:formatDate pattern="yyyy-MM-dd" value="${rlist.reviReg}"/></p>
+						                                        <p>${rlist.userNo}</p>
+						                                        <p>${rlist.reviContent}</p>
+						                                        
+						                                    </td>
+						                                    <td class="shoping__cart__quantity">
+						                                        <p> 댓글 : 0 </p>
+						                                        
+						                                    </td>
+						                                    <td class="shoping__cart__quantity">
+						                                        <c:out value="${status.end}"/>
+						                                    </td>
+						                                </tr>
+					                                </c:forEach>
+				                            	</tbody>
+				                            </c:if>
 				                    	</table>
                                		</div>
                             	</div>
@@ -187,5 +199,11 @@
     <!-- Related Product Section End -->
 	
 	<%@include file="../includes/footer.jsp" %>
+	<script>
+	$(function(){
+	    console.log($('tr').length);
+	});
+	</script>
+	
 </body>
 </html>

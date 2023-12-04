@@ -6,18 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보 수정</title>
- 	<!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/style.css" type="text/css">
+ 	<%@ include file="../includes/src.jsp" %>
 </head>
 
 <body>
@@ -25,8 +14,9 @@
 	<%@ include file="../includes/header.jsp" %>
 	
 		<div class="container">
+			<%@include file="../includes/mp_header.jsp" %>
             <div class="checkout__form">
-                <h2 style="text-align:center; font-weight:bold;">회원정보 수정</h2>
+                <div class="mp_title fs15">회원정보</div>
                 <div class="checkout__input"><P style="float:right;"><span>*</span> 필수입력사항</P></div>
                 <form action="mypage-modify" method="post" name="frm" id="frm">
                 	<div class="col-lg-8 col-md-6">

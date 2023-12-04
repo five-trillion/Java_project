@@ -60,10 +60,18 @@
                 <div class="col-lg-4">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
-                            <li></li>
+                        	<li>
+                        		<c:if test = "${user == null}">
+                        			<a href="/shop/login"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+                        		</c:if>
+                        		<c:if test = "${user != null }">
+                        			<a href="/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+                        		</c:if>
+                        	</li>
+                        	&nbsp;
                             <li>
                             	<c:if test = "${user == null}">
+                            		
 									<div class="header__top__right__auth">
 	                            		<a href="/shop/login"><i class="fa fa-user"></i>Login</a>
 	                            	</div>

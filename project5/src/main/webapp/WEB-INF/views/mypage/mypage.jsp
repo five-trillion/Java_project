@@ -24,17 +24,13 @@
 			<div class="mp_idx">
 		        <div class="left">
 		            <ul class="xans-element- xans-myshop xans-myshop-asyncbankbook coldiv-1 gray ">
-		            	<li><a href="/myshop/mileage/historyList.html" class="fs15"><strong>적립금</strong><span><span id="xans_myshop_bankbook_avail_mileage">${user.point}원</span></span></a></li>
+		            	<li><a href="/mypage/point" class="fs15"><strong>적립금</strong><span><span id="xans_myshop_bankbook_avail_mileage">${user.point}원</span></span></a></li>
 					</ul>
 					<ul class="coldiv-1 gray">
-						<li><a href="/myshop/order/list.html" class="fs15">주문배송조회<i class="arrow"></i></a></li>
+						<li><a href="/mypage/order" class="fs15">주문배송조회<i class="arrow"></i></a></li>
 		            </ul>
-		            <ul class="coldiv-4 orderstate ">
+		            <ul class="coldiv-3 orderstate ">
 		            	<li>
-		            		<strong><a href="/myshop/order/list.html?order_status=shipped_before" class="fs30"><span id="xans_myshop_orderstate_shppied_before_count">0</span></a></strong>
-                    		<span class="fs11">입금전</span>
-                		</li>
-						<li>
 		                    <strong><a href="/myshop/order/list.html?order_status=shipped_standby" class="fs30"><span id="xans_myshop_orderstate_shppied_standby_count">0</span></a></strong>
 		                    <span class="fs11">배송 준비중</span>
 		                </li>
