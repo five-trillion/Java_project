@@ -31,8 +31,10 @@
          	<p style="text-align:center;">반려견의 정보를 입력해주세요. 이벤트와 사은품 증정에 이용됩니다.</p>
          	<div class="addpet">
          		<div id="form-container" class="form-container">
-          			<button onclick="addForm()">추가</button>
+          			<button onclick="addForm()" class="btnSubmitFix sizeS" style="font-size:15px; border-radius:45px">추가</button>
           		</div>
+          		
+	                   
           	</div>
          </div>      	
                	
@@ -69,8 +71,8 @@
         const formContainer = document.getElementById('form-container');
 
         const formDiv = document.createElement('div');
-        formDiv.innerHTML = `
-            <form id="form-${formIndex}" onsubmit="submitForm(${formIndex}); return false;">
+        formDiv.innerHTML = `<br>
+        	<form id="form-${formIndex}" onsubmit="submitForm(${formIndex}); return false;">
                 <label for="name-${formIndex}">이름:</label>
                 <input type="text" id="name-${formIndex}" required>
                 <label for="type-${formIndex}">종류:</label>
@@ -90,7 +92,7 @@
         const age = document.getElementById(`age-${index}`).value;
 
         // 여기에서 서버로 데이터를 전송하거나, 로컬 스토리지에 저장하거나 원하는 작업을 수행할 수 있습니다.
-        console.log(`이름: ${name}, 종류: ${type}, 나이: ${age}`);
+        System.out.println(`이름: ${name}, 종류: ${type}, 나이: ${age}`);
 
         // 이후에 폼을 삭제하거나 원하는 동작을 수행할 수 있습니다.
         const formContainer = document.getElementById('form-container');

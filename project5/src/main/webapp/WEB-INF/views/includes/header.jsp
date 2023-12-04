@@ -22,7 +22,7 @@
             <ul class="featured__controls">
                 <li class="active"><a href="../">Home</a></li>
                 <li><a href="/shop/list">Shop</a></li>
-                <li><a href="#">Community</a>
+                <li><a href="/board/notice">Community</a>
                 	<ul class="header__menu__dropdown">
                         <li><a href="/board/notice">Notice</a></li>
                         <li><a href="#">QnA</a></li>

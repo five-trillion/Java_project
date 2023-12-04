@@ -25,6 +25,26 @@ public class BoardController {
 		System.out.println("공지사항 페이지 진입");
 	} 
 	
+	//QnA 페이지 이동
+	@RequestMapping(value="/qna", method=RequestMethod.GET) 
+	public void qnaGET() {
+		System.out.println("QnA 페이지 진입");
+	}
+	
+	//QnA 글쓰기 페이지 이동
+	@RequestMapping(value="/qnaWrite", method=RequestMethod.GET) 
+	public void qnaWriteGET() {
+		System.out.println("QnA 글쓰기 페이지 진입");
+	}
+	
+	//QnA 게시물 작성 
+	@RequestMapping(value="/qnaWrite", method=RequestMethod.POST)
+	public String qnaWritePOST(BoardVO board) throws Exception {
+		boardservice.freeRegister(board);
+		System.out.println("QnA 글쓰기 성공");
+		return "redirect:/board/QnA";
+	}
+	
 	//자유게시판 페이지 이동
 	@RequestMapping(value="/lounge", method=RequestMethod.GET) 
 	public void loungeGET() {
@@ -37,9 +57,10 @@ public class BoardController {
 		System.out.println("자유게시판 글쓰기 페이지 진입");
 	}
 	
+	//자유게시판 게시물 작성
 	@RequestMapping(value="/loungeWrite", method=RequestMethod.POST)
 	public String loungeWritePOST(BoardVO board) throws Exception {
-		boardservice.insertBoard(board);
+		boardservice.freeRegister(board);
 		System.out.println("자유게시판 글쓰기 성공");
 		return "redirect:/board/lounge";
 	}
