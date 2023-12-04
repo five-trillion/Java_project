@@ -114,12 +114,24 @@ public class ShopServiceImpl implements ShopService {
 	
 	@Override
 	public List<ReviewVO> reviewList() throws Exception {
-		return mapper.reviewList();
+		try {
+			System.out.println("=====Service.prodreviList=====");
+			return mapper.reviewList();
+		} catch (Exception e) {
+		      log.error("Error fetching prodrevilist", e);
+		      return null;
+		}
 	}
 	
 	@Override
 	public List<ReviewVO> reviewdList() throws Exception {
-		return mapper.reviewdList();
+		try {
+			System.out.println("=====Service.prodrevidList=====");
+			return mapper.reviewdList();
+		} catch (Exception e) {
+		      log.error("Error fetching prodrevidlist", e);
+		      return null;
+		}
 	}
 	
 	@Override

@@ -64,7 +64,7 @@
                         </div>
                         <a href="#" class="primary-btn">ADD TO CART</a>
                         <ul>
-                            <li><b>재고</b> <span><%-- ${product.prodRest} --%></span></li>
+                            <li><b>재고</b> <span>${prd.prodRest}개</span></li>
                             <div class="deli">
 	                            <li><b>배송</b>
 		                            <span>
@@ -121,23 +121,23 @@
                                     <div class="shoping__cart__table">
 				                        <table>
 				                            <tbody>
-				                            	<c:forEach items="${list}" var="list">
+				                            	<c:forEach items="${rlist}" var="rlist">
 				                                <tr>
 				                                    <td class="shoping__cart__item">
-				                                    <input type="hidden" value="${list.prodNo}">
-				                                        <img src="${contextPath}/resources/upload/review/${list.userImg}" alt="">
-				                                        <h5>${list.reviTitle}</h5>
-				                                        <p>${list.rating}
-				                                        <p>${list.reviContent}</p>
+				                                    <input type="hidden" value="${rlist.prodNo}">
+				                                        <img src="${contextPath}/resources/upload/review/${rlist.userImg}" alt="">
+				                                        <h5>${rlist.reviTitle}</h5>
+				                                        <p>${rlist.rating}
+				                                        <p>${rlist.reviContent}</p>
 				                                    </td>
 				                                    <td class="shoping__cart__quantity">
-				                                        ${list.userNo}
+				                                        ${rlist.userNo}
 				                                    </td>
 				                                    <td class="shoping__cart__quantity">
 				                                        댓글 : 0
 				                                    </td>
 				                                    <td class="shoping__cart__quantity">
-				                                        <fmt:formatDate pattern="yyyy-MM-dd" value="${list.reviReg}"/>
+				                                        <fmt:formatDate pattern="yyyy-MM-dd" value="${rlist.reviReg}"/>
 				                                    </td>
 				                                </tr>
 				                                </c:forEach>

@@ -52,7 +52,7 @@ public class ShopController {
 	        model.addAttribute("prd", proddetail);
 	        
 	        List<ReviewVO> revidlist = service.reviewdList(); // 해당상품 리뷰목록구현
-	        model.addAttribute("list", revidlist);
+	        model.addAttribute("rlist", revidlist);
 	    }
 		return "shop/detail";
 	}
