@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
+import com.shop.domain.ReportVO;
 import com.shop.domain.UsersVO;
 import com.shop.mapper.AdminMapper;
 
@@ -26,8 +27,22 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public void boardDelete(long boardNo) {
+		mapper.boardDelete(boardNo);
+	}
+
+	@Override
+	public void notiWrite(BoardVO boardVo) {
+		mapper.notiWrite(boardVo);
+	}
+
+	@Override
+	public List<ReportVO> getReport() {
+		return mapper.getReport();
+	}
+
+	@Override
 	public void userDelete(long userNo) {
-		// TODO Auto-generated method stub
 		mapper.userDelete(userNo);
 	}
 
@@ -41,9 +56,9 @@ public class AdminServiceImpl implements AdminService {
 	
 
 	@Override
-	public List<BoardVO> getNotiBoard(String boardClass) {
+	public List<BoardVO> getBoard(String boardClass) {
 		System.out.println("service 지나가는 중");
-		return mapper.getNotiBoard(boardClass);	
+		return mapper.getBoard(boardClass);	
 	}
 
 	@Override

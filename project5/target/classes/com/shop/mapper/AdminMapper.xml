@@ -30,9 +30,22 @@
 		delete from users where userNo = #{userNo}
 	</delete>
 	
-	<!-- 게시판 자료 부르기 -->
-	<!-- 공지 -->
-	<select id="getNotiBoard" resultType="com.shop.domain.BoardVO">
+	<!-- 게시판 조회 -->
+	<select id="getBoard" resultType="com.shop.domain.BoardVO">
 		select * from board where boardClass = #{boardClass}
+	</select>
+	<!-- 공지 글쓰기 -->
+	<insert id="notiWrite">
+		insert into board
+		values (default, #{userNo}, 1, #{boardTitle}, #{boardContent}, default, default, #{boardImg}, 0, null, null);
+	</insert>
+	<!-- 게시판 삭제 -->
+	<delete id="boardDelete">
+		delete from board where boardNo = #{boardNo};
+	</delete>
+	
+	<!-- 신고 조회 -->
+	<select id="getReport" resultType="com.shop.domain.ReportVO">
+		select * from report
 	</select>
 </mapper>

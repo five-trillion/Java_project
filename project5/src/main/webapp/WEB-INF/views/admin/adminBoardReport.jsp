@@ -12,11 +12,11 @@
 		<main id="main" class="main adminUserManage">
 
 			<div class="pagetitle">
-				<h1>공지게시판</h1>
+				<h1>자유게시판</h1>
 				<nav>
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="index.html">게시판관리</a></li>
-						<li class="breadcrumb-item active">공지</li>
+						<li class="breadcrumb-item active">자유</li>
 					</ol>
 				</nav>
 			</div>
@@ -34,63 +34,42 @@
 								<table class="table datatable">
 									<thead>
 										<tr class="imsi">
-											<th class="longLine">번호</th>
-											<th class="longLine">제목</th>
-											<th class="longLine">등록일</th>
-											<th class="longLine">리뷰보기</th>
-											<th class="shortLine">조회수</th>
+											<th class="longLine">신고번호</th>
+											<th class="longLine">신고자</th>
+											<th class="longLine">신고사유</th>
+											<th class="longLine">신고일</th>
+											<th class="shortLine">처리유무</th>
 											<th class="shortLine">상세보기</th>
 											<th class="shortLine">삭제</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>03</td>
-											<td>03</td>
-											<td>03</td>
-											<td>03</td>
-											<td>03</td>
-											<td>03</td>
-											<td>03</td>
+											<td>031</td>
+											<td>031</td>
+											<td>031</td>
+											<td>031</td>
+											<td>031</td>
+											<td>031</td>
+											<td>031</td>
 										</tr>
-										<c:forEach var="board" items="${boardNoti}">
+										<c:forEach var="board" items="${repList}">
 											<tr>
-												<th scope="row">${user.userNo}</th>
-												<td>${user.userName}</td>
-												<td>${user.nick}</td>
-												<td><fmt:formatDate value="${user.regDate}" type="date"></fmt:formatDate></td>
-												<td>${user.admin}</td>
+												<th scope="row">${board.repoNo}</th>
+												<td>${board.userNo}</td>
+												<td>${board.repoReason}</td>
+												<td><fmt:formatDate value="${board.repoDate}" type="date"></fmt:formatDate></td>
+												<td><i class="ri ri-ball-pen-fill"></td>
 												<td>
-													<!-- Large Modal -->
-													<div class="btn btn-primary modalBtn">
-														돋보기</div>
-
-													<div class="modal fade" tabindex="-1">
-														<div class="modal-dialog modal-lg">
-															<div class="modal-content">
-																<div class="modal-header">
-																	<h5 class="modal-title">회원 정보</h5>
-																	<button type="button" class="btn-close"
-																		data-bs-dismiss="modal" aria-label="Close"></button>
-																</div>
-																<div class="modal-body">
-																	<table>
-																		<tr>
-																			<th>회원번호</th>
-																			<td>${user.userNo}</td>
-																			<th>아이디</th>
-																			<td>${user.userId}</td>
-																		</tr>
-																	</table>
-																</div>
-																<div class="modal-footer">
-																	<a href="adminUserModify?userNo=${user.userNo}"><button type="button" class="btn btn-secondary"
-																		data-bs-dismiss="modal">수정</button></a>
-																	<button type="button" class="btn btn-primary modalClose">닫기</button>
-																</div>
-															</div>
-														</div>
-													</div> <!-- End Large Modal-->
+													<c:if test="${board.boardNo != 0}">
+														<div class="btn btn-primary" onClick="window.open('/admin/adminReportDetail?boardNo=${board.boardNo}&boRepNo=null&reviRepNo=null','_blank', 'width=500, height=500, top=200, left=400')">돋보기</div>
+													</c:if>
+													<c:if test="${board.boRepNo != 0}">
+														<div class="btn btn-primary" onClick="window.open('/admin/adminReportDetail?boardNo=null&boRepNo=${board.boRepNo}&reviRepNo=null','_blank', 'width=500, height=500, top=200, left=400')">돋보기</div>
+													</c:if>
+													<c:if test="${board.reviRepNo != 0}">
+														<div class="btn btn-primary" onClick="window.open('/admin/adminReportDetail?boardNo=null&boRepNo=null&reviRepNo=${board.reviRepNo}','_blank', 'width=500, height=500, top=200, left=400')">돋보기</div>
+													</c:if>
 												</td>
 												<td>
 													<!-- Large Modal -->
@@ -108,7 +87,7 @@
 																	삭제 처리 하시겠습니까?
 																</div>
 																<div class="modal-footer">
-																	<a href="adminUserDelete?userNo=${user.userNo}"><button type="button" class="btn btn-secondary"
+																	<a href="adminBoardDelete?repoNo=${board.repoNo}"><button type="button" class="btn btn-secondary"
 																		data-bs-dismiss="modal">삭제</button></a>
 																	<button type="button" class="btn btn-primary modalClose">닫기</button>
 																</div>
@@ -134,6 +113,34 @@
 	</div>
 	<%@ include file="./includes/footerAdmin.jsp"%>
 	
-	
+	<script>
+		$(".datatable-table").css({"textAlign": "center"})
+		$(".datatable-table th").css({"textAlign": "center"})
+		$(".datatable-table th").eq(0).css({"width": "calc(60%/5)"});
+		$(".datatable-table th").eq(1).css({"width": "20%"});
+		$(".datatable-table th").eq(2).css({"width": "20%"});
+		$(".datatable-table th").eq(3).css({"width": "15%"});
+		$(".datatable-table th").eq(4).css({"width": "calc(60%/5)"});
+		$(".datatable-table th").eq(5).css({"width": "calc(60%/5)"});
+		$(".datatable-table th").eq(6).css({"width": "calc(60%/5)"});
+		$(window).on("resize", () => {		
+			$(".datatable-table th").css({"textAlign": "center"})
+			$(".datatable-table th").eq(0).css({"width": "15%"});
+			$(".datatable-table th").eq(1).css({"width": "15%"});
+			$(".datatable-table th").eq(2).css({"width": "15%"});
+			$(".datatable-table th").eq(3).css({"width": "15%"});
+			$(".datatable-table th").eq(4).css({"width": "calc(30%/3)"});
+			$(".datatable-table th").eq(5).css({"width": "calc(30%/3)"});
+			$(".datatable-table th").eq(6).css({"width": "calc(30%/3)"});
+		})
+		$(".modalBtn").on("click", (e) => {
+			e.preventDefault();
+			$(e.target).next().modal("show");
+		})
+		
+		$(".modalClose").on("click", (e) => {
+			$(e.target).parents(".modal").modal("hide");
+		})
+	</script>
 </body>
 </html>

@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
+import com.shop.domain.ReportVO;
 import com.shop.domain.UsersVO;
 import com.shop.service.AdminService;
 
@@ -63,12 +64,12 @@ public class AdminController {
 		MultipartFile mini4ImgMulti = mf.getFile("mini4ImgMulti");
 
 		
-		pVo.setProdMainImg(prodFileUpload(mainImgMulti, uploadPath));
-		pVo.setProdImg1(prodFileUpload(mini1ImgMulti, uploadPath));
-		pVo.setProdImg2(prodFileUpload(mini2ImgMulti, uploadPath));
-		pVo.setProdImg3(prodFileUpload(mini3ImgMulti, uploadPath));
-		pVo.setProdImg4(prodFileUpload(mini4ImgMulti, uploadPath));
-		pVo.setDetailImg(prodFileUpload(prodImgMulti, uploadPath));
+		pVo.setProdMainImg(FileUpload(mainImgMulti, uploadPath));
+		pVo.setProdImg1(FileUpload(mini1ImgMulti, uploadPath));
+		pVo.setProdImg2(FileUpload(mini2ImgMulti, uploadPath));
+		pVo.setProdImg3(FileUpload(mini3ImgMulti, uploadPath));
+		pVo.setProdImg4(FileUpload(mini4ImgMulti, uploadPath));
+		pVo.setDetailImg(FileUpload(prodImgMulti, uploadPath));
 		
 		System.out.println(pVo);
 		
@@ -77,10 +78,14 @@ public class AdminController {
 		return "redirect:/admin/adminHome";
 	}
 	// file 보내기 메서드
-	public String prodFileUpload(MultipartFile mf, String uploadPath) throws IOException{
+	public String FileUpload(MultipartFile mf, String uploadPath) throws IOException{
+		long fileSize = mf.getSize();
+		if (fileSize == 0) {
+			return null;
+		}
 		long time = System.currentTimeMillis();
 		String orginMainName = mf.getOriginalFilename();
-		long fileSize = mf.getSize();
+		System.out.println("사이즈알아보기 == " + fileSize);
 		String saveName = time + fileSize + orginMainName;		
 		File file = new File(uploadPath+saveName);
 		
@@ -109,16 +114,33 @@ public class AdminController {
 	// 게시판관리 이동 (공지)
 	@GetMapping("/adminBoardNoti")
 	public void adminBoardNoti(HttpServletRequest request)  throws Exception {
-		List<BoardVO> notiList = adminService.getNotiBoard("1");
+		List<BoardVO> notiList = adminService.getBoard("1");
 		
 		request.setAttribute("boardList", notiList);
 		log.info("adminBoardNoti 도착");
 	}
-	
+	// 공지 글쓰기
+	@GetMapping("/adminNotiWrite")
+	public void adminNotiWriteForm()  throws Exception {
+		
+		log.info("adminNotiWriteForm 도착");
+	}
+	@PostMapping("/adminNotiWrite")
+	public String adminNotiWrite(BoardVO bVo, MultipartHttpServletRequest mf)  throws Exception {
+		
+		String uploadPath = "D:/Java_project/project5/src/main/webapp/resources/upload/notice/";
+		MultipartFile boardImgMulti = mf.getFile("boardImgMulti");
+		bVo.setBoardImg(FileUpload(boardImgMulti, uploadPath));
+		bVo.setUserNo(1); // 나중에 섹션을 통해 1 자리에 userNo 기입
+		adminService.notiWrite(bVo);
+		log.info("adminNotiWrite 글 올리는 중");
+		
+		return "redirect:/admin/adminBoardNoti";
+	}
 	// 게시판관리 이동 (자유)
 	@GetMapping("/adminBoardFree")
 	public void adminBoardFree(HttpServletRequest request)  throws Exception {
-		List<BoardVO> freeList = adminService.getNotiBoard("2");
+		List<BoardVO> freeList = adminService.getBoard("2");
 		
 		request.setAttribute("boardList", freeList);
 		log.info("adminBoardFree 도착");
@@ -127,7 +149,7 @@ public class AdminController {
 	// 게시판관리 이동 (질의)
 	@GetMapping("/adminBoardQna")
 	public void adminBoardQna(HttpServletRequest request)  throws Exception {
-		List<BoardVO> qnaList = adminService.getNotiBoard("3");
+		List<BoardVO> qnaList = adminService.getBoard("3");
 		
 		request.setAttribute("boardList", qnaList);
 		log.info("adminBoardQna 도착");
@@ -135,7 +157,23 @@ public class AdminController {
 	// 게시판관리 이동 (신고관리)
 	@GetMapping("/adminBoardReport")
 	public void adminBoardReport(HttpServletRequest request)  throws Exception {
+		List<ReportVO> repList = adminService.getReport();
 		
+		request.setAttribute("repList", repList);
 		log.info("adminBoardReport 도착");
 	}
+	// 신고상세보기
+	@GetMapping("/adminReportDetail")
+	public void adminReportDetail() throws Exception {
+		
+	}
+	
+	// 게시판 삭제
+	@GetMapping("/adminBoardDelete")
+	public String adminBoardDelete(@RequestParam("boardNo") long boardNo) {
+		adminService.boardDelete(boardNo);
+		
+		return "redirect:/admin/adminBoardNoti";
+	}
+	
 }

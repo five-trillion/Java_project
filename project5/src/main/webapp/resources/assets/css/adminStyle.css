@@ -17,3 +17,7 @@
 	background-color: red;
 	border: 1px solid black;
 }
+
+.btnBox .btn {
+	margin-right: 20px;
+}
