@@ -126,11 +126,11 @@
 				                                    <td class="shoping__cart__item">
 				                                    <input type="hidden" value="${rlist.prodNo}">
 				                                        <img src="${contextPath}/resources/upload/review/${rlist.userImg}" alt="">
+				                                    </td>
+				                                    <td class="shoping__cart__quantity">
 				                                        <h5>${rlist.reviTitle}</h5>
 				                                        <p>${rlist.rating}
 				                                        <p>${rlist.reviContent}</p>
-				                                    </td>
-				                                    <td class="shoping__cart__quantity">
 				                                        ${rlist.userNo}
 				                                    </td>
 				                                    <td class="shoping__cart__quantity">

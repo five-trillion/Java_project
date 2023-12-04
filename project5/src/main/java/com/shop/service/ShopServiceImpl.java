@@ -124,10 +124,10 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public List<ReviewVO> reviewdList() throws Exception {
+	public List<ReviewVO> reviewdList(String prodNo) throws Exception {
 		try {
 			System.out.println("=====Service.prodrevidList=====");
-			return mapper.reviewdList();
+			return mapper.reviewdList(prodNo);
 		} catch (Exception e) {
 		      log.error("Error fetching prodrevidlist", e);
 		      return null;

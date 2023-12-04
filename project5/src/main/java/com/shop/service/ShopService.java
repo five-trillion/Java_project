@@ -49,7 +49,7 @@ public interface ShopService {
 	public List<ReviewVO> reviewList() throws Exception;
 	
 	//상품상세페이지 리뷰 처리를 위한 메소드 
-	public List<ReviewVO> reviewdList() throws Exception;
+	public List<ReviewVO> reviewdList(String prodNo) throws Exception;
 	
 	//리뷰 선택목록(글읽기)을 위한 메소드 
 	public ReviewVO reviewDetail(int reviNo) throws Exception;

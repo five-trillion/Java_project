@@ -51,7 +51,7 @@ public class ShopController {
 	        ProductVO proddetail = service.prodDetail(prodNo); // 상세 정보 조회
 	        model.addAttribute("prd", proddetail);
 	        
-	        List<ReviewVO> revidlist = service.reviewdList(); // 해당상품 리뷰목록구현
+	        List<ReviewVO> revidlist = service.reviewdList(prodNo); // 해당상품 리뷰목록구현
 	        model.addAttribute("rlist", revidlist);
 	    }
 		return "shop/detail";
