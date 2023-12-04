@@ -63,7 +63,6 @@
                             </div>
                         </div>
                         <a href="#" class="primary-btn">ADD TO CART</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>재고</b> <span><%-- ${product.prodRest} --%></span></li>
                             <div class="deli">
@@ -93,10 +92,28 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__tab__desc">
+                                <div class="product__details__tab__desc" style="text-align:center;" >
                                     <h6></h6>
                                     <p></p>
                                     <img src="${contextPath}/resources/upload/product/details/${prd.detailImg}">
+                                    <div class="product-notify-wrap " style="text-align:left; padding: 0 30px;">
+                                    <div class="product-notify-title"> 상품정보 제공고시</div>
+                                    <div class="product-notify-group tabled full-width">
+                                    <div class="product-notify-label table-cell">품명 및 모델명</div>
+                                    <div class="product-notify-value table-cell">[네츄럴코어] 에코 10 베지테리안</div></div>
+                                    <div class="product-notify-group tabled full-width">
+                                    <div class="product-notify-label table-cell">법에 의한 인증·허가 등을 받았음을 확인할 수 있는 경우 그에 대한 사항</div>
+                                    <div class="product-notify-value table-cell">상품상세 참조</div></div>
+                                    <div class="product-notify-group tabled full-width">
+                                    <div class="product-notify-label table-cell">제조국</div>
+                                    <div class="product-notify-value table-cell">대한민국</div></div>
+                                    <div class="product-notify-group tabled full-width">
+                                    <div class="product-notify-label table-cell">제조자</div>
+                                    <div class="product-notify-value table-cell">네츄럴코어</div></div>
+                                    <div class="product-notify-group tabled full-width">
+                                    <div class="product-notify-label table-cell">소비자상담 관련 전화번호</div>
+                                    <div class="product-notify-value table-cell">상품상세 참조</div></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
