@@ -76,7 +76,7 @@ public class ShopController {
 	    }
 	    return result;
 	}
-	@RequestMapping(value="/cart", method = RequestMethod.GET)
+	@RequestMapping(value="/shop/cart", method = RequestMethod.GET)
 	public String getcart(HttpServletRequest request, HttpSession session, Model model) throws Exception {
 	    try {
 	        log.info("=======controller.getcart========");

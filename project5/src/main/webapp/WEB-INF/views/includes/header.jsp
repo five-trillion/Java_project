@@ -15,7 +15,7 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
+                <li><a href="/shop/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
             </ul>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
@@ -56,7 +56,7 @@
                         			<a href="/shop/login"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
                         		</c:if>
                         		<c:if test = "${user != null }">
-                        			<a href="/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+                        			<a href="/shop/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
                         		</c:if>
                         	</li>
                         	&nbsp;

@@ -81,7 +81,7 @@
                     	        };
                     	
                     	        $.ajax({
-                    	            url: '/cart',
+                    	            url: '/shop/cart',
                     	            method: 'POST',
                     	            data: data,
                     	            success: function(result) {
