@@ -73,7 +73,15 @@ public class CartVO {
 	}
 
 	public void initTotalPrice() {
-		this.totalPrice = this.salePrice*this.orderCnt;
+		if (this.orderCnt > 0) {
+			this.totalPrice = this.salePrice*this.orderCnt;
+		} else {
+			this.totalPrice = 0;
+		}
+	}
+	
+	public void setTotalPrice(int totalPrice) {
+	    this.totalPrice = totalPrice;
 	}
 
 	@Override

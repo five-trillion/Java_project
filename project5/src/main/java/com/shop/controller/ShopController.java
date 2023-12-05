@@ -62,7 +62,7 @@ public class ShopController {
 		return "shop/detail";
 	}
 	@RequestMapping(value="/cart", method = RequestMethod.GET)
-	public String getcart(HttpSession session, Model model) throws Exception {
+	public String getcart(HttpServletRequest request, HttpSession session, Model model) throws Exception {
 	    try {
 	        log.info("=======controller.getcart========");
 
@@ -73,10 +73,11 @@ public class ShopController {
 	            log.error("User information not found in session");
 	            return "redirect:/shop/login"; // 또는 다른 적절한 처리 방법 선택
 	        }
-
+	        HttpSession session2 = request.getSession();
 	        long userNo = uVo.getUserNo();
 	        List<CartVO> clist = service.getCart(userNo);
 	        model.addAttribute("cart", clist);
+	        session2.setAttribute("cart", clist);
 	        return "shop/cart";
 	    } catch (Exception e) {
 	        log.error("Error fetching getcart", e);

@@ -158,12 +158,12 @@
   	</insert>
 	
 	<delete id="deleteCart">
-		delete from vam_cart where cartNo = #{cartNo}
+		delete from cart where cartNo = #{cartNo}
 	</delete>
 	
-	<select id="getCart" parameterType="com.shop.domain.CartVO">
+	<select id="getCart" resultType="com.shop.domain.CartVO">
 		 select
-			 row_number() over(order by c.cartNo desc) as num,
+<!-- 		 row_number() over(order by c.cartNo desc) as num, -->
 			 c.cartNo, c.userNo, c.prodNo, c.orderCnt, c.cartReg,
 			 p.prodName, p.salePrice, p.prodMainImg
 		from cart c
