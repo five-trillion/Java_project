@@ -62,43 +62,42 @@ public class ShopController {
 		return "shop/detail";
 	}
 	@RequestMapping(value="/cart", method = RequestMethod.GET)
-	public String getcart(HttpSession session,Model model) throws Exception {
-		try {
-			log.info("=======controller.getcart========");
-			
-			UsersVO uVo = (UsersVO)session.getAttribute("uVO");
-			
-			// 세션에 "uVO" 속성이 없거나 값이 null인 경우 처리
+	public String getcart(HttpSession session, Model model) throws Exception {
+	    try {
+	        log.info("=======controller.getcart========");
+
+	        UsersVO uVo = (UsersVO) session.getAttribute("user");
+
+	        // 세션에 "uVO" 속성이 없거나 값이 null인 경우 처리
 	        if (uVo == null) {
 	            log.error("User information not found in session");
 	            return "redirect:/shop/login"; // 또는 다른 적절한 처리 방법 선택
 	        }
-			
-			String userNo = uVo.getUserId();
-			List<CartVO> clist = service.getCart(userNo);
-			model.addAttribute("cart", clist);
-			return "shop/cart";
-		} catch(Exception e) {
-			log.error("Error fetching getcart", e);
-            return "error";
-		}
+
+	        long userNo = uVo.getUserNo();
+	        List<CartVO> clist = service.getCart(userNo);
+	        model.addAttribute("cart", clist);
+	        return "shop/cart";
+	    } catch (Exception e) {
+	        log.error("Error fetching getcart", e);
+	        return "error";
+	    }
 	}
 	@ResponseBody
 	@RequestMapping(value="/cart", method = RequestMethod.POST)
 	public int addcart(CartVO cartVO, HttpSession session) throws Exception {
-		
-		int result = 0;
-		
-		UsersVO usersVO = (UsersVO)session.getAttribute("usersVO");
-		if (usersVO == null) {
-			result = 5;
-		}
-		if (usersVO != null) {
-			cartVO.setUserNo(usersVO.getUserNo());
-			service.addCart(cartVO);
-			result = 1;
-		}
-		return result;
+	    int result = 0;
+
+	    UsersVO usersVO = (UsersVO) session.getAttribute("user");
+	    if (usersVO == null) {
+	        result = 5;
+	    }
+	    if (usersVO != null) {
+	        cartVO.setUserNo(usersVO.getUserNo());
+	        service.addCart(cartVO);
+	        result = 1;
+	    }
+	    return result;
 	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)
 	public String mypage() {

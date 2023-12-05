@@ -77,7 +77,7 @@ public interface ShopMapper {
 	public int deleteCart(int cartId) throws Exception;
 	
 	//장바구니 목록
-	public List<CartVO> getCart(String userNo) throws Exception;	
+	public List<CartVO> getCart(long userNo) throws Exception;	
 	
 	//---------------------------------------------------------------------------
 	

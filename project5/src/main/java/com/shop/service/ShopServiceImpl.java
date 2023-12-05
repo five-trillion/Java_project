@@ -167,7 +167,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public List<CartVO> getCart(String userNo) throws Exception {
+	public List<CartVO> getCart(long userNo) throws Exception {
 		return mapper.getCart(userNo);
 	}
 	

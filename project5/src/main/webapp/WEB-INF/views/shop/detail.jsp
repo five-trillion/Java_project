@@ -88,7 +88,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                    aria-selected="false">Review <span>(<c:out value="${status.end}"/>)</span></a>
+                                    aria-selected="false">Review <span>(0<c:out value="${status.end}"/>)</span></a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -212,8 +212,7 @@
         </div>
     </section>
     <!-- Related Product Section End -->
-	<% Integer uno = (Integer) session.getAttribute("userNo"); %>
-	<%= uno %>
+	<%= session.getAttribute("user") %>
 	
 	<%@include file="../includes/footer.jsp" %>
 	<script>
@@ -230,31 +229,42 @@
 	});
 	});
 	
-	// 장바구니 추가 버튼
-	$(".primary-btn").on("click", function(e){
-		
-		var prodNo = $("#prodNo").val();
-	    var orderCnt = $(".quantity_input").val();
-	    
-		$.ajax({
-			url: '/cart',
-			type: 'POST',
-			data: data,
-			success: function(result){
-				cartAlert(result);
-			}
-		})
-	});
+// 	장바구니 추가 버튼
+	$(document).ready(function() {
+	    $("#primary-btn").on("click", function(e) {
+	        e.preventDefault();
 	
-	function cartAlert(result) {
-		if(result == '0'){
-			alert("장바구니에 추가를 하지 못하였습니다.");
-		} else if(result == '1'){
-			alert("장바구니에 추가되었습니다.");
-		} else if(result == '5'){
-			alert("로그인이 필요합니다.");	
-		}
-	}
+	        var prodNo = $("#prodNo").val();
+	        var orderCnt = $(".quantity_input").val();
+	
+	        var data = {
+	            "prodNo": prodNo,
+	            "orderCnt": orderCnt
+	        };
+	
+	        $.ajax({
+	            url: '/cart',
+	            method: 'POST',
+	            data: data,
+	            success: function(result) {
+	                cartAlert(result);
+	            }
+	        });
+	    });
+	
+	    function cartAlert(result) {
+	        if (result == '0') {
+	            alert("장바구니에 추가를 하지 못하였습니다.");
+	        } else if (result == '1') {
+	            alert("장바구니에 추가되었습니다.");
+	        } else if (result == '5') {
+	            alert("로그인이 필요합니다.");
+	            // 로그인 페이지로 이동하는 코드 추가
+	            window.location.href = '/shop/login';
+	        }
+	    }
+	});
+
 	</script>
 	
 </body>

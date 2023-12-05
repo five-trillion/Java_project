@@ -73,7 +73,7 @@ public interface ShopService {
 	public void addCart(CartVO cartVO) throws Exception;
 	
 	//장바구니 목록 조회
-	public List<CartVO> getCart(String userNo) throws Exception;
+	public List<CartVO> getCart(long userNo) throws Exception;
 	
 	// ======================회원======================
 	//특정 회원번호 조회
