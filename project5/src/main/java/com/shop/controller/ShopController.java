@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +60,22 @@ public class ShopController {
 	    }
 		return "shop/detail";
 	}
+	@ResponseBody
+	@RequestMapping(value="/cart", method = RequestMethod.POST)
+	public int addcart(CartVO cartVO, HttpSession session) throws Exception {
+	    int result = 0;
+
+	    UsersVO usersVO = (UsersVO) session.getAttribute("user");
+	    if (usersVO == null) {
+	        result = 5;
+	    }
+	    if (usersVO != null) {
+	        cartVO.setUserNo(usersVO.getUserNo());
+	        service.addCart(cartVO);
+	        result = 1;
+	    }
+	    return result;
+	}
 	@RequestMapping(value="/cart", method = RequestMethod.GET)
 	public String getcart(HttpServletRequest request, HttpSession session, Model model) throws Exception {
 	    try {
@@ -83,22 +98,6 @@ public class ShopController {
 	        log.error("Error fetching getcart", e);
 	        return "error";
 	    }
-	}
-	@ResponseBody
-	@RequestMapping(value="/cart", method = RequestMethod.POST)
-	public int addcart(CartVO cartVO, HttpSession session) throws Exception {
-	    int result = 0;
-
-	    UsersVO usersVO = (UsersVO) session.getAttribute("user");
-	    if (usersVO == null) {
-	        result = 5;
-	    }
-	    if (usersVO != null) {
-	        cartVO.setUserNo(usersVO.getUserNo());
-	        service.addCart(cartVO);
-	        result = 1;
-	    }
-	    return result;
 	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)
 	public String mypage() {

@@ -64,18 +64,52 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/cart" class="primary-btn">ADD TO CART</a>
+                        <button type="button" class="primary-btn">ADD TO CART</button>
+                        
+                        <script>
+//                     	장바구니 추가 버튼
+                    	$(document).ready(function() {
+                    	    $(".primary-btn").on("click", function(e) {
+                    	        e.preventDefault();
+                    	
+                    	        var prodNo = $("#prodNo").val();
+                    	        var orderCnt = $(".quantity_input").val();
+                    	
+                    	        var data = {
+                    	            "prodNo": prodNo,
+                    	            "orderCnt": orderCnt
+                    	        };
+                    	
+                    	        $.ajax({
+                    	            url: '/cart',
+                    	            method: 'POST',
+                    	            data: data,
+                    	            success: function(result) {
+                    	                cartAlert(result);
+                    	            }
+                    	        });
+                    	    });
+                    	
+                    	    function cartAlert(result) {
+                    	        if (result == '0') {
+                    	            alert("장바구니에 추가를 하지 못하였습니다.");
+                    	        } else if (result == '1') {
+                    	            alert("장바구니에 추가되었습니다.");
+                    	        } else if (result == '5') {
+                    	            alert("로그인이 필요합니다.");
+                    	            // 로그인 페이지로 이동하는 코드 추가
+                    	            window.location.href = '/shop/login';
+                    	        }
+                    	    }
+                    	});
+                        </script>
+                        
                         <ul>
                             <li><b>재고</b> <span>${prd.prodRest}개</span></li>
-                            <div class="deli">
-	                            <li><b>배송</b>
-		                            <span>
-	                            		<strong>오늘출발 상품</strong> <br>
-	                            		오늘 15:00까지 결제시 오늘 바로 발송
-	                            	</span>
-	                            	<!-- <span>2일 예상 <samp>무료배송</samp></span> -->
-                            	</li>
-                            </div>
+                            <li><b>배송</b>
+	                            <span><strong>오늘출발 상품</strong> 오늘 15:00까지 결제시 오늘 바로 발송 </span>
+                            	<!-- <span>2일 예상 <samp>무료배송</samp></span> -->
+                           	</li>
                         </ul>
                     </div>
                 </div>
@@ -227,42 +261,6 @@
 			$("#hiddenContent03").css("display", "block");
 		}
 	});
-	});
-	
-// 	장바구니 추가 버튼
-	$(document).ready(function() {
-	    $("#primary-btn").on("click", function(e) {
-	        e.preventDefault();
-	
-	        var prodNo = $("#prodNo").val();
-	        var orderCnt = $(".quantity_input").val();
-	
-	        var data = {
-	            "prodNo": prodNo,
-	            "orderCnt": orderCnt
-	        };
-	
-	        $.ajax({
-	            url: '/cart',
-	            method: 'POST',
-	            data: data,
-	            success: function(result) {
-	                cartAlert(result);
-	            }
-	        });
-	    });
-	
-	    function cartAlert(result) {
-	        if (result == '0') {
-	            alert("장바구니에 추가를 하지 못하였습니다.");
-	        } else if (result == '1') {
-	            alert("장바구니에 추가되었습니다.");
-	        } else if (result == '5') {
-	            alert("로그인이 필요합니다.");
-	            // 로그인 페이지로 이동하는 코드 추가
-	            window.location.href = '/shop/login';
-	        }
-	    }
 	});
 
 	</script>

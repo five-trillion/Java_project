@@ -163,11 +163,13 @@ public class ShopServiceImpl implements ShopService {
 	
 	@Override
 	public void addCart(CartVO cartVO) throws Exception {
+		System.out.println("=====Service.addcart=====");
 		mapper.addCart(cartVO);
 	}
 	
 	@Override
 	public List<CartVO> getCart(long userNo) throws Exception {
+		System.out.println("=====Service.getcart=====");
 		return mapper.getCart(userNo);
 	}
 	

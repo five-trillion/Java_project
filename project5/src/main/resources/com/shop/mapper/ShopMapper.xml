@@ -163,7 +163,6 @@
 	
 	<select id="getCart" resultType="com.shop.domain.CartVO">
 		 select
-<!-- 		 row_number() over(order by c.cartNo desc) as num, -->
 			 c.cartNo, c.userNo, c.prodNo, c.orderCnt, c.cartReg,
 			 p.prodName, p.salePrice, p.prodMainImg
 		from cart c
