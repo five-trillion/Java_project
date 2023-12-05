@@ -36,15 +36,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void noticeRegister(BoardVO boardVO) throws Exception {
+	public void noticeRegister(BoardVO board) throws Exception {
 		// TODO Auto-generated method stub
-		boardmapper.noticeRegister(boardVO);
+		boardmapper.noticeRegister(board);
 	}
 
 	@Override
-	public void noticeUpdate(BoardVO boardVO) throws Exception {
+	public void noticeUpdate(BoardVO board) throws Exception {
 		// TODO Auto-generated method stub
-		boardmapper.noticeUpdate(boardVO);
+		boardmapper.noticeUpdate(board);
 	}
 
 	@Override
@@ -72,15 +72,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void qnaRegister(BoardVO boardVO) throws Exception {
+	public void qnaRegister(BoardVO board) throws Exception {
 		// TODO Auto-generated method stub
-		boardmapper.qnaRegister(boardVO);
+		boardmapper.qnaRegister(board);
 	}
 
 	@Override
-	public void qnaUpdate(BoardVO boardVO) throws Exception {
+	public void qnaUpdate(BoardVO board) throws Exception {
 		// TODO Auto-generated method stub
-		boardmapper.qnaUpdate(boardVO);
+		boardmapper.qnaUpdate(board);
 	}
 
 	@Override
@@ -120,15 +120,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void freeRegister(BoardVO boardVO) throws Exception {
+	public void freeRegister(BoardVO board) throws Exception {
 		// TODO Auto-generated method stub
-		boardmapper.freeRegister(boardVO);
+		boardmapper.freeRegister(board);
 	}
 
 	@Override
-	public void freeUpdate(BoardVO boardVO) throws Exception {
+	public void freeUpdate(BoardVO board) throws Exception {
 		// TODO Auto-generated method stub
-		boardmapper.freeUpdate(boardVO);
+		boardmapper.freeUpdate(board);
 	}
 
 	@Override

@@ -1,9 +1,8 @@
 package com.shop.controller;
   
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,7 +13,6 @@ import com.shop.service.BoardService;
 @Controller 
 @RequestMapping(value="/board/*") 
 public class BoardController {
-	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	@Autowired
 	BoardService boardservice;
@@ -47,9 +45,16 @@ public class BoardController {
 	
 	//자유게시판 페이지 이동
 	@RequestMapping(value="/lounge", method=RequestMethod.GET) 
-	public void loungeGET() {
+	public void loungeGET(Model model) throws Exception {
 		System.out.println("자유게시판 페이지 진입");
+		model.addAttribute("freeList", boardservice.freeList());
 	}
+	
+	//자유게시판 게시물 읽기 페이지 이동
+	@RequestMapping(value="/loungeRead", method=RequestMethod.GET) 
+	public void loungeReadGET() throws Exception {
+		System.out.println("자유게시판 게시물 읽기 페이지 진입");
+	} 
 	
 	//자유게시판 글쓰기 페이지 이동
 	@RequestMapping(value="/loungeWrite", method=RequestMethod.GET) 

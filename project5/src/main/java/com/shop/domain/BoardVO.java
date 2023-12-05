@@ -8,7 +8,7 @@ import lombok.Data;
 public class BoardVO {
 	private long boardNo; //게시물 번호
 	private long userNo; //회원번호
-	private String boardClass; //게시판 분류
+	private int boardClass; //게시판 분류
 	private String boardTitle; //게시물 제목
 	private String boardContent; //게시물 내용
 	private Date boardReg; //게시물 등록일

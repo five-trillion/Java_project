@@ -15,12 +15,10 @@ import com.shop.domain.UsersVO;
 import com.shop.service.JoinService;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping(value="/shop/*")
 @AllArgsConstructor
-@Log4j
 public class JoinController {
 	
 	@Autowired
