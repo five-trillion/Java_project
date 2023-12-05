@@ -25,9 +25,9 @@
                 <li><a href="/board/notice">Community</a>
                 	<ul class="header__menu__dropdown">
                         <li><a href="/board/notice">Notice</a></li>
-                        <li><a href="#">QnA</a></li>
+                        <li><a href="/board/qna">QnA</a></li>
                         <li><a href="#">Review</a></li>
-                        <li><a href="#">Lounge</a></li>
+                        <li><a href="/board/lounge">Lounge</a></li>
                     </ul>
                 </li>
                 <li><a href="#">참고</a>
@@ -126,10 +126,10 @@
                                     <li><a href="#">영양제</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">community</a>
+                            <li><a href="/board/notice">community</a>
                             	<ul class="header__menu__dropdown">
                                     <li><a href="/board/notice">공지사항</a></li>
-                                    <li><a href="#">QnA</a></li>
+                                    <li><a href="/board/qna">QnA</a></li>
                                     <li><a href="#">Review</a></li>
                                     <li><a href="/board/lounge">자유게시판</a></li>
                                 </ul>

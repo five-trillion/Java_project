@@ -2,12 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 게시판</title>
+<title>QnA 게시판</title>
 <%@ include file="../includes/src.jsp"%>
 
 </head>
@@ -21,7 +20,7 @@
 			<div class="xans-element- xans-board xans-board-listpackage-1002 xans-board-listpackage xans-board-1002 ">
 				<div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
 					<div class="page_title fs60">
-						<font color="#555555">NOTICE</font>
+						<font color="#555555">QnA</font>
 					</div>
 					<p class="imgArea displaynone"></p>
 				</div>
@@ -47,7 +46,7 @@
 							</tr>
 						</thead>
 						<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
-							<c:forEach items="${noticeList}" var="board">
+							<c:forEach items="${qnaList}" var="board" varStatus="loop">
 								<tr style="background-color: #FFFFFF; color: #555555;"
 									class="xans-record-">
 									<td>
@@ -55,11 +54,11 @@
 											<c:out value="${board.boardNo}"/>
 										</div>
 										<div class="subject left fs13">
-											<a href='/board/noticeRead?boardNo=<c:out value="${board.boardNo}"/>'>
+											<a href='/board/qnaRead?boardNo=<c:out value="${board.boardNo}"/>'>
 											<c:out value="${board.boardTitle}"/></a>
 										</div>
 										<div class="writer fs13">
-											관리자
+											<c:out value="${boardNickList[loop.index]}"/>
 										</div>
 										<div class=" fs13 writer_date">
 											<fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardUpdate}"/>
@@ -74,9 +73,7 @@
 					</table>
 				</div>
 				<div class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002 displaynone ">
-					<span class="gRight"> <a
-						href="/board/free/write.html?board_no=1"
-						class="btnSubmitFix sizeS displaynone">글쓰기</a>
+					<span class="gRight"> <a href="/board/free/write.html?board_no=1" class="btnSubmitFix sizeS displaynone">글쓰기</a>
 					</span>
 				</div>
 			</div>
@@ -100,16 +97,14 @@
 				<input id="board_no" name="board_no" value="1" type="hidden">
 				<input id="page" name="page" value="1" type="hidden"> <input
 					id="board_sort" name="board_sort" value="" type="hidden">
-				<div
-					class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">
+				<div class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">
+					<button type="button" id="writeForm" name="writeForm" onclick="location.href='/board/qnaWrite'" class="btnSubmitFix sizeS">글쓰기</button> 
 					<fieldset class="boardSearch" style="float:right;">
 						<legend>게시물 검색</legend>
-						<p>
-							</select> <input id="search" name="search" fw-filter="" fw-label=""
+							<input id="search" name="search" fw-filter="" fw-label=""
 								fw-msg="" class="inputTypeText" placeholder="" value=""
 								type="text"> <a href="#none" class="btnSubmitFix sizeS"
 								onclick="BOARD.form_submit('boardSearchForm');">찾기</a>
-						</p>
 					</fieldset>
 				</div>
 			</form>
