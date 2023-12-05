@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.domain.BoardVO;
+import com.shop.domain.CartVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
+import com.shop.domain.UsersVO;
 import com.shop.mapper.ShopMapper;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +27,7 @@ public class ShopServiceImpl implements ShopService {
 	public List<BoardVO> freepopList() throws Exception {
 		// TODO Auto-generated method stub
 		try {
-			System.out.println("=====Service.freepopList=====");
+//			System.out.println("=====Service.freepopList=====");
 			return mapper.freepopList();
 		} catch (Exception e) {
 		      log.error("Error fetching freelist", e);
@@ -82,7 +84,7 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public ProductVO prodDetail(String prodNo) throws Exception{
 		try {
-			System.out.println("=====Service.prodDetail=====");
+//			System.out.println("=====Service.prodDetail=====");
 			return mapper.prodDetail(prodNo);
 		} catch (Exception e) {
 		      log.error("Error fetching proddetail", e);
@@ -93,7 +95,7 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public int updateProdCnt(String prodNo) throws Exception {
 		try {
-			System.out.println("=====Service.prodcnt=====");
+//			System.out.println("=====Service.prodcnt=====");
 			return mapper.updateProdCnt(prodNo);
 		} catch (Exception e) {
 		      log.error("Error fetching prodcnt", e);
@@ -104,7 +106,7 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public List<ProductVO> prodpopList() throws Exception {
 		try {
-			System.out.println("=====Service.prodpopList=====");
+//			System.out.println("=====Service.prodpopList=====");
 			return mapper.prodpopList();
 		} catch (Exception e) {
 		      log.error("Error fetching prodpoplist", e);
@@ -126,7 +128,7 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public List<ReviewVO> reviewdList(String prodNo) throws Exception {
 		try {
-			System.out.println("=====Service.prodrevidList=====");
+//			System.out.println("=====Service.prodrevidList=====");
 			return mapper.reviewdList(prodNo);
 		} catch (Exception e) {
 		      log.error("Error fetching prodrevidlist", e);
@@ -157,5 +159,20 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public int reviewDelete(int reviNo) throws Exception {
 		return mapper.reviewDelete(reviNo);
+	}
+	
+	@Override
+	public void addCart(CartVO cartVO) throws Exception {
+		mapper.addCart(cartVO);
+	}
+	
+	@Override
+	public List<CartVO> getCart(String userNo) throws Exception {
+		return mapper.getCart(userNo);
+	}
+	
+	@Override
+	public UsersVO getUNo(int userNo) throws Exception {
+		return mapper.getUNo(userNo);
 	}
 }

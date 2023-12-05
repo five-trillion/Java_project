@@ -1626,6 +1626,11 @@ ol {
 	color: #252525;
 }
 
+.product_sale_strike {
+	font-weight:normal;
+	text-decoration:line-through;
+}
+
 .product__item__text h5 {
 	color: #252525;
 	font-weight: 700;

@@ -143,11 +143,42 @@
 	<!-- 글 삭제 -->
 	<update id="reviewDelete" parameterType="java.lang.Integer">
 		UPDATE review SET del = 1
-		WHERE reviNo = #{reviNo};
+		WHERE reviNo = #{reviNo}
 	</update>
 	
 	<!-- ==================================================================== -->
 	<!-- 리뷰댓글 -->
 	
+	
+	<!-- ==================================================================== -->
+	<!-- 장바구니 -->
+	<insert id="addCart" parameterType="com.shop.domain.CartVO">
+		INSERT INTO cart(cartNo, userNo, prodNo, orderCnt, cartReg)
+  		VALUES(#{cartNo},#{userNo}, #{prodNo}, #{orderCnt}, current_timestamp)
+  	</insert>
+	
+	<delete id="deleteCart">
+		delete from vam_cart where cartNo = #{cartNo}
+	</delete>
+	
+	<select id="getCart" parameterType="com.shop.domain.CartVO">
+		 select
+			 row_number() over(order by c.cartNo desc) as num,
+			 c.cartNo, c.userNo, c.prodNo, c.orderCnt, c.cartReg,
+			 p.prodName, p.salePrice, p.prodMainImg
+		from cart c
+			 inner join product p
+			 on c.prodNo = p.prodNo
+		where userNo = #{userNo}
+	</select>
+	
+	<!-- ==================================================================== -->
+	<!-- 회원 -->
+	
+	<select id="getUNo" parameterType="java.lang.Integer" resultType="com.shop.domain.UsersVO">
+		select * 
+		from users
+		where userNo = #{userNo}
+	</select>
 	
 </mapper>

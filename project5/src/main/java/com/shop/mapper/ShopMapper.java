@@ -3,8 +3,10 @@ package com.shop.mapper;
 import java.util.List;
 
 import com.shop.domain.BoardVO;
+import com.shop.domain.CartVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
+import com.shop.domain.UsersVO;
 
 public interface ShopMapper {
 	
@@ -68,4 +70,17 @@ public interface ShopMapper {
 	
 	//---------------------------------------------------------------------------
 	
+	//장바구니 추가
+	public void addCart(CartVO cartVO) throws Exception;
+	
+	//장바구니 삭제
+	public int deleteCart(int cartId) throws Exception;
+	
+	//장바구니 목록
+	public List<CartVO> getCart(String userNo) throws Exception;	
+	
+	//---------------------------------------------------------------------------
+	
+	//회원번호 조회
+	public UsersVO getUNo(int userNo) throws Exception;
 }

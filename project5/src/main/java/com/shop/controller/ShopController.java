@@ -3,6 +3,7 @@ package com.shop.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -13,9 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shop.domain.CartVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
+import com.shop.domain.UsersVO;
 import com.shop.service.ShopService;
 
 import lombok.AllArgsConstructor;
@@ -33,7 +37,7 @@ public class ShopController {
 	@RequestMapping(value="shop", method = RequestMethod.GET)
 	public String list(Model model) throws Exception {
 		try {
-			logger.info("=======controller.prodlist========");
+//			logger.info("=======controller.prodlist========");
 			List<ProductVO> prodlist = service.prodList();
 			model.addAttribute("prodlist", prodlist);
 			return "shop/list";
@@ -53,13 +57,48 @@ public class ShopController {
 	        
 	        List<ReviewVO> revidlist = service.reviewdList(prodNo); // 해당상품 리뷰목록구현
 	        model.addAttribute("rlist", revidlist);
+	        
 	    }
 		return "shop/detail";
 	}
 	@RequestMapping(value="/cart", method = RequestMethod.GET)
-	public String cart() {
-		log.info("========cart========");
-		return "shop/cart";
+	public String getcart(HttpSession session,Model model) throws Exception {
+		try {
+			log.info("=======controller.getcart========");
+			
+			UsersVO uVo = (UsersVO)session.getAttribute("uVO");
+			
+			// 세션에 "uVO" 속성이 없거나 값이 null인 경우 처리
+	        if (uVo == null) {
+	            log.error("User information not found in session");
+	            return "redirect:/shop/login"; // 또는 다른 적절한 처리 방법 선택
+	        }
+			
+			String userNo = uVo.getUserId();
+			List<CartVO> clist = service.getCart(userNo);
+			model.addAttribute("cart", clist);
+			return "shop/cart";
+		} catch(Exception e) {
+			log.error("Error fetching getcart", e);
+            return "error";
+		}
+	}
+	@ResponseBody
+	@RequestMapping(value="/cart", method = RequestMethod.POST)
+	public int addcart(CartVO cartVO, HttpSession session) throws Exception {
+		
+		int result = 0;
+		
+		UsersVO usersVO = (UsersVO)session.getAttribute("usersVO");
+		if (usersVO == null) {
+			result = 5;
+		}
+		if (usersVO != null) {
+			cartVO.setUserNo(usersVO.getUserNo());
+			service.addCart(cartVO);
+			result = 1;
+		}
+		return result;
 	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)
 	public String mypage() {
