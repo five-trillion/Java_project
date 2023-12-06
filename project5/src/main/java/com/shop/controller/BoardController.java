@@ -2,6 +2,8 @@ package com.shop.controller;
   
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,14 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.BoardVO;
+import com.shop.domain.UsersVO;
 import com.shop.service.BoardService;
-
-import lombok.AllArgsConstructor;
   
   
 @Controller 
 @RequestMapping(value="/board/*")
-@AllArgsConstructor
 public class BoardController {
 	
 	@Autowired
@@ -53,6 +53,7 @@ public class BoardController {
 		System.out.println("QnA 글쓰기 성공");
 		return "redirect:/board/QnA";
 	}
+	
 	// ============================== 자유게시판 ==============================
 	//자유게시판 페이지 이동
 	@RequestMapping(value="/lounge", method=RequestMethod.GET) 
@@ -78,10 +79,19 @@ public class BoardController {
 	
 	//자유게시판 게시물 작성
 	@RequestMapping(value="/loungeWrite", method=RequestMethod.POST)
-	public String loungeWritePOST(BoardVO board, RedirectAttributes rttr) throws Exception {
-		boardservice.freeRegister(board);
-		System.out.println("자유게시판 글쓰기 성공");
-		rttr.addFlashAttribute("result", board.getBoardNo());
-		return "redirect:/board/lounge";
+	public String loungeWritePOST(BoardVO board, RedirectAttributes rttr, HttpSession session) throws Exception {
+		UsersVO user = (UsersVO) session.getAttribute("user");
+		if(user != null) {
+			board.setUserNo(user.getUserNo());
+			System.out.println("자유게시판 글쓰기 성공");
+			boardservice.freeRegister(board);
+			rttr.addFlashAttribute("result", "success");
+			return "redirect:/board/lounge";
+		} else {
+			System.out.println("자유게시판 글쓰기 실패(로그인 필요)");
+			return "redirect:/shop/login";
+		}
+	
+		
 	}
 } 

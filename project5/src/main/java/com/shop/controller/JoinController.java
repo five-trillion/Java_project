@@ -33,9 +33,11 @@ public class JoinController {
 	
 	//회원가입
 	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String joinPOST(UsersVO user) throws Exception{
+	public String joinPOST(UsersVO user, RedirectAttributes rttr) throws Exception{
 		joinservice.insertUser(user);
 		System.out.println("join Service 성공");
+		int result = 1;
+		rttr.addFlashAttribute("result", result);
 		return "redirect:/";
 		
 	}

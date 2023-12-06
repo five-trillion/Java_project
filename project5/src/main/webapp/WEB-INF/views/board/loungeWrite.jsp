@@ -34,7 +34,7 @@
 							<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
 								<tr>
 									<td>
-										<input type="hidden" id="userNo" name="userNo" value="${userNo}">
+										<input type="hidden" id="userNo" name="userNo" value="${user.userNo}">
 										<div class="chk fs12">제목</div>
 										<div class="subject left fs12">
 											<input type="text" id="boardTitle" name="boardTitle">
@@ -120,6 +120,19 @@
 			return false;
 		}
 	}
+	
+	$(document).ready(function(){
+		let result = '<c:out value="${result}"/>';
+		writeCheck(result);
+		function writeCheck(result) {
+			if(result === '') {
+				return;
+			}
+			if(result === "success") {
+				alert("등록이 완료되었습니다.")
+			}
+		}
+	});
 </script>
 </body>
 
