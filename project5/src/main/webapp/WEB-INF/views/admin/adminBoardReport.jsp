@@ -62,13 +62,13 @@
 												<td><i class="ri ri-ball-pen-fill"></td>
 												<td>
 													<c:if test="${board.boardNo != 0}">
-														<div class="btn btn-primary" onClick="window.open('/admin/adminReportDetail?boardNo=${board.boardNo}&boRepNo=null&reviRepNo=null','_blank', 'width=500, height=500, top=200, left=400')">돋보기</div>
+														<div class="btn btn-primary" onClick="window.open('/admin/adminReportDetail?boardNo=${board.boardNo}&boRepNo=0&reviRepNo=0','_blank', 'width=500, height=500, top=200, left=400')">돋보기</div>
 													</c:if>
 													<c:if test="${board.boRepNo != 0}">
-														<div class="btn btn-primary" onClick="window.open('/admin/adminReportDetail?boardNo=null&boRepNo=${board.boRepNo}&reviRepNo=null','_blank', 'width=500, height=500, top=200, left=400')">돋보기</div>
+														<div class="btn btn-primary" onClick="window.open('/admin/adminReportDetail?boardNo=0&boRepNo=${board.boRepNo}&reviRepNo=0','_blank', 'width=500, height=500, top=200, left=400')">돋보기</div>
 													</c:if>
 													<c:if test="${board.reviRepNo != 0}">
-														<div class="btn btn-primary" onClick="window.open('/admin/adminReportDetail?boardNo=null&boRepNo=null&reviRepNo=${board.reviRepNo}','_blank', 'width=500, height=500, top=200, left=400')">돋보기</div>
+														<div class="btn btn-primary" onClick="window.open('/admin/adminReportDetail?boardNo=0&boRepNo=0&reviRepNo=${board.reviRepNo}','_blank', 'width=500, height=500, top=200, left=400')">돋보기</div>
 													</c:if>
 												</td>
 												<td>

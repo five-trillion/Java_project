@@ -22,7 +22,7 @@
 	
 	<!-- 유저 권한 변경 -->
 	<update id="adminChange">
-		update users set admin = #{admin} where userNo = #{userNo}
+		update users set admin = #{admin} where userNo =  #{userNo}
 	</update>
 	
 	<!-- 유저 삭제 -->
@@ -48,4 +48,15 @@
 	<select id="getReport" resultType="com.shop.domain.ReportVO">
 		select * from report
 	</select>
+	
+	<select id="reportBoard" resultType="com.shop.domain.BoardVO">
+		select * from board where boardNo = #{boardNo}
+	</select>
+	<select id="reportBoRep" resultType="com.shop.domain.BoardReplyVO">
+		select * from board_reply where boRepNo = #{boRepNo}
+	</select>
+	<select id="reportReviRep" resultType="com.shop.domain.ReviewReplyVO">
+		select * from review_reply where reviRepNo = #{reviRepNo}
+	</select>
+	
 </mapper>

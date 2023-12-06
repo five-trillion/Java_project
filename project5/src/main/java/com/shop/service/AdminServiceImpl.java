@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReportVO;
+import com.shop.domain.ReviewReplyVO;
 import com.shop.domain.UsersVO;
 import com.shop.mapper.AdminMapper;
 
@@ -34,6 +36,23 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void notiWrite(BoardVO boardVo) {
 		mapper.notiWrite(boardVo);
+	}
+
+	@Override
+	public BoardVO reportBoard(long boardNo) {
+		return mapper.reportBoard(boardNo);
+	}
+
+	@Override
+	public BoardReplyVO reportBoRep(long boRepNo) {
+		// TODO Auto-generated method stub
+		return mapper.reportBoRep(boRepNo);
+	}
+
+	@Override
+	public ReviewReplyVO reportReviRep(long reviRepNo) {
+		// TODO Auto-generated method stub
+		return mapper.reportReviRep(reviRepNo);
 	}
 
 	@Override

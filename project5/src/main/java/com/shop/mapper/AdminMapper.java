@@ -2,10 +2,12 @@ package com.shop.mapper;
 
 import java.util.List;
 
+import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReportVO;
+import com.shop.domain.ReviewReplyVO;
 import com.shop.domain.UsersVO;
 
 public interface AdminMapper {
@@ -30,7 +32,11 @@ public interface AdminMapper {
 	//게시판 삭제
 	public void boardDelete(long boardNo);
 	
-	// 게시판 공지----------
+	// 신고관리 ----------
 	public List<ReportVO> getReport();
-	// end 게시판 공지--------
+	
+	public BoardVO reportBoard (long boardNo); 
+	public BoardReplyVO reportBoRep (long borepNo); 
+	public ReviewReplyVO reportReviRep (long reviRepNo); 
+	// end 신고관리 --------
 }

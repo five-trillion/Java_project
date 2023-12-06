@@ -88,8 +88,6 @@
 													                </div>
 																</div>
 																<div class="modal-footer">
-																	<a href="adminUserModify"><button type="button" class="btn btn-secondary"
-																		data-bs-dismiss="modal">수정</button></a>
 																	<button type="button" class="btn btn-primary modalClose">닫기</button>
 																</div>
 															</div>

@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReportVO;
+import com.shop.domain.ReviewReplyVO;
 import com.shop.domain.UsersVO;
 import com.shop.service.AdminService;
 
@@ -164,8 +166,21 @@ public class AdminController {
 	}
 	// 신고상세보기
 	@GetMapping("/adminReportDetail")
-	public void adminReportDetail() throws Exception {
-		
+	public void adminReportDetail(@RequestParam("boardNo") long boardNo, @RequestParam("boRepNo") long boRepNo, @RequestParam("reviRepNo") long reviRepNo, HttpServletRequest request) throws Exception {
+		if (boardNo != 0) {
+			BoardVO bVo = adminService.reportBoard(boardNo);
+			request.setAttribute("board", bVo);
+		} else if (boRepNo != 0) {
+			BoardReplyVO brVo = adminService.reportBoRep(boRepNo);
+			request.setAttribute("boardReply", brVo);
+		} else if (boardNo != 0) {
+			ReviewReplyVO rrVo = adminService.reportReviRep(reviRepNo);
+			request.setAttribute("reviewReply", rrVo);
+		} else {
+			System.out.println("값이 안 넘어 옵니다!!!!!!!!!!!");
+		}
+
+		System.out.println(boardNo);
 	}
 	
 	// 게시판 삭제
@@ -175,5 +190,4 @@ public class AdminController {
 		
 		return "redirect:/admin/adminBoardNoti";
 	}
-	
 }
