@@ -61,7 +61,8 @@
 	                                    </td>
 	                                    <td class="shoping__cart__item" style="padding-left: 20px; width: 420px;">
 	                                        <h5>${cart.prodName}</h5> <br>
-	                                        가격: <fmt:formatNumber pattern="###,###,###.##" value="${cart.salePrice}" />
+	                                        <input type="hidden" value="${cart.cartNo}">
+	                                        <h6>가격: <fmt:formatNumber pattern="###,###,###.##" value="${cart.salePrice}" /></h6>
 	                                    </td>
 	                                    <td class="shoping__cart__quantity">
 	                                        <div class="quantity">
@@ -74,10 +75,10 @@
 	                                        <fmt:formatNumber pattern="###,###,###.##" value="${cart.totalPrice}" />
 	                                    </td>
 	                                    <td class="shoping__cart__item__close" style="width: 50px; text-align: center;">
-	                                        <span class="icon_modify"><input type="button" value="변경" style="font-size: 50%; padding: 3px; border: none;"></span>
+	                                        <a href="#"><span class="icon_modify"><input type="button" value="변경" style="font-size: 50%; padding: 3px; border: none;"></span></a>
 	                                    </td>
 	                                    <td class="shoping__cart__item__close">
-	                                        <span class="icon_close"></span>
+	                                        <a href="shop/deletecart"><span class="icon_close"></span></a>
 	                                    </td>
 	                                </tr>
 	                                </c:forEach>

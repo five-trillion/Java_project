@@ -76,7 +76,7 @@ public interface ShopService {
 	public int updateCart(CartVO cartVO) throws Exception;
 	
 	//장바구니 삭제
-	public int deleteCart(int cartId) throws Exception;
+	public int deleteCart(int cartNo) throws Exception;
 	
 	//장바구니 목록 조회
 	public List<CartVO> getCart(long userNo) throws Exception;

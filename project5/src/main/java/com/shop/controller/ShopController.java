@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.CartVO;
 import com.shop.domain.ProductVO;
@@ -97,6 +98,17 @@ public class ShopController {
 	        return "error";
 	    }
 	}
+	@RequestMapping(value="shop/deletecart",method = RequestMethod.GET)
+	public String delete(@RequestParam("cartNo") int cartNo, RedirectAttributes rttr) throws Exception {
+		int r = service.deleteCart(cartNo);
+		
+		if(r > 0) {
+			rttr.addFlashAttribute("msg","정상적으로 삭제되었습니다.");
+			return "redirect:/shop/cart";
+		}
+		System.out.println("fail deletecart");
+		return "redirect:/shop/cart";
+	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)
 	public String mypage() {
 		return "mypage/mypage";
@@ -117,7 +129,8 @@ public class ShopController {
 	public void mypage_user() {
 		
 	}
-	/* @RequestMapping(value="review", method = RequestMethod.GET)
+	/* 
+	@RequestMapping(value="review", method = RequestMethod.GET)
 	public List<ReviewVO> reviewList() throws Exception {
 		return "review";
 	}

@@ -182,8 +182,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public int deleteCart(int cartId) throws Exception{
-		return mapper.deleteCart(cartId);
+	public int deleteCart(int cartNo) throws Exception{
+		return mapper.deleteCart(cartNo);
 	}
 	
 	@Override

@@ -78,6 +78,7 @@ public class CartVO {
 	}
 	
 	public int getTotalPrice() {
+		initTotalPrice();
 		return totalPrice;
 	}
 
@@ -90,7 +91,8 @@ public class CartVO {
 	}
 	
 	public void setTotalPrice(int totalPrice) {
-	    this.totalPrice = totalPrice;
+		initTotalPrice();
+		this.totalPrice = totalPrice;
 	}
 
 	@Override
