@@ -82,7 +82,7 @@ public interface ShopService {
 	public List<CartVO> getCart(long userNo) throws Exception;
 	
 	//카트에 있는 상품인지 조회
-	public int countCart(CartVO cartVO) throws Exception;
+//	public CartVO countCart(CartVO cartVO) throws Exception;
 	
 	// ======================회원======================
 	

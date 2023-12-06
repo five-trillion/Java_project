@@ -179,7 +179,7 @@
 	</select>
 	
 	<select id="countCart" resultType="com.shop.domain.CartVO">
-		select count(*) from cart 
+		select * from cart 
 		where userNo = #{userNo} and prodNo = #{prodNo}
 	</select>
 	

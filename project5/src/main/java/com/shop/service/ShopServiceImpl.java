@@ -164,12 +164,11 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public int addCart(CartVO cartVO) throws Exception {
 		System.out.println("=====Service.addcart=====");
-		int countCart = mapper.countCart(cartNo);
-		if (countCart > 0) {
+		CartVO countCart = mapper.countCart(cartVO);
+		if (countCart != null) {
 			return 2;
 		}
 		try {
-			System.out.println(mapper.addCart(cartVO));
 			return mapper.addCart(cartVO);
 		} catch (Exception e) {
 			e.printStackTrace();
