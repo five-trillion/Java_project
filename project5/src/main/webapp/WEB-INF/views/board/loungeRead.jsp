@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,11 +35,21 @@
 							<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
 								<tr>
 									<td>
-										<input type="hidden" id="boardClass" name="boardClass" value="3">
-										<input type="hidden" id="userNo" name="userNo" value="${userNo}">
 										<div class="chk fs12">제목</div>
 										<div class="subject left fs12">
-											<input type="text" id="boardTitle" name="boardTitle">
+											<c:out value="${board.boardTitle}"></c:out>
+										</div>
+									</td>
+									<td>
+										<div class="chk fs12">작성자</div>
+										<div class="subject left fs12">
+											<c:out value="${board.userNick}"></c:out> 
+										</div>
+									</td>
+									<td>
+										<div class="chk fs12">작성일</div>
+										<div class="subject left fs12">
+											<fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardReg}"/>
 										</div>
 									</td>
 								</tr>
@@ -48,17 +59,7 @@
 									<td>
 										<div class="chk fs13">내용</div>
 										<div class="subject left fs13">
-											<textarea style="background-color:white;" rows="10" cols="50" id="boardContent" name="boardContent"></textarea>
-										</div>
-									</td>
-								</tr>
-							</tbody>
-							<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
-								<tr>
-									<td>
-										<div class="chk fs13">첨부</div>
-										<div class="subject left fs13">
-											<input type="file">
+											<c:out value="${board.boardContent}"></c:out>
 										</div>
 									</td>
 								</tr>
@@ -66,7 +67,7 @@
 						</table>
 						<div class="boardbtn">
 							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
-							<input type="submit" value="작성">
+							<button type="button" onclick="location.href='/board/loungeModify'">수정</button>
 						</div>
 					</div>
 				</form>
@@ -104,7 +105,7 @@
 					</fieldset>
 				</div>
 			</form>
-			->
+			
 		</div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>

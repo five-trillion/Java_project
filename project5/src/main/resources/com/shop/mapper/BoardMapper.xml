@@ -37,7 +37,7 @@
 		
 		<!-- 전체목록 조회 -->
 		<select id="freeList" resultType="com.shop.domain.BoardVO">
-			select b.* , u.nick
+			select b.* , u.nick as userNick
 			from board b
 			join users u on b.userNo = u.userNo
 			where b.boardClass = 3
@@ -45,9 +45,10 @@
 		</select>
 		
 		<!-- 상세조회 -->
-		<select id="freeDetail" parameterType="java.lang.Integer" resultType="com.shop.domain.BoardVO">
-			select * 
-			from board
+		<select id="freeDetail" parameterType="java.lang.Long" resultType="com.shop.domain.BoardVO">
+			select b.*, u.nick as userNick 
+			from board b
+			join users u on b.userNo = u.userNo
 			where boardNo = #{boardNo}
 		</select>
 		
@@ -67,16 +68,11 @@
 			 where boardNo = #{boardNo}
 		</update>
 		
-		<!-- 게시물 삭제 -->
-		<!-- <delete id="deleteBoard">
+		<!-- 글 삭제 -->
+		<delete id="freeDelete" parameterType="com.shop.domain.BoardVO">
 			delete from board
 			where boardNo = #{boardNo} 
-		</delete> -->
-		<!-- 글 삭제 -->
-		<update id="freeDelete" parameterType="java.lang.Integer">
-			UPDATE board SET del = 1
-			WHERE boardNo = #{boardNo};
-		</update>   
+		</delete>   
 		
 		<!-- 조회수 증가 -->
 		<update id="updateFreeBoardCnt" parameterType="java.lang.Integer">
@@ -85,20 +81,4 @@
 			 where boardNo = #{boardNo}
 		</update>
 		
-		<!-- 게시물 작성자의 nick을 가져오는 쿼리문 -->
-		<select id="getBoardNickList" resultType="java.lang.String">
-		    SELECT nick
-		    FROM users u
-		    JOIN board b ON u.userNo = b.userNo;
-		</select>
-	
 	</mapper>
-
-	
-	
-	
-	
-  	
-  	
-	
-	

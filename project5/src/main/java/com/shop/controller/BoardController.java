@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.BoardVO;
@@ -35,8 +36,6 @@ public class BoardController {
 	@RequestMapping(value="/qna", method=RequestMethod.GET) 
 	public void qnaGET(Model model) throws Exception {
 		System.out.println("QnA 페이지 진입");
-		List<String> boardNickList = boardservice.getBoardNickList();
-		model.addAttribute("boardNickList",boardNickList);
 		model.addAttribute("qnaList", boardservice.qnaList());
 	}
 	
@@ -59,22 +58,20 @@ public class BoardController {
 	@RequestMapping(value="/lounge", method=RequestMethod.GET) 
 	public void loungeGET(Model model) throws Exception {
 		System.out.println("자유게시판 페이지 진입");
-		List<String> boardNickList = boardservice.getBoardNickList();
-		model.addAttribute("boardNickList",boardNickList);
 		model.addAttribute("freeList", boardservice.freeList());
 	}
 	
 	//자유게시판 게시물 읽기 페이지 이동
 	@RequestMapping(value="/loungeRead", method=RequestMethod.GET) 
-	public void loungeReadGET() throws Exception {
+	public void loungeReadGET(@RequestParam("boardNo") Long boardNo, Model model) throws Exception {
 		System.out.println("자유게시판 게시물 읽기 페이지 진입");
+		model.addAttribute("board",boardservice.freeDetail(boardNo));
 	} 
 	
 	//자유게시판 글쓰기 페이지 이동
 	@RequestMapping(value="/loungeWrite", method=RequestMethod.GET) 
 	public void loungeWriteGET() {
 		System.out.println("자유게시판 글쓰기 페이지 진입");
-		
 	}
 	
 	//자유게시판 게시물 작성
@@ -90,8 +87,13 @@ public class BoardController {
 		} else {
 			System.out.println("자유게시판 글쓰기 실패(로그인 필요)");
 			return "redirect:/shop/login";
-		}
+		}		
+	}
 	
+	//자유게시판 게시물 수정 페이지 이동
+	@RequestMapping(value="/loungeModify", method=RequestMethod.GET) 
+	public void loungeModifyGET() {
+		System.out.println("자유게시판 게시물 수정 페이지 진입");
 		
 	}
 } 

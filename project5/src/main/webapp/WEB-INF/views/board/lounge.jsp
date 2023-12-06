@@ -56,7 +56,7 @@
 											<c:out value="${board.boardTitle}"/></a>
 										</div>
 										<div class="writer fs13">
-											<c:out value="${boardNickList[loop.index]}"/>
+											<c:out value="${board.userNick}"/>
 										</div>
 										<div class=" fs13 writer_date">
 											<fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardUpdate}"/>

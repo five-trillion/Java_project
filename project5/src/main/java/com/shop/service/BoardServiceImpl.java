@@ -16,11 +16,6 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardMapper boardmapper;
 	
-	@Override
-	public List<String> getBoardNickList() throws Exception {
-		return boardmapper.getBoardNickList();
-	}
-	
 	// ----------------------------- 공지사항 -----------------------------
 	
 	@Override

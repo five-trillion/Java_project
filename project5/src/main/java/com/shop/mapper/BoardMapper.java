@@ -6,9 +6,6 @@ import com.shop.domain.BoardVO;
 
 public interface BoardMapper {
 	
-		//게시물 작성자의 nick을 가져오는 메서드
-		List<String> getBoardNickList() throws Exception;
-	
 	// ----------------------------- 공지사항 -----------------------------
 	
 		// 공지사항 전체목록 처리를 위한 메서드
