@@ -45,16 +45,6 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>0</td>
-											<td>0</td>
-											<td>0</td>
-											<td>0</td>
-											<td>0</td>
-											<td>0</td>
-											<td>0</td>
-											<td>0</td>
-										</tr>
 										<c:forEach var="board" items="${boardList}">
 											<tr>
 												<th scope="row">${board.boardNo}</th>
@@ -63,28 +53,27 @@
 												<td>
 													<c:choose>
 														<c:when test="${board.secretYn == 0}">
-															<i class="bi bi-unlock" style="color: gray;">
+															<i class="bx bx-lock-open larger" style="color: gray;"></i>
 														</c:when>
 														<c:otherwise>
-															<i class="bi bi-lock-fill" style="color: black;">
+															<i class="bx bxs-lock-alt larger" style="color: black;"></i>
 														</c:otherwise>
 													</c:choose>
 												</td>
 												<td>
 													<c:choose>
 														<c:when test="${board.secretYn == 0}">
-															<i class="bi bi-circle-fill" style="color: red;">
+															<i class="bx bxs-checkbox-minus larger" style="color: red;"></i>
 														</c:when>
 														<c:otherwise>
-															<i class="bi bi-check-circle-fill" style="color: green;">
+															<i class="bx bxs-checkbox-checked larger" style="color: green;"></i>
 														</c:otherwise>
 													</c:choose>
 												</td>
 												<td>${board.boardCnt}</td>
 												<td>
 													<!-- Large Modal -->
-													<div class="btn btn-primary modalBtn">
-														돋보기</div>
+													<div class="btn btn-primary modalBtn"><i class="bx bx-search-alt-2"></i></div>
 
 													<div class="modal fade" tabindex="-1">
 														<div class="modal-dialog modal-lg">
@@ -109,7 +98,7 @@
 													                </div>
 																</div>
 																<div class="modal-footer">
-																	<a href="adminUserModify"><button type="button" class="btn btn-secondary"
+																	<a href="adminBoardQnaAnswer?boardNo=${board.boardNo}"><button type="button" class="btn btn-secondary"
 																		data-bs-dismiss="modal">답변하기</button></a>
 																	<button type="button" class="btn btn-primary modalClose">닫기</button>
 																</div>
@@ -119,7 +108,7 @@
 												</td>
 												<td>
 													<!-- Large Modal -->
-													<div class="btn btn-primary modalBtn">삭제</div>
+													<div class="btn btn-primary modalBtn" style="background-color: red; border-color: red;"><i class="bx bx-x"></i></div>
 
 													<div class="modal fade" id="largeModal" tabindex="-1">
 														<div class="modal-dialog modal-lg">
@@ -160,6 +149,7 @@
 	<%@ include file="./includes/footerAdmin.jsp"%>
 	
 	<script>
+		$(".larger").css({"fontSize" : "24px"})
 		$(".table-bordered").css({"textAlign": "center"})
 		$(".datatable-table").css({"textAlign": "center"})
 		$(".datatable-table th").css({"textAlign": "center"})

@@ -39,5 +39,7 @@ public interface AdminService {
 	public BoardVO reportBoard (long boardNo); 
 	public BoardReplyVO reportBoRep (long boRepNo); 
 	public ReviewReplyVO reportReviRep (long reviRepNo);
+	
+	public void reportComplete(int repoNo);
 	// end 신고관리--------
 }

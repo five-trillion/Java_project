@@ -44,15 +44,6 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>01</td>
-											<td>01</td>
-											<td>01</td>
-											<td>01</td>
-											<td>01</td>
-											<td>01</td>
-											<td>01</td>
-										</tr>
 										<c:forEach var="board" items="${boardList}">
 											<tr>
 												<th scope="row">${board.boardNo}</th>
@@ -62,8 +53,7 @@
 												<td>${board.boardCnt}</td>
 												<td>
 													<!-- Large Modal -->
-													<div class="btn btn-primary modalBtn">
-														돋보기</div>
+													<div class="btn btn-primary modalBtn"><i class="bx bx-search-alt-2"></i></div>
 
 													<div class="modal fade" tabindex="-1">
 														<div class="modal-dialog modal-lg">
@@ -96,7 +86,7 @@
 												</td>
 												<td>
 													<!-- Large Modal -->
-													<div class="btn btn-primary modalBtn">삭제</div>
+													<div class="btn btn-primary modalBtn" style="background-color: red; border-color: red;"><i class="bx bx-x"></i></div>
 
 													<div class="modal fade" id="largeModal" tabindex="-1">
 														<div class="modal-dialog modal-lg">

@@ -46,9 +46,10 @@
 	
 	<!-- 신고 조회 -->
 	<select id="getReport" resultType="com.shop.domain.ReportVO">
-		select * from report
+		select * from report order by processingYn
 	</select>
 	
+	<!-- 신고 상세조회 -->
 	<select id="reportBoard" resultType="com.shop.domain.BoardVO">
 		select * from board where boardNo = #{boardNo}
 	</select>
@@ -58,5 +59,13 @@
 	<select id="reportReviRep" resultType="com.shop.domain.ReviewReplyVO">
 		select * from review_reply where reviRepNo = #{reviRepNo}
 	</select>
+	
+	<!-- 신고 완료처리 -->
+	<update id="reportComplete">
+		update report set processingYn = 1 where repoNo = #{repoNo} ;
+	</update>
+	
+	
+	
 	
 </mapper>

@@ -139,23 +139,28 @@ public class AdminController {
 		
 		return "redirect:/admin/adminBoardNoti";
 	}
+	// 게시판관리 이동 (질의)
+	@GetMapping("/adminBoardQna")
+	public void adminBoardQna(HttpServletRequest request)  throws Exception {
+		List<BoardVO> qnaList = adminService.getBoard("2");
+		
+		request.setAttribute("boardList", qnaList);
+		log.info("adminBoardQna 도착");
+	}
+	// 답변으로 이동
+	@GetMapping("/adminBoardQnaAnswer")
+	public void adminBoardQnaAnswer() throws Exception {
+		
+	}
 	// 게시판관리 이동 (자유)
 	@GetMapping("/adminBoardFree")
 	public void adminBoardFree(HttpServletRequest request)  throws Exception {
-		List<BoardVO> freeList = adminService.getBoard("2");
+		List<BoardVO> freeList = adminService.getBoard("3");
 		
 		request.setAttribute("boardList", freeList);
 		log.info("adminBoardFree 도착");
 	}
 	
-	// 게시판관리 이동 (질의)
-	@GetMapping("/adminBoardQna")
-	public void adminBoardQna(HttpServletRequest request)  throws Exception {
-		List<BoardVO> qnaList = adminService.getBoard("3");
-		
-		request.setAttribute("boardList", qnaList);
-		log.info("adminBoardQna 도착");
-	}
 	// 게시판관리 이동 (신고관리)
 	@GetMapping("/adminBoardReport")
 	public void adminBoardReport(HttpServletRequest request)  throws Exception {
@@ -179,13 +184,17 @@ public class AdminController {
 		} else {
 			System.out.println("값이 안 넘어 옵니다!!!!!!!!!!!");
 		}
-
-		System.out.println(boardNo);
+	}
+	// 신고처리완료
+	@GetMapping("/adminReportComplete")
+	public String adminReportComplete(@RequestParam("repoNo") int repoNo) {
+		adminService.reportComplete(repoNo);
+		return "redirect:/admin/adminBoardReport";
 	}
 	
 	// 게시판 삭제
 	@GetMapping("/adminBoardDelete")
-	public String adminBoardDelete(@RequestParam("boardNo") long boardNo) {
+	public String adminBoardDelete(@RequestParam("boardNo") int boardNo) {
 		adminService.boardDelete(boardNo);
 		
 		return "redirect:/admin/adminBoardNoti";

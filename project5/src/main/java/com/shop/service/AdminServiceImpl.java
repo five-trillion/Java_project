@@ -44,14 +44,17 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public void reportComplete(int repoNo) {
+		mapper.reportComplete(repoNo);
+	}
+
+	@Override
 	public BoardReplyVO reportBoRep(long boRepNo) {
-		// TODO Auto-generated method stub
 		return mapper.reportBoRep(boRepNo);
 	}
 
 	@Override
 	public ReviewReplyVO reportReviRep(long reviRepNo) {
-		// TODO Auto-generated method stub
 		return mapper.reportReviRep(reviRepNo);
 	}
 

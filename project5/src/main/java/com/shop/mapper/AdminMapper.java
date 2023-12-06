@@ -37,6 +37,9 @@ public interface AdminMapper {
 	
 	public BoardVO reportBoard (long boardNo); 
 	public BoardReplyVO reportBoRep (long borepNo); 
-	public ReviewReplyVO reportReviRep (long reviRepNo); 
+	public ReviewReplyVO reportReviRep (long reviRepNo);
+	
+	public void reportComplete(int repoNo);
 	// end 신고관리 --------
+	
 }
