@@ -162,9 +162,29 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public void addCart(CartVO cartVO) throws Exception {
+	public int addCart(CartVO cartVO) throws Exception {
 		System.out.println("=====Service.addcart=====");
-		mapper.addCart(cartVO);
+		int countCart = mapper.countCart(cartNo);
+		if (countCart > 0) {
+			return 2;
+		}
+		try {
+			System.out.println(mapper.addCart(cartVO));
+			return mapper.addCart(cartVO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	@Override
+	public int updateCart(CartVO cartVO) throws Exception{
+		return mapper.updateCart(cartVO);
+	}
+	
+	@Override
+	public int deleteCart(int cartId) throws Exception{
+		return mapper.deleteCart(cartId);
 	}
 	
 	@Override
@@ -173,8 +193,4 @@ public class ShopServiceImpl implements ShopService {
 		return mapper.getCart(userNo);
 	}
 	
-	@Override
-	public UsersVO getUNo(int userNo) throws Exception {
-		return mapper.getUNo(userNo);
-	}
 }

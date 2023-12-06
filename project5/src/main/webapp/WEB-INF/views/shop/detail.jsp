@@ -60,49 +60,52 @@
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" class="quantity_input" value="1">
+                                    <input type="text" id="orderCnt" class="quantity_input" value="1">
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="primary-btn">ADD TO CART</button>
-                        
+                        <input type="hidden" id="prodNo" name="prodNo" value="${prd.prodNo}">
+                        <input type="submit" class="primary-btn cart-btn" value="카트에 담기">
                         <script>
 //                     	장바구니 추가 버튼
-                    	$(document).ready(function() {
-                    	    $(".primary-btn").on("click", function(e) {
-                    	        e.preventDefault();
-                    	
-                    	        var prodNo = $("#prodNo").val();
-                    	        var orderCnt = $(".quantity_input").val();
-                    	
-                    	        var data = {
-                    	            "prodNo": prodNo,
-                    	            "orderCnt": orderCnt
-                    	        };
-                    	
-                    	        $.ajax({
-                    	            url: '/shop/cart',
-                    	            method: 'POST',
-                    	            data: data,
-                    	            success: function(result) {
-                    	                cartAlert(result);
-                    	            }
-                    	        });
-                    	    });
-                    	
-                    	    function cartAlert(result) {
+					    $(".cart-btn").on("click", function(e) {
+					        e.preventDefault();
+							
+					        var prodNo = $("#prodNo").val();
+					        var orderCnt = $(".quantity_input").val();
+					
+				            var data = {
+				                prodNo: prodNo,
+				                orderCnt: orderCnt
+				            };
+							
+				            $.ajax({
+				                url: '/shop/addcart',
+				                method: 'POST',
+				                data: JSON.stringify(data),
+				                contentType: 'application/json; charset=utf-8',
+				                success: function(result) {
+				                    cartAlert(result);
+				                }
+				            });
+					            
+				            function cartAlert(result) {
+				            	console.log("Function called");
                     	        if (result == '0') {
                     	            alert("장바구니에 추가를 하지 못하였습니다.");
                     	        } else if (result == '1') {
                     	            alert("장바구니에 추가되었습니다.");
+                    	        } else if (result == '2') {
+                    	        	alert("장바구니에 이미 추가된 상품입니다.");			                    	        	
                     	        } else if (result == '5') {
                     	            alert("로그인이 필요합니다.");
                     	            // 로그인 페이지로 이동하는 코드 추가
                     	            window.location.href = '/shop/login';
                     	        }
-                    	    }
-                    	});
+                    	    };
+					    });
                         </script>
+                        <button type="button" class="primary-btn">구매하기</button>
                         
                         <ul>
                             <li><b>재고</b> <span>${prd.prodRest}개</span></li>
@@ -155,11 +158,10 @@
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <div class="shoping__cart__table">
-				                        <table>
-				                        	<c:if test="${rlist == null} ">
-				                        		<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList">
-													<table border="1" summary="">
-													<caption>주문 상품 정보</caption>
+				                        <c:if test="${status.end == 0} ">
+			                        		<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList">
+												<table border="1" summary="">
+												<caption>주문 상품 정보</caption>
 <!-- 														<thead> -->
 <!-- 															<tr> -->
 <!-- 																<td> -->
@@ -172,16 +174,17 @@
 <!-- 											                    </td> -->
 <!-- 								                			</tr> -->
 <!-- 								                		</thead> -->
-													</table>
-													<p class="message  fs14">주문 내역이 없습니다.</p>
-												</div>
-				                        	</c:if>
-				                        	<c:if test="${rlist != null}">
+												</table>
+												<p class="message  fs14">주문 내역이 없습니다.</p>
+											</div>
+			                        	</c:if>
+			                        	<c:if test="${status.end != 0}">
+				                        	<table>
 					                            <tbody>
 					                            	<c:forEach items="${rlist}" var="rlist" varStatus="status">
 						                                <tr>
 						                                    <td class="shoping__cart__quantity">
-						                                    <input type="hidden" value="${rlist.prodNo}">
+						                                    <input type="hidden" id="prodNo" value="${rlist.prodNo}">
 						                                        <img src="${contextPath}/resources/upload/review/${rlist.userImg}" alt="">
 						                                    </td>
 						                                    <td class="shoping__cart__item" style="padding-left: 35px;">
@@ -203,8 +206,9 @@
 						                                </tr>
 					                                </c:forEach>
 				                            	</tbody>
-				                            </c:if>
-				                    	</table>
+				                            </table>
+			                            </c:if>
+				                    	
                                		</div>
                             	</div>
                             </div>
@@ -250,9 +254,9 @@
 	
 	<%@include file="../includes/footer.jsp" %>
 	<script>
-// 	$(function(){
-// 	    console.log($('tr').length);
-// 	});
+	$(function(){
+	    console.log(${status.end});
+	});
 	$(document).ready(function(){
 	$("#spreadBtn01").click(function(){
 		if($("#hiddenContent03").is(":visible")){

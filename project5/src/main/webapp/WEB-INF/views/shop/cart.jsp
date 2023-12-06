@@ -11,50 +11,79 @@
 </head>
 <body>
 	<%@include file="../includes/header.jsp" %>
-
+    
     <!-- Shoping Cart Section Begin -->
     <section class="shoping-cart spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th class="shoping__product">Products</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            	<c:forEach items="${cart}" var="cart">
-                                <tr>
-                                    <td class="shoping__cart__item">
-                                        <img src="${contextPath}/resources/upload/product/${cart.prodMainImg}" alt="">
-                                        <h5>${cart.prodName}</h5>
-                                    </td>
-                                    <td class="shoping__cart__price">
-                                        <fmt:formatNumber pattern="###,###,###.##" value="${cart.salePrice}" />
-                                    </td>
-                                    <td class="shoping__cart__quantity">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" class="quantity_input" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="shoping__cart__total">
-                                        <fmt:formatNumber pattern="###,###,###.##" value="${cart.totalPrice}" />
-                                    </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
-                                    </td>
-                                </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
+                        <c:if test="${status.end == 0} ">
+                        	<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList">
+							<table border="1" summary="">
+							<caption>주문 상품 정보</caption>
+<!-- 								<thead> -->
+<!-- 									<tr> -->
+<!-- 										<td> -->
+<!-- 					                        <p class="fs12 number">주문일자 [주문번호]</p> -->
+<!-- 					                        <p class="thumb"></p> -->
+<!-- 					                        <p class="fs12 product" style="padding: 0px;">상품</p> -->
+<!-- 					                        <p class="quantity"></p> -->
+<!-- 					                        <p class="right"></p> -->
+<!-- 					                        <p class="fs12 state">주문상태</p> -->
+<!-- 					                    </td> -->
+<!-- 		                			</tr> -->
+<!-- 		                		</thead> -->
+							</table>
+							<p class="message  fs14">주문 내역이 없습니다.</p>
+						</div>
+                      	</c:if>
+                      	<c:if test="${status.end != 0}">
+	                        <table>
+	                            <thead>
+	                                <tr>
+	                                	<th>선택</th>
+	                                    <th colspan="2" class="shoping__product">상품정보</th>
+	                                    <th>수량</th>
+	                                    <th>주문금액</th>
+	                                    <th><!-- 변경 적용 버튼 --></th>
+	                                    <th><!-- 삭제 버튼 --></th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                            	<c:forEach items="${cart}" var="cart">
+	                                <tr>
+	                                	<td class="shoping__cart__item__close" style="width:80px; text-align: center;">
+	                                        <span><input type="checkbox"></span>
+	                                    </td>
+	                                	<td class="shoping__cart__total">
+	                                        <img src="${contextPath}/resources/upload/product/thumbnails/${cart.prodMainImg}" alt="" style="width:100px;">
+	                                    </td>
+	                                    <td class="shoping__cart__item" style="padding-left: 20px; width: 420px;">
+	                                        <h5>${cart.prodName}</h5> <br>
+	                                        가격: <fmt:formatNumber pattern="###,###,###.##" value="${cart.salePrice}" />
+	                                    </td>
+	                                    <td class="shoping__cart__quantity">
+	                                        <div class="quantity">
+	                                            <div class="pro-qty">
+	                                                <input type="text" class="quantity_input" value="${cart.orderCnt}">
+	                                            </div>
+	                                        </div>
+	                                    </td>
+	                                    <td class="shoping__cart__total">
+	                                        <fmt:formatNumber pattern="###,###,###.##" value="${cart.totalPrice}" />
+	                                    </td>
+	                                    <td class="shoping__cart__item__close" style="width: 50px; text-align: center;">
+	                                        <span class="icon_modify"><input type="button" value="변경" style="font-size: 50%; padding: 3px; border: none;"></span>
+	                                    </td>
+	                                    <td class="shoping__cart__item__close">
+	                                        <span class="icon_close"></span>
+	                                    </td>
+	                                </tr>
+	                                </c:forEach>
+	                            </tbody>
+	                        </table>
+	                    </c:if>
                     </div>
                 </div>
             </div>

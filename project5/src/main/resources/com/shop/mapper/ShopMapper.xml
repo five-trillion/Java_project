@@ -152,12 +152,19 @@
 	
 	<!-- ==================================================================== -->
 	<!-- 장바구니 -->
+	
+	
 	<insert id="addCart" parameterType="com.shop.domain.CartVO">
 		INSERT INTO cart(cartNo, userNo, prodNo, orderCnt, cartReg)
   		VALUES(#{cartNo},#{userNo}, #{prodNo}, #{orderCnt}, current_timestamp)
   	</insert>
 	
-	<delete id="deleteCart">
+	<!-- 카트 수량 수정 -->
+	<update id="updateCart" parameterType="java.lang.Integer">
+		update cart set prodNo=#{prodNo} where cartNo = #{cartNo}
+	</update>
+	
+	<delete id="deleteCart" parameterType="java.lang.Integer">
 		delete from cart where cartNo = #{cartNo}
 	</delete>
 	
@@ -171,13 +178,13 @@
 		where userNo = #{userNo}
 	</select>
 	
+	<select id="countCart" resultType="com.shop.domain.CartVO">
+		select count(*) from cart 
+		where userNo = #{userNo} and prodNo = #{prodNo}
+	</select>
+	
 	<!-- ==================================================================== -->
 	<!-- 회원 -->
 	
-	<select id="getUNo" parameterType="java.lang.Integer" resultType="com.shop.domain.UsersVO">
-		select * 
-		from users
-		where userNo = #{userNo}
-	</select>
 	
 </mapper>

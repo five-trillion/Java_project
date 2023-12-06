@@ -10,10 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.domain.CartVO;
 import com.shop.domain.ProductVO;
@@ -60,21 +62,17 @@ public class ShopController {
 	    }
 		return "shop/detail";
 	}
+	@RequestMapping(value="/shop/addcart", method = RequestMethod.POST)
 	@ResponseBody
-	@RequestMapping(value="/cart", method = RequestMethod.POST)
-	public int addcart(CartVO cartVO, HttpSession session) throws Exception {
-	    int result = 0;
-
+	public String addcart(@RequestBody CartVO cartVO, HttpSession session) throws Exception {
+	    
 	    UsersVO usersVO = (UsersVO) session.getAttribute("user");
 	    if (usersVO == null) {
-	        result = 5;
+	        return "5";
 	    }
-	    if (usersVO != null) {
-	        cartVO.setUserNo(usersVO.getUserNo());
-	        service.addCart(cartVO);
-	        result = 1;
-	    }
-	    return result;
+	    cartVO.setUserNo(usersVO.getUserNo());
+		int result = service.addCart(cartVO); 
+	    return result + "";
 	}
 	@RequestMapping(value="/shop/cart", method = RequestMethod.GET)
 	public String getcart(HttpServletRequest request, HttpSession session, Model model) throws Exception {
@@ -86,7 +84,7 @@ public class ShopController {
 	        // 세션에 "uVO" 속성이 없거나 값이 null인 경우 처리
 	        if (uVo == null) {
 	            log.error("User information not found in session");
-	            return "redirect:/shop/login"; // 또는 다른 적절한 처리 방법 선택
+	            return "redirect:/shop/login"; 
 	        }
 	        HttpSession session2 = request.getSession();
 	        long userNo = uVo.getUserNo();

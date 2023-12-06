@@ -71,16 +71,21 @@ public interface ShopMapper {
 	//---------------------------------------------------------------------------
 	
 	//장바구니 추가
-	public void addCart(CartVO cartVO) throws Exception;
+	public int addCart(CartVO cartVO) throws Exception;
+	
+	//장바구니 수정 
+	public int updateCart(CartVO cartVO) throws Exception;
 	
 	//장바구니 삭제
-	public int deleteCart(int cartId) throws Exception;
+	public int deleteCart(int cartNo) throws Exception;
 	
 	//장바구니 목록
-	public List<CartVO> getCart(long userNo) throws Exception;	
+	public List<CartVO> getCart(long userNo) throws Exception;
+	
+	//카트에 있는 상품인지 조회
+	public CartVO countCart(CartVO cartVO) throws Exception;
 	
 	//---------------------------------------------------------------------------
 	
-	//회원번호 조회
-	public UsersVO getUNo(int userNo) throws Exception;
+	
 }

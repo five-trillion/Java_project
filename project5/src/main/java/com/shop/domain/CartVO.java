@@ -8,6 +8,7 @@ public class CartVO {
 	private int orderCnt; //주문수량
 	
 	private int num;
+	private String prodName;
 	private String prodMainImg;
 	private int salePrice;
     private int totalPrice;
@@ -51,6 +52,14 @@ public class CartVO {
 	public void setNum(int num) {
 		this.num = num;
 	}
+	
+	public String getProdName() {
+		return prodName;
+	}
+
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
 
 	public String getProdMainImg() {
 		return prodMainImg;
@@ -87,8 +96,8 @@ public class CartVO {
 	@Override
 	public String toString() {
 		return "CartVO [cartNo=" + cartNo + ", userNo=" + userNo + ", prodNo=" + prodNo + ", orderCnt=" + orderCnt
-				+ ", num=" + num + ", prodMainImg=" + prodMainImg + ", salePrice=" + salePrice + ", totalPrice="
-				+ totalPrice + "]";
+				+ ", num=" + num + ", prodName=" + prodName + ", prodMainImg=" + prodMainImg + ", salePrice="
+				+ salePrice + ", totalPrice=" + totalPrice + "]";
 	}
 
 }

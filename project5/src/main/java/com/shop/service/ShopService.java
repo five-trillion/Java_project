@@ -70,12 +70,20 @@ public interface ShopService {
 	
 	// ======================장바구니======================
 	//장바구니 추가
-	public void addCart(CartVO cartVO) throws Exception;
+	public int addCart(CartVO cartVO) throws Exception;
+	
+	//장바구니 수정 
+	public int updateCart(CartVO cartVO) throws Exception;
+	
+	//장바구니 삭제
+	public int deleteCart(int cartId) throws Exception;
 	
 	//장바구니 목록 조회
 	public List<CartVO> getCart(long userNo) throws Exception;
 	
+	//카트에 있는 상품인지 조회
+	public int countCart(CartVO cartVO) throws Exception;
+	
 	// ======================회원======================
-	//특정 회원번호 조회
-	public UsersVO getUNo(int userNo) throws Exception;
+	
 }
