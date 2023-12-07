@@ -15,39 +15,51 @@
 	
 		<%@include file="../includes/mp_header.jsp" %>
 		<div class="page_wrap">
-		    <div class="xans-element- xans-myshop xans-myshop-orderhistorytab ec-base-tab "><ul class="menu col-2" style="margin-bottom:0;max-width: 100%;padding: 0;">
-		<li class="tab_class selected"><a href="/myshop/order/list.html?history_start_date=2023-08-30&amp;history_end_date=2023-11-28&amp;past_year=2022">주문내역조회 (<span id="xans_myshop_total_orders">0</span>)</a></li>
-		            <li class="tab_class_cs"><a href="/myshop/order/list.html?mode=cs&amp;history_start_date=2023-08-30&amp;history_end_date=2023-11-28&amp;past_year=2022">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">0</span>)</a></li>
-		        </ul>
-		</div>
+		    <div class="xans-element- xans-myshop xans-myshop-orderhistorytab ec-base-tab ">
+			    <ul class="menu col-2" style="margin-bottom:0;max-width: 100%;padding: 0;">
+					<li class="tab_class selected">
+						<a href="/myshop/order/list.html?history_start_date=2023-08-30&amp;history_end_date=2023-11-28&amp;past_year=2022">주문내역조회 (<span id="xans_myshop_total_orders">0</span>)</a></li>
+			        <li class="tab_class_cs">
+			        	<a href="/myshop/order/list.html?mode=cs&amp;history_start_date=2023-08-30&amp;history_end_date=2023-11-28&amp;past_year=2022">취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">0</span>)</a>
+			        </li>
+			    </ul>
+			</div>
 		
-		    <form method="GET" id="OrderHistoryForm" name="OrderHistoryForm"><div class="xans-element- xans-myshop xans-myshop-orderhistoryhead"><fieldset class="order_head">
-		<legend>검색기간설정</legend>
-		            <div class="stateSelect ">
-		                <select id="order_status" name="order_status" class="fSelect">
-		<option value="all">전체 주문처리상태</option>
-		<option value="shipped_before">입금전</option>
-		<option value="shipped_standby">배송준비중</option>
-		<option value="shipped_begin">배송중</option>
-		<option value="shipped_complate">배송완료</option>
-		<option value="order_cancel">취소</option>
-		<option value="order_exchange">교환</option>
-		<option value="order_return">반품</option>
-		</select>            </div>
-		            <div class="period_layout">
-		                <span class="period">
-		                    <a href="#none" class="fs15" days="00">오늘</a>
-		                    <a href="#none" class="fs15" days="07">1주일</a>
-		                    <a href="#none" class="fs15" days="30">1개월</a>
-		                    <a href="#none" class="fs15" days="90">3개월</a>
-		                    <a href="#none" class="fs15" days="180">6개월</a>
-		                </span>
-		            </div>
-		            <div class="date">
-		                <input id="history_start_date" name="history_start_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2023-08-30" type="text"><button type="button" class="ui-datepicker-trigger"><img src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button> ~ <input id="history_end_date" name="history_end_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2023-11-28" type="text"><button type="button" class="ui-datepicker-trigger"><img src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button>            </div>
-		            <div class="order_submit">
-		                <input alt="조회" id="order_search_btn" type="image" src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/btn_search.gif">            </div>
-		        </fieldset>
+		    <form method="GET" id="OrderHistoryForm" name="OrderHistoryForm">
+		    	<div class="xans-element- xans-myshop xans-myshop-orderhistoryhead">
+		    		<fieldset class="order_head">
+						<legend>검색기간설정</legend>
+		            		<div class="stateSelect ">
+		                		<select id="order_status" name="order_status" class="fSelect">
+									<option value="all">전체 주문처리상태</option>
+									<option value="shipped_before">입금전</option>
+									<option value="shipped_standby">배송준비중</option>
+									<option value="shipped_begin">배송중</option>
+									<option value="shipped_complate">배송완료</option>
+									<option value="order_cancel">취소</option>
+									<option value="order_exchange">교환</option>
+									<option value="order_return">반품</option>
+								</select>            
+							</div>
+				            <div class="period_layout">
+				                <span class="period">
+				                    <a href="#none" class="fs15" days="00">오늘</a>
+				                    <a href="#none" class="fs15" days="07">1주일</a>
+				                    <a href="#none" class="fs15" days="30">1개월</a>
+				                    <a href="#none" class="fs15" days="90">3개월</a>
+				                    <a href="#none" class="fs15" days="180">6개월</a>
+				                </span>
+				            </div>
+				            <div class="date">
+				                <input id="history_start_date" name="history_start_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2023-08-30" type="text">
+				                <button type="button" class="ui-datepicker-trigger"><img src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button> ~ 
+				                <input id="history_end_date" name="history_end_date" class="fText hasDatepicker" readonly="readonly" size="10" value="2023-11-28" type="text">
+				                <button type="button" class="ui-datepicker-trigger"><img src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/ico_cal.gif" alt="..." title="..."></button>
+				            </div>
+				            <div class="order_submit">
+				                <input alt="조회" id="order_search_btn" type="image" src="//img.echosting.cafe24.com/skin/admin_ko_KR/myshop/btn_search.gif">
+				            </div>
+		        	</fieldset>
 		<ul class="fs10">
 		<li></li>
 		<li class="displaynone">기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
@@ -69,7 +81,7 @@
 		<td>
 		                        <p class="fs12 number">주문일자 [주문번호]</p>
 		                        <p class="thumb"></p>
-		                        <p class="fs12 product">상품</p>
+		                        <p class="fs12 product" style="padding: 0px;">상품</p>
 		                        <p class="quantity"></p>
 		                        <p class="right"></p>
 		                        <p class="fs12 state">주문상태</p>
@@ -171,12 +183,15 @@
 		<script>
 		function onloadsnapscript () { var snapInstance = new snapSolution("fnfn"); snapInstance.loadScript('review_independent'); }
 		</script>
-		<script async="" type="text/javascript" src="//sfre-srcs-service.snapfit.co.kr/js/snap_combine_script.js" defer="true" charset="utf-8" onload="onloadsnapscript()"></script>
 		<!-- snap review end -->
 		
 	</div>
 	
 	<%@include file="../includes/footer.jsp" %>
+	<script>
+	$(".nice-select").css({"display":"none"});
+	$("#order_status").css({"disp3lay":"block"});
+	</script>
 
 </body>
 </html>

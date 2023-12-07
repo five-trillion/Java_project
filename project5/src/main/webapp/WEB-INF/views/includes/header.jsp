@@ -15,7 +15,14 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
+                <li>
+               		<c:if test = "${user == null}">
+               			<a href="/shop/login" data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+               		</c:if>
+               		<c:if test = "${user != null }">
+               			<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+               		</c:if>
+               	</li>
             </ul>
         </div>
         <nav class="humberger__menu__nav mobile-menu">
@@ -30,15 +37,6 @@
                         <li><a href="/board/lounge">Lounge</a></li>
                     </ul>
                 </li>
-                <li><a href="#">참고</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                
-                <li><a href="./contact.html">Contact</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -57,14 +55,45 @@
                         <a href="../"><img src="${contextPath}/resources/shop/img/murmur.png" alt=""></a>
                     </div>
                 </div>
-                <div class="col-lg-1"></div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
-                            <li></li>
-                            <li>                            	
+                        	<li>
+                        		<c:if test = "${user == null}">
+                        			<a href="/shop/login" data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+                        		</c:if>
+                        		<c:if test = "${user != null }">
+                        			<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+                        		</c:if>
+                        	</li>
+                        	&nbsp;
+	<!-- login Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="loginModalLabel">알림</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        장바구니를 보시려면 먼저 로그인해주세요.
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button id="loginbtn" name="loginbtn" type="submit" class="btn btn-primary">Login</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<script>
+ 	$("#loginbtn").on("click",function() {
+ 		self.location="/shop/login";
+ 	}); 
+ 	</script>
+                            <li>
                             	<c:if test = "${user == null}">
+                            		
 									<div class="header__top__right__auth">
 	                            		<a href="/shop/login"><i class="fa fa-user"></i>Login</a>
 	                            	</div>
@@ -72,18 +101,26 @@
 								<c:if test = "${user != null}">
                             		 <c:if test = "${user.admin == 1}"> 
 		                            	<div class="header__top__right">
-				                            <ul>
-				                                <li><a href="/mypage"><i class="fa fa-user"></i>Mypage</a></li>
-				                                <li><a href="/shop/logout" id="logoutBtn">Logout</a></li>
-				                            </ul>
+				                            <div class="header__top__right__auth">
+	                            				<a href="/mypage"><i class="fa fa-user"></i>Mypage</a>
+	                            			</div>
+	                            			&nbsp;
+				                            <div class="header__top__right__auth">
+				                            	<a href="/shop/logout" id="logoutBtn">Logout</a>
+				                            </div>
+
 				                       	</div>
 	                            	</c:if>
                             		<c:if test = "${user.admin == 0}">
                             			<div class="header__top__right">
-                            				<ul>
-                            					<li><a href="/admin/adminHome">admin</a>
-                            					<li><a href="/shop/logout" id="logoutBtn">Logout</a></li>
-                            				</ul>
+                            				<div class="header__top__right__auth">
+				                            	<a href="/admin/main" id="logoutBtn">admin</a>
+				                            </div>
+				                            &nbsp;
+				                            <div class="header__top__right__auth">
+				                            	<a href="/shop/logout" id="logoutBtn">Logout</a>
+				                            </div>
+
                             			</div>
                             		</c:if> 
                             	</c:if>	
@@ -132,13 +169,7 @@
                                     <li><a href="/board/lounge">자유게시판</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">참고</a>
-                                <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
+                            
                         </ul>
                     </nav>
                 </div>
