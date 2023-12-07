@@ -114,7 +114,7 @@
                             		<c:if test = "${user.admin == 0}">
                             			<div class="header__top__right">
                             				<div class="header__top__right__auth">
-				                            	<a href="/admin/main" id="logoutBtn">admin</a>
+				                            	<a href="/admin/adminHome" id="logoutBtn">admin</a>
 				                            </div>
 				                            &nbsp;
 				                            <div class="header__top__right__auth">
@@ -153,8 +153,8 @@
                     <nav class="header__menu">
 
                         <ul class="featured__controls">
-                            <li class="active"><a href="../">Home</a></li>
-                            <li><a href="/shop">Shop</a>
+                            <li><a href="../">Home</a></li>
+                            <li class="shop-btn"><a href="/shop">Shop</a>
 								<ul class="header__menu__dropdown">
                                     <li><a href="#">사료</a></li>
                                     <li><a href="#">간식</a></li>

@@ -101,18 +101,9 @@
 	
 	<%@include file="../includes/footer.jsp" %>
 	
-	<!-- <script>
-	$('.fa-shopping-cart').on("click",function(e){
-		
-		e.preventDefault();
-		
-		let popUrl = "/shop/popcart";
-		let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
-		
-		window.open(popUrl,"장바구니로 이동",popOption);
-		
-	});
-	</script> -->
+	<script>
+	$(".shop-btn").addClass("active");
+	</script>
 	
 </body>
 </html>

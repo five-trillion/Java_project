@@ -60,6 +60,7 @@ public class ShopController {
 	        
 	        List<ReviewVO> revidlist = service.reviewdList(prodNo); // 해당상품 리뷰목록구현
 	        model.addAttribute("rlist", revidlist);
+	        System.out.println(revidlist == null);
 	        
 	    }
 		return "shop/detail";
@@ -88,11 +89,11 @@ public class ShopController {
 	            log.error("User information not found in session");
 	            return "redirect:/shop/login"; 
 	        }
-	        HttpSession session2 = request.getSession();
+//	        HttpSession session2 = request.getSession();
 	        long userNo = uVo.getUserNo();
 	        List<CartVO> clist = service.getCart(userNo);
 	        model.addAttribute("cart", clist);
-	        session2.setAttribute("cart", clist);
+//	        session2.setAttribute("cart", clist);
 	        return "shop/cart";
 	    } catch (Exception e) {
 	        log.error("Error fetching getcart", e);

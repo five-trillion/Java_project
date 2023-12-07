@@ -157,10 +157,10 @@
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <div class="shoping__cart__table">
-				                        <c:if test="${status.end == 0} ">
+				                      <c:choose>
+				                        <c:when test="${rlist.isEmpty()}">
 			                        		<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList">
 												<table border="1" summary="">
-												<caption>주문 상품 정보</caption>
 <!-- 														<thead> -->
 <!-- 															<tr> -->
 <!-- 																<td> -->
@@ -174,10 +174,10 @@
 <!-- 								                			</tr> -->
 <!-- 								                		</thead> -->
 												</table>
-												<p class="message  fs14">주문 내역이 없습니다.</p>
+												<p class="message  fs14">구매평이 없습니다.</p>
 											</div>
-			                        	</c:if>
-			                        	<c:if test="${status.end != 0}">
+			                        	</c:when>
+			                        	<c:otherwise>
 				                        	<table>
 					                            <tbody>
 					                            	<c:forEach items="${rlist}" var="rlist" varStatus="status">
@@ -206,8 +206,8 @@
 					                                </c:forEach>
 				                            	</tbody>
 				                            </table>
-			                            </c:if>
-				                    	
+			                            </c:otherwise>
+				                      </c:choose>
                                		</div>
                             	</div>
                             </div>
@@ -265,7 +265,7 @@
 		}
 	});
 	});
-
+	$(".shop-btn").addClass("active");
 	</script>
 	
 </body>
