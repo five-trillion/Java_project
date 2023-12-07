@@ -81,7 +81,7 @@
                             		<c:if test = "${user.admin == 0}">
                             			<div class="header__top__right">
                             				<ul>
-                            					<li><a href="/admin/main">admin</a>
+                            					<li><a href="/admin/adminHome">admin</a>
                             					<li><a href="/shop/logout" id="logoutBtn">Logout</a></li>
                             				</ul>
                             			</div>
