@@ -21,3 +21,6 @@
 .btnBox .btn {
 	margin-right: 20px;
 }
+#container > main > #half {
+	width: 50%;
+}

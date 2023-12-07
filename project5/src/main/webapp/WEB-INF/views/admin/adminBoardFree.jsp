@@ -49,7 +49,7 @@
 												<th scope="row">${board.boardNo}</th>
 												<td>${board.boardTitle}</td>
 												<td><fmt:formatDate value="${board.boardReg}" type="date"></fmt:formatDate></td>
-												<td><i class="ri ri-ball-pen-fill"></td>
+												<td><div class="btn btn-primary"><i class="bx bxs-pencil"></i></div></td>
 												<td>${board.boardCnt}</td>
 												<td>
 													<!-- Large Modal -->

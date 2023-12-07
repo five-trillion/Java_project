@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.shop.domain.AnswerVO;
 import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
@@ -142,15 +143,21 @@ public class AdminController {
 	// 게시판관리 이동 (질의)
 	@GetMapping("/adminBoardQna")
 	public void adminBoardQna(HttpServletRequest request)  throws Exception {
-		List<BoardVO> qnaList = adminService.getBoard("2");
+		List<BoardVO> qnaList = adminService.getBoardQna();
 		
 		request.setAttribute("boardList", qnaList);
 		log.info("adminBoardQna 도착");
 	}
 	// 답변으로 이동
 	@GetMapping("/adminBoardQnaAnswer")
-	public void adminBoardQnaAnswer() throws Exception {
-		
+	public void adminBoardQnaAnswer(@RequestParam("boardNo") long boardNo, HttpServletRequest request) throws Exception {
+		BoardVO bVo = adminService.getBoardDetail(boardNo);
+		request.setAttribute("question", bVo);
+	}
+	@PostMapping("/adminBoardQnaAnswer")
+	public String adminBoardQnaComplete (AnswerVO answerVo) {
+		adminService.ansComplete(answerVo);
+		return "redirect:/admin/adminBoardQna";
 	}
 	// 게시판관리 이동 (자유)
 	@GetMapping("/adminBoardFree")
@@ -190,8 +197,7 @@ public class AdminController {
 	public String adminReportComplete(@RequestParam("repoNo") int repoNo) {
 		adminService.reportComplete(repoNo);
 		return "redirect:/admin/adminBoardReport";
-	}
-	
+	} 
 	// 게시판 삭제
 	@GetMapping("/adminBoardDelete")
 	public String adminBoardDelete(@RequestParam("boardNo") int boardNo) {

@@ -29,7 +29,6 @@
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title">조회</h5>
-
 								<!-- Table with stripped rows -->
 								<table class="table datatable">
 									<thead>
@@ -62,7 +61,7 @@
 												</td>
 												<td>
 													<c:choose>
-														<c:when test="${board.secretYn == 0}">
+														<c:when test="${board.ansNo == 0}">
 															<i class="bx bxs-checkbox-minus larger" style="color: red;"></i>
 														</c:when>
 														<c:otherwise>
@@ -98,9 +97,16 @@
 													                </div>
 																</div>
 																<div class="modal-footer">
-																	<a href="adminBoardQnaAnswer?boardNo=${board.boardNo}"><button type="button" class="btn btn-secondary"
+																	<c:choose>
+																		<c:when test="${board.ansNo == 0}">
+																		<a href="adminBoardQnaAnswer?boardNo=${board.boardNo}"><button type="button" class="btn btn-secondary"
 																		data-bs-dismiss="modal">답변하기</button></a>
-																	<button type="button" class="btn btn-primary modalClose">닫기</button>
+																		<button type="button" class="btn btn-primary modalClose">닫기</button>
+																		</c:when>
+																		<c:otherwise><div class="btn btn-secondary"
+																		data-bs-dismiss="modal" style="background-color: green;">답변완료</div></c:otherwise>
+																	</c:choose>
+																	
 																</div>
 															</div>
 														</div>

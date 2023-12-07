@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.shop.domain.AnswerVO;
 import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
@@ -59,8 +60,23 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public List<BoardVO> getBoardQna() {
+		return mapper.getBoardQna();
+	}
+
+	@Override
 	public List<ReportVO> getReport() {
 		return mapper.getReport();
+	}
+
+	@Override
+	public BoardVO getBoardDetail(long boardNo) {
+		return mapper.getBoardDetail(boardNo);
+	}
+
+	@Override
+	public void ansComplete(AnswerVO answerVo) {
+		mapper.ansComplete(answerVo);
 	}
 
 	@Override
