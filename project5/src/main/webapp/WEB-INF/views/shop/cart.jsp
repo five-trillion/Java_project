@@ -75,10 +75,13 @@
 	                                        <fmt:formatNumber pattern="###,###,###.##" value="${cart.totalPrice}" />
 	                                    </td>
 	                                    <td class="shoping__cart__item__close" style="width: 50px; text-align: center;">
-	                                        <a href="#"><span class="icon_modify"><input type="button" value="변경" style="font-size: 50%; padding: 3px; border: none;"></span></a>
+	                                        <span class="icon_modify" data-cartNo="${cart.orderCnt}">
+	                                        	<input type="button" value="변경" style="font-size: 50%; padding: 3px; border: none;">
+	                                        </span>
 	                                    </td>
 	                                    <td class="shoping__cart__item__close">
-	                                        <a href="shop/deletecart"><span class="icon_close"></span></a>
+	                                        <a class="delete_btn" data-cartNo="${cart.cartNo}"><span class="icon_close"></span></a>
+<%-- 											<button class="delete_btn" data-cartNo = "${cart.cartNo}">삭제</button> --%>
 	                                    </td>
 	                                </tr>
 	                                </c:forEach>
@@ -110,10 +113,27 @@
                     </div>
                 </div>
             </div>
+            
+        <!-- 삭제 form -->
+		<form action="/cart/delete" method="post" class="quantity_delete_form">
+			<input type="hidden" id="cartNo" name="cartNo" class="delete_cartNo">
+			<input type="hidden" id="userNo" name="userNo" value="${user.userNo}">
+		</form>
+		
         </div>
     </section>
     <!-- Shoping Cart Section End -->
 	
 	<%@include file="../includes/footer.jsp" %>
+	<script>
+	/* 장바구니 삭제 버튼 */
+	$(".delete_btn").on("click", function(e){
+		e.preventDefault();
+		const cartNo = $(this).data("cartno");
+		$(".delete_cartNo").val(cartNo);
+		$(".quantity_delete_form").submit();
+	});
+	</script>
+	
 </body>
 </html>

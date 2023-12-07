@@ -4053,7 +4053,7 @@ div[data-widget-type="shop_payment"] .btn.btn_start_payment {
 	display: inline-block;
 	text-align: left;
 	vertical-align: middle;
-	margin: 80px auto;
+	margin: 0px auto;
 }
 .modal.modal_oauth_email .modal-dialog {
 	max-width: 380px;

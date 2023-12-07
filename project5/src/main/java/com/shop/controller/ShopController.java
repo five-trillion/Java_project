@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,7 +64,7 @@ public class ShopController {
 	    }
 		return "shop/detail";
 	}
-	@RequestMapping(value="/shop/addcart", method = RequestMethod.POST)
+	@RequestMapping(value="/cart/add", method = RequestMethod.POST)
 	@ResponseBody
 	public String addcart(@RequestBody CartVO cartVO, HttpSession session) throws Exception {
 	    
@@ -75,7 +76,7 @@ public class ShopController {
 		int result = service.addCart(cartVO); 
 	    return result + "";
 	}
-	@RequestMapping(value="/shop/cart", method = RequestMethod.GET)
+	@RequestMapping(value="/cart/{userNo}", method = RequestMethod.GET)
 	public String getcart(HttpServletRequest request, HttpSession session, Model model) throws Exception {
 	    try {
 	        log.info("=======controller.getcart========");
@@ -98,16 +99,17 @@ public class ShopController {
 	        return "error";
 	    }
 	}
-	@RequestMapping(value="shop/deletecart",method = RequestMethod.GET)
-	public String delete(@RequestParam("cartNo") int cartNo, RedirectAttributes rttr) throws Exception {
-		int r = service.deleteCart(cartNo);
+	@RequestMapping(value="cart/update", method = RequestMethod.POST)
+	public String updatecart(CartVO cartVO) throws Exception {
 		
-		if(r > 0) {
-			rttr.addFlashAttribute("msg","정상적으로 삭제되었습니다.");
-			return "redirect:/shop/cart";
-		}
-		System.out.println("fail deletecart");
-		return "redirect:/shop/cart";
+		
+		
+		return "";
+	}
+	@RequestMapping(value="cart/delete",method = RequestMethod.POST)
+	public String deletecart(CartVO cartVO) throws Exception {
+		service.deleteCart(cartVO.getCartNo());
+		return "redirect:/cart/"+ cartVO.getUserNo();
 	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)
 	public String mypage() {

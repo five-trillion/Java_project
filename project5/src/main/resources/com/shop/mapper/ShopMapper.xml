@@ -161,7 +161,7 @@
 	
 	<!-- 카트 수량 수정 -->
 	<update id="updateCart" parameterType="java.lang.Integer">
-		update cart set prodNo=#{prodNo} where cartNo = #{cartNo}
+		update cart set orderCnt=#{orderCnt} where cartNo = #{cartNo}
 	</update>
 	
 	<delete id="deleteCart" parameterType="java.lang.Integer">

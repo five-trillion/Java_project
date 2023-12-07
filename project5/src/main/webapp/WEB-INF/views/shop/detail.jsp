@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src = "http://code.jQuery.com/jQuery-3.7.1.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop</title>
@@ -80,7 +79,7 @@
 				            };
 							
 				            $.ajax({
-				                url: '/shop/addcart',
+				                url: '/cart/add',
 				                method: 'POST',
 				                data: JSON.stringify(data),
 				                contentType: 'application/json; charset=utf-8',

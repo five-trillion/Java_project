@@ -53,13 +53,37 @@
                         <ul>
                         	<li>
                         		<c:if test = "${user == null}">
-                        			<a href="/shop/login"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+                        			<a href="/shop/login" data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
                         		</c:if>
                         		<c:if test = "${user != null }">
-                        			<a href="/shop/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+                        			<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
                         		</c:if>
                         	</li>
                         	&nbsp;
+	<!-- login Modal -->
+	<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="loginModalLabel">알림</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        장바구니를 보시려면 먼저 로그인해주세요.
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button id="loginbtn" name="loginbtn" type="submit" class="btn btn-primary">Login</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<script>
+ 	$("#loginbtn").on("click",function() {
+ 		self.location="/shop/login";
+ 	}); 
+ 	</script>
                             <li>
                             	<c:if test = "${user == null}">
                             		
