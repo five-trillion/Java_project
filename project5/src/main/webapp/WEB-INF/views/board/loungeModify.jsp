@@ -64,6 +64,7 @@
 						<div class="boardbtn" style="text-align:center; margin:20px auto;">
 							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
 							<input type="reset" value="취소">
+							<button type="button" id="deletebtn" name="deletebtn" onclick="showDeleteModal()">삭제</button>
 							<input type="submit" value="수정" onclick="return freeCheck()">
 						</div>
 					</div>
@@ -108,7 +109,7 @@
 		</div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>
-<script>
+<script type="text/javascript">
 	function freeCheck() {
 		if(document.frm.boardTitle.value == "") {
 			alert("게시물의 제목을 입력해주세요.");
@@ -120,10 +121,56 @@
 			frm.boardContent.focus();
 			return false;
 		}
-	}
+	} 
 	
+	function showDeleteModal() {
+        // 모달창을 띄우는 코드 추가
+        // 여기에 모달창 HTML 및 스타일을 추가하세요
+        let modalHtml = '<div id="deleteModal" class="modal">';
+        modalHtml += '<div class="modal-content">';
+        modalHtml += '<span class="close" onclick="closeModal()">&times;</span>';
+        modalHtml += '<p>정말로 삭제하시겠습니까?</p>';
+        modalHtml += '<button onclick="confirmDelete()">확인</button>';
+        modalHtml += '</div>';
+        modalHtml += '</div>';
+        
+        // body에 모달창 추가
+        $("body").append(modalHtml);
+        $("#deleteModal").modal("show");
+    }
+	 function confirmDelete() {
+         // 삭제 확인 버튼을 눌렀을 때의 처리
+         document.frm.action = "/board/loungeDelete";
+         document.frm.submit();
+     }
 
-</script>
+     function closeModal() {
+         // 모달창 닫기
+         $("#deleteModal").remove();
+     }
+	
+	// $("#deletebtn").on("click", showDeleteModal);
+	 $(document).ready(function(){
+	        let result = '<c:out value="${result}"/>';
+	        writeCheck(result);
+
+	        function writeCheck(result) {
+	            if(result === '') {
+	                return;
+	            }
+	            if(result === "write success") {
+	                alert("등록이 완료되었습니다.");
+	            }
+	            if(result === "modify success") {
+	                alert("수정이 완료되었습니다.");
+	            }
+	            if(result === "delete success") {
+	                showDeleteModal(); // 삭제 성공 시 모달창 표시
+	            }
+	        }
+	 });
+   
+	</script>
 </body>
 
 </html>

@@ -67,7 +67,7 @@ public interface BoardService {
 	public int freeUpdate(BoardVO board) throws Exception;
 	 
 	//자유게시판 글삭제를 위한 메서드 
-	public void freeDelete(long boardNo) throws Exception;
+	public int freeDelete(long boardNo) throws Exception;
 
 }
 

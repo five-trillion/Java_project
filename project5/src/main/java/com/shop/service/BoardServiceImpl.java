@@ -126,10 +126,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void freeDelete(long boardNo) throws Exception {
+	public int freeDelete(long boardNo) throws Exception {
 		// TODO Auto-generated method stub
-		boardmapper.freeDelete(boardNo);
-	}
-		
+		return boardmapper.freeDelete(boardNo);
+	}		
 }
 

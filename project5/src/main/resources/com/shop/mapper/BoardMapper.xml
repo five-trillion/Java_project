@@ -68,7 +68,7 @@
 			 where boardNo = #{boardNo}
 		</update>
 		
-		<!-- 글 삭제 -->
+		<!-- 게시물 삭제 -->
 		<delete id="freeDelete" parameterType="com.shop.domain.BoardVO">
 			delete from board
 			where boardNo = #{boardNo} 

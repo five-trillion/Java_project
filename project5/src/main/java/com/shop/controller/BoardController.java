@@ -1,7 +1,5 @@
 package com.shop.controller;
   
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,8 +99,18 @@ public class BoardController {
 	@RequestMapping(value="/loungeModify", method=RequestMethod.POST)
 	public String loungeModifyPOST(BoardVO board, RedirectAttributes rttr, Model model) throws Exception {
 		boardservice.freeUpdate(board);
+		System.out.println("자유게시판 게시글 수정 성공");
 		rttr.addFlashAttribute("result","modify success");
 		model.addAttribute("freeDetail", boardservice.freeDetail(board.getBoardNo()));
+		return "redirect:/board/lounge";
+	}
+	
+	//자유게시판 게시물 삭제
+	@RequestMapping(value="/loungeDelete", method=RequestMethod.POST)
+	public String boardDeletePOST(@RequestParam("boardNo") Long boardNo, RedirectAttributes rttr) throws Exception {
+		boardservice.freeDelete(boardNo);
+		System.out.println("자유게시판 게시글 삭제 성공");
+		rttr.addFlashAttribute("result", "delete success");
 		return "redirect:/board/lounge";
 	}
 } 
