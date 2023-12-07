@@ -1,7 +1,3 @@
 # shop
 
-<<<<<<< HEAD
-# hyo
-=======
-# kh1
->>>>>>> master
+# kh_home1

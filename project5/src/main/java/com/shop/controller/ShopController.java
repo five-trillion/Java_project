@@ -18,8 +18,8 @@ import com.shop.service.ShopService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@Controller
 @Log4j
+@Controller
 @AllArgsConstructor
 public class ShopController {
 	private static final Logger logger = LoggerFactory.getLogger(ShopController.class);
