@@ -160,6 +160,10 @@
     <!-- Blog Section End -->
     
     <%@include file="includes/footer.jsp" %>
-    
+    <c:if test="${result eq 1}">
+    	<script>
+    		alert("회원가입 성공!")
+    	</script>
+    </c:if>   
 </body>
 </html>

@@ -57,4 +57,11 @@ public interface AdminService {
 	// 신고 처리
 	public void reportComplete(int repoNo);
 	// end 신고관리--------
+	public List<ProductVO> getListProd() throws Exception;
+	
+	public boolean prodModify(ProductVO prodVo);
+	
+	public ProductVO getProd(String prodNo);
+	
+	public boolean prodRemove(String prodNo);
 }

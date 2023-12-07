@@ -3,19 +3,26 @@ package com.shop.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.shop.domain.CartVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
+import com.shop.domain.UsersVO;
 import com.shop.service.ShopService;
 
 import lombok.AllArgsConstructor;
@@ -33,10 +40,10 @@ public class ShopController {
 	@RequestMapping(value="shop", method = RequestMethod.GET)
 	public String list(Model model) throws Exception {
 		try {
-			logger.info("=======controller.prodlist========");
+//			logger.info("=======controller.prodlist========");
 			List<ProductVO> prodlist = service.prodList();
 			model.addAttribute("prodlist", prodlist);
-			return "return shop/list";
+			return "shop/list";
 		} catch(Exception e) {
 			logger.error("Error fetching prodlist", e);
             return "error";
@@ -51,15 +58,60 @@ public class ShopController {
 	        ProductVO proddetail = service.prodDetail(prodNo); // 상세 정보 조회
 	        model.addAttribute("prd", proddetail);
 	        
-	        List<ReviewVO> revidlist = service.reviewdList(); // 해당상품 리뷰목록구현
-	        model.addAttribute("list", revidlist);
+	        List<ReviewVO> revidlist = service.reviewdList(prodNo); // 해당상품 리뷰목록구현
+	        model.addAttribute("rlist", revidlist);
+	        
 	    }
 		return "shop/detail";
 	}
-	@RequestMapping(value="/cart", method = RequestMethod.GET)
-	public String cart() {
-		log.info("========cart========");
-		return "shop/cart";
+	@RequestMapping(value="/cart/add", method = RequestMethod.POST)
+	@ResponseBody
+	public String addcart(@RequestBody CartVO cartVO, HttpSession session) throws Exception {
+	    
+	    UsersVO usersVO = (UsersVO) session.getAttribute("user");
+	    if (usersVO == null) {
+	        return "5";
+	    }
+	    cartVO.setUserNo(usersVO.getUserNo());
+		int result = service.addCart(cartVO); 
+	    return result + "";
+	}
+	@RequestMapping(value="/cart/{userNo}", method = RequestMethod.GET)
+	public String getcart(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+	    try {
+	        log.info("=======controller.getcart========");
+
+	        UsersVO uVo = (UsersVO) session.getAttribute("user");
+
+	        // 세션에 "uVO" 속성이 없거나 값이 null인 경우 처리
+	        if (uVo == null) {
+	            log.error("User information not found in session");
+	            return "redirect:/shop/login"; 
+	        }
+	        HttpSession session2 = request.getSession();
+	        long userNo = uVo.getUserNo();
+	        List<CartVO> clist = service.getCart(userNo);
+	        model.addAttribute("cart", clist);
+	        session2.setAttribute("cart", clist);
+	        return "shop/cart";
+	    } catch (Exception e) {
+	        log.error("Error fetching getcart", e);
+	        return "error";
+	    }
+	}
+	@RequestMapping(value="cart/update", method = RequestMethod.POST)
+	public String updatecart(CartVO cartVO) throws Exception {
+		service.updateCart(cartVO);
+		return "redirect:/cart/"+ cartVO.getUserNo();
+	}
+	@RequestMapping(value="cart/delete",method = RequestMethod.POST)
+	public String deletecart(CartVO cartVO) throws Exception {
+		service.deleteCart(cartVO.getCartNo());
+		return "redirect:/cart/"+ cartVO.getUserNo();
+	}
+	@RequestMapping(value = "checkout", method = RequestMethod.GET)
+	public String checkout() {
+		return "shop/checkout";
 	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)
 	public String mypage() {
@@ -81,7 +133,8 @@ public class ShopController {
 	public void mypage_user() {
 		
 	}
-	/* @RequestMapping(value="review", method = RequestMethod.GET)
+	/* 
+	@RequestMapping(value="review", method = RequestMethod.GET)
 	public List<ReviewVO> reviewList() throws Exception {
 		return "review";
 	}

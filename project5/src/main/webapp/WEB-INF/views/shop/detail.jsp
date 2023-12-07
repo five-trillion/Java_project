@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shop</title>
 <%@include file="../includes/src.jsp" %>
 </head>
@@ -51,22 +52,66 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-o"></i>
-                            <span>(18<!-- 리뷰 개수 --> reviews)</span>
+                            <span>(0<!-- 리뷰 개수 --> reviews)</span>
                         </div>
-                        <div class="product__details__price">${prd.salePrice}</div>
+                        <div class="product__details__price"><fmt:formatNumber value="${prd.salePrice}" pattern="###,###,###.##"/>원</div>
                         <p>${prd.prodInfo}</p>
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
-                                    <input type="text" value="1">
+                                    <input type="text" id="orderCnt" class="quantity_input" value="1">
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">ADD TO CART</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        <input type="hidden" id="prodNo" name="prodNo" value="${prd.prodNo}">
+                        <input type="submit" class="primary-btn cart-btn" value="카트에 담기">
+                        <script>
+//                     	장바구니 추가 버튼
+					    $(".cart-btn").on("click", function(e) {
+					        e.preventDefault();
+							
+					        var prodNo = $("#prodNo").val();
+					        var orderCnt = $(".quantity_input").val();
+					
+				            var data = {
+				                prodNo: prodNo,
+				                orderCnt: orderCnt
+				            };
+							
+				            $.ajax({
+				                url: '/cart/add',
+				                method: 'POST',
+				                data: JSON.stringify(data),
+				                contentType: 'application/json; charset=utf-8',
+				                success: function(result) {
+				                    cartAlert(result);
+				                }
+				            });
+					            
+				            function cartAlert(result) {
+				            	console.log("Function called");
+                    	        if (result == '0') {
+                    	            alert("장바구니에 추가를 하지 못하였습니다.");
+                    	        } else if (result == '1') {
+                    	            alert("장바구니에 추가되었습니다.");
+                    	        } else if (result == '2') {
+                    	        	alert("장바구니에 이미 추가된 상품입니다.");			                    	        	
+                    	        } else if (result == '5') {
+                    	            alert("로그인이 필요합니다.");
+                    	            // 로그인 페이지로 이동하는 코드 추가
+                    	            window.location.href = '/shop/login';
+                    	        }
+                    	    };
+					    });
+                        </script>
+                        <button type="button" class="primary-btn">구매하기</button>
+                        
                         <ul>
-                            <li><b>재고</b> <span><%-- ${code.} --%></span></li>
-                            <li><b>배송</b> <span>2일 예상 <samp>무료배송</samp></span></li>
+                            <li><b>재고</b> <span>${prd.prodRest}개</span></li>
+                            <li><b>배송</b>
+	                            <span><strong>오늘출발 상품</strong> 오늘 15:00까지 결제시 오늘 바로 발송 </span>
+                            	<!-- <span>2일 예상 <samp>무료배송</samp></span> -->
+                           	</li>
                         </ul>
                     </div>
                 </div>
@@ -79,48 +124,93 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                    aria-selected="false">Review <span>(0)<!-- 리뷰개수 --></span></a>
+                                    aria-selected="false">Review <span>(0<c:out value="${status.end}"/>)</span></a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6></h6>
-                                    <p></p>
-                                    <img src="${contextPath}/resources/upload/product/details/${prd.detailImg}">
+                                <div class="product__details__tab__desc" style="text-align:center;" >
+                                    <button id="spreadBtn01" class="btn01">펼치기</button>
+									<div id="hiddenContent03" class="example01" style="display: none;">
+										<img src="${contextPath}/resources/upload/product/details/${prd.detailImg}">
+										<div class="product-notify-wrap " style="text-align:left; padding: 0 30px;">
+	                                    <div class="product-notify-title"> 상품정보 제공고시</div>
+	                                    <div class="product-notify-group tabled full-width">
+	                                    <div class="product-notify-label table-cell">품명 및 모델명</div>
+	                                    <div class="product-notify-value table-cell">[네츄럴코어] 에코 10 베지테리안</div></div>
+	                                    <div class="product-notify-group tabled full-width">
+	                                    <div class="product-notify-label table-cell">법에 의한 인증·허가 등을 받았음을 확인할 수 있는 경우 그에 대한 사항</div>
+	                                    <div class="product-notify-value table-cell">상품상세 참조</div></div>
+	                                    <div class="product-notify-group tabled full-width">
+	                                    <div class="product-notify-label table-cell">제조국</div>
+	                                    <div class="product-notify-value table-cell">대한민국</div></div>
+	                                    <div class="product-notify-group tabled full-width">
+	                                    <div class="product-notify-label table-cell">제조자</div>
+	                                    <div class="product-notify-value table-cell">네츄럴코어</div></div>
+	                                    <div class="product-notify-group tabled full-width">
+	                                    <div class="product-notify-label table-cell">소비자상담 관련 전화번호</div>
+	                                    <div class="product-notify-value table-cell">상품상세 참조</div></div>
+	                                    </div>
+									</div>
                                 </div>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <div class="shoping__cart__table">
-				                        <table>
-				                            <tbody>
-				                            	<c:forEach items="${list}" var="list">
-				                                <tr>
-				                                    <td class="shoping__cart__item">
-				                                    <input type="hidden" value="${list.prodNo}">
-				                                        <img src="${contextPath}/resources/upload/review/${list.userImg}" alt="">
-				                                        <h5>${list.reviTitle}</h5>
-				                                        <p>${list.rating}
-				                                        <p>${list.reviContent}</p>
-				                                    </td>
-				                                    <td class="shoping__cart__quantity">
-				                                        ${list.userNo}
-				                                    </td>
-				                                    <td class="shoping__cart__quantity">
-				                                        댓글 : 0
-				                                    </td>
-				                                    <td class="shoping__cart__quantity">
-				                                        <fmt:formatDate pattern="yyyy-MM-dd" value="${list.reviReg}"/>
-				                                    </td>
-				                                </tr>
-				                                </c:forEach>
-			                            	</tbody>
-				                    	</table>
+				                        <c:if test="${status.end == 0} ">
+			                        		<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList">
+												<table border="1" summary="">
+												<caption>주문 상품 정보</caption>
+<!-- 														<thead> -->
+<!-- 															<tr> -->
+<!-- 																<td> -->
+<!-- 											                        <p class="fs12 number">주문일자 [주문번호]</p> -->
+<!-- 											                        <p class="thumb"></p> -->
+<!-- 											                        <p class="fs12 product" style="padding: 0px;">상품</p> -->
+<!-- 											                        <p class="quantity"></p> -->
+<!-- 											                        <p class="right"></p> -->
+<!-- 											                        <p class="fs12 state">주문상태</p> -->
+<!-- 											                    </td> -->
+<!-- 								                			</tr> -->
+<!-- 								                		</thead> -->
+												</table>
+												<p class="message  fs14">주문 내역이 없습니다.</p>
+											</div>
+			                        	</c:if>
+			                        	<c:if test="${status.end != 0}">
+				                        	<table>
+					                            <tbody>
+					                            	<c:forEach items="${rlist}" var="rlist" varStatus="status">
+						                                <tr>
+						                                    <td class="shoping__cart__quantity">
+						                                    <input type="hidden" id="prodNo" value="${rlist.prodNo}">
+						                                        <img src="${contextPath}/resources/upload/review/${rlist.userImg}" alt="">
+						                                    </td>
+						                                    <td class="shoping__cart__item" style="padding-left: 35px;">
+						                                        <h5>${rlist.reviTitle}</h5>
+						                                        <div class="product__details__rating">
+		                            								<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+		                        								</div>
+						                                        <p>${rlist.rating}</p>
+						                                        <p><fmt:formatDate pattern="yyyy-MM-dd" value="${rlist.reviReg}"/></p>
+						                                        <p>${rlist.userNo}</p>
+						                                        <p>${rlist.reviContent}</p>
+						                                        
+						                                    </td>
+						                                    
+						                                    <td class="shoping__cart__quantity" style="vertical-align: bottom; padding-right: 30px; text-align: right;">
+						                                        <p> 댓글 : 0 </p>
+						                                        <p><a href="#"> 리뷰 전체보기 </a></p>
+						                                    </td>
+						                                </tr>
+					                                </c:forEach>
+				                            	</tbody>
+				                            </table>
+			                            </c:if>
+				                    	
                                		</div>
                             	</div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -159,7 +249,24 @@
         </div>
     </section>
     <!-- Related Product Section End -->
+	<%= session.getAttribute("user") %>
 	
 	<%@include file="../includes/footer.jsp" %>
+	<script>
+	$(function(){
+	    console.log(${status.end});
+	});
+	$(document).ready(function(){
+	$("#spreadBtn01").click(function(){
+		if($("#hiddenContent03").is(":visible")){
+			$("#hiddenContent03").css("display", "none");
+		}else{
+			$("#hiddenContent03").css("display", "block");
+		}
+	});
+	});
+
+	</script>
+	
 </body>
 </html>

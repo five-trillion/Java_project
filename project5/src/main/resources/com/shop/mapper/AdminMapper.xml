@@ -10,6 +10,41 @@
 	  	values (#{prodNo},#{category}, #{brand},  #{prodName},#{costPrice}, #{netPrice}, #{salePrice}, #{prodMainImg}, #{prodImg1}, #{prodImg2}, #{prodImg3}, #{prodImg4}, #{detailImg}, #{prodInfo}, default, default, #{prodRest}, 0)
   	</insert>
   	
+  	<!-- 상품 목록 불러오기 -->
+  	<select id="getListProd" resultType="com.shop.domain.ProductVO">
+  	select * from product
+  	</select>
+  	
+   <!--상품 정보 읽어오기  -->
+   <select id="readProd" resultType="com.shop.domain.ProductVO">
+     select * from product where prodNo = #{prodNo}
+   </select>
+   
+   <!-- 상품 정보 변경 셋팅 -->
+   <update id="prodUpdate">
+   	update product set
+   	 brand = #{brand},
+   	 category = #{category},
+   	 prodName = #{prodName},
+   	 prodInfo = #{prodInfo},
+   	 netPrice = #{netPrice},
+   	 salePrice = #{salePrice},
+   	 prodMainImg = #{prodMainImg},
+   	 detailImg = #{detailImg},
+   	 prodImg1 = #{prodImg1},
+   	 prodImg2 = #{prodImg2},
+   	 prodImg3 = #{prodImg3},
+   	 prodImg4 = #{prodImg4},
+   	 prodUpdate = current_timestamp
+   	 where prodNo = #{prodNo}
+   </update>
+   
+   <!-- 상품 삭제하기 -->
+   <delete id="prodRemove">
+   delete from product where prodNo = #{prodNo}
+   </delete>
+   
+  	
   	<!-- 브랜드,카테고리 부르기 -->
   	<select id="prodCodeInsert" resultType="com.shop.domain.CodeVO">
   		select * from code where codeId = "brand" or codeId = "category"

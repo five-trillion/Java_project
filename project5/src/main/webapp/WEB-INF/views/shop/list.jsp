@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +79,8 @@
 		                                <div class="product__item__text">
 		                                	<input type="hidden" name="prodNo" value="${prd.prodNo}">
 		                                    <h6>${prd.prodName}</h6>
-		                                    <h5>${prd.salePrice}</h5>
+									       	<h5 class="product_sale_strike"><fmt:formatNumber value="${prd.netPrice}" pattern="###,###,###.##"/>원</h5>
+									        <h5 class="salePrice "><fmt:formatNumber value="${prd.salePrice}" pattern="###,###,###.##"/>원</h5>
 		                                </div>
 		                            </div>
 	                            </div>

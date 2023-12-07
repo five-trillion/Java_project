@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.AnswerVO;
 import com.shop.domain.BoardReplyVO;
@@ -67,36 +69,91 @@ public class AdminController {
 		MultipartFile mini4ImgMulti = mf.getFile("mini4ImgMulti");
 
 		
-		pVo.setProdMainImg(FileUpload(mainImgMulti, uploadPath));
-		pVo.setProdImg1(FileUpload(mini1ImgMulti, uploadPath));
-		pVo.setProdImg2(FileUpload(mini2ImgMulti, uploadPath));
-		pVo.setProdImg3(FileUpload(mini3ImgMulti, uploadPath));
-		pVo.setProdImg4(FileUpload(mini4ImgMulti, uploadPath));
-		pVo.setDetailImg(FileUpload(prodImgMulti, uploadPath));
+		pVo.setProdMainImg(prodFileUpload(mainImgMulti, uploadPath));
+		pVo.setProdImg1(prodFileUpload(mini1ImgMulti, uploadPath));
+		pVo.setProdImg2(prodFileUpload(mini2ImgMulti, uploadPath));
+		pVo.setProdImg3(prodFileUpload(mini3ImgMulti, uploadPath));
+		pVo.setProdImg4(prodFileUpload(mini4ImgMulti, uploadPath));
+		pVo.setDetailImg(prodFileUpload(prodImgMulti, uploadPath));
 		
 		System.out.println(pVo);
 		
 		adminService.prodRegister(pVo);
 		
-		return "redirect:/admin/adminHome";
+		return "redirect:/admin/adminProdList";
 	}
 	// file 보내기 메서드
-	public String FileUpload(MultipartFile mf, String uploadPath) throws IOException{
+	public String prodFileUpload(MultipartFile mf, String uploadPath) throws IOException{
 		long fileSize = mf.getSize();
 		if (fileSize == 0) {
 			return null;
 		}
 		long time = System.currentTimeMillis();
 		String orginMainName = mf.getOriginalFilename();
-		System.out.println("사이즈알아보기 == " + fileSize);
-		String saveName = time + fileSize + orginMainName;		
+		String saveName = fileSize + orginMainName;		
 		File file = new File(uploadPath+saveName);
 		
 		mf.transferTo(file);
 		
 		return saveName;
 	}
+	// 상품 목록 이동
+	@GetMapping("/adminProdList")
+	public void adminProdList(HttpServletRequest request) throws Exception {
+		log.info("adminProdList 도착");
+		List<ProductVO> prodList = adminService.getListProd();
+		
+		request.setAttribute("prodList", prodList);
+	}
 	
+	// 상품 정보 업데이트 페이지 이동
+	
+	  @GetMapping("/adminProdUpdateForm") 
+	  public void adminProdUpdateForm(@RequestParam("prodNo") String prodNo, Model model) {
+	  log.info("정보 수정 페이지 이동중"); 
+	  System.out.println(prodNo);
+	  model.addAttribute("getProd", adminService.getProd(prodNo)); 
+	  }
+	  
+	 // 상품 정보 업데이트 처리
+	  @PostMapping("/adminProdUpdateForm")
+	  public String adminProdUpdate(ProductVO prodVo, RedirectAttributes rttr, MultipartHttpServletRequest mf) 
+			 throws IOException {
+		  log.info("상품 정보 업데이트 : "+ prodVo);
+		  System.out.println(prodVo);
+			  String uploadPath = "D:/Java_project/project5/src/main/webapp/resources/upload/product/";
+				MultipartFile mainImgMulti = mf.getFile("mainImgMulti");
+				MultipartFile prodImgMulti = mf.getFile("prodImgMulti");
+				MultipartFile mini1ImgMulti = mf.getFile("mini1ImgMulti");
+				MultipartFile mini2ImgMulti = mf.getFile("mini2ImgMulti");
+				MultipartFile mini3ImgMulti = mf.getFile("mini3ImgMulti");
+				MultipartFile mini4ImgMulti = mf.getFile("mini4ImgMulti");
+
+				
+				prodVo.setProdMainImg(prodFileUpload(mainImgMulti, uploadPath));
+				prodVo.setProdImg1(prodFileUpload(mini1ImgMulti, uploadPath));
+				prodVo.setProdImg2(prodFileUpload(mini2ImgMulti, uploadPath));
+				prodVo.setProdImg3(prodFileUpload(mini3ImgMulti, uploadPath));
+				prodVo.setProdImg4(prodFileUpload(mini4ImgMulti, uploadPath));
+				prodVo.setDetailImg(prodFileUpload(prodImgMulti, uploadPath));
+			  
+			if (adminService.prodModify(prodVo)) {
+				rttr.addFlashAttribute("result", "success");
+		  }
+		 
+		  return "redirect:/admin/adminProdList";
+	  }
+	
+	// 상품 삭제
+	@GetMapping("/adminProdDelete")
+	public String adminProdDelete(@RequestParam("prodNo") String prodNo, RedirectAttributes rttr) {
+		log.info("remove..."+prodNo);
+		if (adminService.prodRemove(prodNo)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/admin/adminProdList";
+	}
+	  
 	// 회원관리 이동
 	@GetMapping("/adminUserManage") 
 	public void adminUserManage(HttpServletRequest request) throws Exception {
@@ -133,7 +190,7 @@ public class AdminController {
 		
 		String uploadPath = "D:/Java_project/project5/src/main/webapp/resources/upload/notice/";
 		MultipartFile boardImgMulti = mf.getFile("boardImgMulti");
-		bVo.setBoardImg(FileUpload(boardImgMulti, uploadPath));
+		bVo.setBoardImg(prodFileUpload(boardImgMulti, uploadPath));
 		bVo.setUserNo(1); // 나중에 섹션을 통해 1 자리에 userNo 기입
 		adminService.notiWrite(bVo);
 		log.info("adminNotiWrite 글 올리는 중");
