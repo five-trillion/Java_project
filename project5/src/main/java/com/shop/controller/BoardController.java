@@ -65,7 +65,7 @@ public class BoardController {
 	@RequestMapping(value="/loungeRead", method=RequestMethod.GET) 
 	public void loungeReadGET(@RequestParam("boardNo") Long boardNo, Model model) throws Exception {
 		System.out.println("자유게시판 게시물 읽기 페이지 진입");
-		model.addAttribute("board",boardservice.freeDetail(boardNo));
+		model.addAttribute("freeDetail",boardservice.freeDetail(boardNo));
 	} 
 	
 	//자유게시판 글쓰기 페이지 이동
@@ -82,7 +82,7 @@ public class BoardController {
 			board.setUserNo(user.getUserNo());
 			System.out.println("자유게시판 글쓰기 성공");
 			boardservice.freeRegister(board);
-			rttr.addFlashAttribute("result", "success");
+			rttr.addFlashAttribute("result", "write success");
 			return "redirect:/board/lounge";
 		} else {
 			System.out.println("자유게시판 글쓰기 실패(로그인 필요)");
@@ -92,8 +92,17 @@ public class BoardController {
 	
 	//자유게시판 게시물 수정 페이지 이동
 	@RequestMapping(value="/loungeModify", method=RequestMethod.GET) 
-	public void loungeModifyGET() {
+	public void loungeModifyGET(@RequestParam("boardNo") Long boardNo, Model model) throws Exception {
 		System.out.println("자유게시판 게시물 수정 페이지 진입");
-		
+		model.addAttribute("freeDetail", boardservice.freeDetail(boardNo)); 
+	}
+	
+	//자유게시판 게시물 수정
+	@RequestMapping(value="/loungeModify", method=RequestMethod.POST)
+	public String loungeModifyPOST(BoardVO board, RedirectAttributes rttr, Model model) throws Exception {
+		boardservice.freeUpdate(board);
+		rttr.addFlashAttribute("result","modify success");
+		model.addAttribute("freeDetail", boardservice.freeDetail(board.getBoardNo()));
+		return "redirect:/board/lounge";
 	}
 } 

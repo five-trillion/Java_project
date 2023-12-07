@@ -119,9 +119,10 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void freeUpdate(BoardVO board) throws Exception {
+	public int freeUpdate(BoardVO board) throws Exception {
 		// TODO Auto-generated method stub
-		boardmapper.freeUpdate(board);
+		return boardmapper.freeUpdate(board);
+		
 	}
 
 	@Override

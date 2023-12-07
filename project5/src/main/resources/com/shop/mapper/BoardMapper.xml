@@ -63,8 +63,8 @@
 			update board
 			   set boardTitle = #{boardTitle},
 			   		boardContent= #{boardContent},
-			   		boardUpdate = current_timestamp,
-			   		boardImg = #{boardImg}
+			   		boardUpdate = default
+			   		<!-- boardImg = #{boardImg} -->
 			 where boardNo = #{boardNo}
 		</update>
 		

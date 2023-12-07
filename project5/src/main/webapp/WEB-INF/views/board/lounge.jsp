@@ -109,7 +109,23 @@
 		</div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		let result = '<c:out value="${result}"/>';
+		writeCheck(result);
+		function writeCheck(result) {
+			if(result === '') {
+				return;
+			}
+			if(result === "write success") {
+				alert("등록이 완료되었습니다.");
+			}
+			if(result === "modify success") {
+				alert("수정이 완료되었습니다.");
+			}
+		}
+	});
+</script>
 </body>
 
 </html>

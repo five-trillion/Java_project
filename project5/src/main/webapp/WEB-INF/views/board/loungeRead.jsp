@@ -28,28 +28,29 @@
 					<span
 						class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
 				</div>
-				<form method="post" id="frm" name="frm" action="loungeWrite" enctype="multipart/form-data">
+				<form method="get" id="frm" name="frm" action="/board/loungeModify" enctype="multipart/form-data">
 					<div class="n_board line typeList gBorder">
 						<table border="1" summary="">
 							<caption>게시판 목록</caption>
 							<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
 								<tr>
 									<td>
+										<input type="hidden" id="boardNo" name="boardNo" value="${freeDetail.boardNo}">
 										<div class="chk fs12">제목</div>
 										<div class="subject left fs12">
-											<c:out value="${board.boardTitle}"></c:out>
+											<c:out value="${freeDetail.boardTitle}"></c:out>
 										</div>
 									</td>
 									<td>
 										<div class="chk fs12">작성자</div>
 										<div class="subject left fs12">
-											<c:out value="${board.userNick}"></c:out> 
+											<c:out value="${freeDetail.userNick}"></c:out> 
 										</div>
 									</td>
 									<td>
 										<div class="chk fs12">작성일</div>
 										<div class="subject left fs12">
-											<fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardReg}"/>
+											<fmt:formatDate pattern="yyyy-MM-dd" value="${freeDetail.boardReg}"/>
 										</div>
 									</td>
 								</tr>
@@ -59,15 +60,18 @@
 									<td>
 										<div class="chk fs13">내용</div>
 										<div class="subject left fs13">
-											<c:out value="${board.boardContent}"></c:out>
+											<c:out value="${freeDetail.boardContent}"></c:out>
 										</div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
+						<input type="hidden" name="boardTitle" value="${freeDetail.boardTitle}">
+						<input type="hidden" name="boardContent" value="${freeDetail.boardContent}">
+						
 						<div class="boardbtn">
 							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
-							<button type="button" onclick="location.href='/board/loungeModify'">수정</button>
+							<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button>
 						</div>
 					</div>
 				</form>
@@ -109,6 +113,11 @@
 		</div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>
+<script>
+	function submitForm() {
+		document.getElementById('frm').submit();
+	}
+</script>
 </body>
 
 </html>

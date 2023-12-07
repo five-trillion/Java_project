@@ -121,18 +121,6 @@
 		}
 	}
 	
-	$(document).ready(function(){
-		let result = '<c:out value="${result}"/>';
-		writeCheck(result);
-		function writeCheck(result) {
-			if(result === '') {
-				return;
-			}
-			if(result === "success") {
-				alert("등록이 완료되었습니다.")
-			}
-		}
-	});
 </script>
 </body>
 
