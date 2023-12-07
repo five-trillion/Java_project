@@ -9,14 +9,14 @@
 		<%@ include file="./includes/headerAdmin.jsp"%>
 
 		<%@ include file="./includes/sideAdmin.jsp"%>
-		<main id="main" class="main adminUserManage">
+		<main id="main" class="main adminBoardNoti_Free">
 
 			<div class="pagetitle">
-				<h1>공지게시판</h1>
+				<h1>질의게시판</h1>
 				<nav>
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="index.html">게시판관리</a></li>
-						<li class="breadcrumb-item active">공지</li>
+						<li class="breadcrumb-item active">질의</li>
 					</ol>
 				</nav>
 			</div>
@@ -37,29 +37,50 @@
 											<th class="longLine">번호</th>
 											<th class="longLine">제목</th>
 											<th class="longLine">등록일</th>
-											<th class="longLine">리뷰보기</th>
+											<th class="longLine">비밀글 여부</th>
+											<th class="longLine">답변 여부</th>
 											<th class="shortLine">조회수</th>
-											<th class="shortLine">상세보기</th>
+											<th class="shortLine">상세</th>
 											<th class="shortLine">삭제</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>02</td>
-											<td>02</td>
-											<td>02</td>
-											<td>02</td>
-											<td>02</td>
-											<td>02</td>
-											<td>02</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
+											<td>0</td>
 										</tr>
-										<c:forEach var="board" items="${boardNoti}">
+										<c:forEach var="board" items="${boardList}">
 											<tr>
-												<th scope="row">${user.userNo}</th>
-												<td>${user.userName}</td>
-												<td>${user.nick}</td>
-												<td><fmt:formatDate value="${user.regDate}" type="date"></fmt:formatDate></td>
-												<td>${user.admin}</td>
+												<th scope="row">${board.boardNo}</th>
+												<td>${board.boardTitle}</td>
+												<td><fmt:formatDate value="${board.boardReg}" type="date"></fmt:formatDate></td>
+												<td>
+													<c:choose>
+														<c:when test="${board.secretYn == 0}">
+															<i class="bi bi-unlock" style="color: gray;">
+														</c:when>
+														<c:otherwise>
+															<i class="bi bi-lock-fill" style="color: black;">
+														</c:otherwise>
+													</c:choose>
+												</td>
+												<td>
+													<c:choose>
+														<c:when test="${board.secretYn == 0}">
+															<i class="bi bi-circle-fill" style="color: red;">
+														</c:when>
+														<c:otherwise>
+															<i class="bi bi-check-circle-fill" style="color: green;">
+														</c:otherwise>
+													</c:choose>
+												</td>
+												<td>${board.boardCnt}</td>
 												<td>
 													<!-- Large Modal -->
 													<div class="btn btn-primary modalBtn">
@@ -69,22 +90,14 @@
 														<div class="modal-dialog modal-lg">
 															<div class="modal-content">
 																<div class="modal-header">
-																	<h5 class="modal-title">회원 정보</h5>
+																	<h5 class="modal-title">게시글 정보</h5>
 																	<button type="button" class="btn-close"
 																		data-bs-dismiss="modal" aria-label="Close"></button>
 																</div>
 																<div class="modal-body">
-																	<table>
-																		<tr>
-																			<th>회원번호</th>
-																			<td>${user.userNo}</td>
-																			<th>아이디</th>
-																			<td>${user.userId}</td>
-																		</tr>
-																	</table>
 																</div>
 																<div class="modal-footer">
-																	<a href="adminUserModify?userNo=${user.userNo}"><button type="button" class="btn btn-secondary"
+																	<a href="adminUserModify"><button type="button" class="btn btn-secondary"
 																		data-bs-dismiss="modal">수정</button></a>
 																	<button type="button" class="btn btn-primary modalClose">닫기</button>
 																</div>
@@ -133,5 +146,38 @@
 		<!-- End #main -->
 	</div>
 	<%@ include file="./includes/footerAdmin.jsp"%>
+	
+	<script>
+		$(".table-bordered").css({"textAlign": "center"})
+		$(".datatable-table").css({"textAlign": "center"})
+		$(".datatable-table th").css({"textAlign": "center"})
+		$(".datatable-table th").eq(0).css({"width": "calc(60%/6)"});
+		$(".datatable-table th").eq(1).css({"width": "20%"});
+		$(".datatable-table th").eq(2).css({"width": "20%"});
+		$(".datatable-table th").eq(3).css({"width": "calc(60%/6)"});
+		$(".datatable-table th").eq(4).css({"width": "calc(60%/6)"});
+		$(".datatable-table th").eq(5).css({"width": "calc(60%/6)"});
+		$(".datatable-table th").eq(6).css({"width": "calc(60%/6"});
+		$(".datatable-table th").eq(7).css({"width": "calc(60%/6)"});
+		$(window).on("resize", () => {		
+			$(".datatable-table th").css({"textAlign": "center"})
+			$(".datatable-table th").eq(0).css({"width": "calc(60%/6)"});
+			$(".datatable-table th").eq(1).css({"width": "20%"});
+			$(".datatable-table th").eq(2).css({"width": "20%"});
+			$(".datatable-table th").eq(3).css({"width": "calc(60%/6)"});
+			$(".datatable-table th").eq(4).css({"width": "calc(60%/6)"});
+			$(".datatable-table th").eq(5).css({"width": "calc(60%/6)"});
+			$(".datatable-table th").eq(6).css({"width": "calc(60%/6"});
+			$(".datatable-table th").eq(7).css({"width": "calc(60%/6)"});
+		})
+		$(".modalBtn").on("click", (e) => {
+			e.preventDefault();
+			$(e.target).next().modal("show");
+		})
+		
+		$(".modalClose").on("click", (e) => {
+			$(e.target).parents(".modal").modal("hide");
+		})
+	</script>
 </body>
 </html>

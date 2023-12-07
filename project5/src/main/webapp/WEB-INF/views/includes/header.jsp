@@ -29,12 +29,12 @@
             <ul class="featured__controls">
                 <li class="active"><a href="../">Home</a></li>
                 <li><a href="/shop/list">Shop</a></li>
-                <li><a href="#">Community</a>
+                <li><a href="/board/notice">Community</a>
                 	<ul class="header__menu__dropdown">
                         <li><a href="/board/notice">Notice</a></li>
-                        <li><a href="#">QnA</a></li>
+                        <li><a href="/board/qna">QnA</a></li>
                         <li><a href="#">Review</a></li>
-                        <li><a href="#">Lounge</a></li>
+                        <li><a href="/board/lounge">Lounge</a></li>
                     </ul>
                 </li>
             </ul>
@@ -108,6 +108,7 @@
 				                            <div class="header__top__right__auth">
 				                            	<a href="/shop/logout" id="logoutBtn">Logout</a>
 				                            </div>
+
 				                       	</div>
 	                            	</c:if>
                             		<c:if test = "${user.admin == 0}">
@@ -119,6 +120,7 @@
 				                            <div class="header__top__right__auth">
 				                            	<a href="/shop/logout" id="logoutBtn">Logout</a>
 				                            </div>
+
                             			</div>
                             		</c:if> 
                             	</c:if>	
@@ -159,12 +161,12 @@
                                     <li><a href="#">영양제</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">community</a>
+                            <li><a href="/board/notice">community</a>
                             	<ul class="header__menu__dropdown">
-                                    <li><a href="/board/">Notice</a></li>
-                                    <li><a href="#">QnA</a></li>
+                                    <li><a href="/board/notice">공지사항</a></li>
+                                    <li><a href="/board/qna">QnA</a></li>
                                     <li><a href="#">Review</a></li>
-                                    <li><a href="#">Lounge</a></li>
+                                    <li><a href="/board/lounge">자유게시판</a></li>
                                 </ul>
                             </li>
                             

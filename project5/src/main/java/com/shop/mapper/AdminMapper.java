@@ -12,11 +12,22 @@ public interface AdminMapper {
 	public List<UsersVO> getUsers();
 
 	public List<BoardVO> getNotiBoard(String boardClass);
+	
+	public void userDelete(long userNo);
 	// end 회원관리--------
 	
 	// 상품관리----------
 	public void prodInsert(ProductVO prodVo);
 	
 	public List<CodeVO> prodCodeInsert();
+	
+	public List<ProductVO> getListProd();
+	
+	public int prodUpdate(ProductVO prodVo);
+	
+	public ProductVO readProd(String prodNo);
+	
+	public int prodRemove(String prodNo);
+	
 	// end 상품관리--------
 }

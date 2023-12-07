@@ -21,83 +21,89 @@
 		<!-- 상품등록 페이지 상단 이름 종료 -->
 		
 		<div class="row">
-			<form action="" method="post" enctype="multipart/form-data">
+			<form action="adminProdUpdateForm" method="post" enctype="multipart/form-data">
                 <div class="row mb-3">
                   <label for="prodNo" class="col-sm-2 col-form-label">상품 코드(수정 불가)</label>
                   <div class="col-sm-10">
-                    <input type="hidden" id="prodNo" name="prodNo" value="${VO.prodNo}" readonly="readonly">                  
+                    <input type="text" id="prodNo" name="prodNo" value="${getProd.prodNo}" readonly="readonly">                  
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="brand" class="col-sm-2 col-form-label">브 랜 드</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="brand" name="brand" value="${VO.brand}">
+                    <input type="text" class="form-control" id="brand" name="brand" value="${getProd.brand}">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="category" class="col-sm-2 col-form-label">카테고리</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="category" name="category" value="${VO.category}">
+                    <input type="text" class="form-control" id="category" name="category" value="${getProd.category}">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="prodName" class="col-sm-2 col-form-label">상 품 명</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="prodName" name="prodName" value="${VO.prodName}">
+                    <input type="text" class="form-control" id="prodName" name="prodName" value="${getProd.prodName}">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="prodInfo" class="col-sm-2 col-form-label">상품 설명</label>
                   <div class="col-sm-10">
-                    <textarea class="form-control" style="height: 100px" id="prodInfo" name="prodInfo" value="${VO.prodInfo}"></textarea>
+                    <textarea class="form-control" style="height: 100px" id="prodInfo" name="prodInfo">${getProd.prodInfo}</textarea>
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="netPrice" class="col-sm-2 col-form-label">공식 정가</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="netPrice" name="netPrice" value="${VO.netPrice}">
+                    <input type="text" class="form-control" id="netPrice" name="netPrice" value="${getProd.netPrice}">
                   </div>
                 </div>  
                 <div class="row mb-3">
                   <label for="salePrice" class="col-sm-2 col-form-label">판매 가격</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="salePrice" name="salePrice" value="${VO.salePrice}">
+                    <input type="text" class="form-control" id="salePrice" name="salePrice" value="${getProd.salePrice}">
                   </div>  
                 </div>
                 <div class="row mb-3">
                   <label for="mainImg" class="col-sm-2 col-form-label">메인 이미지</label>
                   <div class="col-sm-10">
-                    <input class="form-control" type="file" id="mainImg" value="${VO.mainImg}">
+                    <input class="form-control" type="file" id="mainImgMulti" name="mainImgMulti" value="${getProd.prodMainImg}">
+                    <img alt="상품 메인 이미지" src="${contextPath}/resources/upload/product/${getProd.prodMainImg}" style="width: 100px;">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="prodImg" class="col-sm-2 col-form-label">제품 상세 이미지</label>
                   <div class="col-sm-10">
-                    <input class="form-control" type="file" id="prodImg" value="${VO.prodImg}">
+                    <input class="form-control" type="file" id="prodImgMulti" name="prodImgMulti" value="${getProd.detailImg}">
+                    <img alt="상품 메인 이미지" src="${contextPath}/resources/upload/product/${getProd.detailImg}" style="width: 100px;">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="mini1Img" class="col-sm-2 col-form-label">미니 이미지 1</label>
                   <div class="col-sm-10">
-                    <input class="form-control" type="file" id="mini1Img" value="${VO.mini1Img}">
+                    <input class="form-control" type="file" id="mini1ImgMulti" name="mini1ImgMulti" value="${getProd.prodImg1}">
+                    <img alt="상품 메인 이미지" src="${contextPath}/resources/upload/product/${getProd.prodImg1}" style="width: 100px;">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="mini2Img" class="col-sm-2 col-form-label">미니 이미지 2</label>
                   <div class="col-sm-10">
-                    <input class="form-control" type="file" id="mini2Img" value="${VO.mini2Img}">
+                    <input class="form-control" type="file" id="mini2ImgMulti" name="mini2ImgMulti" value="${getProd.prodImg2}">
+                    <img alt="상품 메인 이미지" src="${contextPath}/resources/upload/product/${getProd.prodImg2}" style="width: 100px;">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="mini3Img" class="col-sm-2 col-form-label">미니 이미지 3</label>
                   <div class="col-sm-10">
-                    <input class="form-control" type="file" id="mini3Img" value="${VO.mini3Img}">
+                    <input class="form-control" type="file" id="mini3ImgMulti" name="mini3ImgMulti" value="${getProd.prodImg3}">
+                    <img alt="상품 메인 이미지" src="${contextPath}/resources/upload/product/${getProd.prodImg3}" style="width: 100px;">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="mini4Img" class="col-sm-2 col-form-label">미니 이미지 4</label>
                   <div class="col-sm-10">
-                    <input class="form-control" type="file" id="mini4Img" value="${VO.mini4Img}">
+                    <input class="form-control" type="file" id="mini4ImgMulti" name="mini4ImgMulti" value="${getProd.prodImg4}">
+                    <img alt="상품 메인 이미지" src="${contextPath}/resources/upload/product/${getProd.prodImg4}" style="width: 100px;">
                   </div>
                 </div>
                 

@@ -11,17 +11,20 @@
 		<%@ include file="./includes/sideAdmin.jsp"%>
 		<main id="main" class="main adminBoardNoti_Free">
 
-			<div class="pagetitle">
-				<h1>공지게시판</h1>
-				<nav>
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.html">게시판관리</a></li>
-						<li class="breadcrumb-item active">공지</li>
-					</ol>
-				</nav>
+			<div class="pagetitle flex" style="display: flex; justify-content: space-between;">
+				<div class="board_info">
+					<h1>공지게시판</h1>
+					<nav>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index.html">게시판관리</a></li>
+							<li class="breadcrumb-item active">공지</li>
+						</ol>
+					</nav>
+				</div>
+				<button type="button" class="btn btn-primary btn-lg" style="font-size: 20px; height: 100%">공지쓰기</button>
 			</div>
 			<!-- End Page Title -->
-
+			
 			<section class="section">
 				<div class="row">
 					<div class="col-lg-12">
@@ -58,7 +61,7 @@
 												<th scope="row">${board.boardNo}</th>
 												<td>${board.boardTitle}</td>
 												<td><fmt:formatDate value="${board.boardReg}" type="date"></fmt:formatDate></td>
-												<td>리뷰</td>
+												<td><i class="ri ri-ball-pen-fill"></td>
 												<td>${board.boardCnt}</td>
 												<td>
 													<!-- Large Modal -->
