@@ -19,9 +19,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.shop.domain.AnswerVO;
+import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
+import com.shop.domain.ReportVO;
+import com.shop.domain.ReviewReplyVO;
 import com.shop.domain.UsersVO;
 import com.shop.service.AdminService;
 
@@ -80,9 +84,12 @@ public class AdminController {
 	}
 	// file 보내기 메서드
 	public String prodFileUpload(MultipartFile mf, String uploadPath) throws IOException{
+		long fileSize = mf.getSize();
+		if (fileSize == 0) {
+			return null;
+		}
 		long time = System.currentTimeMillis();
 		String orginMainName = mf.getOriginalFilename();
-		long fileSize = mf.getSize();
 		String saveName = fileSize + orginMainName;		
 		File file = new File(uploadPath+saveName);
 		
@@ -167,33 +174,92 @@ public class AdminController {
 	// 게시판관리 이동 (공지)
 	@GetMapping("/adminBoardNoti")
 	public void adminBoardNoti(HttpServletRequest request)  throws Exception {
-		List<BoardVO> notiList = adminService.getNotiBoard("1");
+		List<BoardVO> notiList = adminService.getBoard("1");
 		
 		request.setAttribute("boardList", notiList);
 		log.info("adminBoardNoti 도착");
 	}
-	
+	// 공지 글쓰기
+	@GetMapping("/adminNotiWrite")
+	public void adminNotiWriteForm()  throws Exception {
+		
+		log.info("adminNotiWriteForm 도착");
+	}
+	@PostMapping("/adminNotiWrite")
+	public String adminNotiWrite(BoardVO bVo, MultipartHttpServletRequest mf)  throws Exception {
+		
+		String uploadPath = "D:/Java_project/project5/src/main/webapp/resources/upload/notice/";
+		MultipartFile boardImgMulti = mf.getFile("boardImgMulti");
+		bVo.setBoardImg(prodFileUpload(boardImgMulti, uploadPath));
+		bVo.setUserNo(1); // 나중에 섹션을 통해 1 자리에 userNo 기입
+		adminService.notiWrite(bVo);
+		log.info("adminNotiWrite 글 올리는 중");
+		
+		return "redirect:/admin/adminBoardNoti";
+	}
+	// 게시판관리 이동 (질의)
+	@GetMapping("/adminBoardQna")
+	public void adminBoardQna(HttpServletRequest request)  throws Exception {
+		List<BoardVO> qnaList = adminService.getBoardQna();
+		
+		request.setAttribute("boardList", qnaList);
+		log.info("adminBoardQna 도착");
+	}
+	// 답변으로 이동
+	@GetMapping("/adminBoardQnaAnswer")
+	public void adminBoardQnaAnswer(@RequestParam("boardNo") long boardNo, HttpServletRequest request) throws Exception {
+		BoardVO bVo = adminService.getBoardDetail(boardNo);
+		request.setAttribute("question", bVo);
+	}
+	@PostMapping("/adminBoardQnaAnswer")
+	public String adminBoardQnaComplete (AnswerVO answerVo) {
+		adminService.ansComplete(answerVo);
+		return "redirect:/admin/adminBoardQna";
+	}
 	// 게시판관리 이동 (자유)
 	@GetMapping("/adminBoardFree")
 	public void adminBoardFree(HttpServletRequest request)  throws Exception {
-		List<BoardVO> freeList = adminService.getNotiBoard("2");
+		List<BoardVO> freeList = adminService.getBoard("3");
 		
 		request.setAttribute("boardList", freeList);
 		log.info("adminBoardFree 도착");
 	}
 	
-	// 게시판관리 이동 (질의)
-	@GetMapping("/adminBoardQna")
-	public void adminBoardQna(HttpServletRequest request)  throws Exception {
-		List<BoardVO> qnaList = adminService.getNotiBoard("3");
-		
-		request.setAttribute("boardList", qnaList);
-		log.info("adminBoardQna 도착");
-	}
 	// 게시판관리 이동 (신고관리)
 	@GetMapping("/adminBoardReport")
 	public void adminBoardReport(HttpServletRequest request)  throws Exception {
+		List<ReportVO> repList = adminService.getReport();
 		
+		request.setAttribute("repList", repList);
 		log.info("adminBoardReport 도착");
+	}
+	// 신고상세보기
+	@GetMapping("/adminReportDetail")
+	public void adminReportDetail(@RequestParam("boardNo") long boardNo, @RequestParam("boRepNo") long boRepNo, @RequestParam("reviRepNo") long reviRepNo, HttpServletRequest request) throws Exception {
+		if (boardNo != 0) {
+			BoardVO bVo = adminService.reportBoard(boardNo);
+			request.setAttribute("board", bVo);
+		} else if (boRepNo != 0) {
+			BoardReplyVO brVo = adminService.reportBoRep(boRepNo);
+			request.setAttribute("boardReply", brVo);
+		} else if (boardNo != 0) {
+			ReviewReplyVO rrVo = adminService.reportReviRep(reviRepNo);
+			request.setAttribute("reviewReply", rrVo);
+		} else {
+			System.out.println("값이 안 넘어 옵니다!!!!!!!!!!!");
+		}
+	}
+	// 신고처리완료
+	@GetMapping("/adminReportComplete")
+	public String adminReportComplete(@RequestParam("repoNo") int repoNo) {
+		adminService.reportComplete(repoNo);
+		return "redirect:/admin/adminBoardReport";
+	} 
+	// 게시판 삭제
+	@GetMapping("/adminBoardDelete")
+	public String adminBoardDelete(@RequestParam("boardNo") int boardNo) {
+		adminService.boardDelete(boardNo);
+		
+		return "redirect:/admin/adminBoardNoti";
 	}
 }

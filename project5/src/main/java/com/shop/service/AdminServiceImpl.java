@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.shop.domain.AnswerVO;
+import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
+import com.shop.domain.ReportVO;
+import com.shop.domain.ReviewReplyVO;
 import com.shop.domain.UsersVO;
 import com.shop.mapper.AdminMapper;
 
@@ -38,8 +42,57 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public void boardDelete(long boardNo) {
+		mapper.boardDelete(boardNo);
+	}
+
+	@Override
+	public void notiWrite(BoardVO boardVo) {
+		mapper.notiWrite(boardVo);
+	}
+
+	@Override
+	public BoardVO reportBoard(long boardNo) {
+		return mapper.reportBoard(boardNo);
+	}
+
+	@Override
+	public void reportComplete(int repoNo) {
+		mapper.reportComplete(repoNo);
+	}
+
+	@Override
+	public BoardReplyVO reportBoRep(long boRepNo) {
+		return mapper.reportBoRep(boRepNo);
+	}
+
+	@Override
+	public ReviewReplyVO reportReviRep(long reviRepNo) {
+		return mapper.reportReviRep(reviRepNo);
+	}
+
+	@Override
+	public List<BoardVO> getBoardQna() {
+		return mapper.getBoardQna();
+	}
+
+	@Override
+	public List<ReportVO> getReport() {
+		return mapper.getReport();
+	}
+
+	@Override
+	public BoardVO getBoardDetail(long boardNo) {
+		return mapper.getBoardDetail(boardNo);
+	}
+
+	@Override
+	public void ansComplete(AnswerVO answerVo) {
+		mapper.ansComplete(answerVo);
+	}
+
+	@Override
 	public void userDelete(long userNo) {
-		// TODO Auto-generated method stub
 		mapper.userDelete(userNo);
 	}
 
@@ -53,9 +106,9 @@ public class AdminServiceImpl implements AdminService {
 	
 
 	@Override
-	public List<BoardVO> getNotiBoard(String boardClass) {
+	public List<BoardVO> getBoard(String boardClass) {
 		System.out.println("service 지나가는 중");
-		return mapper.getNotiBoard(boardClass);	
+		return mapper.getBoard(boardClass);	
 	}
 
 	@Override

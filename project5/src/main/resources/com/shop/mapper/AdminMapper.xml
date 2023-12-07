@@ -57,7 +57,7 @@
 	
 	<!-- 유저 권한 변경 -->
 	<update id="adminChange">
-		update users set admin = #{admin} where userNo = #{userNo}
+		update users set admin = #{admin} where userNo =  #{userNo}
 	</update>
 	
 	<!-- 유저 삭제 -->
@@ -65,9 +65,55 @@
 		delete from users where userNo = #{userNo}
 	</delete>
 	
-	<!-- 게시판 자료 부르기 -->
-	<!-- 공지 -->
-	<select id="getNotiBoard" resultType="com.shop.domain.BoardVO">
+	<!-- 게시판 조회 -->
+	<select id="getBoard" resultType="com.shop.domain.BoardVO">
 		select * from board where boardClass = #{boardClass}
 	</select>
+	<!-- 질의게시판조회(답변여부 포함) -->
+	<select id="getBoardQna" resultType="com.shop.domain.BoardVO">
+		select b.*,a.boardNo as ansNo from board b left join answer a on b.boardNo = a.boardNo where boardClass = 2;
+	</select>
+	<!-- 게시글 조회 -->
+	<select id="getBoardDetail" resultType="com.shop.domain.BoardVO">
+		select * from board where boardNo = #{boardNo}
+	</select>
+	<!-- 공지 글쓰기 -->
+	<insert id="notiWrite">
+		insert into board
+		values (default, #{userNo}, 1, #{boardTitle}, #{boardContent}, default, default, #{boardImg}, 0, null, null);
+	</insert>
+	<!-- 질의 답변 작성 -->
+	<insert id="ansComplete">
+		insert into answer
+		values (#{boardNo}, #{ansTitle}, #{ansContent}, default)
+	</insert>
+	<!-- 게시판 삭제 -->
+	<delete id="boardDelete">
+		delete from board where boardNo = #{boardNo};
+	</delete>
+	
+	<!-- 신고 조회 -->
+	<select id="getReport" resultType="com.shop.domain.ReportVO">
+		select * from report order by processingYn
+	</select>
+	
+	<!-- 신고 상세조회 -->
+	<select id="reportBoard" resultType="com.shop.domain.BoardVO">
+		select * from board where boardNo = #{boardNo}
+	</select>
+	<select id="reportBoRep" resultType="com.shop.domain.BoardReplyVO">
+		select * from board_reply where boRepNo = #{boRepNo}
+	</select>
+	<select id="reportReviRep" resultType="com.shop.domain.ReviewReplyVO">
+		select * from review_reply where reviRepNo = #{reviRepNo}
+	</select>
+	
+	<!-- 신고 완료처리 -->
+	<update id="reportComplete">
+		update report set processingYn = 1 where repoNo = #{repoNo} ;
+	</update>
+	
+	
+	
+	
 </mapper>

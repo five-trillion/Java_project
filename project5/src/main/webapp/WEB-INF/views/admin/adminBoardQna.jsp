@@ -29,7 +29,6 @@
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title">조회</h5>
-
 								<!-- Table with stripped rows -->
 								<table class="table datatable">
 									<thead>
@@ -45,16 +44,6 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>0</td>
-											<td>0</td>
-											<td>0</td>
-											<td>0</td>
-											<td>0</td>
-											<td>0</td>
-											<td>0</td>
-											<td>0</td>
-										</tr>
 										<c:forEach var="board" items="${boardList}">
 											<tr>
 												<th scope="row">${board.boardNo}</th>
@@ -63,28 +52,27 @@
 												<td>
 													<c:choose>
 														<c:when test="${board.secretYn == 0}">
-															<i class="bi bi-unlock" style="color: gray;">
+															<i class="bx bx-lock-open larger" style="color: gray;"></i>
 														</c:when>
 														<c:otherwise>
-															<i class="bi bi-lock-fill" style="color: black;">
+															<i class="bx bxs-lock-alt larger" style="color: black;"></i>
 														</c:otherwise>
 													</c:choose>
 												</td>
 												<td>
 													<c:choose>
-														<c:when test="${board.secretYn == 0}">
-															<i class="bi bi-circle-fill" style="color: red;">
+														<c:when test="${board.ansNo == 0}">
+															<i class="bx bxs-checkbox-minus larger" style="color: red;"></i>
 														</c:when>
 														<c:otherwise>
-															<i class="bi bi-check-circle-fill" style="color: green;">
+															<i class="bx bxs-checkbox-checked larger" style="color: green;"></i>
 														</c:otherwise>
 													</c:choose>
 												</td>
 												<td>${board.boardCnt}</td>
 												<td>
 													<!-- Large Modal -->
-													<div class="btn btn-primary modalBtn">
-														돋보기</div>
+													<div class="btn btn-primary modalBtn"><i class="bx bx-search-alt-2"></i></div>
 
 													<div class="modal fade" tabindex="-1">
 														<div class="modal-dialog modal-lg">
@@ -95,11 +83,30 @@
 																		data-bs-dismiss="modal" aria-label="Close"></button>
 																</div>
 																<div class="modal-body">
+																	<div class="row mb-3">
+													                  <label for="boardTitle" class="col-sm-2 col-form-label">제 목</label>
+													                  <div class="col-sm-10">
+													                    <input type="text" class="form-control" id="boardTitle" name="boardTitle" value="${board.boardContent}" readonly>
+													                  </div>
+													                </div>
+																	<div class="row mb-3">
+													                  <label for="boardContent" class="col-sm-2 col-form-label">내 용</label>
+													                  <div class="col-sm-10">
+													                    <textarea rows="10" class="form-control" id="boardContent" name="boardContent" readonly>${board.boardContent}</textarea>
+													                  </div>
+													                </div>
 																</div>
 																<div class="modal-footer">
-																	<a href="adminUserModify"><button type="button" class="btn btn-secondary"
-																		data-bs-dismiss="modal">수정</button></a>
-																	<button type="button" class="btn btn-primary modalClose">닫기</button>
+																	<c:choose>
+																		<c:when test="${board.ansNo == 0}">
+																		<a href="adminBoardQnaAnswer?boardNo=${board.boardNo}"><button type="button" class="btn btn-secondary"
+																		data-bs-dismiss="modal">답변하기</button></a>
+																		<button type="button" class="btn btn-primary modalClose">닫기</button>
+																		</c:when>
+																		<c:otherwise><div class="btn btn-secondary"
+																		data-bs-dismiss="modal" style="background-color: green;">답변완료</div></c:otherwise>
+																	</c:choose>
+																	
 																</div>
 															</div>
 														</div>
@@ -107,7 +114,7 @@
 												</td>
 												<td>
 													<!-- Large Modal -->
-													<div class="btn btn-primary modalBtn">삭제</div>
+													<div class="btn btn-primary modalBtn" style="background-color: red; border-color: red;"><i class="bx bx-x"></i></div>
 
 													<div class="modal fade" id="largeModal" tabindex="-1">
 														<div class="modal-dialog modal-lg">
@@ -148,6 +155,7 @@
 	<%@ include file="./includes/footerAdmin.jsp"%>
 	
 	<script>
+		$(".larger").css({"fontSize" : "24px"})
 		$(".table-bordered").css({"textAlign": "center"})
 		$(".datatable-table").css({"textAlign": "center"})
 		$(".datatable-table th").css({"textAlign": "center"})

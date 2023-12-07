@@ -58,8 +58,7 @@
 												</td>
 												<td>
 													<!-- Large Modal -->
-													<div class="btn btn-primary modalBtn">
-														돋보기</div>
+													<div class="btn btn-primary modalBtn"><i class="bx bx-search-alt-2"></i></div>
 
 													<div class="modal fade userInfo" tabindex="-1">
 														<div class="modal-dialog modal-lg">
@@ -128,7 +127,7 @@
 												</td>
 												<td>
 													<!-- Large Modal -->
-													<div class="btn btn-primary modalBtn">삭제</div>
+													<div class="btn btn-primary modalBtn"><i class="bx bx-x"></i></div>
 
 													<div class="modal fade" id="largeModal" tabindex="-1">
 														<div class="modal-dialog modal-lg">
