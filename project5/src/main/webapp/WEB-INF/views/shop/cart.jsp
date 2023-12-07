@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Shop</title>
+	<title>장바구니</title>
 	<%@include file="../includes/src.jsp" %>
 </head>
 <body>
@@ -67,20 +67,19 @@
 	                                    <td class="shoping__cart__quantity">
 	                                        <div class="quantity">
 	                                            <div class="pro-qty">
-	                                                <input type="text" class="quantity_input" value="${cart.orderCnt}">
+	                                                <input type="text" id="orderCnt" class="quantity_input" value="${cart.orderCnt}">
 	                                            </div>
+	                                            <a class="modify_btn" data-cartno="${cart.cartNo}">변경</a>
 	                                        </div>
 	                                    </td>
 	                                    <td class="shoping__cart__total">
 	                                        <fmt:formatNumber pattern="###,###,###.##" value="${cart.totalPrice}" />
 	                                    </td>
 	                                    <td class="shoping__cart__item__close" style="width: 50px; text-align: center;">
-	                                        <span class="icon_modify" data-cartNo="${cart.orderCnt}">
-	                                        	<input type="button" value="변경" style="font-size: 50%; padding: 3px; border: none;">
-	                                        </span>
+	                                        
 	                                    </td>
 	                                    <td class="shoping__cart__item__close">
-	                                        <a class="delete_btn" data-cartNo="${cart.cartNo}"><span class="icon_close"></span></a>
+	                                        <a class="delete_btn" data-cartno="${cart.cartNo}"><span class="icon_close"></span></a>
 <%-- 											<button class="delete_btn" data-cartNo = "${cart.cartNo}">삭제</button> --%>
 	                                    </td>
 	                                </tr>
@@ -95,7 +94,7 @@
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
                         <a href="/shop" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                        <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                        <a href="/cart/${user.userNo}" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
                             Update Cart</a>
                     </div>
                 </div>
@@ -113,9 +112,15 @@
                     </div>
                 </div>
             </div>
+        <!-- 수정 form -->
+		<form action="/cart/update" method="post" class="quantity_modify_form">
+			<input type="hidden" id="cartNo" name="cartNo" class="modify_cartNo">
+			<input type="hidden" id="orderCnt" name="orderCnt" class="modify_orderCnt">
+			<input type="hidden" id="userNo" name="userNo" value="${user.userNo}">
+		</form>
             
         <!-- 삭제 form -->
-		<form action="/cart/delete" method="post" class="quantity_delete_form">
+		<form action="/cart/delete" method="post" class="delete_form">
 			<input type="hidden" id="cartNo" name="cartNo" class="delete_cartNo">
 			<input type="hidden" id="userNo" name="userNo" value="${user.userNo}">
 		</form>
@@ -126,12 +131,21 @@
 	
 	<%@include file="../includes/footer.jsp" %>
 	<script>
-	/* 장바구니 삭제 버튼 */
+	/* 장바구니 변경 버튼 */
+	$(".modify_btn").on("click", function(e){
+		let cartNo = $(this).data("cartno");
+		let orderCnt = $(this).parents("td").find("input").val();
+		console.log(orderCnt);
+		$(".modify_cartNo").val(cartNo);
+		$(".modify_orderCnt").val(orderCnt).parent("td").find("input").val();
+ 		$(".quantity_modify_form").submit();
+	});
+	/* 장바구니 삭제 아이콘 */
 	$(".delete_btn").on("click", function(e){
 		e.preventDefault();
 		const cartNo = $(this).data("cartno");
 		$(".delete_cartNo").val(cartNo);
-		$(".quantity_delete_form").submit();
+		$(".delete_form").submit();
 	});
 	</script>
 	

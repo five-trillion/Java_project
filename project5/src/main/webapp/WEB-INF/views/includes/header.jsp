@@ -15,7 +15,14 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="/shop/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
+                <li>
+               		<c:if test = "${user == null}">
+               			<a href="/shop/login" data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+               		</c:if>
+               		<c:if test = "${user != null }">
+               			<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+               		</c:if>
+               	</li>
             </ul>
         </div>
         <nav class="humberger__menu__nav mobile-menu">

@@ -1,20 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>주문</title>
+	<%@include file="../includes/src.jsp" %>
 </head>
 <body>
-	<section class="checkout spad">
+	<%@include file="../includes/header.jsp" %>
+    
+	<section class="checkout spad" style="padding-top: 50px;">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h6><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your code
-                    </h6>
-                </div>
-            </div>
             <div class="checkout__form">
                 <h4>Billing Details</h4>
                 <form action="#">
@@ -136,5 +135,7 @@
             </div>
         </div>
     </section>
+    
+	<%@include file="../includes/footer.jsp" %>
 </body>
 </html>

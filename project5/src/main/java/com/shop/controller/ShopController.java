@@ -101,15 +101,17 @@ public class ShopController {
 	}
 	@RequestMapping(value="cart/update", method = RequestMethod.POST)
 	public String updatecart(CartVO cartVO) throws Exception {
-		
-		
-		
-		return "";
+		service.updateCart(cartVO);
+		return "redirect:/cart/"+ cartVO.getUserNo();
 	}
 	@RequestMapping(value="cart/delete",method = RequestMethod.POST)
 	public String deletecart(CartVO cartVO) throws Exception {
 		service.deleteCart(cartVO.getCartNo());
 		return "redirect:/cart/"+ cartVO.getUserNo();
+	}
+	@RequestMapping(value = "checkout", method = RequestMethod.GET)
+	public String checkout() {
+		return "shop/checkout";
 	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)
 	public String mypage() {
