@@ -22,12 +22,12 @@
             <ul class="featured__controls">
                 <li class="active"><a href="../">Home</a></li>
                 <li><a href="/shop/list">Shop</a></li>
-                <li><a href="#">Community</a>
+                <li><a href="/board/notice">Community</a>
                 	<ul class="header__menu__dropdown">
                         <li><a href="/board/notice">Notice</a></li>
-                        <li><a href="#">QnA</a></li>
+                        <li><a href="/board/qna">QnA</a></li>
                         <li><a href="#">Review</a></li>
-                        <li><a href="#">Lounge</a></li>
+                        <li><a href="/board/lounge">Lounge</a></li>
                     </ul>
                 </li>
                 <li><a href="#">참고</a>
@@ -63,11 +63,9 @@
                         <ul>
                             <li><a href="/cart"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a></li>
                             <li></li>
-                            <li>
-
+                            <li>                            	
                             	<c:if test = "${user == null}">
-
-	                            	<div class="header__top__right__auth">
+									<div class="header__top__right__auth">
 	                            		<a href="/shop/login"><i class="fa fa-user"></i>Login</a>
 	                            	</div>
                             	</c:if>
@@ -79,7 +77,7 @@
 				                                <li><a href="/shop/logout" id="logoutBtn">Logout</a></li>
 				                            </ul>
 				                       	</div>
-	                            	<</c:if>
+	                            	</c:if>
                             		<c:if test = "${user.admin == 0}">
                             			<div class="header__top__right">
                             				<ul>
@@ -126,12 +124,12 @@
                                     <li><a href="#">영양제</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">community</a>
+                            <li><a href="/board/notice">community</a>
                             	<ul class="header__menu__dropdown">
-                                    <li><a href="/board/">Notice</a></li>
-                                    <li><a href="#">QnA</a></li>
+                                    <li><a href="/board/notice">공지사항</a></li>
+                                    <li><a href="/board/qna">QnA</a></li>
                                     <li><a href="#">Review</a></li>
-                                    <li><a href="#">Lounge</a></li>
+                                    <li><a href="/board/lounge">자유게시판</a></li>
                                 </ul>
                             </li>
                             <li><a href="#">참고</a>

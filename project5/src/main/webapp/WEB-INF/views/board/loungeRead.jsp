@@ -2,12 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공지사항 게시판</title>
+<title>자유게시판 게시물 상세페이지</title>
 <%@ include file="../includes/src.jsp"%>
 
 </head>
@@ -21,7 +20,7 @@
 			<div class="xans-element- xans-board xans-board-listpackage-1002 xans-board-listpackage xans-board-1002 ">
 				<div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
 					<div class="page_title fs60">
-						<font color="#555555">NOTICE</font>
+						<font color="#555555">자유게시판</font>
 					</div>
 					<p class="imgArea displaynone"></p>
 				</div>
@@ -29,56 +28,53 @@
 					<span
 						class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
 				</div>
-				<div class="n_board line typeList gBorder">
-					<table border="1" summary="">
-						<caption>게시판 목록</caption>
-						<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
-							<tr style="">
-								<td>
-									<div class="chk fs12">번호</div>
-									<div class="displaynone cate fs12">카테고리</div>
-									<div class="subject left fs12">제목</div>
-									<div class="writer fs12">작성자</div>
-									<div class=" fs12 writer_date">작성일</div>
-									<div class=" fs12 hit">조회수</div>
-									<div class="displaynone fs12 vote">추천</div>
-									<div class="displaynone fs12 point">평점</div>
-								</td>
-							</tr>
-						</thead>
-						<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
-							<c:forEach items="${noticeList}" var="board">
-								<tr style="background-color: #FFFFFF; color: #555555;"
-									class="xans-record-">
+				<form method="get" id="frm" name="frm" action="/board/loungeModify" enctype="multipart/form-data">
+					<div class="n_board line typeList gBorder">
+						<table border="1" summary="">
+							<caption>게시판 목록</caption>
+							<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
+								<tr>
 									<td>
-										<div class="chk fs13">
-											<c:out value="${board.boardNo}"/>
+										<input type="hidden" id="boardNo" name="boardNo" value="${freeDetail.boardNo}">
+										<div class="chk fs12">제목</div>
+										<div class="subject left fs12">
+											<c:out value="${freeDetail.boardTitle}"></c:out>
 										</div>
-										<div class="subject left fs13">
-											<a href='/board/noticeRead?boardNo=<c:out value="${board.boardNo}"/>'>
-											<c:out value="${board.boardTitle}"/></a>
+									</td>
+									<td>
+										<div class="chk fs12">작성자</div>
+										<div class="subject left fs12">
+											<c:out value="${freeDetail.userNick}"></c:out> 
 										</div>
-										<div class="writer fs13">
-											관리자
-										</div>
-										<div class=" fs13 writer_date">
-											<fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardUpdate}"/>
-										</div>
-										<div class=" fs13 hit">
-											<c:out value="${board.boardCnt}"/>
+									</td>
+									<td>
+										<div class="chk fs12">작성일</div>
+										<div class="subject left fs12">
+											<fmt:formatDate pattern="yyyy-MM-dd" value="${freeDetail.boardReg}"/>
 										</div>
 									</td>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-				</div>
-				<div class="xans-element- xans-board xans-board-buttonlist-1002 xans-board-buttonlist xans-board-1002 displaynone ">
-					<span class="gRight"> <a
-						href="/board/free/write.html?board_no=1"
-						class="btnSubmitFix sizeS displaynone">글쓰기</a>
-					</span>
-				</div>
+							</thead>
+							<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
+								<tr>
+									<td>
+										<div class="chk fs13">내용</div>
+										<div class="subject left fs13">
+											<c:out value="${freeDetail.boardContent}"></c:out>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<input type="hidden" name="boardTitle" value="${freeDetail.boardTitle}">
+						<input type="hidden" name="boardContent" value="${freeDetail.boardContent}">
+						
+						<div class="boardbtn">
+							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
+							<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button>
+						</div>
+					</div>
+				</form>
 			</div>
 
 			<div
@@ -105,7 +101,7 @@
 					<fieldset class="boardSearch" style="float:right;">
 						<legend>게시물 검색</legend>
 						<p>
-							</select> <input id="search" name="search" fw-filter="" fw-label=""
+							<input id="search" name="search" fw-filter="" fw-label=""
 								fw-msg="" class="inputTypeText" placeholder="" value=""
 								type="text"> <a href="#none" class="btnSubmitFix sizeS"
 								onclick="BOARD.form_submit('boardSearchForm');">찾기</a>
@@ -113,9 +109,15 @@
 					</fieldset>
 				</div>
 			</form>
+			
 		</div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>
+<script>
+	function submitForm() {
+		document.getElementById('frm').submit();
+	}
+</script>
 </body>
 
 </html>
