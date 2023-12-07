@@ -149,7 +149,6 @@
          $("#deleteModal").remove();
      }
 	
-	// $("#deletebtn").on("click", showDeleteModal);
 	 $(document).ready(function(){
 	        let result = '<c:out value="${result}"/>';
 	        writeCheck(result);
