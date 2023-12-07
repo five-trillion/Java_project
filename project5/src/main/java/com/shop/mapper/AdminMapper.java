@@ -20,5 +20,14 @@ public interface AdminMapper {
 	public void prodInsert(ProductVO prodVo);
 	
 	public List<CodeVO> prodCodeInsert();
+	
+	public List<ProductVO> getListProd();
+	
+	public int prodUpdate(ProductVO prodVo);
+	
+	public ProductVO readProd(String prodNo);
+	
+	public int prodRemove(String prodNo);
+	
 	// end 상품관리--------
 }

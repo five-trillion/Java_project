@@ -109,7 +109,7 @@
                 <div class="row mb-3">
                   <label class="col-sm-2 col-form-label"></label>
                   <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">상품 등록</button> &nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="btn btn-primary" onclick="prodNo()">상품 등록</button> &nbsp;&nbsp;&nbsp;
                     <button type="reset" class="btn btn-primary">등록 취소</button>
                   </div>
                 </div>

@@ -22,4 +22,12 @@ public interface AdminService {
 	public void prodRegister (ProductVO prodVo);
 	
 	public List<CodeVO> prodCodeInsert();
+	
+	public List<ProductVO> getListProd() throws Exception;
+	
+	public boolean prodModify(ProductVO prodVo);
+	
+	public ProductVO getProd(String prodNo);
+	
+	public boolean prodRemove(String prodNo);
 }
