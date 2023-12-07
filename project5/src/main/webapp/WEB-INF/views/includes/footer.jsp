@@ -51,7 +51,7 @@
     <!-- Footer Section End -->
     
     <!-- Js Plugins -->
-    <script src="../../../resources/shop/js/jquery-3.3.1.min.js"></script>
+<!--     <script src="../../../resources/shop/js/jquery-3.3.1.min.js"></script> -->
     <script src="../../../resources/shop/js/bootstrap.min.js"></script>
     <script src="../../../resources/shop/js/jquery.nice-select.min.js"></script>
     <script src="../../../resources/shop/js/jquery-ui.min.js"></script>
@@ -59,3 +59,5 @@
     <script src="../../../resources/shop/js/mixitup.min.js"></script>
     <script src="../../../resources/shop/js/owl.carousel.min.js"></script>
     <script src="../../../resources/shop/js/main.js"></script>
+    <script async="" type="text/javascript" src="../../../resources/shop/js/snap_combine_script.js" defer="true" charset="utf-8" onload="onloadsnapscript()"></script>
+    

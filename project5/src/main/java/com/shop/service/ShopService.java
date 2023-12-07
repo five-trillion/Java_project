@@ -3,8 +3,10 @@ package com.shop.service;
 import java.util.List;
 
 import com.shop.domain.BoardVO;
+import com.shop.domain.CartVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
+import com.shop.domain.UsersVO;
 
 public interface ShopService {
 	
@@ -49,7 +51,7 @@ public interface ShopService {
 	public List<ReviewVO> reviewList() throws Exception;
 	
 	//상품상세페이지 리뷰 처리를 위한 메소드 
-	public List<ReviewVO> reviewdList() throws Exception;
+	public List<ReviewVO> reviewdList(String prodNo) throws Exception;
 	
 	//리뷰 선택목록(글읽기)을 위한 메소드 
 	public ReviewVO reviewDetail(int reviNo) throws Exception;
@@ -65,4 +67,23 @@ public interface ShopService {
 	 
 	//리뷰 삭제를 위한 메소드 
 	public int reviewDelete(int reviNo) throws Exception;
+	
+	// ======================장바구니======================
+	//장바구니 추가
+	public int addCart(CartVO cartVO) throws Exception;
+	
+	//장바구니 수정 
+	public int updateCart(CartVO cartVO) throws Exception;
+	
+	//장바구니 삭제
+	public int deleteCart(int cartNo) throws Exception;
+	
+	//장바구니 목록 조회
+	public List<CartVO> getCart(long userNo) throws Exception;
+	
+	//카트에 있는 상품인지 조회
+//	public CartVO countCart(CartVO cartVO) throws Exception;
+	
+	// ======================회원======================
+	
 }

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
+    <wb-module deploy-name="controller-1.0.0-BUILD-SNAPSHOT">
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> hyo2
     <wb-module deploy-name="controller-1.0.0-BUILD-SNAPSHOT">
 <<<<<<< HEAD
 =======
@@ -10,4 +18,68 @@
         <property name="context-root" value="controller"/>
         <property name="java-output-path" value="/project5/target/classes"/>
     </wb-module>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                    	
+=======
+<<<<<<< HEAD
+                        	
+    
+>>>>>>> master
+    
+    
+    
+    
+=======
+>>>>>>> e66dfad2a8e2f536e738a590baa19de58fdf159e
+    <wb-module deploy-name="controller-1.0.0-BUILD-SNAPSHOT">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+>>>>>>> master
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <property name="context-root" value="controller"/>
+        <property name="java-output-path" value="/project5/target/classes"/>
+    </wb-module>
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                        
+=======
+                                
+
+
+>>>>>>> 354de5c9bc870cbc23276db300afeaca98502fee
+
+>>>>>>> master
+
+
+
+
+>>>>>>> 18d063642340c9198a4ce8b833e1fdcd0e7631fa
+=======
+        
+    <wb-module deploy-name="controller-1.0.0-BUILD-SNAPSHOT">
+                
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+                
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+                
+        <property name="java-output-path" value="/project5/target/classes"/>
+        <property name="context-root" value="controller"/>
+            
+    </wb-module>
+    
+>>>>>>> ih1
+>>>>>>> e66dfad2a8e2f536e738a590baa19de58fdf159e
+=======
+>>>>>>> hyo2
+>>>>>>> master
 </project-modules>

@@ -4916,7 +4916,7 @@ a.more_btn {
 
 .page_wrap {
     width: 988px;
-    margin: 0 auto;
+    margin: 70px auto 0;
 }
 
 .page_wrap .fr-box.fr-basic {
@@ -5681,7 +5681,7 @@ select[id="oemail3"] {
     border: 1px solid var(--acr1);
     margin-bottom: 30px;
     margin-top: -20px;
-    border-top: 0;
+    border-top: 1px solid var(--acr1);
 }
 
 .mileage_box ul {
