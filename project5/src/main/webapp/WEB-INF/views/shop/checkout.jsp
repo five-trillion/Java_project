@@ -58,7 +58,6 @@
         	</div>
             <div class="checkout__form">
                 <h4>배송 정보</h4>
-                ${user }
                 <form action="#">
                     <div class="row">
                         <div class="col-lg-12 col-md-6">
@@ -74,17 +73,27 @@
                             	<div class="col-lg-12">
 		                            <div class="checkout__input">
 		                            	<p>주소<span>*</span></p>
-			                                <label for="diff-acc">
-			                                    Ship to a different address?
-			                                    <input type="checkbox" id="diff-acc">
-			                                    <span class="checkmark"></span>
-			                                </label>
-				                      	<input type="text" id="zip" name="zip" value="${user.zip}" placeholder="우편번호">
-				                      	<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-										<input type="text" id="address1" name="address1" value="address1" placeholder="주소"><br>
-										<input type="text" id="address2" name="address2" value="address2" placeholder="상세주소">
-										<!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
-										<input type="hidden" name="address" id="address" value="${user.address}">
+		                            	<div>
+		                            		<div class="checkout__input__checkbox">
+				                                <label for="diff-acc">
+				                                    현재 회원정보
+				                                    <input type="radio" id="diff-acc">
+				                                    <span class="checkmark"></span>
+				                                </label>
+				                            
+				                                <label for="diff-acc">
+				                                    새로운 배송지
+				                                    <input type="radio" id="diff-acc">
+				                                    <span class="checkmark"></span>
+				                                </label>
+				                            </div>
+					                      	<input type="text" id="zip" name="zip" value="${user.zip}" placeholder="우편번호">
+					                      	<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 15%; text-align: center; padding-left: 0;"><br>
+											<input type="text" id="address1" name="address1" value="address1" placeholder="주소"><br>
+											<input type="text" id="address2" name="address2" value="address2" placeholder="상세주소">
+											<!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
+											<input type="hidden" name="address" id="address" value="${user.address}">
+										</div>
 									</div>
 								</div>
                             </div>
@@ -153,9 +162,10 @@
                                 <p>배송메세지</p>
                                 <input type="text">
                             </div>
-                            <button type="submit" class="site-btn">PLACE ORDER</button>
                         </div>
-                        
+                    </div>
+                    <div style="text-align:center;">
+                    	<button type="submit" class="site-btn" style="padding: 13px 60px;">PLACE ORDER</button>
                     </div>
                 </form>
             </div>

@@ -114,6 +114,10 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
     
+    	$(".modify").addClass("on");
+    
+    	$(".checkout__input > p").css({"width" : "150px"});
+    	
     	//휴대폰 
 	    var phone = document.getElementById('phone').value;
 		var phoneArr = phone.split("-");

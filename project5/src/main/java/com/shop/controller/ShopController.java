@@ -38,15 +38,36 @@ public class ShopController {
 	ShopService service;
 	
 	@RequestMapping(value="shop", method = RequestMethod.GET)
-	public String list(Model model) throws Exception {
+	public String list(HttpServletRequest request, Model model) throws Exception {
 		try {
 //			logger.info("=======controller.prodlist========");
+			
 			List<ProductVO> prodlist = service.prodList();
 			model.addAttribute("prodlist", prodlist);
+			System.out.println("a");
+			
 			return "shop/list";
 		} catch(Exception e) {
 			logger.error("Error fetching prodlist", e);
             return "error";
+		}
+	}
+	@RequestMapping(value="shop/list", method = RequestMethod.GET)
+	public void brandlist(@RequestParam("brand") String brand, Model model) throws Exception {
+		try {
+			List<ProductVO> prodlist = service.prodbrandList(brand);
+			model.addAttribute("prodlist", prodlist);
+		} catch(Exception e) {
+			logger.error("Error fetching prodlist", e);
+		}
+	}
+	@RequestMapping(value="shop/list", method = RequestMethod.GET)
+	public void catlist(@RequestParam("category") String category, Model model) throws Exception {
+		try {
+			List<ProductVO> prodlist = service.prodcatList(category);
+			model.addAttribute("prodlist", prodlist);
+		} catch(Exception e) {
+			logger.error("Error fetching prodlist", e);
 		}
 	}
 	@RequestMapping(value = "shop/detail", method = RequestMethod.GET)

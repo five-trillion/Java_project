@@ -73,12 +73,24 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public List<ProductVO> prodList() throws Exception{
 		try {
-			System.out.println("=====Service.prodList=====");
+//			System.out.println("=====Service.prodList=====");
 			return mapper.prodList();
 		} catch (Exception e) {
 		      log.error("Error fetching prodlist", e);
 		      return null;
 		}
+	}
+	
+	@Override
+	public List<ProductVO> prodbrandList(String brand) throws Exception{
+		System.out.println("=====Service.prodbrandList=====");
+		return mapper.prodbrandList(brand);
+	}
+	
+	@Override
+	public List<ProductVO> prodcatList(String category) throws Exception{
+		System.out.println("=====Service.prodcategoryList=====");
+		return mapper.prodcatList(category);
 	}
 	
 	@Override

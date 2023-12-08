@@ -135,12 +135,14 @@
                             	<c:forEach items="${freelist}" var="free">
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <%-- <img src="${contextPath}/resources/shop/img/cart/cart-1.jpg" alt=""> --%>
-                                        <h5>${free.boardTitle}</h5>
-                                        <p>${free.boardContent}</p>
+                                    	<div class="click-area" onclick="location.href='/board/loungeRead?boardNo=${free.boardNo}'">
+	                                        <%-- <img src="${contextPath}/resources/shop/img/cart/cart-1.jpg" alt=""> --%>
+	                                        <h5>${free.boardTitle}</h5>
+	                                        <p>${free.boardContent}</p>
+                                        </div>
                                     </td>
                                     <td class="shoping__cart__quantity">
-                                        ${free.userNo}
+                                        ${free.userNick} 닉네임 (아이디)
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         댓글 : 0
@@ -160,6 +162,7 @@
     <!-- Blog Section End -->
     
     <%@include file="includes/footer.jsp" %>
+    
     <c:if test="${result eq 1}">
     	<script>
     		alert("회원가입 성공!")

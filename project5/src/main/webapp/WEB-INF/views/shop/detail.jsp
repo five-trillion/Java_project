@@ -64,10 +64,10 @@
                             </div>
                         </div>
                         <input type="hidden" id="prodNo" name="prodNo" value="${prd.prodNo}">
-                        <input type="submit" class="primary-btn cart-btn" value="카트에 담기">
+                        <button type="button" class="primary-btn" id="cart-btn">카트에 담기</button>
                         <script>
 //                     	장바구니 추가 버튼
-					    $(".cart-btn").on("click", function(e) {
+					    $("#cart-btn").on("click", function(e) {
 					        e.preventDefault();
 							
 					        var prodNo = $("#prodNo").val();
@@ -104,8 +104,12 @@
                     	    };
 					    });
                         </script>
-                        <button type="button" class="primary-btn">구매하기</button>
-                        
+                        <button type="button" class="primary-btn" id="order-btn">구매하기</button>
+                        <script>
+                        $("#order-btn").on("click", function(e) {
+                        	self.location="/checkout";
+                        });
+                        </script>
                         <ul>
                             <li><b>재고</b> <span>${prd.prodRest}개</span></li>
                             <li><b>배송</b>
@@ -233,11 +237,6 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/product/product-1.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
@@ -249,8 +248,7 @@
         </div>
     </section>
     <!-- Related Product Section End -->
-	<%= session.getAttribute("user") %>
-	
+    
 	<%@include file="../includes/footer.jsp" %>
 	<script>
 	$(function(){

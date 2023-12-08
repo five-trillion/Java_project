@@ -28,7 +28,7 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul class="featured__controls">
                 <li class="active"><a href="../">Home</a></li>
-                <li><a href="/shop/list">Shop</a></li>
+                <li><a href="/shop" class="shop-btn">Shop</a></li>
                 <li><a href="/board/notice">Community</a>
                 	<ul class="header__menu__dropdown">
                         <li><a href="/board/notice">Notice</a></li>
@@ -137,15 +137,15 @@
                             <span>All Brands</span>
                         </div>
                         <ul>
-                            <li><a href="#">네츄럴코어</a></li>
-                            <li><a href="#">달링키친</a></li>
-                            <li><a href="#">로투스</a></li>
-                            <li><a href="#">벅스펫</a></li>
-                            <li><a href="#">ITI</a></li>
-                            <li><a href="#">조피쉬</a></li>
-                            <li><a href="#">애니먼</a></li>
-                            <li><a href="#">애니멀에센셜</a></li>
-                            <li><a href="#">뉴플렉스</a></li>
+                            <li><a href="/shop/list?brand=nc">네츄럴코어</a></li>
+                            <li><a href="/shop/list?brand=dk">달링키친</a></li>
+                            <li><a href="/shop/list?brand=lo">로투스</a></li>
+                            <li><a href="/shop/list?brand=bp">벅스펫</a></li>
+                            <li><a href="/shop/list?brand=it">ITI</a></li>
+                            <li><a href="/shop/list?brand=jf">조피쉬</a></li>
+                            <li><a href="/shop/list?brand=an">애니먼</a></li>
+                            <li><a href="/shop/list?brand=ae">애니멀에센셜</a></li>
+                            <li><a href="/shop/list?brand=nf">뉴플렉스</a></li>
                         </ul>
                     </div>
                 </div>
@@ -153,12 +153,12 @@
                     <nav class="header__menu">
 
                         <ul class="featured__controls">
-                            <li><a href="../">Home</a></li>
+                            <li><a href="../" class="active">Home</a></li>
                             <li class="shop-btn"><a href="/shop">Shop</a>
 								<ul class="header__menu__dropdown">
-                                    <li><a href="#">사료</a></li>
-                                    <li><a href="#">간식</a></li>
-                                    <li><a href="#">영양제</a></li>
+                                    <li><a href="/shop/list?category=fe">사료</a></li>
+                                    <li><a href="/shop/list?category=sn">간식</a></li>
+                                    <li><a href="/shop/list?category=nu">영양제</a></li>
                                 </ul>
                             </li>
                             <li><a href="/board/notice">community</a>
