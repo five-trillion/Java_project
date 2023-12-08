@@ -60,7 +60,7 @@
                         <ul>
                         	<li>
                         		<c:if test = "${user == null}">
-                        			<a href="/shop/login" data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+                        			<a data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
                         		</c:if>
                         		<c:if test = "${user != null }">
                         			<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
