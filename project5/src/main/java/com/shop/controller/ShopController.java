@@ -42,9 +42,18 @@ public class ShopController {
 		try {
 //			logger.info("=======controller.prodlist========");
 			
-			List<ProductVO> prodlist = service.prodList();
-			model.addAttribute("prodlist", prodlist);
-			System.out.println("a");
+			
+			if (request.getParameter("brand").equals("nc")) {
+				String brand = request.getParameter("brand");
+				List<ProductVO> prodlist = service.prodbrandList(brand);
+				model.addAttribute("prodlist", prodlist);
+				System.out.println("b");
+				System.out.println(prodlist);
+				return "shop/list";
+			}
+				List<ProductVO> prodlist = service.prodList();
+				model.addAttribute("prodlist", prodlist);
+				System.out.println("a");
 			
 			return "shop/list";
 		} catch(Exception e) {
@@ -61,15 +70,15 @@ public class ShopController {
 			logger.error("Error fetching prodlist", e);
 		}
 	}
-	@RequestMapping(value="shop/list", method = RequestMethod.GET)
-	public void catlist(@RequestParam("category") String category, Model model) throws Exception {
-		try {
-			List<ProductVO> prodlist = service.prodcatList(category);
-			model.addAttribute("prodlist", prodlist);
-		} catch(Exception e) {
-			logger.error("Error fetching prodlist", e);
-		}
-	}
+//	@RequestMapping(value="shop/list", method = RequestMethod.GET)
+//	public void catlist(@RequestParam("category") String category, Model model) throws Exception {
+//		try {
+//			List<ProductVO> prodlist = service.prodcatList(category);
+//			model.addAttribute("prodlist", prodlist);
+//		} catch(Exception e) {
+//			logger.error("Error fetching prodlist", e);
+//		}
+//	}
 	@RequestMapping(value = "shop/detail", method = RequestMethod.GET)
 	public String detail(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
 		if (prodNo == null) {
