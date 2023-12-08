@@ -106,7 +106,7 @@
 			<!-- // 관리자 전용 메뉴 -->
 		</div>
 	</div>
-	<%@ include file="../includes/footer.jsp"%>
+<%@ include file="../includes/footer.jsp"%>
 <script>
 	function freeCheck() {
 		if(document.frm.boardTitle.value == "") {

@@ -28,7 +28,7 @@
 					<span
 						class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
 				</div>
-				<form method="get" id="frm" name="frm" action="/board/loungeModify" enctype="multipart/form-data">
+				
 					<div class="n_board line typeList gBorder">
 						<table border="1" summary="">
 							<caption>게시판 목록</caption>
@@ -68,11 +68,13 @@
 						</table>
 			
 						<div class="boardbtn">
-							<button type="button" id="notice" name="notice" onclick="location.href='/board/notice'">목록</button>
+							<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+							<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
+							<button type="button" id="notice" name="notice" onclick="location.href='/board/notice?pageNum=${cri.pageNum}&amount=${cri.amount}'">목록</button>
 							<!-- <button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button> -->
 						</div>
 					</div>
-				</form>
+				
 			</div>
 
 			<div
@@ -112,9 +114,7 @@
 	</div>
 	<%@ include file="../includes/footer.jsp"%>
 <script>
-	function submitForm() {
-		document.getElementById('frm').submit();
-	}
+	
 </script>
 </body>
 

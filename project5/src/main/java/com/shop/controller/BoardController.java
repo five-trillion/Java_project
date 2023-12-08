@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.BoardVO;
+import com.shop.domain.Criteria;
+import com.shop.domain.PageMakerVO;
 import com.shop.domain.UsersVO;
 import com.shop.service.BoardService;
   
@@ -24,18 +26,36 @@ public class BoardController {
 	
 	// ============================== 공지사항 ==============================
 	
+	/*
+	 * //공지사항 페이지 이동
+	 * 
+	 * @RequestMapping(value="/notice", method=RequestMethod.GET) public void
+	 * noticeGET(Model model) throws Exception { System.out.println("공지사항 페이지 진입");
+	 * model.addAttribute("noticeList", boardservice.noticeList()); }
+	 */
+	
 	//공지사항 페이지 이동
-	@RequestMapping(value="/notice", method=RequestMethod.GET) 
-	public void noticeGET(Model model) throws Exception {
+	@RequestMapping(value="/notice", method= {RequestMethod.GET,RequestMethod.POST} ) 
+	public void noticeGET(Model model, Criteria cri) throws Exception {
 		System.out.println("공지사항 페이지 진입");
-		model.addAttribute("noticeList", boardservice.noticeList());
+		model.addAttribute("noticeList", boardservice.getListPaging(cri));
+		int total = boardservice.getTotal();
+		PageMakerVO pagemake = new PageMakerVO(cri,total);
+		System.out.println(cri.getPageNum());
+		model.addAttribute("pageNum", cri.getPageNum());
+		model.addAttribute("amount", cri.getAmount());
+		model.addAttribute("pageMaker", pagemake);
 	} 
+	
 	//공지사항 읽기 페이지 이동
 	@RequestMapping(value="/noticeRead", method=RequestMethod.GET)
-	public void noticeReadGET(@RequestParam("boardNo") Long boardNo, Model model) throws Exception {
+	public void noticeReadGET(@RequestParam("boardNo") Long boardNo, @RequestParam("pageNum") int pageNum, @RequestParam("amount") int amount, Model model, Criteria cri) throws Exception {
 		System.out.println("공지사항 읽기 페이지 진입");
 		boardservice.updateNoticeCnt(boardNo);
 		model.addAttribute("noticeDetail", boardservice.noticeDetail(boardNo));
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("amount", amount);
+		model.addAttribute("cri", cri);
 	}
 	
 	// ================================= QnA =================================
@@ -136,7 +156,8 @@ public class BoardController {
 			rttr.addFlashAttribute("result", "write success");
 			return "redirect:/board/lounge";
 		} else {
-			System.out.println("자유게시판 글쓰기 실패(로그인 필요)");
+			System.out.println("자유게시판 글쓰기 실패");
+			rttr.addFlashAttribute("needLogin", "로그인이 필요합니다.");
 			return "redirect:/shop/login";
 		}		
 	}

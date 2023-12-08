@@ -14,6 +14,24 @@
 			order by b.boardNo desc 
 		</select>
 		
+		<!-- 게시물 목록(페이징) -->
+    	<select id="getListPaging" resultType="com.shop.domain.BoardVO">
+    		select * from (
+                	select b.* , u.nick as userNick
+					from board b
+					join users u on b.userNo = u.userNo
+					where b.boardClass = 1
+					order by b.boardNo desc) as T1 
+       		<!-- limit ((${pageNum}-1)*${amount}), ${amount} -->
+       		 limit #{skip},#{amount}
+    	 </select>
+    	 
+    	 <!-- 게시물 총 개수 -->
+    	<select id="getTotal" resultType="int">
+	    	select count(*) from board
+    	</select>
+  
+		
 		<!-- 조회 수 처리 -->
 		<update id="updateNoticeCnt" parameterType="java.lang.Long">
 			update board 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.domain.BoardVO;
+import com.shop.domain.Criteria;
 import com.shop.mapper.BoardMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -22,6 +23,18 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> noticeList() throws Exception {
 		return boardmapper.noticeList();
 	}
+	
+	@Override
+    public List<BoardVO> getListPaging(Criteria cri) {
+        
+        return boardmapper.getListPaging(cri);
+    }  
+	
+	@Override
+	public int getTotal() {
+		return boardmapper.getTotal();
+	}
+	
 	@Override
 	public int updateNoticeCnt(long boardNo) throws Exception {
 		return boardmapper.updateNoticeCnt(boardNo);
