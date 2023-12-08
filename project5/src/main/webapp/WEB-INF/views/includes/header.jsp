@@ -114,7 +114,7 @@
                             		<c:if test = "${user.admin == 0}">
                             			<div class="header__top__right">
                             				<div class="header__top__right__auth">
-				                            	<a href="/admin/main" id="logoutBtn">admin</a>
+				                            	<a href="/admin/adminHome" id="logoutBtn">admin</a>
 				                            </div>
 				                            &nbsp;
 				                            <div class="header__top__right__auth">

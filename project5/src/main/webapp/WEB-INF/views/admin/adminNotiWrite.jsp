@@ -68,6 +68,10 @@
 				alert("제목을 입력해 주세요");
 				return false;
 			}
+			if (document.notiWrite.boardContent.value == "") {
+				alert("내용을 입력해 주세요");
+				return false;
+			}
 			consoel.log("유효성 검사 완료")
 			return true;
 		}

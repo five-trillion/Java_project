@@ -47,17 +47,17 @@
 								</h5>
 
 								<!-- Vertical Form -->
-								<form name="answer" method="post" class="row g-3" onsubmit="return answerCheck()">
+								<form name="answer" method="post" class="row g-3">
 									<input type="hidden" id="boardNo" name="boardNo" value="${question.boardNo}">
 									<div class="col-12">
 										<label for="inputNanme4" class="form-label">제 목</label> <input
 											type="text" class="form-control" name="ansTitle"
-											id="ansTitle">
+											id="ansTitle" value="${answer.ansTitle}">
 									</div>
 									<div class="col-12">
 										<label for="inputEmail4" class="form-label">내 용</label>
 										<textarea rows="20" class="form-control" name="ansContent"
-											id="ansContent"></textarea>
+											id="ansContent">${answer.ansContent}</textarea>
 									</div>
 									<div class="text-center">
 										<button type="submit" class="btn btn-primary">답변제출</button>
@@ -86,15 +86,7 @@
 			"width" : "50%",
 		});
 		function answerCheck() {
-			if (document.answer.ansTitle.value == "") {
-				alert("제목을 입력해 주세요");
-				return false;
-			}
-			if (document.answer.ansContent.value == "") {
-				alert("내용을 입력해 주세요");
-				return false;
-			}
-			return true
+			document.answer.ansTitle
 		}
 	</script>
 </body>

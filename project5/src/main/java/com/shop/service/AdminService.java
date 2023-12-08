@@ -21,6 +21,8 @@ public interface AdminService {
 	
 	// 회원삭제
 	public void userDelete(long userNo);
+	// 회원 정보가져오기
+	public UsersVO getUserDetail(long userNo);
 	// end 회원 ------------
 	
 	
@@ -40,10 +42,21 @@ public interface AdminService {
 	public BoardVO getBoardDetail(long boardNo);
 	// 공지쓰기
 	public void notiWrite(BoardVO boardVo);
+	// 공지 수정
+	public void notiModify(BoardVO boardVo);	
 	// 질의 답변
 	public void ansComplete(AnswerVO answerVo);
+	// 답변 가져오기
+	public AnswerVO getAnswer(long boardNo);
+	// 답변 수정
+	public void updateAnswer(AnswerVO answerVo);
 	// 게시판 삭제
 	public void boardDelete(long boardNo);
+	
+	// 게시판 리뷰보기
+	public List<BoardReplyVO> getBoardReview(long boardNo);
+	// 게시판 리뷰삭제
+	public void boardReviwDelete(long boRepNo);
 	// end 게시판 --------
 	
 	
