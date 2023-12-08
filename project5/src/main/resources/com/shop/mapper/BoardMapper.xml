@@ -7,10 +7,26 @@
 		
 		<!-- 전체목록 조회 -->
 		<select id="noticeList" resultType="com.shop.domain.BoardVO">
-			select *
-			from board
-			where boardClass = 1
-			order by boardNo desc 
+			select b.* , u.nick as userNick
+			from board b
+			join users u on b.userNo = u.userNo
+			where b.boardClass = 1
+			order by b.boardNo desc 
+		</select>
+		
+		<!-- 조회 수 처리 -->
+		<update id="updateNoticeCnt" parameterType="java.lang.Long">
+			update board 
+			set boardCnt = boardCnt + 1 
+			where boardNo = #{boardNo}
+		</update>
+		
+		<!-- 상세조회 -->
+		<select id="noticeDetail" parameterType="java.lang.Long" resultType="com.shop.domain.BoardVO">
+			select b.*, u.nick as userNick 
+			from board b
+			join users u on b.userNo = u.userNo
+			where boardNo = #{boardNo}
 		</select>
 		
 		<!-- ================================ QnA ================================ -->
@@ -23,6 +39,43 @@
 			where b.boardClass = 2
 			order by b.boardNo desc 
 		</select>
+		
+		<!-- 조회 수 처리 -->
+		<update id="updateQnaCnt" parameterType="java.lang.Long">
+			update board 
+			set boardCnt = boardCnt + 1 
+			where boardNo = #{boardNo}
+		</update>
+		
+		<!-- 상세조회 -->
+		<select id="qnaDetail" parameterType="java.lang.Long" resultType="com.shop.domain.BoardVO">
+			select b.*, u.nick as userNick 
+			from board b
+			join users u on b.userNo = u.userNo
+			where boardNo = #{boardNo}
+		</select>
+		
+		<!-- 게시물 작성 -->
+		<insert id="qnaRegister" parameterType="com.shop.domain.BoardVO">
+			INSERT INTO board(boardNo, userNo, boardClass, boardTitle, boardContent, boardReg, <!-- boardImg, --> boardCnt)
+	  		VALUES(default, #{userNo}, 2, #{boardTitle}, #{boardContent}, default, <!-- #{boardImg}, --> 0)
+	  	</insert>
+		
+		<!-- 게시물 수정 -->
+		<update id="qnaUpdate" parameterType="com.shop.domain.BoardVO">
+			update board
+			   set boardTitle = #{boardTitle},
+			   		boardContent= #{boardContent},
+			   		boardUpdate = default
+			   		<!-- boardImg = #{boardImg} -->
+			 where boardNo = #{boardNo}
+		</update>
+		
+		<!-- 게시물 삭제 -->
+		<delete id="qnaDelete" parameterType="com.shop.domain.BoardVO">
+			delete from board
+			where boardNo = #{boardNo} 
+		</delete>   
 		
 		<!-- ============================= 자유게시판 ============================= -->
 		
@@ -43,6 +96,13 @@
 			where b.boardClass = 3
 			order by b.boardNo desc 
 		</select>
+		
+		<!-- 조회 수 처리 -->
+		<update id="updateFreeCnt" parameterType="java.lang.Long">
+			update board 
+			set boardCnt = boardCnt + 1 
+			where boardNo = #{boardNo}
+		</update>
 		
 		<!-- 상세조회 -->
 		<select id="freeDetail" parameterType="java.lang.Long" resultType="com.shop.domain.BoardVO">

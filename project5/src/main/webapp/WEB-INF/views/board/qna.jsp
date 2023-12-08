@@ -46,7 +46,7 @@
 							</tr>
 						</thead>
 						<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
-							<c:forEach items="${qnaList}" var="board" varStatus="loop">
+						<c:forEach items="${qnaList}" var="board">
 								<tr style="background-color: #FFFFFF; color: #555555;"
 									class="xans-record-">
 									<td>
@@ -58,7 +58,7 @@
 											<c:out value="${board.boardTitle}"/></a>
 										</div>
 										<div class="writer fs13">
-											<c:out value="${boardNickList[loop.index]}"/>
+											<c:out value="${board.userNick}"/>
 										</div>
 										<div class=" fs13 writer_date">
 											<fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardUpdate}"/>
@@ -111,6 +111,27 @@
 		</div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>
+<script>
+	$(document).ready(function(){
+	    let result = '<c:out value="${result}"/>';
+	    writeCheck(result);
+	
+	    function writeCheck(result) {
+	        if(result === '') {
+	            return;
+	        }
+	        if(result === "write success") {
+	            alert("등록이 완료되었습니다.");
+	        }
+	        if(result === "modify success") {
+	            alert("수정이 완료되었습니다.");
+	        }
+	        if(result === "delete success") {
+	            showDeleteModal(); // 삭제 성공 시 모달창 표시
+	        }
+	    }
+	});
+</script>	
 </body>
 
 </html>

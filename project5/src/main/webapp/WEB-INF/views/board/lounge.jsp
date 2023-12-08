@@ -44,7 +44,7 @@
 							</tr>
 						</thead>
 						<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
-							<c:forEach items="${freeList}" var="board" varStatus="loop">
+							<c:forEach items="${freeList}" var="board">
 								<tr style="background-color: #FFFFFF; color: #555555;"
 									class="xans-record-">
 									<td>

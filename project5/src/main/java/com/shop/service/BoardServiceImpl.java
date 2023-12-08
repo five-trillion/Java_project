@@ -22,70 +22,48 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> noticeList() throws Exception {
 		return boardmapper.noticeList();
 	}
+	@Override
+	public int updateNoticeCnt(long boardNo) throws Exception {
+		return boardmapper.updateNoticeCnt(boardNo);
+	}
 
 	@Override
 	public BoardVO noticeDetail(long boardNo) throws Exception {
-		// TODO Auto-generated method stub
 		return boardmapper.noticeDetail(boardNo);
 	}
-
-	@Override
-	public int updateNoticeBoardCnt(long boardNo) throws Exception {
-		// TODO Auto-generated method stub
-		return boardmapper.updateNoticeBoardCnt(boardNo);
-	}
-
-	/* 관리자 권한
-	 * @Override public void noticeRegister(BoardVO board) throws Exception { //
-	 * TODO Auto-generated method stub boardmapper.noticeRegister(board); }
-	 * 
-	 * @Override public void noticeUpdate(BoardVO board) throws Exception { // TODO
-	 * Auto-generated method stub boardmapper.noticeUpdate(board); }
-	 * 
-	 * @Override public void noticeDelete(long boardNo) throws Exception { // TODO
-	 * Auto-generated method stub boardmapper.noticeDelete(boardNo); }
-	 */
 	
 	// ----------------------------- QnA -----------------------------
 	@Override
 	public List<BoardVO> qnaList() throws Exception {
 		return boardmapper.qnaList();
 	}
-
+	@Override
+	public int updateQnaCnt(long boardNo) throws Exception {
+		return boardmapper.updateQnaCnt(boardNo);
+	}
 	@Override
 	public BoardVO qnaDetail(long boardNo) throws Exception {
-		// TODO Auto-generated method stub
 		return boardmapper.qnaDetail(boardNo);
 	}
 
 	@Override
-	public int updateQnaBoardCnt(long boardNo) throws Exception {
-		// TODO Auto-generated method stub
-		return boardmapper.updateQnaBoardCnt(boardNo);
-	}
-
-	@Override
 	public void qnaRegister(BoardVO board) throws Exception {
-		// TODO Auto-generated method stub
 		boardmapper.qnaRegister(board);
 	}
 
 	@Override
-	public void qnaUpdate(BoardVO board) throws Exception {
-		// TODO Auto-generated method stub
-		boardmapper.qnaUpdate(board);
+	public int qnaUpdate(BoardVO board) throws Exception {
+		return boardmapper.qnaUpdate(board);
 	}
 
 	@Override
-	public void qnaDelete(long boardNo) throws Exception {
-		// TODO Auto-generated method stub
-		boardmapper.qnaDelete(boardNo);
+	public int qnaDelete(long boardNo) throws Exception {
+		return boardmapper.qnaDelete(boardNo);
 	}
 	
 	// ----------------------------- 자유게시판 -----------------------------
 	@Override
 	public List<BoardVO> freepopList() throws Exception {
-		// TODO Auto-generated method stub
 		try {
 			System.out.println("=====Service.freepopList=====");
 			return boardmapper.freepopList();
@@ -99,35 +77,35 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> freeList() throws Exception {
 		return boardmapper.freeList();
 	}
+	
+	@Override
+	public int updateFreeCnt(long boardNo) throws Exception {
+		return boardmapper.updateFreeCnt(boardNo);
+	}
 
 	@Override
 	public BoardVO freeDetail(long boardNo) throws Exception {
-		// TODO Auto-generated method stub
 		return boardmapper.freeDetail(boardNo);
 	}
 
 	@Override
 	public int updateFreeBoardCnt(long boardNo) throws Exception {
-		// TODO Auto-generated method stub
 		return boardmapper.updateFreeBoardCnt(boardNo);
 	}
 
 	@Override
 	public void freeRegister(BoardVO board) throws Exception {
-		// TODO Auto-generated method stub
 		boardmapper.freeRegister(board);
 	}
 
 	@Override
 	public int freeUpdate(BoardVO board) throws Exception {
-		// TODO Auto-generated method stub
 		return boardmapper.freeUpdate(board);
 		
 	}
 
 	@Override
 	public int freeDelete(long boardNo) throws Exception {
-		// TODO Auto-generated method stub
 		return boardmapper.freeDelete(boardNo);
 	}		
 }
