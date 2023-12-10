@@ -166,8 +166,12 @@ public class AdminController {
 	@GetMapping("/adminUserModify")
 	public void adminUserModify(@RequestParam("userNo") long userNo, HttpServletRequest request) throws Exception {
 		UsersVO uVo = adminService.getUserDetail(userNo);
-		
 		request.setAttribute("user", uVo);
+	}
+	@PostMapping("/adminUserModify")
+	public String adminUserModify(UsersVO uVo) throws Exception {
+		adminService.UpdateUserDetail(uVo);
+		return "redirect:/admin/adminUserManage";
 	}
 	// 회원관리 삭제
 	@GetMapping("/adminUserDelete")

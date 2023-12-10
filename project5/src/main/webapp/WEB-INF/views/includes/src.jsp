@@ -22,6 +22,6 @@
     <link rel="stylesheet" href="../../../resources/shop/css/optimizer.css" type="text/css">
     <link rel="stylesheet" href="../../../resources/shop/css/pc_common.css" type="text/css">
     <link rel="stylesheet" href="../../../resources/shop/css/site2.css" type="text/css">
-
+	<link rel="stylesheet" href="../../../resources/shop/css/myShopStyle.css" type="text/css">
 	<script src="../../../resources/shop/js/jquery-3.3.1.min.js"></script>
 

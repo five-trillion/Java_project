@@ -25,6 +25,11 @@ import lombok.extern.log4j.Log4j;
 public class AdminServiceImpl implements AdminService {
 
 	@Override
+	public void UpdateUserDetail(UsersVO usersVo) {
+		mapper.UpdateUserDetail(usersVo);
+	}
+
+	@Override
 	public UsersVO getUserDetail(long userNo) {
 		return mapper.getUserDetail(userNo);
 	}
