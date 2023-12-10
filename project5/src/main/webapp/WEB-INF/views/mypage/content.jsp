@@ -71,6 +71,9 @@
 	<%@include file="../includes/footer.jsp" %>
 	<%@include file="../includes/mp_footer.jsp" %>
 	
+	<script>
+	$(".board").addClass("on");
+	</script>
 	
 </body>
 </html>

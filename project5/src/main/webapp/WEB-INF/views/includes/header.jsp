@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	
 	<!-- Page Preloder -->
     <div id="preloder">
@@ -17,10 +18,17 @@
             <ul>
                 <li>
                		<c:if test = "${user == null}">
-               			<a href="/shop/login" data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+               			<a href="/shop/login" data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i></a>
                		</c:if>
                		<c:if test = "${user != null }">
-               			<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+               			<c:choose>
+               				<c:when test="${cart.isEmpty()}">
+               					<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i></a>
+               				</c:when>
+               				<c:otherwise>
+               					<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i><span><c:out value="${fn:length(cart)}"/></span></a>
+               				</c:otherwise>
+               			</c:choose>
                		</c:if>
                	</li>
             </ul>
@@ -28,7 +36,7 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul class="featured__controls">
                 <li class="active"><a href="../">Home</a></li>
-                <li><a href="/shop/list">Shop</a></li>
+                <li><a href="/shop" class="shop-btn">Shop</a></li>
                 <li><a href="/board/notice">Community</a>
                 	<ul class="header__menu__dropdown">
                         <li><a href="/board/notice">Notice</a></li>
@@ -60,10 +68,17 @@
                         <ul>
                         	<li>
                         		<c:if test = "${user == null}">
-                        			<a href="/shop/login" data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+                        			<a data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i></a>
                         		</c:if>
                         		<c:if test = "${user != null }">
-                        			<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+                        			<c:choose>
+			               				<c:when test="${cart.isEmpty()}">
+			               					<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i></a>
+			               				</c:when>
+			               				<c:otherwise>
+			               					<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i><span><c:out value="${fn:length(cart)}"/></span></a>
+			               				</c:otherwise>
+			               			</c:choose>
                         		</c:if>
                         	</li>
                         	&nbsp;
@@ -114,7 +129,7 @@
                             		<c:if test = "${user.admin == 0}">
                             			<div class="header__top__right">
                             				<div class="header__top__right__auth">
-				                            	<a href="/admin/main" id="logoutBtn">admin</a>
+				                            	<a href="/admin/adminHome" id="logoutBtn">admin</a>
 				                            </div>
 				                            &nbsp;
 				                            <div class="header__top__right__auth">
@@ -137,15 +152,15 @@
                             <span>All Brands</span>
                         </div>
                         <ul>
-                            <li><a href="#">네츄럴코어</a></li>
-                            <li><a href="#">달링키친</a></li>
-                            <li><a href="#">로투스</a></li>
-                            <li><a href="#">벅스펫</a></li>
-                            <li><a href="#">ITI</a></li>
-                            <li><a href="#">조피쉬</a></li>
-                            <li><a href="#">애니먼</a></li>
-                            <li><a href="#">애니멀에센셜</a></li>
-                            <li><a href="#">뉴플렉스</a></li>
+                            <li><a href="/shop/brand?b=nc">네츄럴코어</a></li>
+                            <li><a href="/shop/brand?b=dk">달링키친</a></li>
+                            <li><a href="/shop/brand?b=lo">로투스</a></li>
+                            <li><a href="/shop/brand?b=bp">벅스펫</a></li>
+                            <li><a href="/shop/brand?b=it">ITI</a></li>
+                            <li><a href="/shop/brand?b=jf">조피쉬</a></li>
+                            <li><a href="/shop/brand?b=an">애니먼</a></li>
+                            <li><a href="/shop/brand?b=ae">애니멀에센셜</a></li>
+                            <li><a href="/shop/brand?b=nf">뉴플렉스</a></li>
                         </ul>
                     </div>
                 </div>
@@ -153,12 +168,12 @@
                     <nav class="header__menu">
 
                         <ul class="featured__controls">
-                            <li class="active"><a href="../">Home</a></li>
-                            <li><a href="/shop">Shop</a>
+                            <li><a href="../" class="active">Home</a></li>
+                            <li class="shop-btn"><a href="/shop">Shop</a>
 								<ul class="header__menu__dropdown">
-                                    <li><a href="#">사료</a></li>
-                                    <li><a href="#">간식</a></li>
-                                    <li><a href="#">영양제</a></li>
+                                    <li><a href="/shop/category?c=fe">사료</a></li>
+                                    <li><a href="/shop/category?c=sn">간식</a></li>
+                                    <li><a href="/shop/category?c=nu">영양제</a></li>
                                 </ul>
                             </li>
                             <li><a href="/board/notice">community</a>

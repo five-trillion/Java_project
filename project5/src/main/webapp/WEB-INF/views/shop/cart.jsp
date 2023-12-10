@@ -11,34 +11,29 @@
 </head>
 <body>
 	<%@include file="../includes/header.jsp" %>
-    
     <!-- Shoping Cart Section Begin -->
     <section class="shoping-cart spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
-                        <c:if test="${status.end == 0} ">
+                     <c:choose>
+                       <c:when test="${cart.isEmpty()}">
                         	<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList">
 							<table border="1" summary="">
-							<caption>주문 상품 정보</caption>
-<!-- 								<thead> -->
-<!-- 									<tr> -->
-<!-- 										<td> -->
-<!-- 					                        <p class="fs12 number">주문일자 [주문번호]</p> -->
-<!-- 					                        <p class="thumb"></p> -->
-<!-- 					                        <p class="fs12 product" style="padding: 0px;">상품</p> -->
-<!-- 					                        <p class="quantity"></p> -->
-<!-- 					                        <p class="right"></p> -->
-<!-- 					                        <p class="fs12 state">주문상태</p> -->
-<!-- 					                    </td> -->
-<!-- 		                			</tr> -->
-<!-- 		                		</thead> -->
+								<thead>
+	                                <tr>
+	                                	<th>선택</th>
+	                                    <th colspan="2" class="shoping__product">상품정보</th>
+	                                    <th>수량</th>
+	                                    <th>주문금액</th>
+	                                    <th><!-- 삭제 버튼 --></th>
+	                                </tr>
 							</table>
-							<p class="message  fs14">주문 내역이 없습니다.</p>
+							<p class="message  fs14">장바구니 내역이 없습니다.</p>
 						</div>
-                      	</c:if>
-                      	<c:if test="${status.end != 0}">
+                      	</c:when>
+                      	<c:otherwise>
 	                        <table>
 	                            <thead>
 	                                <tr>
@@ -46,12 +41,12 @@
 	                                    <th colspan="2" class="shoping__product">상품정보</th>
 	                                    <th>수량</th>
 	                                    <th>주문금액</th>
-	                                    <th><!-- 변경 적용 버튼 --></th>
 	                                    <th><!-- 삭제 버튼 --></th>
 	                                </tr>
 	                            </thead>
 	                            <tbody>
 	                            	<c:forEach items="${cart}" var="cart">
+	                            	<input type="hidden" value="${cart.cartNo}">
 	                                <tr>
 	                                	<td class="shoping__cart__item__close" style="width:80px; text-align: center;">
 	                                        <span><input type="checkbox"></span>
@@ -75,18 +70,16 @@
 	                                    <td class="shoping__cart__total">
 	                                        <fmt:formatNumber pattern="###,###,###.##" value="${cart.totalPrice}" />
 	                                    </td>
-	                                    <td class="shoping__cart__item__close" style="width: 50px; text-align: center;">
-	                                        
-	                                    </td>
 	                                    <td class="shoping__cart__item__close">
 	                                        <a class="delete_btn" data-cartno="${cart.cartNo}"><span class="icon_close"></span></a>
-<%-- 											<button class="delete_btn" data-cartNo = "${cart.cartNo}">삭제</button> --%>
 	                                    </td>
 	                                </tr>
+	                                <c:set var="total" value="${total + cart.salePrice * cart.orderCnt}"/>
 	                                </c:forEach>
 	                            </tbody>
 	                        </table>
-	                    </c:if>
+	                    </c:otherwise>
+	                  </c:choose>
                     </div>
                 </div>
             </div>
@@ -105,13 +98,41 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <li style="border-bottom: none;">총 상품금액<span><fmt:formatNumber pattern="###,###,###.##" value="${total}"/>원</span></li>
+                            <li>배송비<span>3,000원</span></li>
+                            <li>합계 <span><fmt:formatNumber pattern="###,###,###.##" value="${total+3000}"/>원</span></li>
                         </ul>
-                        <a href="/checkout" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <c:choose>
+                       		<c:when test="${cart.isEmpty()}">
+                        		<a href="#" data-toggle="modal" data-target="#orderpageModal" class="primary-btn">주문하기</a>
+                        	</c:when>
+                      		<c:otherwise>
+                      			<a href="/checkout" class="primary-btn">주문하기</a>
+                      		</c:otherwise>
+                      	</c:choose>
                     </div>
                 </div>
             </div>
+            
+        <!-- order Modal -->
+		<div class="modal fade" id="orderpageModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="orderpageModalLabel">알림</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        주문내역이 없습니다. 장바구니에 상품을 먼저 추가해주세요.
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button id="orderpagebtn" name="orderpagebtn" type="submit" class="btn btn-primary">Confirm</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
         <!-- 수정 form -->
 		<form action="/cart/update" method="post" class="quantity_modify_form">
 			<input type="hidden" id="cartNo" name="cartNo" class="modify_cartNo">
@@ -131,6 +152,10 @@
 	
 	<%@include file="../includes/footer.jsp" %>
 	<script>
+	$("#orderpagebtn").on("click",function() {
+ 		self.location="/checkout";
+ 	});
+	
 	/* 장바구니 변경 버튼 */
 	$(".modify_btn").on("click", function(e){
 		let cartNo = $(this).data("cartno");

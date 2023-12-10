@@ -37,6 +37,16 @@ public interface ShopService {
 	//전체목록 처리를 위한 메소드
 	public List<ProductVO> prodList() throws Exception;
 	
+		//---------------------------------------------------------------------------
+		//상품목록
+	
+		public List<ProductVO> prodbrandList(String brand) throws Exception;
+		
+		public List<ProductVO> prodcatList(String category) throws Exception;
+		
+		
+		//---------------------------------------------------------------------------
+	
 	//선택목록(글읽기)을 위한 메소드
 	public ProductVO prodDetail(String prodNo) throws Exception;
 	

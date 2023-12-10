@@ -76,5 +76,9 @@
     </div>
     
     <%@include file="../includes/footer.jsp" %>
+    
+    <script>
+    $(".home").addClass("on");
+    </script>
 </body>
 </html>

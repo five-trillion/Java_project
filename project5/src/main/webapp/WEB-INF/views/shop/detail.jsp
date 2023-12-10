@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
@@ -52,7 +53,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-o"></i>
-                            <span>(0<!-- 리뷰 개수 --> reviews)</span>
+                            <span>(<c:out value="${fn:length(rlist)}"/> reviews)</span>
                         </div>
                         <div class="product__details__price"><fmt:formatNumber value="${prd.salePrice}" pattern="###,###,###.##"/>원</div>
                         <p>${prd.prodInfo}</p>
@@ -64,10 +65,10 @@
                             </div>
                         </div>
                         <input type="hidden" id="prodNo" name="prodNo" value="${prd.prodNo}">
-                        <input type="submit" class="primary-btn cart-btn" value="카트에 담기">
+                        <button type="button" class="primary-btn" id="cart-btn">카트에 담기</button>
                         <script>
 //                     	장바구니 추가 버튼
-					    $(".cart-btn").on("click", function(e) {
+					    $("#cart-btn").on("click", function(e) {
 					        e.preventDefault();
 							
 					        var prodNo = $("#prodNo").val();
@@ -104,8 +105,12 @@
                     	    };
 					    });
                         </script>
-                        <button type="button" class="primary-btn">구매하기</button>
-                        
+                        <button type="button" class="primary-btn" id="order-btn">구매하기</button>
+                        <script>
+                        $("#order-btn").on("click", function(e) {
+                        	self.location="/checkout";
+                        });
+                        </script>
                         <ul>
                             <li><b>재고</b> <span>${prd.prodRest}개</span></li>
                             <li><b>배송</b>
@@ -124,7 +129,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                    aria-selected="false">Review <span>(0<c:out value="${status.end}"/>)</span></a>
+                                    aria-selected="false">Review <span>(<c:out value="${fn:length(rlist)}"/>)</span></a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -157,10 +162,10 @@
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc">
                                     <div class="shoping__cart__table">
-				                        <c:if test="${status.end == 0} ">
+				                      <c:choose>
+				                        <c:when test="${rlist.isEmpty()}">
 			                        		<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList">
 												<table border="1" summary="">
-												<caption>주문 상품 정보</caption>
 <!-- 														<thead> -->
 <!-- 															<tr> -->
 <!-- 																<td> -->
@@ -174,10 +179,10 @@
 <!-- 								                			</tr> -->
 <!-- 								                		</thead> -->
 												</table>
-												<p class="message  fs14">주문 내역이 없습니다.</p>
+												<p class="message  fs14">구매평이 없습니다.</p>
 											</div>
-			                        	</c:if>
-			                        	<c:if test="${status.end != 0}">
+			                        	</c:when>
+			                        	<c:otherwise>
 				                        	<table>
 					                            <tbody>
 					                            	<c:forEach items="${rlist}" var="rlist" varStatus="status">
@@ -206,8 +211,8 @@
 					                                </c:forEach>
 				                            	</tbody>
 				                            </table>
-			                            </c:if>
-				                    	
+			                            </c:otherwise>
+				                      </c:choose>
                                		</div>
                             	</div>
                             </div>
@@ -233,11 +238,6 @@
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/product/product-1.jpg">
-                            <ul class="product__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
@@ -249,8 +249,7 @@
         </div>
     </section>
     <!-- Related Product Section End -->
-	<%= session.getAttribute("user") %>
-	
+    
 	<%@include file="../includes/footer.jsp" %>
 	<script>
 	$(function(){
@@ -265,7 +264,7 @@
 		}
 	});
 	});
-
+	$(".shop-btn").addClass("active");
 	</script>
 	
 </body>

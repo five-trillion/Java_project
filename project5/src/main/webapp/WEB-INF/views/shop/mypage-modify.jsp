@@ -19,7 +19,7 @@
                 <div class="mp_title fs15">회원정보</div>
                 <div class="checkout__input"><P style="float:right;"><span>*</span> 필수입력사항</P></div>
                 <form action="mypage-modify" method="post" name="frm" id="frm">
-                	<div class="col-lg-8 col-md-6">
+                	<div class="col-lg-10 col-md-6">
 	                   <div class="checkout__input">
 	                        <p>아이디<span>*</span></p>
 	                        <input type="text" name="userId" class="id_input" value="${user.userId}" readonly>
@@ -114,6 +114,10 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
     
+    	$(".modify").addClass("on");
+    
+    	$(".checkout__input > p").css({"width" : "150px"});
+    	
     	//휴대폰 
 	    var phone = document.getElementById('phone').value;
 		var phoneArr = phone.split("-");

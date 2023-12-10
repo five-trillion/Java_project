@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
@@ -28,15 +29,15 @@
                         <div class="sidebar__item">
                             <h4>Brand</h4>
                             <ul>
-                                <li><a href="#">네츄럴코어</a></li>
-                                <li><a href="#">달링키친</a></li>
-                                <li><a href="#">로투스</a></li>
-                                <li><a href="#">벅스펫</a></li>
-                                <li><a href="#">ITI</a></li>
-                                <li><a href="#">조피쉬</a></li>
-                                <li><a href="#">애니먼</a></li>
-                                <li><a href="#">애니멀에센셜</a></li>
-                                <li><a href="#">뉴플렉스</a></li>
+                                <li><a class="ncclick" href="/shop/brand?b=nc">네츄럴코어</a></li>
+                                <li><a class="dkclick" href="/shop/brand?b=dk">달링키친</a></li>
+                                <li><a class="loclick" href="/shop/brand?b=lo">로투스</a></li>
+                                <li><a class="bpclick" href="/shop/brand?b=bp">벅스펫</a></li>
+                                <li><a class="itclick" href="/shop/brand?b=it">ITI</a></li>
+                                <li><a class="jfclick" href="/shop/brand?b=jf">조피쉬</a></li>
+                                <li><a class="anclick" href="/shop/brand?b=an">애니먼</a></li>
+                                <li><a class="aeclick" href="/shop/brand?b=ae">애니멀에센셜</a></li>
+                                <li><a class="nfclick" href="/shop/brand?b=nf">뉴플렉스</a></li>
                             </ul>
                         </div>
                         
@@ -57,7 +58,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="filter__found">
-                                    <h6><span>16<!-- 목록에 있는 상품 개수 --></span> Products found</h6>
+                                    <h6><span><c:out value="${fn:length(prodlist)}"/></span> Products found</h6>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-3">
@@ -70,11 +71,12 @@
                     </div>
                     <div class="row">
                         <c:forEach items="${prodlist}" var="prd">
+                        	<input type="hidden" value="${prd.brand}">
+                        	<input type="hidden" value="${prd.category}">
 	                        <div class="col-lg-4 col-md-6 col-sm-6">
 	                        	<div class="click-area" onclick="location.href='/shop/detail?prodNo=${prd.prodNo}'">
 		                            <div class="product__item">
 		                                <div class="product__item__pic set-bg" data-setbg="${contextPath}/resources/upload/product/thumbnails/${prd.prodMainImg}">
-		                                    
 		                                </div>
 		                                <div class="product__item__text">
 		                                	<input type="hidden" name="prodNo" value="${prd.prodNo}">
@@ -87,12 +89,12 @@
 	                        </div>
                         </c:forEach>
                     </div>
-                    <!-- <div class="product__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
-                    </div> -->
+<!--                     <div class="product__pagination"> -->
+<!--                         <a href="#">1</a> -->
+<!--                         <a href="#">2</a> -->
+<!--                         <a href="#">3</a> -->
+<!--                         <a href="#"><i class="fa fa-long-arrow-right"></i></a> -->
+<!--                     </div> -->
                 </div>
             </div>
         </div>
@@ -101,18 +103,9 @@
 	
 	<%@include file="../includes/footer.jsp" %>
 	
-	<!-- <script>
-	$('.fa-shopping-cart').on("click",function(e){
-		
-		e.preventDefault();
-		
-		let popUrl = "/shop/popcart";
-		let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
-		
-		window.open(popUrl,"장바구니로 이동",popOption);
-		
-	});
-	</script> -->
+	<script>
+	$(".shop-btn").addClass("active");
+	</script>
 	
 </body>
 </html>

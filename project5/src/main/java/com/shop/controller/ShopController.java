@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,15 +39,39 @@ public class ShopController {
 	ShopService service;
 	
 	@RequestMapping(value="shop", method = RequestMethod.GET)
-	public String list(Model model) throws Exception {
+	public String list(HttpServletRequest request, Model model) throws Exception {
 		try {
 //			logger.info("=======controller.prodlist========");
 			List<ProductVO> prodlist = service.prodList();
 			model.addAttribute("prodlist", prodlist);
+			System.out.println("a");
 			return "shop/list";
 		} catch(Exception e) {
 			logger.error("Error fetching prodlist", e);
             return "error";
+		}
+	}
+	@RequestMapping(value="shop/brand", method = RequestMethod.GET)
+	public String brandlist(@RequestParam("b") String brand, Model model) throws Exception {
+		try {
+			List<ProductVO> prodlist = service.prodbrandList(brand);
+			model.addAttribute("prodlist", prodlist);
+			System.out.println("c");
+			return "shop/list";
+		} catch(Exception e) {
+			logger.error("Error fetching prodlist", e);
+			return "error";
+		}
+	}
+	@RequestMapping(value="shop/category", method = RequestMethod.GET)
+	public String catlist(@RequestParam("c") String category, Model model) throws Exception {
+		try {
+			List<ProductVO> prodlist = service.prodcatList(category);
+			model.addAttribute("prodlist", prodlist);
+			return "shop/list";
+		} catch(Exception e) {
+			logger.error("Error fetching prodlist", e);
+			return "error";
 		}
 	}
 	@RequestMapping(value = "shop/detail", method = RequestMethod.GET)
@@ -60,6 +85,7 @@ public class ShopController {
 	        
 	        List<ReviewVO> revidlist = service.reviewdList(prodNo); // 해당상품 리뷰목록구현
 	        model.addAttribute("rlist", revidlist);
+	        System.out.println(revidlist == null);
 	        
 	    }
 		return "shop/detail";
@@ -79,10 +105,7 @@ public class ShopController {
 	@RequestMapping(value="/cart/{userNo}", method = RequestMethod.GET)
 	public String getcart(HttpServletRequest request, HttpSession session, Model model) throws Exception {
 	    try {
-	        log.info("=======controller.getcart========");
-
 	        UsersVO uVo = (UsersVO) session.getAttribute("user");
-
 	        // 세션에 "uVO" 속성이 없거나 값이 null인 경우 처리
 	        if (uVo == null) {
 	            log.error("User information not found in session");
@@ -109,10 +132,20 @@ public class ShopController {
 		service.deleteCart(cartVO.getCartNo());
 		return "redirect:/cart/"+ cartVO.getUserNo();
 	}
-	@RequestMapping(value = "checkout", method = RequestMethod.GET)
-	public String checkout() {
+	@RequestMapping(value="checkout", method = RequestMethod.GET)
+	public String checkout(HttpSession session, Model model) throws Exception {
+		//장바구니에서 상품 정보 가져오기
+		UsersVO uVo = (UsersVO) session.getAttribute("user");
+		long userNo = uVo.getUserNo();
+		List<CartVO> cartVO = service.getCart(userNo);
+		model.addAttribute("order", cartVO);
+		
 		return "shop/checkout";
 	}
+//	@RequestMapping(value="checkout", method = RequestMethod.POST)
+//	public String postcheck() throws Exception {
+//		return "shop/pay";
+//	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)
 	public String mypage() {
 		return "mypage/mypage";

@@ -14,6 +14,23 @@
 		select * 
 		from product
 	</select>
+		
+		<!-- ==================================================================== -->
+		<!-- 상품목록 -->
+		
+		<select id="prodbrandList" resultType="com.shop.domain.ProductVO">
+			select * 
+			from product
+			where brand=#{brand};
+		</select>
+		
+		<select id="prodcatList" resultType="com.shop.domain.ProductVO">
+			select * 
+			from product
+			where category=#{category};
+		</select>
+		
+		<!-- ==================================================================== -->
 	
 	<!-- 상세조회 -->
 	<select id="prodDetail" parameterType="java.lang.String" resultType="com.shop.domain.ProductVO">
@@ -29,6 +46,29 @@
 		 where prodNo = #{prodNo}
 	</update>
 	
+	<!-- 상품개수 출력 -->
+	<select id="getpcount" resultType="int">
+  		select count(*)
+  		from product
+  	</select> 
+  	
+  	<!-- 브랜드별 상품개수 출력 -->
+  	<select id="getbcount" resultType="int">
+  		select count(*)
+  		from product
+  		where brand = #{brand}
+  	</select>
+  	
+  	<!-- 카테고리별 상품개수 출력 -->
+	<select id="getccount" resultType="int">
+  		select count(*)
+  		from product
+  		where category = #{category}
+  	</select>
+	
+	<!-- ==================================================================== -->
+	<!-- 메인 -->
+	
 	<!-- 인기상품 메인페이지 출력 -->
 	<select id="prodpopList" resultType="com.shop.domain.ProductVO">
 		select * 
@@ -37,6 +77,15 @@
 		limit 8
 	</select>
 	
+	<!-- 인기글 조회 -->
+	<select id="freepopList" resultType="com.shop.domain.BoardVO">
+		select * 
+		from board
+		where boardClass = 3
+		order by boardNo desc
+		limit 3
+	</select>
+		
 	<!-- ==================================================================== -->
 	<!-- 리뷰 -->
 	

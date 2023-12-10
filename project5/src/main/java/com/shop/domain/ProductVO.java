@@ -24,4 +24,5 @@ public class ProductVO {
 	private Date prodUpdate; //업데이트일
 	private int prodRest; //재고수량
 	private int prodCnt; //상품 조회수
+	private int pcount; // 상품 개수 출력하기 위해 vo추가함. (mysql에는 추가X)
 }
