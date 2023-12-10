@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,44 +42,38 @@ public class ShopController {
 	public String list(HttpServletRequest request, Model model) throws Exception {
 		try {
 //			logger.info("=======controller.prodlist========");
-			
-			
-			if (request.getParameter("brand").equals("nc")) {
-				String brand = request.getParameter("brand");
-				List<ProductVO> prodlist = service.prodbrandList(brand);
-				model.addAttribute("prodlist", prodlist);
-				System.out.println("b");
-				System.out.println(prodlist);
-				return "shop/list";
-			}
-				List<ProductVO> prodlist = service.prodList();
-				model.addAttribute("prodlist", prodlist);
-				System.out.println("a");
-			
+			List<ProductVO> prodlist = service.prodList();
+			model.addAttribute("prodlist", prodlist);
+			System.out.println("a");
 			return "shop/list";
 		} catch(Exception e) {
 			logger.error("Error fetching prodlist", e);
             return "error";
 		}
 	}
-	@RequestMapping(value="shop/list", method = RequestMethod.GET)
-	public void brandlist(@RequestParam("brand") String brand, Model model) throws Exception {
+	@RequestMapping(value="shop/brand", method = RequestMethod.GET)
+	public String brandlist(@RequestParam("b") String brand, Model model) throws Exception {
 		try {
 			List<ProductVO> prodlist = service.prodbrandList(brand);
 			model.addAttribute("prodlist", prodlist);
+			System.out.println("c");
+			return "shop/list";
 		} catch(Exception e) {
 			logger.error("Error fetching prodlist", e);
+			return "error";
 		}
 	}
-//	@RequestMapping(value="shop/list", method = RequestMethod.GET)
-//	public void catlist(@RequestParam("category") String category, Model model) throws Exception {
-//		try {
-//			List<ProductVO> prodlist = service.prodcatList(category);
-//			model.addAttribute("prodlist", prodlist);
-//		} catch(Exception e) {
-//			logger.error("Error fetching prodlist", e);
-//		}
-//	}
+	@RequestMapping(value="shop/category", method = RequestMethod.GET)
+	public String catlist(@RequestParam("c") String category, Model model) throws Exception {
+		try {
+			List<ProductVO> prodlist = service.prodcatList(category);
+			model.addAttribute("prodlist", prodlist);
+			return "shop/list";
+		} catch(Exception e) {
+			logger.error("Error fetching prodlist", e);
+			return "error";
+		}
+	}
 	@RequestMapping(value = "shop/detail", method = RequestMethod.GET)
 	public String detail(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
 		if (prodNo == null) {

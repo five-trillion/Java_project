@@ -28,15 +28,15 @@
                         <div class="sidebar__item">
                             <h4>Brand</h4>
                             <ul>
-                                <li><a href="/shop/list?brand=nc">네츄럴코어</a></li>
-                                <li><a href="/shop/list?brand=dk">달링키친</a></li>
-                                <li><a href="/shop/list?brand=lo">로투스</a></li>
-                                <li><a href="/shop/list?brand=bp">벅스펫</a></li>
-                                <li><a href="/shop/list?brand=it">ITI</a></li>
-                                <li><a href="/shop/list?brand=jf">조피쉬</a></li>
-                                <li><a href="/shop/list?brand=an">애니먼</a></li>
-                                <li><a href="/shop/list?brand=ae">애니멀에센셜</a></li>
-                                <li><a href="/shop/list?brand=nf">뉴플렉스</a></li>
+                                <li><a href="/shop/brand?b=nc">네츄럴코어</a></li>
+                                <li><a href="/shop/brand?b=dk">달링키친</a></li>
+                                <li><a href="/shop/brand?b=lo">로투스</a></li>
+                                <li><a href="/shop/brand?b=bp">벅스펫</a></li>
+                                <li><a href="/shop/brand?b=it">ITI</a></li>
+                                <li><a href="/shop/brand?b=jf">조피쉬</a></li>
+                                <li><a href="/shop/brand?b=an">애니먼</a></li>
+                                <li><a href="/shop/brand?b=ae">애니멀에센셜</a></li>
+                                <li><a href="/shop/brand?b=nf">뉴플렉스</a></li>
                             </ul>
                         </div>
                         
