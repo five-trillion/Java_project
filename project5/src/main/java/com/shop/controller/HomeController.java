@@ -39,13 +39,13 @@ public class HomeController {
             List<BoardVO> freelist = service.freepopList();
             model.addAttribute("freelist", freelist);
             
-            log.info("=====Controller.prdpoplist=====");
+            logger.info("=====Controller.prdpoplist=====");
             List<ProductVO> list = service.prodpopList();
             model.addAttribute("list", list);
             return "home";
         } catch (Exception e) {
             // 예외가 발생한 경우, 로깅하고 오류 페이지로 이동
-            logger.error("Error fetching freelist", e);
+        	logger.error("Error fetching freelist", e);
             return "error";
         }
 	}

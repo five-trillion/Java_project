@@ -6,18 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
- 	<!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="${contextPath}/resources/shop/css/style.css" type="text/css">
+ 	<%@ include file="../includes/src.jsp" %>
 </head>
 
 <body>
@@ -33,10 +22,8 @@
 	                   <div class="checkout__input">
 	                        <p>아이디<span>*</span></p>
 	                        <input type="text" name="userId" class="id_input" placeholder="영문과 숫자를 조합하여 6~16자로 입력해주세요." required>
-	                        <span class="id_input_re_1" style="color:green; display:none;">사용 가능한 아이디입니다.</span>
-	                        <span class="id_input_re_2" style="color:red; display:none;">이미 존재하는 아이디입니다.</span>
-	
-	                    </div>
+	                        <span class="id_input_re" style="color:red; display:none;">이미 존재하는 아이디입니다.</span>
+						</div>
 	                    <div class="checkout__input">
 	                        <p>비밀번호<span>*</span></p>
 	                        <input type="password" name="userPw" placeholder="영문과 숫자, 특수문자를 조합하여 6~16자로 입력해주세요." required>
@@ -161,29 +148,51 @@
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
     	
-    	function joinCheck() {	//유효성 검사
+    	function joinCheck() {	//유효성 검사 함수
+    		
     		//아이디
-    		if(document.frm.userId.value.length == 0) {
-    			alert("아이디를 입력해주세요.")
+    		var userId = document.frm.userId.value;
+    		var userIdReg = /^[a-zA-Z0-9]{6,16}$/;
+    		if(userId.length == 0) {
+    			alert("아이디를 입력해주세요.");
     			frm.userId.focus();
     			return false;
     		}
+    		if(!userIdReg.test(userId)){
+    			alert("아이디는 영문과 숫자를 포함하여 6~16자로 입력해주세요.");
+    			frm.userId.focus();
+    			return false;
+    		}
+    		if ($('.id_input_re').css('display') !== 'none') {
+    	        alert("이미 존재하는 아이디입니다. 다른 아이디를 입력해주세요.");
+    	        return false;
+    	    }
+    		
     		//비밀번호
-    		if(document.frm.userPw.value.length == 0) {
-    			alert("비밀번호를 입력해주세요.")
+    		var userPw = document.frm.userPw.value;
+    		var userPwCk = document.frm.userPwCk.value;
+    		var userPwReg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{6,16}$/;
+    		if(userPw.length == 0) {
+    			alert("비밀번호를 입력해주세요.");
     			frm.userPw.focus();
     			return false;
     		}
-    		if(document.frm.userPwCk.value.length == 0) {
-    			alert("비밀번호를 다시 입력해주세요.")
+    		if(userPwCk.length == 0) {
+    			alert("비밀번호를 다시 입력해주세요.");
     			frm.userPwCk.focus();
     			return false;
     		}
     		if(document.frm.userPw.value != document.frm.userPwCk.value) {
-    			alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
+    			alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
     			frm.userPwCk.select();
     			return false;
     		}
+    		if(!userPwReg.test(userPw)) {
+    			alert("영문, 숫자, 특수문자를 조합하여 6자 이상 16자 이하의 비밀번호를 입력해주세요.");
+    			frm.userPw.focus();
+    			return false;
+    		}
+    		
     		//이름
     		if(document.frm.userName.value.length == 0) {
     			alert("이름을 입력해주세요.")
@@ -211,12 +220,25 @@
     			frm.phone3.focus();
     			return false;
     		}
+    		if (!/^\d+$/.test(phone1) || !/^\d+$/.test(phone2) || !/^\d+$/.test(phone3)) {
+    	        alert("휴대전화 번호를 정확히 입력해주세요.");
+    	        return false;
+    	    }
+    		
     		//집전화
     		var tel1 = document.getElementById('tel1').value;
     		var tel2 = document.getElementById('tel2').value;
     		var tel3 = document.getElementById('tel3').value;
     		var tel = tel1 + "-" + tel2 + "-" + tel3;
     		document.getElementById('tel').value = tel;
+    		if (tel1.length > 0 && tel2.length > 0 &&tel3.length > 0) {
+    	        // 숫자만 입력되었는지 검증
+    	        if (!/^\d+$/.test(tel1) || !/^\d+$/.test(tel2) || !/^\d+$/.test(tel3)) {
+    	            alert("집전화 번호를 정확히 입력해주세요.");
+    	            document.frm.tel1.focus();
+    	            return false;
+    	        }
+    	    }
     		//이메일
     		var email1 = document.getElementById('email1').value;
     		var email2 = document.getElementById('email2').value;
@@ -232,6 +254,7 @@
     			frm.email2.focus();
     			return false;
     		}
+    		
     		//주소
     		if(document.frm.zip.value == "") {
     			alert("우편번호를 입력해주세요.");
@@ -252,6 +275,13 @@
     			frm.address2.focus();
     			return false;
     		}
+    		
+    		// 닉네임
+    	    if (document.frm.nick.value.length > 8) {
+    	        alert("닉네임은 8글자 이하로 입력해주세요.");
+    	        frm.nick.focus();
+    	        return false;
+    	    }
     		
     		//생년월일
     		var inputBirth = document.getElementById("inputBirth").value;
@@ -308,24 +338,22 @@
     	
     	
     	$('.id_input').on("propertychange change keyup paste input", function(){
-			var userId = $('.id_input').val();
-    		var data = {userId : userId}
-    		$.ajax({
-    			type : "post",
-    			url : "/shop/userIdCk",
-    			data : data,
-    			success : function(result) {
-    				//console.log("성공 여부" + result);
-    				if(result != 'fail') {
-    					$('.id_input_re_1').css("display","inline-block");
-    					$('.id_input_re_2').css("display","none");
-    				} else {
-    					$('.id_input_re_2').css("display","inline-block");
-    					$('.id_input_re_1').css("display","none");
-    				}
-    			} 
-    		});
-		}); 
+    	    var userId = $('.id_input').val();
+    	    var data = {userId : userId}
+    	    $.ajax({
+    	        type : "post",
+    	        url : "/shop/userIdCk",
+    	        data : data,
+    	        success : function(result) {
+    	            // console.log("성공 여부" + result);
+    	            if(result == 'fail') {
+    	                $('.id_input_re').css("display","inline-block");
+    	            } else {
+    	                $('.id_input_re').css("display","none");
+    	            }
+    	        } 
+    	    });
+    	});  
     	
     	function execDaumPostcode() {
     		new daum.Postcode({

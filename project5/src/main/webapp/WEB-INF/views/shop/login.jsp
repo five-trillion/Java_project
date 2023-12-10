@@ -15,74 +15,6 @@
  			color : red;
  		}
  	</style>
-<script type="text/javascript">
-	$(function() {
-	    
-	    fnInit();
-	  
-	});
-	
-	function saveIdCk(){
-	  saveid();
-	}
-	
-	function fnInit(){
-		 var cookieid = getCookie("saveid");
-		 console.log(cookieid);
-		 	if(cookieid !=""){
-		     $("input:checkbox[id='saveId']").prop("checked", true);
-		     $('#logId').val(cookieid);
-		 	}
-	}    
-	
-	function setCookie(name, value, expiredays) {
-		 var todayDate = new Date();
-		 todayDate.setTime(todayDate.getTime() + 0);
-		 if(todayDate > expiredays){
-		     document.cookie = name + "=" + escape(value) + "; path=/; expires=" + expiredays + ";";
-		 } else if(todayDate < expiredays){
-		     todayDate.setDate(todayDate.getDate() + expiredays);
-		     document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
-		 }
-		 console.log(document.cookie);
-	}
-	
-	function getCookie(Name) {
-	 var search = Name + "=";
-	 console.log("search : " + search);
-	 
-	 if (document.cookie.length > 0) { // 쿠키가 설정되어 있다면 
-	     offset = document.cookie.indexOf(search);
-	     console.log("offset : " + offset);
-	     if (offset != -1) { // 쿠키가 존재하면 
-	         offset += search.length;
-	         // set index of beginning of value
-	         end = document.cookie.indexOf(";", offset);
-	         console.log("end : " + end);
-	         // 쿠키 값의 마지막 위치 인덱스 번호 설정 
-	         if (end == -1)
-	             end = document.cookie.length;
-	         console.log("end위치  : " + end);
-	         
-	         return unescape(document.cookie.substring(offset, end));
-	     }
-	 }
-	 return "";
-	}
-	
-	function saveid() {
-	 var expdate = new Date();
-	 if ($("#saveId").is(":checked")){
-	     expdate.setTime(expdate.getTime() + 1000 * 3600 * 24 * 30);
-	     setCookie("saveid", $("#logId").val(), expdate);
-	     }else{
-	    expdate.setTime(expdate.getTime() - 1000 * 3600 * 24 * 30);
-	     setCookie("saveid", $("#logId").val(), expdate);
-	      
-	 }
-	}
-</script>
-
 </head>
 <body>
 	<%@ include file="../includes/header.jsp" %>
@@ -105,7 +37,7 @@
 				</div>
 
 				<div class="checkout__input__checkbox">
-	                <input type="checkbox" id="saveId" name="saveId" onclick="saveUserId()"> 아이디 저장
+	                <input type="checkbox" id="saveId" name="saveId" onclick="saveId()"> 아이디 저장
 	                 <span class="checkmark"></span>
                 </div>
                  <c:if test="${result==0}">
@@ -114,7 +46,7 @@
                 </c:if>
 	            <div class="col-lg-8 col-md-6">
 	            	<div class="checkout__input">
-	            		<input type="submit" value="로그인">
+	            		<input type="submit" id="loginBtn" value="로그인">
 	            	</div>
 	           	</div>
 	        </div>
@@ -125,5 +57,56 @@
 	</div>
 	
 	<%@ include file="../includes/footer.jsp" %>
+	
+<script type="text/javascript">
+    $(document).ready(function() {
+        // 페이지 로딩 시 저장된 아이디 확인
+        var savedId = getCookie("savedId");
+        if (savedId !== "") {
+            $("#userId").val(savedId);
+            $("#saveId").prop("checked", true);
+        }
+
+        // 로그인 버튼 클릭 시
+        $("#loginBtn").click(function() {
+            // 아이디 저장 체크 여부 확인
+            if ($("#saveId").is(":checked")) {
+                // 체크되어 있으면 쿠키에 아이디 저장
+                var userId = $("#userId").val();
+                setCookie("savedId", userId, 30);
+            } else {
+                // 체크되어 있지 않으면 쿠키 삭제
+                setCookie("savedId", "", -1);
+            }
+        });
+    });
+
+    // 쿠키 설정 함수
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    // 쿠키 가져오기 함수
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            while (cookie.charAt(0) === ' ') {
+                cookie = cookie.substring(1, cookie.length);
+            }
+            if (cookie.indexOf(nameEQ) === 0) {
+                return cookie.substring(nameEQ.length, cookie.length);
+            }
+        }
+        return "";
+    }
+</script>
 </body>
 </html>
