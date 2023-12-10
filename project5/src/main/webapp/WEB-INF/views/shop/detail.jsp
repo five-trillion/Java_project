@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
@@ -52,7 +53,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star-half-o"></i>
-                            <span>(0<!-- 리뷰 개수 --> reviews)</span>
+                            <span>(<c:out value="${fn:length(rlist)}"/> reviews)</span>
                         </div>
                         <div class="product__details__price"><fmt:formatNumber value="${prd.salePrice}" pattern="###,###,###.##"/>원</div>
                         <p>${prd.prodInfo}</p>
@@ -128,7 +129,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
-                                    aria-selected="false">Review <span>(0<c:out value="${status.end}"/>)</span></a>
+                                    aria-selected="false">Review <span>(<c:out value="${fn:length(rlist)}"/>)</span></a>
                             </li>
                         </ul>
                         <div class="tab-content">

@@ -46,6 +46,26 @@
 		 where prodNo = #{prodNo}
 	</update>
 	
+	<!-- 상품개수 출력 -->
+	<select id="getpcount" resultType="int">
+  		select count(*)
+  		from product
+  	</select> 
+  	
+  	<!-- 브랜드별 상품개수 출력 -->
+  	<select id="getbcount" resultType="int">
+  		select count(*)
+  		from product
+  		where brand = #{brand}
+  	</select>
+  	
+  	<!-- 카테고리별 상품개수 출력 -->
+	<select id="getccount" resultType="int">
+  		select count(*)
+  		from product
+  		where category = #{category}
+  	</select>
+	
 	<!-- ==================================================================== -->
 	<!-- 메인 -->
 	

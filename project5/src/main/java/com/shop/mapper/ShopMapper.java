@@ -54,7 +54,15 @@ public interface ShopMapper {
 	
 	//메인페이지 인기상품 출력을 위한 메소드
 	public List<ProductVO> prodpopList() throws Exception;
-	 
+	
+	//상품 개수 출력
+	public int getpcount() throws Exception;
+	
+	//브랜드별 상품개수 출력
+	public int getbcount() throws Exception;
+	
+	//카테고리별 상품개수 출력
+	public int getccount() throws Exception;
 	//---------------------------------------------------------------------------
 	
 	//리뷰 전체목록 처리를 위한 메소드 
