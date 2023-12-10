@@ -45,15 +45,39 @@
                 	<div class="owl-stage" style="transform: translate3d(-960px, 0px, 0px); transition: all 1.2s ease 0s; width: 3120px;">
                 		<div class="owl-item cloned" style="width: 240px;"><div class="col-lg-3">
                         <div class="categories__item set-bg-cat" data-setbg="${contextPath}/resources/shop/img/categories/dk_logo.png" style="background-image: url(&quot;../../resources/shop/img/categories/dk_logo.png&quot;);">
-                            <a href="#"></a>
+                            <a href="/shop/brand?b=dk"></a>
                         </div>
                     </div></div><div class="owl-item cloned" style="width: 240px;"><div class="col-lg-3">
                         <div class="categories__item set-bg-cat" data-setbg="${contextPath}/resources/shop/img/categories/nc_logo.png" style="background-image: url(&quot;../../resources/shop/img/categories/nc_logo.png&quot;);">
-                            <a href="#"></a>
+                            <a href="/shop/brand?b=nc"></a>
                         </div>
                     </div></div><div class="owl-item cloned" style="width: 240px;"><div class="col-lg-3">
                         <div class="categories__item set-bg-cat" data-setbg="${contextPath}/resources/shop/img/categories/bp_logo.png" style="background-image: url(&quot;../../resources/shop/img/categories/bp_logo.png&quot;);">
-                            <a href="#"></a>
+                            <a href="/shop/brand?b=bp"></a>
+                        </div>
+                    </div></div><div class="owl-item cloned" style="width: 240px;"><div class="col-lg-3">
+                        <div class="categories__item set-bg-cat" data-setbg="${contextPath}/resources/shop/img/categories/it_logo.png" style="background-image: url(&quot;../../resources/shop/img/categories/bp_logo.png&quot;);">
+                            <a href="/shop/brand?b=it"></a>
+                        </div>
+                    </div></div><div class="owl-item cloned" style="width: 240px;"><div class="col-lg-3">
+                        <div class="categories__item set-bg-cat" data-setbg="${contextPath}/resources/shop/img/categories/lo_logo.png" style="background-image: url(&quot;../../resources/shop/img/categories/bp_logo.png&quot;);">
+                            <a href="/shop/brand?b=lo"></a>
+                        </div>
+                    </div></div><div class="owl-item cloned" style="width: 240px;"><div class="col-lg-3">
+                        <div class="categories__item set-bg-cat" data-setbg="${contextPath}/resources/shop/img/categories/an_logo.png" style="background-image: url(&quot;../../resources/shop/img/categories/bp_logo.png&quot;);">
+                            <a href="/shop/brand?b=an"></a>
+                        </div>
+                    </div></div><div class="owl-item cloned" style="width: 240px;"><div class="col-lg-3">
+                        <div class="categories__item set-bg-cat" data-setbg="${contextPath}/resources/shop/img/categories/ae_logo.png" style="background-image: url(&quot;../../resources/shop/img/categories/bp_logo.png&quot;);">
+                            <a href="/shop/brand?b=ae"></a>
+                        </div>
+                    </div></div><div class="owl-item cloned" style="width: 240px;"><div class="col-lg-3">
+                        <div class="categories__item set-bg-cat" data-setbg="${contextPath}/resources/shop/img/categories/nf_logo.png" style="background-image: url(&quot;../../resources/shop/img/categories/bp_logo.png&quot;);">
+                            <a href="/shop/brand?b=nf"></a>
+                        </div>
+                    </div></div><div class="owl-item cloned" style="width: 240px;"><div class="col-lg-3">
+                        <div class="categories__item set-bg-cat" data-setbg="${contextPath}/resources/shop/img/categories/jf_logo.png" style="background-image: url(&quot;../../resources/shop/img/categories/bp_logo.png&quot;);">
+                            <a href="/shop/brand?b=jf"></a>
                         </div>
                     </div></div></div></div>
                     <div class="owl-nav">

@@ -111,11 +111,11 @@ public class ShopController {
 	            log.error("User information not found in session");
 	            return "redirect:/shop/login"; 
 	        }
-//	        HttpSession session2 = request.getSession();
+	        HttpSession session2 = request.getSession();
 	        long userNo = uVo.getUserNo();
 	        List<CartVO> clist = service.getCart(userNo);
 	        model.addAttribute("cart", clist);
-//	        session2.setAttribute("cart", clist);
+	        session2.setAttribute("cart", clist);
 	        return "shop/cart";
 	    } catch (Exception e) {
 	        log.error("Error fetching getcart", e);

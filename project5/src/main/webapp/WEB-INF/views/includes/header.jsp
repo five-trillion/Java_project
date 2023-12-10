@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	
 	<!-- Page Preloder -->
     <div id="preloder">
@@ -17,10 +18,17 @@
             <ul>
                 <li>
                		<c:if test = "${user == null}">
-               			<a href="/shop/login" data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+               			<a href="/shop/login" data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i></a>
                		</c:if>
                		<c:if test = "${user != null }">
-               			<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+               			<c:choose>
+               				<c:when test="${cart.isEmpty()}">
+               					<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i></a>
+               				</c:when>
+               				<c:otherwise>
+               					<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i><span><c:out value="${fn:length(cart)}"/></span></a>
+               				</c:otherwise>
+               			</c:choose>
                		</c:if>
                	</li>
             </ul>
@@ -60,10 +68,17 @@
                         <ul>
                         	<li>
                         		<c:if test = "${user == null}">
-                        			<a data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+                        			<a data-toggle="modal" data-target="#loginModal"><i class="fa fa-shopping-bag"></i></a>
                         		</c:if>
                         		<c:if test = "${user != null }">
-                        			<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i> <span>0<!-- 장바구니의 상품 개수 --></span></a>
+                        			<c:choose>
+			               				<c:when test="${cart.isEmpty()}">
+			               					<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i></a>
+			               				</c:when>
+			               				<c:otherwise>
+			               					<a href="/cart/${user.userNo}"><i class="fa fa-shopping-bag"></i><span><c:out value="${fn:length(cart)}"/></span></a>
+			               				</c:otherwise>
+			               			</c:choose>
                         		</c:if>
                         	</li>
                         	&nbsp;

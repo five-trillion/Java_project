@@ -74,6 +74,7 @@
 	                                        <a class="delete_btn" data-cartno="${cart.cartNo}"><span class="icon_close"></span></a>
 	                                    </td>
 	                                </tr>
+	                                <c:set var="total" value="${total + cart.salePrice * cart.orderCnt}"/>
 	                                </c:forEach>
 	                            </tbody>
 	                        </table>
@@ -97,9 +98,9 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li style="border-bottom: none;">총 상품금액<span></span></li>
-                            <li>배송비<span></span></li>
-                            <li>합계 <span></span></li>
+                            <li style="border-bottom: none;">총 상품금액<span><fmt:formatNumber pattern="###,###,###.##" value="${total}"/>원</span></li>
+                            <li>배송비<span>3,000원</span></li>
+                            <li>합계 <span><fmt:formatNumber pattern="###,###,###.##" value="${total+3000}"/>원</span></li>
                         </ul>
                         <c:choose>
                        		<c:when test="${cart.isEmpty()}">
