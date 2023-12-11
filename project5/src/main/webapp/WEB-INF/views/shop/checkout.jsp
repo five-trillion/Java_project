@@ -165,7 +165,7 @@
                         </div>
                     </div>
                     <div style="text-align:center;">
-                    	<button type="submit" class="site-btn" style="padding: 13px 60px;">PLACE ORDER</button>
+                    	<button onclick="location.href='/complete'" type="submit" class="site-btn" style="padding: 13px 60px;">결제하기</button>
                     </div>
                 </form>
             </div>

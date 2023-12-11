@@ -86,9 +86,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="/shop" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                        <a href="/shop" class="primary-btn cart-btn">주문하기</a>
                         <a href="/cart/${user.userNo}" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                            Update Cart</a>
+                            새로고침</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -153,7 +153,7 @@
 	<%@include file="../includes/footer.jsp" %>
 	<script>
 	$("#orderpagebtn").on("click",function() {
- 		self.location="/checkout";
+ 		self.location="/shop";
  	});
 	
 	/* 장바구니 변경 버튼 */

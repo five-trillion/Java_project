@@ -171,6 +171,10 @@
 		where userNo = #{userNo}
 	</select>
 	
+	<delete id="removeCart" parameterType="com.shop.domain.CartVO">
+		delete from cart where userNo = #{userNo}
+	</delete>
+	
 	<select id="countCart" resultType="com.shop.domain.CartVO">
 		select * from cart 
 		where userNo = #{userNo} and prodNo = #{prodNo}

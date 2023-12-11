@@ -142,10 +142,18 @@ public class ShopController {
 		
 		return "shop/checkout";
 	}
-//	@RequestMapping(value="checkout", method = RequestMethod.POST)
-//	public String postcheck() throws Exception {
-//		return "shop/pay";
-//	}
+	@RequestMapping(value="checkout/post", method = RequestMethod.POST)
+	public String postcheck() throws Exception {
+		return "mypage/complete";
+	}
+	@RequestMapping(value="complete", method = RequestMethod.GET)
+	public String complete(long userNo) throws Exception {
+		//장바구니 목록을 주문 테이블에 옮기기
+		
+		//해당 회원의 장바구니 목록 삭제
+		service.removeCart(userNo);
+		return "mypage/complete";
+	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)
 	public String mypage() {
 		return "mypage/mypage";

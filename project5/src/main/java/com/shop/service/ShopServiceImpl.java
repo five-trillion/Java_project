@@ -204,4 +204,9 @@ public class ShopServiceImpl implements ShopService {
 		return mapper.getCart(userNo);
 	}
 	
+	@Override
+	public List<CartVO> removeCart(long userNo) throws Exception {
+		return mapper.removeCart(userNo);
+	}
+	
 }
