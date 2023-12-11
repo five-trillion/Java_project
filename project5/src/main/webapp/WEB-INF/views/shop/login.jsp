@@ -95,7 +95,7 @@
 	            </div>
 	        </div>
 	    </div>
-	    <form method="post" action="login" id="frm" name="frm" onsubmit="return saveIdCk()">
+	    <form method="post" action="login" id="frm" class="loginForm" name="frm" onsubmit="return saveIdCk()">
 	    	<div class="col-lg-8 col-md-6">
             	<div class="checkout__input">
                 	<input type="text" name="userId" placeholder="아이디">
@@ -106,7 +106,7 @@
 
 				<div class="checkout__input__checkbox">
 	                <input type="checkbox" id="saveId" name="saveId" onclick="saveUserId()"> 아이디 저장
-	                 <span class="checkmark"></span>
+	                <span class="checkmark"></span>
                 </div>
                  <c:if test="${result==0}">
                		<div class ="login_warn"> 아이디 혹은 비밀번호를 다시 입력해주세요.</div>

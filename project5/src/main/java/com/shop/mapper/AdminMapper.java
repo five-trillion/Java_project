@@ -19,6 +19,8 @@ public interface AdminMapper {
 	public void userDelete(long userNo);
 	// 회원 정보가져오기
 	public UsersVO getUserDetail(long userNo);
+	// 회원 정보수정
+	public void UpdateUserDetail(UsersVO usersVo);
 	// end 회원관리--------
 	
 	// 상품관리----------

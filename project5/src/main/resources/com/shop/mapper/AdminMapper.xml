@@ -58,6 +58,10 @@
 	<select id="getUserDetail" resultType="com.shop.domain.UsersVO">
 		select * from users where userNo = #{userNo}
 	</select>
+	<!-- 유저 정보 수정 -->
+	<update id="UpdateUserDetail">
+		update users set nick = #{nick}, tel = #{tel}, phone = #{phone}, email = #{email}, zip = #{zip},  address = #{address}, admin= #{admin} where userNo = #{userNo}
+	</update>
 	<!-- 유저 권한 변경 -->
 	<update id="adminChange">
 		update users set admin = #{admin} where userNo =  #{userNo}

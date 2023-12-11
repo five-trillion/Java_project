@@ -24,3 +24,7 @@
 #container > main > #half {
 	width: 50%;
 }
+
+#eventY {
+	width: 0px;
+}

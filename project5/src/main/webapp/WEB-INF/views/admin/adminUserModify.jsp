@@ -29,73 +29,116 @@
 							<h5 class="card-title">회원 정보</h5>
 
 							<!-- Multi Columns Form -->
-							<form class="row g-3">
+							<form action="" method="post" class="row g-3">
 								<div class="col-md-6">
 									<label for="userNo" class="form-label">회원 번호</label> <input
-										type="text" class="form-control" id="userNo" name="userNo" value="${user.userNo}" readonly>
+										type="text" class="form-control" id="userNo" name="userNo"
+										value="${user.userNo}" disabled>
 								</div>
 								<div class="col-md-6">
-									<label for="userId" class="form-label">아이디</label>
-									<input type="text" class="form-control" id="userId" name="userId" value="${user.userId}" readonly>
+									<label for="userId" class="form-label">아이디</label> <input
+										type="text" class="form-control" id="userId" name="userId"
+										value="${user.userId}" disabled>
 								</div>
 								<div class="col-md-6">
 									<label for="userName" class="form-label">이름</label> <input
-										type="text" class="form-control" id="userName" name="userName" value="${user.userName}" readonly>
+										type="text" class="form-control" id="userName" name="userName"
+										value="${user.userName}" disabled>
 								</div>
 								<div class="col-md-6">
-									<label for="nick" class="form-label">닉네임</label>
-									<input type="text" class="form-control" id="nick" name="nick" value="${user.nick}">
+									<label for="nick" class="form-label">닉네임</label> <input
+										type="text" class="form-control" id="nick" name="nick"
+										value="${user.nick}">
 								</div>
 								<div class="col-md-6">
 									<label for="tel" class="form-label">일반전화</label> <input
-										type="text" class="form-control" id="tel" name="tel" value="${user.tel}">
+										type="text" class="form-control" id="tel" name="tel"
+										value="${user.tel}">
 								</div>
 								<div class="col-md-6">
-									<label for="phone" class="form-label">휴대폰</label>
-									<input type="text" class="form-control" id="phone" name="phone" value="${user.phone}">
+									<label for="phone" class="form-label">휴대폰</label> <input
+										type="text" class="form-control" id="phone" name="phone"
+										value="${user.phone}">
 								</div>
 								<div class="col-md-8">
 									<label for="email" class="form-label">이메일</label> <input
-										type="email" class="form-control" id="email" name="email" value="${user.email}">
+										type="email" class="form-control" id="email" name="email"
+										value="${user.email}">
 								</div>
 								<div class="col-md-4">
 									<label for="zip" class="form-label">우편번호</label> <input
-										type="text" class="form-control" id="zip" name="zip" value="${user.zip}">
+										type="text" class="form-control" id="zip" name="zip"
+										value="${user.zip}">
 								</div>
 								<div class="col-md-12">
 									<label for="address" class="form-label">주소</label> <input
-										type="text" class="form-control" id="address" name="address" value="${user.address}">
+										type="text" class="form-control" id="address" name="address"
+										value="${user.address}">
 								</div>
-								
+
 								<div class="col-md-6">
-									<label for="regDate" class="form-label">가입일</label>
-									<input type="text" class="form-control" id="regDate" name="regDate" value="<fmt:formatDate pattern='yyyy/MM/dd' value='${user.regDate}' />" readonly>
+									<label for="regDate" class="form-label">가입일</label> <input
+										type="text" class="form-control" id="regDate" name="regDate"
+										value="<fmt:formatDate pattern='yyyy/MM/dd' value='${user.regDate}' />"
+										disabled>
 								</div>
 								<div class="col-md-6">
 									<label for="birth" class="form-label">생년원일</label> <input
-										type="text" class="form-control" id="birth" name="birth" value="<fmt:formatDate pattern='yyyy/MM/dd' value='${user.birth}' />">
+										type="text" class="form-control" id="birth" name="birth"
+										value="<fmt:formatDate pattern='yyyy/MM/dd' value='${user.birth}' />"
+										disabled>
 								</div>
 								<div class="col-12">
-									<label for="point" class="form-label">잔여포인트</label>
-									<input type="text" class="form-control" id="point" name="point" value="${user.point}" readonly>
+									<label for="point" class="form-label">잔여포인트</label> <input
+										type="text" class="form-control" id="point" name="point"
+										value="${user.point}" disabled>
 								</div>
-								<div class="col-md-4">
+								<div class="col-md-6">
 									<div style="margin-bottom: 0.5rem;">정보동의</div>
-					          <label class="form-check-label" for="eventY"><button type="button" class="btn btn-outline-info">동의</button></label>
-										<input class="form-check-input" type="radio" id="eventY" name="eventYn" value="0" checked>
-					          <label class="form-check-label" for="eventN"><button type="button" class="btn btn-outline-info">비동의</button></label>
-										<input class="form-check-input" type="radio" id="eventN" name="eventYn" value="1">
+									<c:choose>
+										<c:when test="${user.eventYn == 1}">
+											<div class="btn-group" role="group"
+												aria-label="Basic example" style="width: 100%; pointer-events: none;">
+												<button type="button" class="btn btn-info">동의</button>
+												<button type="button" class="btn btn-outline-info">비동의</button>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<div class="btn-group" role="group"
+												aria-label="Basic example" style="width: 100%; pointer-events: none;">
+												<button type="button" class="btn btn-outline-info">동의</button>
+												<button type="button" class="btn btn-info">비동의</button>
+											</div>
+										</c:otherwise>
+									</c:choose>
 								</div>
-								<div class="col-md-4">
+								<div class="col-md-6">
 									<div style="margin-bottom: 0.5rem;">권한</div>
-									<label class="form-check-label" for="admin"><button type="button" class="btn btn-info">관리자</button></label>
-									<input class="form-check-input" type="radio" id="admin" name="admin" value="0" checked>
-				          <label class="form-check-label" for="user"><button type="button" class="btn btn-outline-info">회원</button></label>
-									<input class="form-check-input" type="radio" id="user" name="admin" value="1">
+										<c:choose>
+											<c:when test="${user.admin == 0}">
+											<div class="btn-group" role="group"
+										aria-label="Basic example" style="width: 100%;">
+												<button type="button" class="btn btn-info adminBtn">관리자</button>
+												<button type="button" class="btn btn-outline-info userBtn">회원</button>
+											</div>
+											<input type="radio" name="admin" id="admin" value="0" checked style="opacity:0; pointer-events: none;">
+											<input type="radio" name="admin" id="user" value="1" style="opacity:0; pointer-events: none;">
+											</c:when>
+											<c:otherwise>
+											<div class="btn-group" role="group"
+										aria-label="Basic example" style="width: 100%;">
+												<button type="button" class="btn btn-outline-info adminBtn">관리자</button>
+												<button type="button" class="btn btn-info userBtn">회원</button>
+											</div>
+											<input type="radio" name="admin" id="admin" value="0" style="opacity:0; pointer-events: none;">
+											<input type="radio" name="admin" id="user" value="1" checked style="opacity:0; pointer-events: none;">
+											</c:otherwise>
+										</c:choose>
 								</div>
 								<div class="text-center btnBox">
-									<button type="submit" class="btn btn-primary">Submit</button>
-									<button type="reset" class="btn btn-secondary">Reset</button>
+									<button type="submit" class="btn btn-primary">수정</button>
+									<button type="reset" class="btn btn-secondary">초기화</button>
+									<a href="adminUserManage" class="btn btn-success">목록</a>
 								</div>
 							</form>
 							<!-- End Multi Columns Form -->
@@ -104,19 +147,35 @@
 					</div>
 				</div>
 			</div>
-			</section>
+		</section>
 
 
 
 	</main>
 	<%@ include file="./includes/footerAdmin.jsp"%>
 	<script type="text/javascript">
-		$(".btnBox").css({"marginTop" : "30px"})
-		$(".form-check-input:checked").prev().children().attr("class","btn btn-info");
-		$(".form-check-label").on("click", (e) => {
+		let defaultAdmin = document.querySelector("input[name=admin]:checked").value
+		$(".adminBtn").on("click", (e) => {
 			$(e.target).parent().next().prop("checked", true);
-			$(".form-check-input").prev().children().attr("class","btn btn-outline-info");
-			$(".form-check-input:checked").prev().children().attr("class","btn btn-info");
+			$(e.target).attr("class","btn btn-info adminBtn");
+			$(e.target).next().attr("class", "btn btn-outline-info userBtn")
+		});
+		$(".userBtn").on("click", (e) => {
+			$(e.target).parent().next().next().prop("checked", true);
+			$(e.target).attr("class","btn btn-info userBtn");
+			$(e.target).prev().attr("class", "btn btn-outline-info adminBtn")
+		});
+		
+		$("button[type=reset]").on("click", () => {
+			console.log("dddd");
+			console.log(defaultAdmin);
+			if (defaultAdmin == 0) {
+				$(".adminBtn").attr("class","btn btn-info adminBtn");
+				$(".adminBtn").next().attr("class", "btn btn-outline-info userBtn")	
+			} else {
+				$(".userBtn").attr("class","btn btn-info userBtn");
+				$(".userBtn").prev().attr("class", "btn btn-outline-info adminBtn")
+			}
 		});
 		$(".form-check").css({"display": "inline-block"})
 		$(".form-check-input").css({
