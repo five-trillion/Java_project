@@ -74,7 +74,6 @@
 							<!-- <button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button> -->
 						</div>
 					</div>
-				
 			</div>
 
 			<div

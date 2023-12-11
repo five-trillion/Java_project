@@ -39,7 +39,8 @@ public class BoardController {
 	public void noticeGET(Model model, Criteria cri) throws Exception {
 		System.out.println("공지사항 페이지 진입");
 		model.addAttribute("noticeList", boardservice.getListPaging(cri));
-		int total = boardservice.getTotal();
+		int total = boardservice.getTotal(cri);
+		System.out.println(total);
 		PageMakerVO pagemake = new PageMakerVO(cri,total);
 		System.out.println(cri.getPageNum());
 		model.addAttribute("pageNum", cri.getPageNum());

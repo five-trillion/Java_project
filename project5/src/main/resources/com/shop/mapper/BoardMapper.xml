@@ -21,14 +21,21 @@
 					from board b
 					join users u on b.userNo = u.userNo
 					where b.boardClass = 1
-					order by b.boardNo desc) as T1 
-       		<!-- limit ((${pageNum}-1)*${amount}), ${amount} -->
-       		 limit #{skip},#{amount}
+					<if test="keyword != null">
+						and b.boardTitle like concat('%', #{keyword}, '%')
+					</if>  
+					order by b.boardUpdate desc) as T1 
+       		limit #{skip},#{amount}
     	 </select>
     	 
     	 <!-- 게시물 총 개수 -->
     	<select id="getTotal" resultType="int">
-	    	select count(*) from board
+	    	select count(*) 
+	    	from board
+	    	where boardClass = 1
+	    	<if test="keyword != null">
+	    		and boardTitle like concat ('%', #{keyword}, '%')
+	    	</if>
     	</select>
   
 		
