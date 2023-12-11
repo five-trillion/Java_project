@@ -9,14 +9,11 @@ public interface BoardService {
 	
 	// ----------------------------- 공지사항 -----------------------------
 	
-	// 공지사항 전체목록 처리를 위한 메서드
-	public List<BoardVO> noticeList() throws Exception;
+	// 공지사항 게시판 목록 페이징
+	public List<BoardVO> getNoticeListPaging(Criteria cri);
 	
-	// 게시판 목록 페이징
-	public List<BoardVO> getListPaging(Criteria cri);
-	
-	/* 게시판 총 갯수 */
-    public int getTotal(Criteria cri);
+	// 공지사항 게시판 총 갯수
+    public int getNoticeTotal(Criteria cri);
 	
 	// 공지사항 조회수 증가를 위한 메서드
 	public int updateNoticeCnt(long boardNo) throws Exception;
@@ -26,9 +23,12 @@ public interface BoardService {
 
 // ----------------------------- QnA -----------------------------
 
-	// QnA 전체목록 처리를 위한 메서드
-	public List<BoardVO> qnaList() throws Exception;
+	// QnA 게시판 목록 페이징
+	public List<BoardVO> getQnaListPaging(Criteria cri);
 	
+	// QnA 게시판 총 갯수 
+    public int getQnaTotal(Criteria cri);
+    
 	// QnA 선택목록(글읽기)을 위한 메서드 
 	public BoardVO qnaDetail(long boardNo) throws Exception;
 	
@@ -49,8 +49,11 @@ public interface BoardService {
 	// 메인페이지 자유게시판 인기게시물 노출을 위한 메소드 
 	public List<BoardVO> freepopList() throws Exception;
 	
-	// 자유게시판 전체목록 처리를 위한 메서드 
-	public List<BoardVO> freeList() throws Exception;
+	// 자유게시판 게시판 목록 페이징
+	public List<BoardVO> getFreeListPaging(Criteria cri);
+	
+	// 자유게시판 게시판 총 갯수 
+    public int getFreeTotal(Criteria cri);
 	
 	// 자유게시판 조회수 증가를 위한 메서드 
 	public int updateFreeCnt(long boardNo) throws Exception;

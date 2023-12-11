@@ -26,23 +26,15 @@ public class BoardController {
 	
 	// ============================== 공지사항 ==============================
 	
-	/*
-	 * //공지사항 페이지 이동
-	 * 
-	 * @RequestMapping(value="/notice", method=RequestMethod.GET) public void
-	 * noticeGET(Model model) throws Exception { System.out.println("공지사항 페이지 진입");
-	 * model.addAttribute("noticeList", boardservice.noticeList()); }
-	 */
-	
 	//공지사항 페이지 이동
 	@RequestMapping(value="/notice", method= {RequestMethod.GET,RequestMethod.POST} ) 
 	public void noticeGET(Model model, Criteria cri) throws Exception {
 		System.out.println("공지사항 페이지 진입");
-		model.addAttribute("noticeList", boardservice.getListPaging(cri));
-		int total = boardservice.getTotal(cri);
-		System.out.println(total);
+		model.addAttribute("noticeList", boardservice.getNoticeListPaging(cri));
+		int total = boardservice.getNoticeTotal(cri);
+		System.out.println("공지사항 총 게시물 수:" + total);
 		PageMakerVO pagemake = new PageMakerVO(cri,total);
-		System.out.println(cri.getPageNum());
+		System.out.println("pageNum:" + cri.getPageNum());
 		model.addAttribute("pageNum", cri.getPageNum());
 		model.addAttribute("amount", cri.getAmount());
 		model.addAttribute("pageMaker", pagemake);
@@ -53,6 +45,7 @@ public class BoardController {
 	public void noticeReadGET(@RequestParam("boardNo") Long boardNo, @RequestParam("pageNum") int pageNum, @RequestParam("amount") int amount, Model model, Criteria cri) throws Exception {
 		System.out.println("공지사항 읽기 페이지 진입");
 		boardservice.updateNoticeCnt(boardNo);
+		System.out.println("boardNo:"+boardNo);
 		model.addAttribute("noticeDetail", boardservice.noticeDetail(boardNo));
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("amount", amount);
@@ -62,11 +55,18 @@ public class BoardController {
 	// ================================= QnA =================================
 	
 	//QnA 페이지 이동
-	@RequestMapping(value="/qna", method=RequestMethod.GET) 
-	public void qnaGET(Model model) throws Exception {
+	@RequestMapping(value="/qna", method= {RequestMethod.GET,RequestMethod.POST} ) 
+	public void qnaGET(Model model, Criteria cri) throws Exception {
 		System.out.println("QnA 페이지 진입");
-		model.addAttribute("qnaList", boardservice.qnaList());
-	}
+		model.addAttribute("qnaList", boardservice.getQnaListPaging(cri));
+		int total = boardservice.getQnaTotal(cri);
+		System.out.println("QnA 총 게시물 수:" + total);
+		PageMakerVO pagemake = new PageMakerVO(cri,total);
+		System.out.println("pageNum:" + cri.getPageNum());
+		model.addAttribute("pageNum", cri.getPageNum());
+		model.addAttribute("amount", cri.getAmount());
+		model.addAttribute("pageMaker", pagemake);
+	} 
 	
 	//QnA 게시물 읽기 페이지 이동
 	@RequestMapping(value="/qnaRead", method=RequestMethod.GET) 
@@ -125,11 +125,19 @@ public class BoardController {
 	}
 
 	// ============================== 자유게시판 ==============================
+	
 	//자유게시판 페이지 이동
-	@RequestMapping(value="/lounge", method=RequestMethod.GET) 
-	public void loungeGET(Model model) throws Exception {
+	@RequestMapping(value="/lounge", method= {RequestMethod.GET,RequestMethod.POST} ) 
+	public void loungeGET(Model model, Criteria cri) throws Exception {
 		System.out.println("자유게시판 페이지 진입");
-		model.addAttribute("freeList", boardservice.freeList());
+		model.addAttribute("freeList", boardservice.getFreeListPaging(cri));
+		int total = boardservice.getFreeTotal(cri);
+		System.out.println("자유게시판 총 게시물 수:" + total);
+		PageMakerVO pagemake = new PageMakerVO(cri,total);
+		System.out.println("pageNum:" + cri.getPageNum());
+		model.addAttribute("pageNum", cri.getPageNum());
+		model.addAttribute("amount", cri.getAmount());
+		model.addAttribute("pageMaker", pagemake);
 	}
 	
 	//자유게시판 게시물 읽기 페이지 이동

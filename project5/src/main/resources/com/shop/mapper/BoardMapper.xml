@@ -4,18 +4,9 @@
 	<mapper namespace="com.shop.mapper.BoardMapper">
 	
 		<!-- ============================== 공지사항 ============================== -->
-		
-		<!-- 전체목록 조회 -->
-		<select id="noticeList" resultType="com.shop.domain.BoardVO">
-			select b.* , u.nick as userNick
-			from board b
-			join users u on b.userNo = u.userNo
-			where b.boardClass = 1
-			order by b.boardNo desc 
-		</select>
-		
-		<!-- 게시물 목록(페이징) -->
-    	<select id="getListPaging" resultType="com.shop.domain.BoardVO">
+	
+		<!-- 전체 게시물 목록(페이징) -->
+    	<select id="getNoticeListPaging" resultType="com.shop.domain.BoardVO">
     		select * from (
                 	select b.* , u.nick as userNick
 					from board b
@@ -24,12 +15,12 @@
 					<if test="keyword != null">
 						and b.boardTitle like concat('%', #{keyword}, '%')
 					</if>  
-					order by b.boardUpdate desc) as T1 
+					order by b.boardReg desc) as T1 
        		limit #{skip},#{amount}
     	 </select>
     	 
     	 <!-- 게시물 총 개수 -->
-    	<select id="getTotal" resultType="int">
+    	<select id="getNoticeTotal" resultType="int">
 	    	select count(*) 
 	    	from board
 	    	where boardClass = 1
@@ -38,7 +29,6 @@
 	    	</if>
     	</select>
   
-		
 		<!-- 조회 수 처리 -->
 		<update id="updateNoticeCnt" parameterType="java.lang.Long">
 			update board 
@@ -56,13 +46,28 @@
 		
 		<!-- ================================ QnA ================================ -->
 		
-		<!-- 전체목록 조회 -->
-		<select id="qnaList" resultType="com.shop.domain.BoardVO">
-			select b.* , u.nick
-			from board b
-			join users u on b.userNo = u.userNo
-			where b.boardClass = 2
-			order by b.boardNo desc 
+		<!-- 전체 게시물 목록(페이징) -->
+		<select id="getQnaListPaging" resultType="com.shop.domain.BoardVO">
+    		select * from (
+                	select b.* , u.nick as userNick
+					from board b
+					join users u on b.userNo = u.userNo
+					where b.boardClass = 2
+					<if test="keyword != null">
+						and b.boardTitle like concat('%', #{keyword}, '%')
+					</if>  
+					order by b.boardReg desc) as T2 
+       		limit #{skip},#{amount}
+    	</select>
+    	 
+    	<!-- 게시물 총 개수 -->
+		<select id="getQnaTotal" resultType="int">
+			select count(*) 
+			from board
+			where boardClass = 2
+			<if test="keyword != null">
+				and boardTitle like concat ('%', #{keyword}, '%')
+			</if>
 		</select>
 		
 		<!-- 조회 수 처리 -->
@@ -113,13 +118,28 @@
 			limit 3
 		</select>
 		
-		<!-- 전체목록 조회 -->
-		<select id="freeList" resultType="com.shop.domain.BoardVO">
-			select b.* , u.nick as userNick
-			from board b
-			join users u on b.userNo = u.userNo
-			where b.boardClass = 3
-			order by b.boardNo desc 
+		<!-- 전체 게시물 목록(페이징) -->
+		<select id="getFreeListPaging" resultType="com.shop.domain.BoardVO">
+    		select * from (
+                	select b.* , u.nick as userNick
+					from board b
+					join users u on b.userNo = u.userNo
+					where b.boardClass = 3
+					<if test="keyword != null">
+						and b.boardTitle like concat('%', #{keyword}, '%')
+					</if>  
+					order by b.boardReg desc) as T2 
+       		limit #{skip},#{amount}
+    	</select>
+    	 
+    	<!-- 게시물 총 개수 -->
+		<select id="getFreeTotal" resultType="int">
+			select count(*) 
+			from board
+			where boardClass = 3
+			<if test="keyword != null">
+				and boardTitle like concat ('%', #{keyword}, '%')
+			</if>
 		</select>
 		
 		<!-- 조회 수 처리 -->

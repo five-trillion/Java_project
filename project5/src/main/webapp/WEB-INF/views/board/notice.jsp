@@ -2,50 +2,49 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>공지사항 게시판</title>
 <%@ include file="../includes/src.jsp"%>
-<style>
-	.pageInfo_area {
-		text-align:center;
-	}
-	.pageInfo {
-		list-style:none;
-		display:inline-block;
-		margin:50px auto 25px auto;
-	}
-	.pageInfo li {
-		float:left;
-		font-size: 18px;
-	    margin-left: 15px;
-	    padding: 7px;
-	}
-	
-	a:link {color:black; text-decoration: none;}
-	a:visited {color:black; text-decoration: none;}
-	a:hover {color:black; text-decoration: underline;}
-	.active a{
-		font-weight: bold;
-		text-decoration:underline;
-	}
-	
-	.search_area{
-		display: inline-block;
-	  	float:right;
-	}
-	.search_area input{
-		height: 30px;
-	  	width: 250px;
-	}
-	.search_area button{
-	   	width: 75px;
-	  	height: 30px;
-	}
-</style>
+	<style>
+		.pageInfo_area {
+			text-align:center;
+		}
+		.pageInfo {
+			list-style:none;
+			display:inline-block;
+			margin:50px auto 25px auto;
+		}
+		.pageInfo li {
+			float:left;
+			font-size: 18px;
+		    margin-left: 15px;
+		    padding: 7px;
+		}
+		
+		a:link {color:black; text-decoration: none;}
+		a:visited {color:black; text-decoration: none;}
+		a:hover {color:black; text-decoration: underline;}
+		.active a{
+			font-weight: bold;
+			text-decoration:underline;
+		}
+		
+		.search_area{
+			display: inline-block;
+		  	float:right;
+		}
+		.search_area input{
+			height: 30px;
+		  	width: 250px;
+		}
+		.search_area button{
+		   	width: 75px;
+		  	height: 30px;
+		}
+	</style>
 </head>
 
 <body>
@@ -77,8 +76,6 @@
 									<div class="writer fs12">작성자</div>
 									<div class=" fs12 writer_date">작성일</div>
 									<div class=" fs12 hit">조회수</div>
-									<div class="displaynone fs12 vote">추천</div>
-									<div class="displaynone fs12 point">평점</div>
 								</td>
 							</tr>
 						</thead>
@@ -98,7 +95,7 @@
 											<c:out value="${board.userNick}"/>
 										</div>
 										<div class=" fs13 writer_date">
-											<fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardUpdate}"/>
+											<fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardReg}"/>
 										</div>
 										<div class=" fs13 hit">
 											<c:out value="${board.boardCnt}"/>
@@ -108,7 +105,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					 <div class="pageInfo_wrap" >
+					<div class="pageInfo_wrap" >
         				<div class="pageInfo_area">
         					<ul id="pageInfo" class="pageInfo">
         						 <!-- 이전페이지 버튼 -->
@@ -142,7 +139,7 @@
 				    </form>
 				</div>
 			</div>
-	</div>
+		</div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>
 	
@@ -163,7 +160,7 @@
 	        moveForm.find("input[name='keyword']").val(val);
 	        moveForm.find("input[name='pageNum']").val(1);
 	        moveForm.submit();
-	    });
+	 });
 	
 </script>
 </body>

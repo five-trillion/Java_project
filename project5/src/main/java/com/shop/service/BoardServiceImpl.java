@@ -20,19 +20,14 @@ public class BoardServiceImpl implements BoardService {
 	// ----------------------------- 공지사항 -----------------------------
 	
 	@Override
-	public List<BoardVO> noticeList() throws Exception {
-		return boardmapper.noticeList();
-	}
-	
-	@Override
-    public List<BoardVO> getListPaging(Criteria cri) {
+    public List<BoardVO> getNoticeListPaging(Criteria cri) {
         
-        return boardmapper.getListPaging(cri);
+        return boardmapper.getNoticeListPaging(cri);
     }  
 	
 	@Override
-	public int getTotal(Criteria cri) {
-		return boardmapper.getTotal(cri);
+	public int getNoticeTotal(Criteria cri) {
+		return boardmapper.getNoticeTotal(cri);
 	}
 	
 	@Override
@@ -46,10 +41,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	// ----------------------------- QnA -----------------------------
+	
 	@Override
-	public List<BoardVO> qnaList() throws Exception {
-		return boardmapper.qnaList();
+	public List<BoardVO> getQnaListPaging(Criteria cri) {
+		return boardmapper.getQnaListPaging(cri);
 	}
+	
+	@Override
+	public int getQnaTotal(Criteria cri) {
+		return boardmapper.getQnaTotal(cri);
+	}
+	
 	@Override
 	public int updateQnaCnt(long boardNo) throws Exception {
 		return boardmapper.updateQnaCnt(boardNo);
@@ -87,10 +89,14 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public List<BoardVO> freeList() throws Exception {
-		return boardmapper.freeList();
+	public List<BoardVO> getFreeListPaging(Criteria cri) {
+		return boardmapper.getFreeListPaging(cri);
 	}
 	
+	@Override
+	public int getFreeTotal(Criteria cri) {
+		return boardmapper.getFreeTotal(cri);
+	}
 	@Override
 	public int updateFreeCnt(long boardNo) throws Exception {
 		return boardmapper.updateFreeCnt(boardNo);

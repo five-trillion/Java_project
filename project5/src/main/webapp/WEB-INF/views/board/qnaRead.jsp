@@ -75,38 +75,6 @@
 				</form>
 			</div>
 
-			<div
-				class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002 ec-base-paginate">
-				<a href="?board_no=1&amp;page=1" class="prev"><img
-					src="//img.echosting.cafe24.com/skin/base/common/btn_page_prev.gif"
-					alt="이전 페이지"></a>
-				<ol>
-					<li class="xans-record-"><a href="?board_no=1&amp;page=1"
-						class="this">1</a></li>
-				</ol>
-				<a href="?board_no=1&amp;page=1" class="next"><img
-					src="//img.echosting.cafe24.com/skin/base/common/btn_page_next.gif"
-					alt="다음 페이지"></a>
-			</div>
-
-			<form id="boardSearchForm" name="" action="/board/free/list.html"
-				method="get" target="_top" enctype="multipart/form-data">
-				<input id="board_no" name="board_no" value="1" type="hidden">
-				<input id="page" name="page" value="1" type="hidden"> <input
-					id="board_sort" name="board_sort" value="" type="hidden">
-				<div
-					class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">
-					<fieldset class="boardSearch" style="float:right;">
-						<legend>게시물 검색</legend>
-						<p>
-							<input id="search" name="search" fw-filter="" fw-label=""
-								fw-msg="" class="inputTypeText" placeholder="" value=""
-								type="text"> <a href="#none" class="btnSubmitFix sizeS"
-								onclick="BOARD.form_submit('boardSearchForm');">찾기</a>
-						</p>
-					</fieldset>
-				</div>
-			</form>
 			
 		</div>
 	</div>
