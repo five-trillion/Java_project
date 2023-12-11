@@ -184,15 +184,15 @@
 	<!-- 주문 -->
 	
 	<!-- 주문 정보 -->
-	<insert id="order_info">
+	<insert id="orderInfo">
 	 insert into order_info(orderNo, userNo, orderDate, orderSum, userPoint, orderFee, orderSta)
 	     values(#{orderNo}, #{userNo}, #{orderDate}, #{orderSum}, #{userPoint}, #{orderFee}, #{orderSta})
 	</insert>
 	   
 	<!-- 주문 상세 정보 --> 
-	<insert id="order_detail">
+	<insert id="orderDetail">
 	 insert into tbl_order_details(orderDtNo, orderNo, prodNo, orderCnt, prodSum)
-	     select #{orderDtNo}, #{orderNo}, prodNo, orderCnt, prodSum
+	     select orderDtNo, #{orderNo}, prodNo, orderCnt, prodSum
 	         from cart   
 	</insert> 
 	
