@@ -64,36 +64,51 @@
         Categories Slider
     ------------------------*/
     $(".categories__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 4,
-        dots: false,
-        nav: true,
-        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: true,
-        responsive: {
-
-            0: {
-                items: 1,
-            },
-
-            480: {
-                items: 2,
-            },
-
-            768: {
-                items: 3,
-            },
-
-            992: {
-                items: 4,
-            }
+    loop: true,
+    margin: 0,
+    items: 4,
+    dots: false,
+    nav: true,
+    navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
+    animateOut: 'fadeOut',
+    animateIn: 'fadeIn',
+    smartSpeed: 1200,
+    autoHeight: false,
+    autoplay: true,
+    responsive: {
+        0: {
+            items: 1,
+        },
+        480: {
+            items: 2,
+        },
+        768: {
+            items: 3,
+        },
+        992: {
+            items: 4,
         }
-    });
+    },
+    // 추가한 부분: 이미지 돌아가기 설정
+    onInitialized: startProgressBar,
+    onTranslated: resetProgressBar
+	});
+	
+	// 추가한 부분: 이미지 돌아가는 함수들
+	function startProgressBar() {
+	    // 이미지 전환 간격 설정 (예: 3초)
+	    $(".categories__slider .slide-progress").css({
+	        width: "100%",
+	        transition: "width 3000ms"
+	    });
+	}
+	
+	function resetProgressBar() {
+	    $(".categories__slider .slide-progress").css({
+	        width: 0,
+	        transition: "width 0s"
+	    });
+	}
 
 
     $('.hero__categories__all').on('click', function(){

@@ -171,13 +171,35 @@
 		where userNo = #{userNo}
 	</select>
 	
+	<delete id="removeCart" parameterType="com.shop.domain.CartVO">
+		delete from cart where userNo = #{userNo}
+	</delete>
+	
 	<select id="countCart" resultType="com.shop.domain.CartVO">
 		select * from cart 
 		where userNo = #{userNo} and prodNo = #{prodNo}
 	</select>
 	
 	<!-- ==================================================================== -->
-	<!-- 회원 -->
+	<!-- 주문 -->
 	
+	<!-- 주문 정보 -->
+	<insert id="orderInfo">
+	 insert into order_info(orderNo, userNo, orderDate, orderSum, userPoint, orderFee, orderSta)
+	     values(#{orderNo}, #{userNo}, #{orderDate}, #{orderSum}, #{userPoint}, #{orderFee}, #{orderSta})
+	</insert>
+	   
+	<!-- 주문 상세 정보 --> 
+	<insert id="orderDetail">
+	 insert into tbl_order_details(orderDtNo, orderNo, prodNo, orderCnt, prodSum)
+	     select orderDtNo, #{orderNo}, prodNo, orderCnt, prodSum
+	         from cart   
+	</insert> 
+	
+	<!-- 배송 정보 -->
+	<insert id="deliInfo">
+	 insert into delivery(deliNo, orderNo, deliStart, deliInfo, orderAddr, recipient, recipientTel)
+	     values(#{deliNo}, #{orderNo}, current_timestamp, #{deliInfo}, #{orderAddr}, #{recipient}, #{recipientTel})
+	</insert>
 	
 </mapper>

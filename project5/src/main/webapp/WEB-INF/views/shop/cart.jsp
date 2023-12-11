@@ -86,9 +86,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__btns">
-                        <a href="/shop" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                        <a href="/shop" class="primary-btn cart-btn">쇼핑 계속하기</a>
                         <a href="/cart/${user.userNo}" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                            Update Cart</a>
+                            새로고침</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -97,11 +97,22 @@
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
-                        <ul>
-                            <li style="border-bottom: none;">총 상품금액<span><fmt:formatNumber pattern="###,###,###.##" value="${total}"/>원</span></li>
-                            <li>배송비<span>3,000원</span></li>
-                            <li>합계 <span><fmt:formatNumber pattern="###,###,###.##" value="${total+3000}"/>원</span></li>
-                        </ul>
+                        <c:choose>
+                       		<c:when test="${cart.isEmpty()}">
+                       			<ul>
+		                            <li style="border-bottom: none;">총 상품금액<span>-</span></li>
+		                            <li>배송비<span>-</span></li>
+		                            <li>합계 <span>-</span></li>
+		                        </ul>
+		                    </c:when>
+		                    <c:otherwise>
+		                        <ul>
+		                            <li style="border-bottom: none;">총 상품금액<span><fmt:formatNumber pattern="###,###,###.##" value="${total}"/>원</span></li>
+		                            <li>배송비<span>3,000원</span></li>
+		                            <li>합계 <span><fmt:formatNumber pattern="###,###,###.##" value="${total+3000}"/>원</span></li>
+		                        </ul>
+		                    </c:otherwise>
+		                </c:choose>
                         <c:choose>
                        		<c:when test="${cart.isEmpty()}">
                         		<a href="#" data-toggle="modal" data-target="#orderpageModal" class="primary-btn">주문하기</a>
@@ -153,7 +164,7 @@
 	<%@include file="../includes/footer.jsp" %>
 	<script>
 	$("#orderpagebtn").on("click",function() {
- 		self.location="/checkout";
+ 		self.location="/shop";
  	});
 	
 	/* 장바구니 변경 버튼 */
