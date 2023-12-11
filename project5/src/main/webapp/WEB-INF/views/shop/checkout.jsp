@@ -52,17 +52,26 @@
 	                            <a class="delete_btn" data-cartno="${order.cartNo}"><span class="icon_close"></span></a>
 	                        </td>
 	                    </tr>
+	                    <c:set var="total" value="${total + order.salePrice * order.orderCnt}"/>
 	                    </c:forEach>
 	                </tbody>
 	            </table>
+	            <p class="message  fs14">상품 합계 : <fmt:formatNumber pattern="###,###,###.##" value="${total+3000}"/>원</p>
         	</div>
             <div class="checkout__form">
                 <h4>배송 정보</h4>
-                <form action="#">
+                <form role="form" method="post" autocomplete="off" action="/complete">
+                
+                <input type="hidden" name="orderSum" value="${total+3000}" />
+                
                     <div class="row">
                         <div class="col-lg-12 col-md-6">
                             <div class="row">
                                 <div class="col-lg-6">
+                                	<div class="checkout__input__checkbox">     
+			                            <input type="radio" name="diff-acc" id="origin" value="false" checked="checked">현재 회원정보
+			                            <input type="radio" name="diff-acc" id="new-acc" value="true">새로운 배송지
+		                            </div>
                                     <div class="checkout__input">
                                         <p>이름<span>*</span></p>
                                         <input type="text" value="${user.userName}">
@@ -74,19 +83,6 @@
 		                            <div class="checkout__input">
 		                            	<p>주소<span>*</span></p>
 		                            	<div>
-		                            		<div class="checkout__input__checkbox">
-				                                <label for="diff-acc">
-				                                    현재 회원정보
-				                                    <input type="radio" id="diff-acc">
-				                                    <span class="checkmark"></span>
-				                                </label>
-				                            
-				                                <label for="diff-acc">
-				                                    새로운 배송지
-				                                    <input type="radio" id="diff-acc">
-				                                    <span class="checkmark"></span>
-				                                </label>
-				                            </div>
 					                      	<input type="text" id="zip" name="zip" value="${user.zip}" placeholder="우편번호">
 					                      	<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 15%; text-align: center; padding-left: 0;"><br>
 											<input type="text" id="address1" name="address1" value="address1" placeholder="주소"><br>
@@ -141,8 +137,8 @@
                             <div class="row">
                            		<div class="col-lg-12">
                            			<div class="checkout__input">
-                           				<p>이메일<span>*</span></p>
-                           				<input type="text" id="email1" name="email1" value="email1" required> @
+                           				<p>이메일</p>
+                           				<input type="text" id="email1" name="email1" value="email1"> @
                            				<datalist id="email2List">
 		                                	<option value="gmail.com">gmail.com</option>
 		                                	<option value="naver.com">naver.com</option>
@@ -160,12 +156,12 @@
                             
                             <div class="checkout__input">
                                 <p>배송메세지</p>
-                                <input type="text">
+                                <input type="text" id="deliInfo" name="deliInfo">
                             </div>
                         </div>
                     </div>
                     <div style="text-align:center;">
-                    	<button onclick="location.href='/complete'" type="submit" class="site-btn" style="padding: 13px 60px;">결제하기</button>
+                    	<button type="submit" class="site-btn" style="padding: 13px 60px;">결제하기</button>
                     </div>
                 </form>
             </div>
