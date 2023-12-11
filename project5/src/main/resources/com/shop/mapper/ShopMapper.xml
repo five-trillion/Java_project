@@ -181,7 +181,25 @@
 	</select>
 	
 	<!-- ==================================================================== -->
-	<!-- 회원 -->
+	<!-- 주문 -->
 	
+	<!-- 주문 정보 -->
+	<insert id="order_info">
+	 insert into order_info(orderNo, userNo, orderDate, orderSum, userPoint, orderFee, orderSta)
+	     values(#{orderNo}, #{userNo}, #{orderDate}, #{orderSum}, #{userPoint}, #{orderFee}, #{orderSta})
+	</insert>
+	   
+	<!-- 주문 상세 정보 --> 
+	<insert id="order_detail">
+	 insert into tbl_order_details(orderDtNo, orderNo, prodNo, orderCnt, prodSum)
+	     select #{orderDtNo}, #{orderNo}, prodNo, orderCnt, prodSum
+	         from cart   
+	</insert> 
+	
+	<!-- 배송 정보 -->
+	<insert id="deliInfo">
+	 insert into delivery(deliNo, orderNo, deliStart, deliInfo, orderAddr, recipient, recipientTel)
+	     values(#{deliNo}, #{orderNo}, current_timestamp, #{deliInfo}, #{orderAddr}, #{recipient}, #{recipientTel})
+	</insert>
 	
 </mapper>
