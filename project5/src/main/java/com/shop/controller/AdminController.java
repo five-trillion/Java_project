@@ -26,6 +26,7 @@ import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReportVO;
 import com.shop.domain.ReviewReplyVO;
+import com.shop.domain.SalesVO;
 import com.shop.domain.UsersVO;
 import com.shop.service.AdminService;
 
@@ -313,5 +314,12 @@ public class AdminController {
 		adminService.boardDelete(boardNo);
 		
 		return "redirect:/admin/adminBoardNoti";
+	}
+	
+	// 매출관리
+	@GetMapping("/adminSalesManage")
+	public void adminSalesManage(HttpServletRequest request) throws Exception {
+		List<SalesVO> saleList = adminService.getSalesInfo();
+		request.setAttribute("sales", saleList);
 	}
 }

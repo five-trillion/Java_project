@@ -20,10 +20,16 @@
 .joinForm .joinBox {
 	margin : 0 auto;
 }
-
 .joinForm .joinBox .checkout__input .phoneBox {
 	display: flex;
 	align-items: center;
+}
+
+.joinForm .joinBox .checkout__input {
+	display: flex;
+}
+.joinForm .joinBox .checkout__input p:first-child{
+	width: 120px;
 }
 
 .checkout__input__checkbox label.loginCheck {

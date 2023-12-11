@@ -15,6 +15,7 @@ import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReportVO;
 import com.shop.domain.ReviewReplyVO;
+import com.shop.domain.SalesVO;
 import com.shop.domain.UsersVO;
 import com.shop.mapper.AdminMapper;
 
@@ -37,6 +38,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void updateAnswer(AnswerVO answerVo) {
 		mapper.updateAnswer(answerVo);
+	}
+
+	@Override
+	public List<SalesVO> getSalesInfo() {
+		return mapper.getSalesInfo();
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReportVO;
 import com.shop.domain.ReviewReplyVO;
+import com.shop.domain.SalesVO;
 import com.shop.domain.UsersVO;
 
 import lombok.extern.log4j.Log4j;
@@ -79,4 +80,8 @@ public interface AdminService {
 	public ProductVO getProd(String prodNo);
 	
 	public boolean prodRemove(String prodNo);
+	
+	// 정산 -----------------
+	// 매출관리정보
+	public List<SalesVO> getSalesInfo();
 }

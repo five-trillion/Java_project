@@ -21,10 +21,11 @@
                 	<div class="col-lg-8 col-md-6 joinBox">
 	                   <div class="checkout__input">
 	                        <p>아이디<span>*</span></p>
-	                        <input type="text" name="userId" class="id_input" placeholder="영문과 숫자를 조합하여 6~16자로 입력해주세요." required>
-	                        <span class="id_input_re_1" style="color:green; display:none;">사용 가능한 아이디입니다.</span>
-	                        <span class="id_input_re_2" style="color:red; display:none;">이미 존재하는 아이디입니다.</span>
-	
+	                        <div class="inputBlock">
+		                        <input type="text" name="userId" class="id_input" placeholder="영문과 숫자를 조합하여 6~16자로 입력해주세요." required>
+		                        <span class="id_input_re_1" style="color:green; display:none;">사용 가능한 아이디입니다.</span>
+		                        <span class="id_input_re_2" style="color:red; display:none;">이미 존재하는 아이디입니다.</span>
+	                        </div>
 	                    </div>
 	                    <div class="checkout__input">
 	                        <p>비밀번호<span>*</span></p>
@@ -42,9 +43,9 @@
 	                        <p>휴대전화<span>*</span></p>
 	                        <div class="phoneBox">
 		                       	<input type="text" id="phone1" name="phone1" maxlength="3" value="010" required> - 
-							   	<input type="text" id="phone2" name="phone2" maxlength="4" required> - 
-							   	<input type="text" id="phone3" name="phone3" maxlength="4" required> 
-							   	<input type="hidden" name="phone" id="phone">
+												   	<input type="text" id="phone2" name="phone2" maxlength="4" required> - 
+												   	<input type="text" id="phone3" name="phone3" maxlength="4" required> 
+												   	<input type="hidden" name="phone" id="phone">
 	                        </div>
 	                    </div>
 	                    <div class="checkout__input calling">
@@ -67,14 +68,14 @@
 	                       		<option value="062">062</option>
 	                       		<option value="063">063</option>
 	                     		<option value="064">064</option>
-	                       	</datalist> 
-	                       	<div class="phoneBox">
-		                       	<input list="tel1List" id="tel1" name="tel1"> - 
-							   	<input type="text" id="tel2" name="tel2" maxlength="4"> - 
-							   	<input type="text" id="tel3" name="tel3" maxlength="4"> 
-							   	<input type="hidden" name="tel" id="tel">
-						   	</div>
-	                    </div>
+	                       	</datalist>
+													<div class="phoneBox">
+													<input list="tel1List" id="tel1" name="tel1"> - <input
+														type="text" id="tel2" name="tel2" maxlength="4"> - <input
+														type="text" id="tel3" name="tel3" maxlength="4"> <input
+														type="hidden" name="tel" id="tel">
+													</div>
+											</div>
 	                    <div class="row">
 	                        <div class="col-lg-6">
 	                            <div class="checkout__input">
@@ -98,12 +99,14 @@
 	                    </div>
 	                    <div class="checkout__input">
 	                        <p>주소<span>*</span></p> 
-	                      	<input type="text" id="zip" name="zip" placeholder="우편번호">
-	                      	<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-							<input type="text" id="address1" name="address1" placeholder="주소"><br>
-							<input type="text" id="address2" name="address2" placeholder="상세주소">
-							<!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
-							<input type="hidden" name="address" id="address">
+	                        <div class="inputBlock">
+		                      	<input type="text" id="zip" name="zip" placeholder="우편번호">
+		                      	<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+														<input type="text" id="address1" name="address1" placeholder="주소"><br>
+														<input type="text" id="address2" name="address2" placeholder="상세주소">
+														<!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
+														<input type="hidden" name="address" id="address">
+	                    		</div>
 	                    </div>  
 	                  	<div class="checkout__input">
 	                        <p>닉네임</p>

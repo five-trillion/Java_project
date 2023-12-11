@@ -177,36 +177,6 @@
 				$(".userBtn").prev().attr("class", "btn btn-outline-info adminBtn")
 			}
 		});
-		$(".form-check").css({"display": "inline-block"})
-		$(".form-check-input").css({
-			"float": "none",
-			"margin": "auto"
-		})
-		$(".col-sm-2").css({
-			"width" : "auto"
-		});
-		$(".half").css({
-			"width" : "50%",
-			"display" : "inline-block"
-		});
-		$(".quater").css({
-			"width" : "25%"
-		});
-		$(".prodCode").on("blur", prodNo);
-		function prodNo() {
-			console.log("dddd");
-			const prodNo1 = $("#prodNo1").val();
-			const prodNo2 = $("#prodNo2").val();
-			const prodNo3 = $("#prodNo3").val();
-			const prodNo4 = $("#prodNo4").val();
-
-			$("#prodNo").val(
-					prodNo1 + "-" + prodNo2 + "-" + prodNo3 + "-" + prodNo4);
-
-			console
-					.log(prodNo1 + "-" + prodNo2 + "-" + prodNo3 + "-"
-							+ prodNo4);
-		};
 	</script>
 </body>
 </html>

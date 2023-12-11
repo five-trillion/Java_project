@@ -79,7 +79,7 @@
 				</a>
 				<ul id="icons-nav" class="nav-content collapse "
 					data-bs-parent="#sidebar-nav">
-					<li><a href="#"> <i
+					<li><a href="adminSalesManage"> <i
 							class="bi bi-circle"></i><span>매출 관리</span>
 					</a></li>
 					<li><a href="#"> <i class="bi bi-circle"></i><span>방문자</span>

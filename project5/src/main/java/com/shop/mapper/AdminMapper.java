@@ -9,6 +9,7 @@ import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReportVO;
 import com.shop.domain.ReviewReplyVO;
+import com.shop.domain.SalesVO;
 import com.shop.domain.UsersVO;
 
 public interface AdminMapper {
@@ -75,4 +76,8 @@ public interface AdminMapper {
 	public void reportComplete(int repoNo);
 	// end 신고관리 --------
 	
+	
+	// 정산 -----------------
+	// 매출관리정보
+	public List<SalesVO> getSalesInfo();
 }
