@@ -208,8 +208,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public List<CartVO> removeCart(long userNo) throws Exception {
-		return mapper.removeCart(userNo);
+	public int removeCart(CartVO cartVO) throws Exception {
+		return mapper.removeCart(cartVO);
 	}
 	
 	@Override

@@ -23,12 +23,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.CartVO;
+import com.shop.domain.CodeVO;
 import com.shop.domain.DeliveryVO;
 import com.shop.domain.OrderDetailVO;
 import com.shop.domain.OrderInfoVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
 import com.shop.domain.UsersVO;
+import com.shop.service.AdminService;
 import com.shop.service.ShopService;
 
 import lombok.AllArgsConstructor;
@@ -42,14 +44,14 @@ public class ShopController {
 	
 	@Autowired
 	ShopService service;
+	AdminService adminService;
 	
 	@RequestMapping(value="shop", method = RequestMethod.GET)
-	public String list(HttpServletRequest request, Model model) throws Exception {
+	public String list(Model model) throws Exception {
 		try {
 //			logger.info("=======controller.prodlist========");
 			List<ProductVO> prodlist = service.prodList();
 			model.addAttribute("prodlist", prodlist);
-			System.out.println("a");
 			return "shop/list";
 		} catch(Exception e) {
 			logger.error("Error fetching prodlist", e);
@@ -61,7 +63,6 @@ public class ShopController {
 		try {
 			List<ProductVO> prodlist = service.prodbrandList(brand);
 			model.addAttribute("prodlist", prodlist);
-			System.out.println("c");
 			return "shop/list";
 		} catch(Exception e) {
 			logger.error("Error fetching prodlist", e);
@@ -84,13 +85,15 @@ public class ShopController {
 		if (prodNo == null) {
 	        log.error("Invalid prodNo: " + prodNo);
 	    } else {
+	    	List<CodeVO> codeList = adminService.prodCodeInsert();
+	    	model.addAttribute("code", codeList);
+	    	
 	        service.updateProdCnt(prodNo); // 조회 수 업데이트
 	        ProductVO proddetail = service.prodDetail(prodNo); // 상세 정보 조회
 	        model.addAttribute("prd", proddetail);
 	        
 	        List<ReviewVO> revidlist = service.reviewdList(prodNo); // 해당상품 리뷰목록구현
 	        model.addAttribute("rlist", revidlist);
-	        System.out.println(revidlist == null);
 	        
 	    }
 		return "shop/detail";
@@ -155,16 +158,20 @@ public class ShopController {
 	    }
 	}
 	@RequestMapping(value = "/complete", method = RequestMethod.POST)
-	public String order(HttpSession session, OrderInfoVO order, OrderDetailVO orderdtVO, DeliveryVO deliVO) throws Exception {
+	public String order(HttpSession session, OrderInfoVO order, OrderDetailVO orderdtVO, DeliveryVO deli) throws Exception {
 	 logger.info("order");
-	 
-	 UsersVO user = (UsersVO)session.getAttribute("user");  
-	 long userNo = user.getUserNo();
+	 UsersVO uVo = (UsersVO)session.getAttribute("user");  
+	 if (uVo == null) {
+		 System.out.println("user정보가 없습니다");
+		 return "redirect:/shop/login";
+	 }
+	 long userNo = uVo.getUserNo();
 	 
 	 Calendar cal = Calendar.getInstance();
 	 int year = cal.get(Calendar.YEAR);
 	 String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
 	 String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));
+	 System.out.println(ymd);
 	 String subNum = "";
 	 
 	 for(int i = 1; i <= 6; i ++) {
@@ -172,25 +179,31 @@ public class ShopController {
 	 }
 	 
 	 String orderNo = ymd + "_" + subNum;
+	 System.out.println(orderNo);
 	 
 	 order.setOrderNo(orderNo);
 	 order.setUserNo(userNo);
 	 service.orderInfo(order);
-	 orderdtVO.setOrderDtNo(orderNo);   
-	 service.orderDetail(orderdtVO);
-	 service.deliInfo(deliVO);
-	 service.removeCart(userNo);
 	 
-	 return "redirect:/mypage/complete";  
+	 orderdtVO.setOrderNo(orderNo);   
+	 service.orderDetail(orderdtVO);
+	 
+	 String deliNo = ymd + "_" + subNum;
+	 deli.setDeliNo(deliNo);
+	 deli.setOrderNo(orderNo);
+	 service.deliInfo(deli);
+	 
+	 CartVO cartVO = new CartVO();
+	 cartVO.setUserNo(uVo.getUserNo());
+	 service.removeCart(cartVO);
+	 
+	 return "redirect:/complete";  
 	}
-//	@RequestMapping(value="complete", method = RequestMethod.GET)
-//	public String complete(@RequestBody long userNo) throws Exception {
-//		//장바구니 목록을 주문,배송 테이블에 옮기기
-//		
-//		//해당 회원의 장바구니 목록 삭제
-//		service.removeCart(userNo);
-//		return "mypage/complete";
-//	}
+	@RequestMapping(value="complete", method = RequestMethod.GET)
+	public String complete() throws Exception {
+		
+		return "mypage/complete";
+	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)
 	public String mypage() {
 		return "mypage/mypage";

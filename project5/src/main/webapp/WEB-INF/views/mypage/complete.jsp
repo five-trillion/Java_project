@@ -1,59 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%@include file="../includes/src.jsp" %>
 </head>
 <body>
+	<%@include file="../includes/header.jsp" %>
 	<div id="container">
         <div id="contents">
 			<!-- 해당 스크립트 삭제에 유의 부탁드리며, 스냅 솔루션의 스크립트입니다. -->
 			<!---- snappush  start contact mail: support@snapvi.co.kr --->
 			<script type="text/javascript" src="//cdn.snapfit.co.kr/js/push/order.js" charset="utf-8"></script>
 			<!---- snappush  end -->
-			
-			<style>
-			    .order_result .ec-base-table table{border:none;    border-top: 1px solid var(--acr1);}
-			    .order_result  .ec-base-table table:before{display:none;}
-			    .order_result .ec-base-table thead th{border-left:none;background: none;font-size: 12px;}
-			    .order_result .ec-base-table td{border-top:none;    border-bottom: 1px solid var(--acr3);}
-			    .order_result .n_board table tr td{    border-bottom: 1px solid var(--acr3);}
-			    .order_result  .ec-base-table.typeList td{padding:15px 0;}
-			
-			    .order_result .n_board table tr td .prd_info{width: 60%;}
-			    .order_result .n_board table tr td .thumbnail,
-			    .order_result .n_board table tr td .prd_price,
-			    .order_result .n_board table tr td .prd_cnt,
-			    .order_result .n_board table tr td .prd_tot{width: 10%;}
-			    .order_result .ec-base-table .thumbnail img{max-width: 30px;}
-			    .order_result .ec-base-table.typeList tfoot td{background:none;}
-			    .order_result .ec-base-table.typeList tfoot td.totalP{padding: 0 0 15px 0;}
-			    .order_result .ec-base-table.typeList tfoot td.totalDet{border-bottom: 0;}
-			    
-			    .order_result .totalArea .ec-base-table .center{display: flex;justify-content: space-evenly;align-items: center;border-top: 1px solid var(--acr1);}
-			    .order_result .totalArea .ec-base-table .center > div{flex: 1;}
-			    .order_result .totalArea .ec-base-table .center > div strong.td_t{display: block;border-bottom: 1px solid var(--acr3);margin-bottom: 10px;height: 40px;line-height: 40px;}
-			    .order_result .orderArea .ec-base-table td > span.row{display: inline-block;width: 130px;vertical-align: middle;font-weight: 600;}
-			
-			
-			    @media all and (max-width:768px) {
-			        .order_result  .n_board table tr td{display: block;}
-			        .order_result  .n_board table tr td .td_t{width:100%;display: block;margin-bottom: 5px;}
-			        #btn_bank_go{margin-top: 10px;display: block;}
-			        
-			        .order_result .ec-base-table.typeList tbody td{    padding-left: 50px !important;}
-			        .order_result .n_board table tr td .thumbnail {position: absolute;left: 0;}
-			        .order_result .n_board table tr td .thumbnail,
-			        .order_result .n_board table tr td .prd_price,
-			        .order_result .n_board table tr td .prd_cnt,
-			        .order_result .n_board table tr td .prd_tot{width: 100%;margin-top: 5px;}
-			        .order_result .n_board table tr td .prd_price{display:none;}
-			        .order_result .orderArea .ec-base-table td > span.row{display: block;padding-bottom: 5px;width: 100%;}
-			
-			    }
-			</style>
 			
 			<div class="page_wrap order_result">
 			    <div class="page_title fs60">주문완료</div>
@@ -107,28 +70,7 @@
 			</script>
 			<!------------- 주문 완료 -------------->
 			<!------------- tiktok pixel -------------->
-			<div class="xans-element- xans-order xans-order-dcinfo ec-base-box typeMember  displaynone "><div class="information">
-			                <h3 class="title">혜택정보</h3>
-			                <div class="description">
-			                    <div class="member displaynone">
-			                        <p><strong>박주영</strong> 님은, [f] 회원이십니다.</p>
-			                        <ul class="">
-			<li class="displaynone">
-			<span class="displaynone">0</span> 이상 <span class="displaynone"></span> 구매시 <span></span>을 추가할인 받으실 수 있습니다. <span class="displaynone">(최대 0)</span>
-			</li>
-			                            <li class="">
-			<span class="">1,000원</span> 이상 <span class="displaynone"></span> 구매시 <span>1%</span>을 추가적립 받으실 수 있습니다. <span class="">(최대 100,000원)</span>
-			</li>
-			                        </ul>
-			</div>
-			                    <ul class="mileage">
-			<li><a href="/myshop/mileage/historyList.html">가용적립금 : <strong>0원</strong></a></li>
-			                        <li class="displaynone"><a href="/myshop/deposits/historyList.html">예치금 : <strong></strong></a></li>
-			                        <li><a href="/myshop/coupon/coupon.html">쿠폰 : <strong>3개</strong></a></li>
-			                    </ul>
-			</div>
-			            </div>
-			</div>
+			
 			<div class="orderInfo">
 			            <p class="fs12">
 			                <strong class="fs12">고객님의 주문이 완료 되었습니다.</strong>
@@ -173,12 +115,7 @@
 			                                </div>
 			                            </td>
 			                        </tr>
-			<tr class="displaynone">
-			<td>
-			                                <strong class="td_t fs12">전자보증보험<br>서비스정보</strong>
-			                                <div></div>
-			                            </td>
-			                        </tr>
+			
 			</tbody>
 			</table>
 			</div>
@@ -197,7 +134,7 @@
 			                        </td>
 			                    </tr></thead>
 			<tfoot><tr class="right">
-			<td class="fs12 totalDet">[기본배송] 상품구매금액 <strong>28,000<span class="displaynone"> (0)</span></strong><span class="displaynone"> + 부가세 2,545</span> + 배송비 3,000 + 지역별배송비 0<span class="displaynone"> - 상품할인금액 0</span>
+			<td class="fs12 totalDet">[기본배송] 상품구매금액 <strong>28,000</strong><span class="displaynone"> + 부가세 2,545</span> + 배송비 3,000 + 지역별배송비 0
 			</td>
 			                        	<td class="fs12 totalP"> = 합계 : <strong class="txtEm gIndent10"><span class="txt13">31,000</span>원</strong> <span class="displaynone"></span>
 			</td>
@@ -207,25 +144,18 @@
 			                                <div class="prd_info left fs13">
 			                                    <strong class="name "><a href="/product/픈픈-폼-플레이-샴푸-300ml/15/category/23/" class="ec-product-name">픈픈 폼 플레이 샴푸 300ml</a></strong>
 			                                    <div class="option ">[옵션: 단품/-], [향 선택 : 프레쉬 가든 1개]</div>
-			                                    <p class="gBlank5 displaynone">무이자할부 상품</p>
 			                                </div>
 			                                <div class="prd_price fs13">
 			                                    <div class="">
 			                                        <strong>28,000원</strong>
-			                                        <div class="displaynone"></div>
 			                                    </div>
 			                                    <div class="displaynone fs13">
 			                                        <strong>28,000원</strong>
-			                                        <div class="displaynone"></div>
 			                                    </div>
 			                                </div>
 			                                <div class="prd_cnt fs13">1</div>
-			                                <!--
-			<td><span class="txtInfo">-</span></td>
-			<td><div class="txtInfo">기본배송<div class="displaynone">(해외배송가능)</div></div></td>
-			-->
 			                                <div class="prd_tot fs13">
-			<strong>28,000원</strong><div class="displaynone"></div>
+			<strong>28,000원</strong>
 			</div>
 			                                
 			<!-- 해당 스크립트 삭제에 유의 부탁드리며, 스냅 솔루션의 스크립트입니다. -->
@@ -268,7 +198,7 @@
 			                        </tr></thead>
 			<tfoot class="right"><tr>
 			<td colspan="7">
-			<span class="gLeft">[개별배송]</span> 상품구매금액 <strong><span class="displaynone"> ()</span></strong><span class="displaynone"> + 부가세 </span> + 배송비  + 지역별배송비 <span class="displaynone"> - 상품할인금액 </span> = 합계 : <strong class="txtEm gIndent10"><span class="txt18"></span></strong> <span class="displaynone"></span>
+			<span class="gLeft">[개별배송]</span> 상품구매금액 <strong></strong><span class="displaynone"> + 부가세 </span> + 배송비  + 지역별배송비 <span class="displaynone"> - 상품할인금액 </span> = 합계 : <strong class="txtEm gIndent10"><span class="txt18"></span></strong> <span class="displaynone"></span>
 			</td>
 			                        </tr></tfoot><tbody class="xans-element- xans-order xans-order-individualresultlist center"><tr class="xans-record-">
 			<td class="thumb"><a href="/product/detail.html"><img src="//img.echosting.cafe24.com/thumb/img_product_big.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a></td>
@@ -381,37 +311,7 @@
 			</table>
 			</div>
 			        </div>
-			<div class="orderArea displaynone">
-			            <div class="title">
-			                <h3>사은품</h3>
-			            </div>
-			            <div class="ec-base-table typeList" nspace="gift">
-			                <table border="1" summary="">
-			<caption>사은품</caption>
-			                    <colgroup>
-			<col style="width:92px">
-			<col style="width:auto">
-			<col style="width:75px">
-			<col style="width:110px">
-			</colgroup>
-			<thead><tr>
-			<th scope="col">이미지</th>
-			                            <th scope="col">상품정보</th>
-			                            <th scope="col">수량</th>
-			                            <th scope="col">사은품 구분</th>
-			                        </tr></thead><tbody class="xans-element- xans-order xans-order-giftresultlist center"><tr class="xans-record-">
-			<td class="thumb"><img src="//img.echosting.cafe24.com/thumb/img_product_big.gif" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></td>
-			                            <td class="left">
-			                                <span class="displaynone"><img src=""></span> <strong></strong>
-			                                <div class="option displaynone"></div>
-			                            </td>
-			                            <td></td>
-			                            <td></td>
-			                        </tr>
-			</tbody>
-			</table>
-			</div>
-			        </div>
+			
 			<div class="totalArea">
 			            <div class="ec-base-table typeList gBorder total ">
 			                <div>
@@ -451,20 +351,7 @@
 			<th scope="row"><strong>총 할인금액</strong></th>
 			                                <td><strong class="txt14">0</strong>원</td>
 			                            </tr>
-			<tr class="displaynone">
-			<th scope="row">쿠폰할인</th>
-			                                <td>
-			                                    <span class="gSpace20">0원</span>
-			                                    <a href="#none" class="btnNormal eUsedCouponDetail">내역보기</a>
-			                                </td>
-			                            </tr>
-			<tr class="displaynone">
-			<th scope="row">추가할인금액</th>
-			                                <td>
-			                                    <span class="gSpace20">0원</span>
-			                                    <a href="#none" onclick="OrderLayer.onDiv('order_benefit_price_detail_layer', event);" class="btnNormal">내역보기</a>
-			                                </td>
-			                            </tr>
+			
 			</tbody>
 			</table>
 			</div>
@@ -484,17 +371,11 @@
 			<th scope="row">적립금</th>
 			                                <td>0원</td>
 			                            </tr>
-			<tr class="displaynone">
-			<th scope="row">네이버 마일리지/캐쉬</th>
-			                                <td>0원 </td>
-			                            </tr>
-			<tr class="displaynone">
-			<th scope="row">예치금</th>
-			                                <td>0원</td>
-			                            </tr>
+			
 			</tbody>
 			</table>
 			</div>
+			                
 			                <div class="ec-base-table gMerge ">
 			                    <table border="1" summary="">
 			<caption>적립예정 내역</caption>
@@ -507,26 +388,17 @@
 			<th scope="row"><strong>총 적립예정금액</strong></th>
 			                                <td><strong class="txt14">280</strong>원</td>
 			                            </tr>
-			<tr class="displaynone">
-			<th scope="row">상품별 적립금</th>
-			                                <td>0원</td>
-			                            </tr>
 			<tr class="">
 			<th scope="row">회원 적립금</th>
 			                                <td>280원</td>
 			                            </tr>
-			<tr class="displaynone">
-			<th scope="row">쿠폰 적립금</th>
-			                                <td>
-			                                    <span class="gSpace20">0원</span>
-			                                    <a href="#none" class="btnNormal eUsedCouponDetail">내역보기</a>
-			                                </td>
-			                            </tr>
+			
 			</tbody>
 			</table>
 			</div>
 			            </div>
 			        </div>
+			
 			<div class="orderArea">
 			            <div class="title">
 			                <h3>배송지정보</h3>
@@ -535,36 +407,8 @@
 			                <table border="1" summary="">
 			<caption>배송지 정보</caption>
 			                    <tbody>
-			<tr class="displaynone">
-			<th scope="row">수령지</th>
-			                            <td>
-			                                <strong></strong>
-			                                <ul class="gBlank10">
-			<li>- 주소 : </li>
-			                                    <li>- 전화번호 : </li>
-			                                    <li>- 영업시간 : </li>
-			                                    <li>- 수령 가능일 : </li>
-			                                    <li>- 수령지 안내 : </li>
-			                                </ul>
-			<div class="map displaynone">
-			                                    <p>* 약도</p>
-			                                                                    </div>
-			                            </td>
-			                        </tr>
 			<tr>
 			<td class="fs15"> <span class="row fs12">받으시는분</span><span>박주영</span></td>
-			                        </tr>
-			<tr class="displaynone">
-			<td class="fs15">
-			<span class="row fs12">영문이름</span><span></span></td>
-			                        </tr>
-			<tr class="displaynone">
-			<td class="fs15">
-			<span class="row fs12">이름(발음기호)</span><span></span></td>
-			                        </tr>
-			<tr class="displaynone">
-			<td class="fs15">
-			<span class="row fs12">국가</span></td>
 			                        </tr>
 			<tr class="">
 			<td class="fs15">
@@ -573,14 +417,6 @@
 			<tr class="">
 			<td class="fs15">
 			<span class="row fs12">주소</span><span>서울 강남구 논현로111길 3 휴먼스페이스주상복합아파트</span></td>
-			                        </tr>
-			<tr class="displaynone">
-			<td class="fs15">
-			<span class="row fs12">도시</span></td>
-			                        </tr>
-			<tr class="displaynone">
-			<td class="fs15">
-			<span class="row fs12">주/지방</span></td>
 			                        </tr>
 			<tr>
 			<td class="fs15">
@@ -592,47 +428,11 @@
 			<td class="fs15">
 			<span class="row fs12">배송메시지</span></td>
 			                        </tr>
-			<tr class="displaynone">
-			<td class="fs15">
-			<span class="row fs12">희망배송일</span><strong></strong>
-			</td>
-			                        </tr>
-			<tr class="displaynone">
-			<td class="fs15">
-			<span class="row fs12">희망배송시간</span><strong></strong>
-			</td>
-			                        </tr>
-			<tr class="displaynone">
-			<td class="fs15">
-			<span class="row fs12">희망배송업체/방식</span></td>
-			                        </tr>
-			<tr class="displaynone">
-			<td class="fs15">
-			<span class="row fs12">수령가능일</span></td>
-			                        </tr>
 			</tbody>
 			</table>
 			</div>
 			        </div>
-			<div class="orderArea displaynone">
-			            <div class="title">
-			                <h3>추가정보</h3>
-			            </div>
-			
-			            <div class="ec-base-table">
-			                <table border="1" summary="">
-			<caption>추가정보</caption>
-			                    <colgroup>
-			<col style="width:140px;">
-			<col style="width:auto;">
-			</colgroup><tbody class="xans-element- xans-order xans-order-ordadd"><tr class="">
-			<th scope="row"></th>
-			                            <td></td>
-			                        </tr>
-			</tbody>
-			</table>
-			</div>
-			        </div>
+			        
 			<div class="ec-base-button">
 			            <span class="gLeft">
 			                <a href="#none" onclick="window.open('/myshop/order/issue/cash.html?order_id=20231211-0000125', '', 'scrollbars=yes, resizeable=0, status=0, directories=0, toolbar=0'); return false;" class="btnNormal ">현금영수증 신청</a>
@@ -646,39 +446,7 @@
 			                <a href="/myshop/order/list.html" class="btnSubmitFix sizeS">주문확인하기</a>
 			            </span>
 			        </div>
-			<div class="ec-base-help displaynone">
-			            <h3>이용안내</h3>
-			            <div class="inner">
-			                <ol>
-			<li class="item1">비회원 주문의 경우, 주문번호를 꼭 기억하세요. 주문번호로 주문조회가 가능합니다.</li>
-			                    <li class="item2">배송은 결제완료 후 지역에 따라 1일 ~ 3일 가량이 소요됩니다. </li>
-			                    <li class="item3">상품별 자세한 배송과정은 주문조회를 통하여 조회하실 수 있습니다.</li>
-			                    <li class="item4">주문의 취소 및 환불, 교환에 관한 사항은 이용안내의 내용을 참고하십시오.</li>
-			                </ol>
-			<h4>세금계산서 발행 안내</h4>
-			                <ol>
-			<li class="item1">부가가치세법 제 54조에 의거하여 세금계산서는 배송완료일로부터 다음달 10일까지만 요청하실 수 있습니다.</li>
-			                    <li class="item2">세금계산서는 사업자만 신청하실 수 있습니다.</li>
-			                    <li class="item3">배송이 완료된 주문에 한하여 세금계산서 발행신청이 가능합니다.</li>
-			                    <li class="item4">[세금계산서 신청]버튼을 눌러 세금계산서 신청양식을 작성한 후 팩스로 사업자등록증사본을 보내셔야 세금계산서 발생이 가능합니다.</li>
-			                    <li class="item5">[세금계산서 인쇄]버튼을 누르면 발행된 세금계산서를 인쇄하실 수 있습니다.</li>
-			                </ol>
-			<h4>부가가치세법 변경에 따른 신용카드매출전표 및 세금계산서 변경안내</h4>
-			                <ol>
-			<li class="item1">변경된 부가가치세법에 의거, 2004.7.1 이후 신용카드로 결제하신 주문에 대해서는 세금계산서 발행이 불가하며</li>
-			                    <li class="item2">신용카드매출전표로 부가가치세 신고를 하셔야 합니다.(부가가치세법 시행령 57조)</li>
-			                    <li class="item3">상기 부가가치세법 변경내용에 따라 신용카드 이외의 결제건에 대해서만 세금계산서 발행이 가능함을 양지하여 주시기 바랍니다.</li>
-			                </ol>
-			<h4>현금영수증 이용안내</h4>
-			                <ol>
-			<li class="item1">현금영수증은 1원 이상의 현금성거래(무통장입금, 실시간계좌이체, 에스크로, 예치금)에 대해 발행이 됩니다.</li>
-			                    <li class="item2">현금영수증 발행 금액에는 배송비는 포함되고, 적립금사용액은 포함되지 않습니다.</li>
-			                    <li class="item3">발행신청 기간제한 현금영수증은 입금확인일로 부터 48시간안에 발행을 해야 합니다.</li>
-			                    <li class="item4">현금영수증 발행 취소의 경우는 시간 제한이 없습니다. (국세청의 정책에 따라 변경 될 수 있습니다.)</li>
-			                    <li class="item5">현금영수증이나 세금계산서 중 하나만 발행 가능 합니다.</li>
-			                </ol>
-			</div>
-			        </div>
+			
 			<div id="order_layer_detail" class="totalDetail ec-base-layer">
 			            <div class="header">
 			                <h3>총 주문금액 상세내역</h3>
@@ -689,9 +457,6 @@
 			<li>
 			<strong class="term">상품금액</strong><span class="desc">28,000원</span>
 			</li>
-			                    <li class="displaynone">
-			<strong class="term">부가세</strong><span class="desc">원</span>
-			</li>
 			                    <li>
 			<strong class="term">배송비</strong><span class="desc">3,000원</span>
 			</li>
@@ -700,58 +465,14 @@
 			</li>
 			                </ul>
 			</div>
-			            <a href="#none" class="close" onclick="OrderLayer.offDiv('order_layer_detail');"><img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif" alt="닫기"></a>
+			<a href="#none" class="close" onclick="OrderLayer.offDiv('order_layer_detail');"><img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif" alt="닫기"></a>
 			        </div>
-			<div id="order_benefit_price_detail_layer" class="totalDetail ec-base-layer">
-			            <div class="header">
-			                <h3>추가할인금액 내역보기</h3>
-			            </div>
-			            <div class="content">
-			                <p>0원</p>
-			                <ul class="ec-base-desc typeDot gLarge rightDD">
-			<li class="displaynone">
-			<strong class="term">기간할인</strong><span class="desc">0원</span>
-			</li>
-			                    <li class="displaynone">
-			<strong class="term">회원할인</strong><span class="desc">0원</span>
-			</li>
-			                    <li class="displaynone">
-			<strong class="term">재구매할인</strong><span class="desc">0원</span>
-			</li>
-			                    <li class="displaynone">
-			<strong class="term">대량구매할인</strong><span class="desc">0원</span>
-			</li>
-			                    <li class="displaynone">
-			<strong class="term">바로가기(링콘)할인</strong><span class="desc">0원</span>
-			</li>
-			                    <li class="displaynone">
-			<strong class="term">어바웃pbp할인</strong><span class="desc">0원</span>
-			</li>
-			                    <li class="displaynone">
-			<strong class="term">신규상품할인</strong><span class="desc">0원</span>
-			</li>
-			                    <li class="displaynone">
-			<strong class="term">세트할인</strong><span class="desc">0원</span>
-			</li>
-			                    <li class="displaynone">
-			<strong class="term">결제수단할인</strong><span class="desc">원</span>
-			</li>
-			                    <li class="displaynone">
-			<strong class="term">회원등급할인</strong><span class="desc">0원</span>
-			</li>
-			                    <li class="displaynone">
-			<strong class="term">배송비할인</strong><span class="desc">원</span>
-			</li>
-			                </ul>
-			<ul class="ec-base-desc typeDot gLarge rightDD displaynone">
-			                                    </ul>
-			<ul class="ec-base-desc typeDot gLarge rightDD displaynone">
-			                                    </ul>
 			</div>
 			            <a href="#none" class="close" onclick="OrderLayer.offDiv('order_benefit_price_detail_layer');"><img src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif" alt="닫기"></a>
-			        </div>
 			</div>
-			</form></div>
+			</div>
+			</form>
+		</div>
 			
 			<!-- 해당 스크립트 삭제에 유의 부탁드리며, 스냅 솔루션의 스크립트입니다. -->
 			<!---- snappush  start contact mail: support@snapvi.co.kr --->
@@ -800,7 +521,8 @@
 			    </div>
 			    <div class="dim_bg"></div>
 			</aside></div>
-
+	
+	<%@include file="../includes/footer.jsp" %>
 
 </body>
 </html>

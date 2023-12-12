@@ -29,6 +29,7 @@
                         <div class="sidebar__item">
                             <h4>Brand</h4>
                             <ul>
+                            	<li><a class="shopclick" href="/shop">전체 상품</a></li>
                                 <li><a class="ncclick" href="/shop/brand?b=nc">네츄럴코어</a></li>
                                 <li><a class="dkclick" href="/shop/brand?b=dk">달링키친</a></li>
                                 <li><a class="loclick" href="/shop/brand?b=lo">로투스</a></li>

@@ -25,7 +25,7 @@
                         <div class="hero__text">
                             <span>MURMUR</span>
                             <h3>즐거움으로 가득한 반려생활<br/>그 이상을 응원해요</h3>
-                            <p>Special Event</p>
+                            <p>Special Discount</p>
                             <a href="shop" class="primary-btn">SHOP NOW</a>
                         </div>
                     </div>

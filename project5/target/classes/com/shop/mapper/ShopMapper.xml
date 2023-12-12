@@ -191,9 +191,9 @@
 	   
 	<!-- 주문 상세 정보 --> 
 	<insert id="orderDetail">
-	 insert into tbl_order_details(orderDtNo, orderNo, prodNo, orderCnt, prodSum)
-	     select orderDtNo, #{orderNo}, prodNo, orderCnt, prodSum
-	         from cart   
+	 insert into order_detail(orderNo, orderListNo, prodNo, orderCnt, prodSum)
+	     select #{orderNo}, #{orderListNo}, prodNo, orderCnt, #{prodSum}
+	         from cart
 	</insert> 
 	
 	<!-- 배송 정보 -->

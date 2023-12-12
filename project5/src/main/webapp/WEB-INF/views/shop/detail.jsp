@@ -133,10 +133,9 @@
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__tab__desc" style="text-align:center;" >
-                                    <button id="spreadBtn01" class="btn01">펼치기</button>
-									<div id="hiddenContent03" class="example01" style="display: none;">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel" style="text-align:center;" >
+                                <div class="product__details__tab__desc">
+									<div id="hiddenContent03" class="example01" style="max-height:1100px; overflow:hidden;">
 										<img src="${contextPath}/resources/upload/product/details/${prd.detailImg}">
 										<div class="product-notify-wrap " style="text-align:left; padding: 0 30px;">
 	                                    <div class="product-notify-title"> 상품정보 제공고시</div>
@@ -158,27 +157,15 @@
 	                                    </div>
 									</div>
                                 </div>
+                                <button id="spreadBtn01" class="site-btn" style="margin: 40px 0 0;">상세정보 펼쳐보기</button>
+                                <button id="spreadBtn02" class="site-btn" style="display:none; margin: 40px 0 0; padding: 13px 35px 12px">상세정보 접기</button>
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                <div class="product__details__tab__desc">
+                                <div class="product__details__tab__desc" style="padding: 60px 80px;">
                                     <div class="shoping__cart__table">
 				                      <c:choose>
 				                        <c:when test="${rlist.isEmpty()}">
 			                        		<div class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList">
-												<table border="1" summary="">
-<!-- 														<thead> -->
-<!-- 															<tr> -->
-<!-- 																<td> -->
-<!-- 											                        <p class="fs12 number">주문일자 [주문번호]</p> -->
-<!-- 											                        <p class="thumb"></p> -->
-<!-- 											                        <p class="fs12 product" style="padding: 0px;">상품</p> -->
-<!-- 											                        <p class="quantity"></p> -->
-<!-- 											                        <p class="right"></p> -->
-<!-- 											                        <p class="fs12 state">주문상태</p> -->
-<!-- 											                    </td> -->
-<!-- 								                			</tr> -->
-<!-- 								                		</thead> -->
-												</table>
 												<p class="message  fs14">구매평이 없습니다.</p>
 											</div>
 			                        	</c:when>
@@ -192,11 +179,23 @@
 						                                        <img src="${contextPath}/resources/upload/review/${rlist.userImg}" alt="">
 						                                    </td>
 						                                    <td class="shoping__cart__item" style="padding-left: 35px;">
-						                                        <h5>${rlist.reviTitle}</h5>
 						                                        <div class="product__details__rating">
-		                            								<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+						                                        	<c:if test="${rlist.rating == 1}">
+		                            									<i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> 별로에요
+		                            								</c:if>
+						                                        	<c:if test="${rlist.rating == 2}">
+		                            									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> 그냥 그래요
+		                            								</c:if>
+						                                        	<c:if test="${rlist.rating == 3}">
+		                            									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> 보통이에요
+		                            								</c:if>
+						                                        	<c:if test="${rlist.rating == 4}">
+		                            									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i> 마음에 들어요
+		                            								</c:if>
+						                                        	<c:if test="${rlist.rating == 5}">
+		                            									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 아주 좋아요
+		                            								</c:if>
 		                        								</div>
-						                                        <p>${rlist.rating}</p>
 						                                        <p><fmt:formatDate pattern="yyyy-MM-dd" value="${rlist.reviReg}"/></p>
 						                                        <p>${rlist.userNo}</p>
 						                                        <p>${rlist.reviContent}</p>
@@ -205,7 +204,7 @@
 						                                    
 						                                    <td class="shoping__cart__quantity" style="vertical-align: bottom; padding-right: 30px; text-align: right;">
 						                                        <p> 댓글 : 0 </p>
-						                                        <p><a href="#"> 리뷰 전체보기 </a></p>
+						                                        <p><a href="/board/reviewRead"> 리뷰 전체보기 </a></p>
 						                                    </td>
 						                                </tr>
 					                                </c:forEach>
@@ -224,44 +223,20 @@
     </section>
     <!-- Product Details Section End -->
 
-    <!-- Related Product Section Begin -->
-    <section class="related-product">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title related__product__title">
-                        <h2>Related Product</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="${contextPath}/resources/shop/img/product/product-1.jpg">
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Related Product Section End -->
-    
 	<%@include file="../includes/footer.jsp" %>
 	<script>
-	$(function(){
-	    console.log(${status.end});
-	});
 	$(document).ready(function(){
 	$("#spreadBtn01").click(function(){
-		if($("#hiddenContent03").is(":visible")){
-			$("#hiddenContent03").css("display", "none");
-		}else{
-			$("#hiddenContent03").css("display", "block");
-		}
+		$("#hiddenContent03").css("max-height", "inherit");
+		$("#hiddenContent03").css("overflow", "visible");
+		$("#spreadBtn01").css("display", "none");
+		$("#spreadBtn02").css("display", "inline-block");
+	});
+	$("#spreadBtn02").click(function(){
+		$("#hiddenContent03").css("max-height", "1100px");
+		$("#hiddenContent03").css("overflow", "hidden");
+		$("#spreadBtn01").css("display", "inline-block");
+		$("#spreadBtn02").css("display", "none");
 	});
 	});
 	$(".shop-btn").addClass("active");

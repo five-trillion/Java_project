@@ -104,7 +104,7 @@ public interface ShopMapper {
 	public List<CartVO> getCart(long userNo) throws Exception;
 	
 	//주문완료 시 장바구니 목록 삭제
-	public List<CartVO> removeCart(long userNo) throws Exception;
+	public int removeCart(CartVO cartVO) throws Exception;
 	
 	//카트에 있는 상품인지 조회
 	public CartVO countCart(CartVO cartVO) throws Exception;
