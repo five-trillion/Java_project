@@ -188,7 +188,7 @@
 	<!-- 주문 정보 -->
 	<insert id="orderInfo">
 	 insert into order_info(orderNo, userNo, orderDate, orderSum, userPoint, orderFee, orderSta)
-	     values(#{orderNo}, #{userNo}, #{orderDate}, #{orderSum}, #{userPoint}, #{orderFee}, #{orderSta})
+	     values(#{orderNo}, #{userNo}, current_timestamp, #{orderSum}, #{userPoint}, 3000, #{orderSta})
 	</insert>
 	   
 	<!-- 주문 상세 정보 --> 
@@ -203,5 +203,11 @@
 	 insert into delivery(deliNo, orderNo, deliStart, deliInfo, orderAddr, recipient, recipientTel)
 	     values(#{deliNo}, #{orderNo}, current_timestamp, #{deliInfo}, #{orderAddr}, #{recipient}, #{recipientTel})
 	</insert>
+	
+	<select id="getCom" resultType="com.shop.domain.OrderVO">
+		select oi.* , od.*, d.*
+		from order_info oi, order_detail od, delivery d
+		where oi.orderNo = od.orderNo and oi.orderNo = d.orderNo;
+	</select>
 	
 </mapper>

@@ -56,7 +56,8 @@
 	                    </c:forEach>
 	                </tbody>
 	            </table>
-	            <p class="message  fs14">상품 합계 : <fmt:formatNumber pattern="###,###,###.##" value="${total+3000}"/>원</p>
+	            <p class="message  fs14" style="margin: 10px 0 0 10px;">
+	            상품구매금액 <strong>${total}원</strong> + 배송비 3,000원 = 합계 : <strong><fmt:formatNumber pattern="###,###,###.##" value="${total+3000}"/>원</strong></p>
         	</div>
             <div class="checkout__form">
                 <h4>배송 정보</h4>
@@ -74,7 +75,7 @@
 		                            </div>
                                     <div class="checkout__input">
                                         <p>이름<span>*</span></p>
-                                        <input type="text" value="${user.userName}">
+                                        <input type="text" id="recipient" name="recipient" value="${user.userName}">
                                     </div>
                                 </div>
                             </div>
@@ -82,14 +83,12 @@
                             	<div class="col-lg-12">
 		                            <div class="checkout__input">
 		                            	<p>주소<span>*</span></p>
-		                            	<div>
-					                      	<input type="text" id="zip" name="zip" value="${user.zip}" placeholder="우편번호">
+		                            		<input type="text" id="zip" name="zip" value="${user.zip}" placeholder="우편번호">
 					                      	<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 15%; text-align: center; padding-left: 0;"><br>
-											<input type="text" id="address1" name="address1" value="address1" placeholder="주소"><br>
-											<input type="text" id="address2" name="address2" value="address2" placeholder="상세주소">
+											<p></p><input type="text" id="address1" name="address1" value="address1" placeholder="주소"><br>
+											<p></p><input type="text" id="address2" name="address2" value="address2" placeholder="상세주소">
 											<!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
-											<input type="hidden" name="address" id="address" value="${user.address}">
-										</div>
+											<input type="hidden" name="orderAddr" id="orderAddr" value="${user.address}">
 									</div>
 								</div>
                             </div>
@@ -190,7 +189,7 @@
 	document.getElementById('email1').value = emailArr[0];
 	document.getElementById('email2').value = emailArr[1];
 	//주소
-	var address = document.getElementById('address').value;
+	var address = document.getElementById('orderAddr').value;
 	var addressArr = address.split("  ");
 	document.getElementById('address1').value = addressArr[0];
 	document.getElementById('address2').value = addressArr[1];

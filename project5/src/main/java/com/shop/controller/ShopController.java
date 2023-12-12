@@ -27,6 +27,7 @@ import com.shop.domain.CodeVO;
 import com.shop.domain.DeliveryVO;
 import com.shop.domain.OrderDetailVO;
 import com.shop.domain.OrderInfoVO;
+import com.shop.domain.OrderVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
 import com.shop.domain.UsersVO;
@@ -162,57 +163,62 @@ public class ShopController {
 	        List<CartVO> cartVO = service.getCart(userNo);
 	        model.addAttribute("order", cartVO);
 
-	        return "shop/checkout";
 	    } catch (Exception e) {
 	        e.printStackTrace();
-	        return "error";
 	    }
+        return "shop/checkout";
 	}
 	@RequestMapping(value = "/complete", method = RequestMethod.POST)
 	public String order(HttpSession session, OrderInfoVO order, OrderDetailVO orderdtVO, DeliveryVO deli) throws Exception {
-	 logger.info("order");
-	 UsersVO uVo = (UsersVO)session.getAttribute("user");  
-	 if (uVo == null) {
-		 System.out.println("user정보가 없습니다");
-		 return "redirect:/shop/login";
-	 }
-	 long userNo = uVo.getUserNo();
-	 
-	 Calendar cal = Calendar.getInstance();
-	 int year = cal.get(Calendar.YEAR);
-	 String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
-	 String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));
-	 System.out.println(ymd);
-	 String subNum = "";
-	 
-	 for(int i = 1; i <= 6; i ++) {
-	  subNum += (int)(Math.random() * 10);
-	 }
-	 
-	 String orderNo = ymd + "_" + subNum;
-	 System.out.println(orderNo);
-	 
-	 order.setOrderNo(orderNo);
-	 order.setUserNo(userNo);
-	 service.orderInfo(order);
-	 
-	 orderdtVO.setOrderNo(orderNo);   
-	 service.orderDetail(orderdtVO);
-	 
-	 String deliNo = ymd + "_" + subNum;
-	 deli.setDeliNo(deliNo);
-	 deli.setOrderNo(orderNo);
-	 service.deliInfo(deli);
-	 
-	 CartVO cartVO = new CartVO();
-	 cartVO.setUserNo(uVo.getUserNo());
-	 service.removeCart(cartVO);
-	 
-	 return "redirect:/complete";  
+		 UsersVO uVo = (UsersVO)session.getAttribute("user");  
+		 if (uVo == null) {
+			 System.out.println("user정보가 없습니다");
+			 return "redirect:/shop/login";
+		 }
+		 long userNo = uVo.getUserNo();
+		 
+		 Calendar cal = Calendar.getInstance();
+		 int year = cal.get(Calendar.YEAR);
+		 String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		 String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		 String subNum = "";
+		 for(int i = 1; i <= 6; i ++) {
+		  subNum += (int)(Math.random() * 10);
+		 }
+		 
+		 String orderNo = ymd + "_" + subNum;
+		 System.out.println(orderNo);
+		 
+		 order.setOrderNo(orderNo);
+		 order.setUserNo(userNo);
+		 service.orderInfo(order);
+		 
+		 orderdtVO.setOrderNo(orderNo);   
+		 service.orderDetail(orderdtVO);
+		 
+		 String deliNo = ymd + "_" + subNum;
+		 deli.setDeliNo(deliNo);
+		 deli.setOrderNo(orderNo);
+		 service.deliInfo(deli);
+		 
+		 CartVO cartVO = new CartVO();
+		 cartVO.setUserNo(uVo.getUserNo());
+		 service.removeCart(cartVO);
+		 
+		 return "redirect:/complete";  
 	}
-	@RequestMapping(value="complete", method = RequestMethod.GET)
-	public String complete() throws Exception {
-		//주문,배송 정보 넘어가게 하기
+	@RequestMapping(value="/complete", method = RequestMethod.GET)
+	public String complete(@RequestBody HttpSession session, Model model) throws Exception {
+		try {
+	        UsersVO uVo = (UsersVO) session.getAttribute("user");
+	        if (uVo == null) {
+	            return "redirect:/shop/login";
+	        }
+			List<OrderVO> order = service.getCom();
+			model.addAttribute("order", order);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "mypage/complete";
 	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)

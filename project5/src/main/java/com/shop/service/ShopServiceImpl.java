@@ -10,6 +10,7 @@ import com.shop.domain.CartVO;
 import com.shop.domain.DeliveryVO;
 import com.shop.domain.OrderDetailVO;
 import com.shop.domain.OrderInfoVO;
+import com.shop.domain.OrderVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
 import com.shop.domain.UsersVO;
@@ -226,5 +227,11 @@ public class ShopServiceImpl implements ShopService {
 	public void deliInfo(DeliveryVO deliVO) throws Exception {
 		mapper.deliInfo(deliVO);
 	}
+	
+	@Override
+	public List<OrderVO> getCom() throws Exception{
+		return mapper.getCom();
+	}
+	
 	
 }

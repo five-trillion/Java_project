@@ -7,6 +7,7 @@ import com.shop.domain.CartVO;
 import com.shop.domain.DeliveryVO;
 import com.shop.domain.OrderDetailVO;
 import com.shop.domain.OrderInfoVO;
+import com.shop.domain.OrderVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
 import com.shop.domain.UsersVO;
@@ -119,5 +120,8 @@ public interface ShopMapper {
 	
 	//배송 테이블 정보 추가
 	public void deliInfo(DeliveryVO deliVO) throws Exception;
+	
+	//주문완료 페이지
+	public List<OrderVO> getCom() throws Exception;
 	
 }
