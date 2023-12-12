@@ -175,7 +175,6 @@ public class ShopController {
 	 
 	 order.setOrderNo(orderNo);
 	 order.setUserNo(userNo);
-	  
 	 service.orderInfo(order);
 	 orderdtVO.setOrderDtNo(orderNo);   
 	 service.orderDetail(orderdtVO);
