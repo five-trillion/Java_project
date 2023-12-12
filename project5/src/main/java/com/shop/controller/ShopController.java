@@ -82,22 +82,33 @@ public class ShopController {
 	}
 	@RequestMapping(value = "shop/detail", method = RequestMethod.GET)
 	public String detail(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
-		if (prodNo == null) {
-	        log.error("Invalid prodNo: " + prodNo);
-	    } else {
-	    	List<CodeVO> codeList = adminService.prodCodeInsert();
-	    	model.addAttribute("code", codeList);
-	    	
-	        service.updateProdCnt(prodNo); // 조회 수 업데이트
-	        ProductVO proddetail = service.prodDetail(prodNo); // 상세 정보 조회
-	        model.addAttribute("prd", proddetail);
-	        
-	        List<ReviewVO> revidlist = service.reviewdList(prodNo); // 해당상품 리뷰목록구현
-	        model.addAttribute("rlist", revidlist);
-	        
-	    }
+		
+        service.updateProdCnt(prodNo); // 조회 수 업데이트
+        ProductVO proddetail = service.prodDetail(prodNo); // 상세 정보 조회
+        model.addAttribute("prd", proddetail);
+        
+        List<CodeVO> codeList = adminService.prodCodeInsert(); // 브랜드 이름 띄우기 위한 코드 테이블
+    	
+        String targetCodeNum = proddetail.getBrand();
+        CodeVO newList = null;
+        System.out.println("before" + newList);
+        
+        for (CodeVO code : codeList) {
+            if (code.getCodeId().equals("brand") && code.getCodeNum().equals(targetCodeNum)) {
+            	newList = code;
+            	System.out.println("for" + newList);
+                break;
+            }
+        }
+        System.out.println("after" + newList);
+        model.addAttribute("name", newList);
+        
+        List<ReviewVO> revidlist = service.reviewdList(prodNo); // 해당상품 리뷰목록구현
+        model.addAttribute("rlist", revidlist);
+        
 		return "shop/detail";
 	}
+	
 	@RequestMapping(value="/cart/add", method = RequestMethod.POST)
 	@ResponseBody
 	public String addcart(@RequestBody CartVO cartVO, HttpSession session) throws Exception {
@@ -201,7 +212,7 @@ public class ShopController {
 	}
 	@RequestMapping(value="complete", method = RequestMethod.GET)
 	public String complete() throws Exception {
-		
+		//주문,배송 정보 넘어가게 하기
 		return "mypage/complete";
 	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)

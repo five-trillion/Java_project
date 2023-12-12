@@ -59,7 +59,7 @@ h2 {
 }
 
 h3 {
-	font-size: 30px;
+	font-size: 26px;
 }
 
 h4 {
@@ -75,7 +75,7 @@ h6 {
 }
 
 p {
-	font-size: 16px;
+	font-size: 14px;
 	font-family: "Cairo", sans-serif;
 	color: #6f6f6f;
 	font-weight: 400;
@@ -1713,13 +1713,13 @@ ol {
 }
 
 .product__details__text .product__details__rating span {
-	color: #dd2222;
+	color: #A19990;
 	margin-left: 4px;
 }
 
 .product__details__text .product__details__price {
-	font-size: 30px;
-	color: #dd2222;
+	font-size: 22px;
+	color: #A19990;
 	font-weight: 600;
 	margin-bottom: 15px;
 }
@@ -1870,7 +1870,7 @@ ol {
 .product__details__tab .product__details__tab__desc h6 {
 	font-weight: 700;
 	color: #333333;
-	margin-bottom: 26px;
+/* 	margin-bottom: 26px; */
 }
 
 .product__details__tab .product__details__tab__desc p {
@@ -2080,7 +2080,7 @@ ol {
 
 .shoping__checkout ul li span {
 	font-size: 18px;
-	color: #dd2222;
+	color: #A19990;
 	float: right;
 }
 

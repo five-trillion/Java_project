@@ -13,10 +13,7 @@
 	<%@include file="../includes/header.jsp" %>
 	<div id="container">
         <div id="contents">
-			<!-- 해당 스크립트 삭제에 유의 부탁드리며, 스냅 솔루션의 스크립트입니다. -->
-			<!---- snappush  start contact mail: support@snapvi.co.kr --->
 			<script type="text/javascript" src="//cdn.snapfit.co.kr/js/push/order.js" charset="utf-8"></script>
-			<!---- snappush  end -->
 			
 			<div class="page_wrap order_result">
 			    <div class="page_title fs60">주문완료</div>
@@ -481,46 +478,9 @@
 			<div id="spm_banner_main"><iframe id="spm_banner_frame_form" name="spm_banner_frame_form" scrolling="no" src="https://push.snapfit.co.kr/Spm_Mgr/make_frame_form?%7B%22sf_store_name%22%3A%22fnfn%22%2C%22device_type%22%3A%22pc%22%2C%22url%22%3A%22https%3A%2F%2Ffnfn.kr%2Forder%2Forder_result.html%3Forder_id%3D20231211-0000125%22%2C%22adminPushID%22%3A%22%22%2C%22solution_type%22%3A%22cafe24%22%2C%22page_type%22%3A%22sq_order_result_page%22%2C%22referrerUrl%22%3A%22https%3A%2F%2Ffnfn.kr%2Forder%2Forderform.html%3Fbasket_type%3DA0000%26delvtype%3DA%22%2C%22todayBannerStatus%22%3A%22%22%2C%22spmislive%22%3A%221%22%2C%22useKakao%22%3A%220%22%2C%22useDelegate%22%3A%220%22%2C%22kakaoDevKey%22%3A%22%22%2C%22kakaoDelegate%22%3A%221%22%2C%22bannerDelegate%22%3A%220%22%2C%22delegateBannerImage%22%3A%22%2F%2Fsnapvi.ecn.cdn.infralab.net%2Fsnapfit%2Fimage%2Fnew_delegate_banner.jpg%22%2C%22delegateBannerIcon%22%3A%22%2F%2Fsnapvi.ecn.cdn.infralab.net%2Fsnapfit%2Fimage%2Fdelegate_ico.png%22%2C%22kakaoBannerImage%22%3A%22%2F%2Fsnapvi.ecn.cdn.infralab.net%2Fsnapfit%2Fimage%2Fnew_kakao_banner.jpg%22%2C%22kakaoBannerIcon%22%3A%22%2F%2Fsnapvi.ecn.cdn.infralab.net%2Fsnapfit%2Fimage%2Fkakao_ico.png%22%2C%22delegateBannerLogin%22%3Afalse%2C%22idsyncstatus%22%3A%22%22%2C%22user_id%22%3A%22jypark0819%22%2C%22spm_spmuserid_pc%22%3A%22a51d3db19632ac653b21d99c164504d2%22%2C%22spm_spmuserid_m%22%3A%22%22%2C%22pageinfo%22%3A%7B%22pagetype%22%3A%22sq_order_result_page%22%2C%22cate%22%3A%22sq_order_result_page%22%2C%22itemcate%22%3Anull%7D%2C%22pushlogo%22%3A%22%2F%2Fcdn.snapfit.co.kr%2Fimage%2Fpushlogo%2Fpush_logo2.png%22%2C%22result%22%3A%22success%22%7D" style="width: 0px; height: 0px; border: 0px; display: none;"></iframe><div id="spm_img_logo" style="position: absolute; bottom: -11px; width: 56px; right: 1px; display: none;"><img src="//cdn.snapfit.co.kr/image/pushlogo/push_logo2.png" style="width: 100%;"></div></div>
 			<script>snapPushOrderInstance.sendOrderStatistics();</script>
 			<!---- snappush  end -->
-			                </div><hr class="layout"><!--import(/layout/basic/aside.html)--><aside><div class="aside_wrap">
-			        <div class="menu_close"><span></span><span></span></div>
-			        <div class="menu_logo">
-			            <h1 class="logo"><a href="/index.html"><img src="/web/upload/img/logo.png" alt="로고"></a></h1>
-						<span><a href="/myshop/order/list.html" class="fs13">주문조회</a></span>
-			        </div>
-			        <div class="menu_btn">
-			        	<ul class="xans-element- xans-layout xans-layout-statelogon "><li><a href="/myshop/index.html">마이페이지</a></li>
-			<li><a href="/exec/front/Member/logout/">로그아웃</a></li>
-			</ul>
-			</div>
-			        <!--//menu_btn-->
-			        
-			        <div class="category_menu">
-			        	<ul><li><p><a href="/product/list.html?cate_no=23">Product</a></p></li>
-			                <li><p>Community<i class="xi-angle-up"></i></p>
-			                	<div class="m_submenu">
-			                    	<ul><!--li><a href="/event/event.html?cate_no=44" class="fs14">Event</a></li--><li><a href="/board/free/list.html?board_no=1" class="fs14">Notice</a></li>
-			                        	<li><a href="/board/product/list.html?board_no=4" class="fs14">Review</a></li>
-			                            <li><a href="/board/product/list.html?board_no=6" class="fs14">Q&amp;A</a></li>
-			                            <!--li><a href="/page/membership.html?ck=2" class="fs14">Membership</a></li-->
-			                        </ul></div>
-			                </li>
-			                <li><p><a href="/page/brand.html">Brand</a></p></li>
-			            </ul></div>
-			        <!--//category_menu-->
-			        
-			        <div class="side_bnr">
-			            <div class="swiper mySwiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-			                <div class="swiper-wrapper" id="swiper-wrapper-4c2c0fc706bf67a8" aria-live="off" style="transform: translate3d(-1250px, 0px, 0px); transition-duration: 0ms;">
-			                    <!--배너 추가/수정 영역입니다-->
-			                    <div class="swiper-slide swiper-slide-prev" role="group" aria-label="1 / 2" style="width: 1250px;"><a href=""><img src="/web/img/side_bn01.png" alt=""></a></div>
-			                    <div class="swiper-slide swiper-slide-active" role="group" aria-label="2 / 2" style="width: 1250px;"><a href=""><img src="/web/img/side_bn02.png" alt=""></a></div>
 			                </div>
-			                <div class="swiper-pagination swiper-pagination-fraction swiper-pagination-horizontal"><span class="swiper-pagination-current">02</span><span class="swiper-pagination-total">02</span></div>
-			            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-			        </div>
-			    </div>
-			    <div class="dim_bg"></div>
-			</aside></div>
+		<hr class="layout">
+	</div>
 	
 	<%@include file="../includes/footer.jsp" %>
 

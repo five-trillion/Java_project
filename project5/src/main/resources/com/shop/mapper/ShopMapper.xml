@@ -79,10 +79,11 @@
 	
 	<!-- 인기글 조회 -->
 	<select id="freepopList" resultType="com.shop.domain.BoardVO">
-		select * 
-		from board
-		where boardClass = 3
-		order by boardNo desc
+		select b.* , u.nick as userNick
+		from board b
+		join users u on b.userNo = u.userNo
+		where b.boardClass = 3
+		order by b.boardNo desc
 		limit 3
 	</select>
 		
@@ -98,10 +99,11 @@
 	
 	<!-- 상품상세페이지 리뷰 조회 -->
 	<select id="reviewdList" resultType="com.shop.domain.ReviewVO">
-		select * 
-		from review
+		select r.* , u.nick as userNick
+		from review r
+		join users u on r.userNo = u.userNo
 		where prodNo = #{prodNo}
-		order by reviNo desc
+		order by r.reviNo desc
 	</select>
 	
 	<!-- 상세조회 -->

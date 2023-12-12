@@ -134,14 +134,14 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel" style="text-align:center;" >
-                                <div class="product__details__tab__desc">
+                                <div class="product__details__tab__desc">${code}
 									<div id="hiddenContent03" class="example01" style="max-height:1100px; overflow:hidden;">
 										<img src="${contextPath}/resources/upload/product/details/${prd.detailImg}">
 										<div class="product-notify-wrap " style="text-align:left; padding: 0 30px;">
 	                                    <div class="product-notify-title"> 상품정보 제공고시</div>
 	                                    <div class="product-notify-group tabled full-width">
 	                                    <div class="product-notify-label table-cell">품명 및 모델명</div>
-	                                    <div class="product-notify-value table-cell">[네츄럴코어] 에코 10 베지테리안</div></div>
+	                                    <div class="product-notify-value table-cell">[${name.codeName}] ${prd.prodName}</div></div>
 	                                    <div class="product-notify-group tabled full-width">
 	                                    <div class="product-notify-label table-cell">법에 의한 인증·허가 등을 받았음을 확인할 수 있는 경우 그에 대한 사항</div>
 	                                    <div class="product-notify-value table-cell">상품상세 참조</div></div>
@@ -150,7 +150,7 @@
 	                                    <div class="product-notify-value table-cell">대한민국</div></div>
 	                                    <div class="product-notify-group tabled full-width">
 	                                    <div class="product-notify-label table-cell">제조자</div>
-	                                    <div class="product-notify-value table-cell">네츄럴코어</div></div>
+	                                    <div class="product-notify-value table-cell">${name.codeName}</div></div>
 	                                    <div class="product-notify-group tabled full-width">
 	                                    <div class="product-notify-label table-cell">소비자상담 관련 전화번호</div>
 	                                    <div class="product-notify-value table-cell">상품상세 참조</div></div>
@@ -174,35 +174,33 @@
 					                            <tbody>
 					                            	<c:forEach items="${rlist}" var="rlist" varStatus="status">
 						                                <tr>
-						                                    <td class="shoping__cart__quantity">
-						                                    <input type="hidden" id="prodNo" value="${rlist.prodNo}">
-						                                        <img src="${contextPath}/resources/upload/review/${rlist.userImg}" alt="">
-						                                    </td>
 						                                    <td class="shoping__cart__item" style="padding-left: 35px;">
-						                                        <div class="product__details__rating">
+						                                        <input type="hidden" id="prodNo" value="${rlist.prodNo}">
+						                                        <div class="product__details__rating" style="margin-bottom: 15px;">
 						                                        	<c:if test="${rlist.rating == 1}">
-		                            									<i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> 별로에요
+		                            									<i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
 		                            								</c:if>
 						                                        	<c:if test="${rlist.rating == 2}">
-		                            									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> 그냥 그래요
+		                            									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
 		                            								</c:if>
 						                                        	<c:if test="${rlist.rating == 3}">
-		                            									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i> 보통이에요
+		                            									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>
 		                            								</c:if>
 						                                        	<c:if test="${rlist.rating == 4}">
-		                            									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i> 마음에 들어요
+		                            									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
 		                            								</c:if>
 						                                        	<c:if test="${rlist.rating == 5}">
-		                            									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i> 아주 좋아요
+		                            									<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
 		                            								</c:if>
 		                        								</div>
-						                                        <p><fmt:formatDate pattern="yyyy-MM-dd" value="${rlist.reviReg}"/></p>
-						                                        <p>${rlist.userNo}</p>
-						                                        <p>${rlist.reviContent}</p>
-						                                        
+<%-- 						                                        <p><fmt:formatDate pattern="yyyy-MM-dd" value="${rlist.reviReg}"/></p> --%>
+																<h6>${rlist.reviTitle}</h6>
+						                                        <p style="margin-bottom: 15px;">${rlist.reviContent}</p>
+						                                        <img src="${contextPath}/resources/upload/review/${rlist.userImg}" alt="" style="width: 200px;">
 						                                    </td>
 						                                    
-						                                    <td class="shoping__cart__quantity" style="vertical-align: bottom; padding-right: 30px; text-align: right;">
+						                                    <td class="shoping__cart__quantity" style="vertical-align: top; padding-right: 30px; text-align: right;">
+						                                        <p>${rlist.userNick}님이 작성하신 <br> 리뷰입니다.</p>
 						                                        <p> 댓글 : 0 </p>
 						                                        <p><a href="/board/reviewRead"> 리뷰 전체보기 </a></p>
 						                                    </td>

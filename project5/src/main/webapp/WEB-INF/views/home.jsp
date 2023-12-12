@@ -157,7 +157,7 @@
                                         </div>
                                     </td>
                                     <td class="shoping__cart__quantity">
-                                        ${free.userNick} 닉네임 (아이디)
+                                        ${free.userNick}
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         댓글 : 0
