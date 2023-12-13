@@ -28,8 +28,31 @@
 
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">조회</h5>
-
+								<div class="card-top" style="display: flex; justify-content: space-between">
+									<h5 class="card-title">조회</h5>
+									<div class="period" style="display: flex; align-items: center; gap: 10px;">
+										<h5 class="card-title"  style="display: inline-block;">기간</h5>
+											<c:choose>
+												<c:when test="${!empty startDate}">
+													<%-- <input type="date" name="startDate" id="startDate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${startDate}" type="date" />" class="form-control dateInput" style="width: auto; cursor:pointer"> --%>
+												</c:when>
+												<c:otherwise>
+													<input type="date" name="startDate" id="startDate" class="form-control dateInput" style="width: auto; cursor:pointer">
+												</c:otherwise>
+											</c:choose>
+												
+										<h5 class="card-title"  style="display: inline-block;">~</h5>
+											<c:choose>
+												<c:when test="${!empty endDate}">
+													<input type="date" name="endDate" id="endDate" value="<fmt:formatDate pattern="yyyy-MM-dd" value="${endDate}" type="date" />" class="form-control dateInput" style="width: auto; cursor:pointer">
+												</c:when>
+												<c:otherwise>
+													<input type="date" name="endDate" id="endDate" class="form-control dateInput" style="width: auto; cursor:pointer">
+												</c:otherwise>
+											</c:choose>
+										<a class="btn btn-primary" href="adminSalesManage">조회</a>
+									</div>
+								</div>
 								<!-- Table with stripped rows -->
 								<table class="table datatable">
 									<thead>
@@ -42,12 +65,26 @@
 									</thead>
 									<tbody>
 										<c:forEach var="sales" items="${sales}">
-											<tr>
-												<th scope="row"><fmt:formatDate value="${sales.salesDate}" type="date" /></th>
-												<td>${sales.salesAmount}</td>
-												<td>${sales.salesVolume}</td>
-												<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${sales.salesPrice}" /></td>
-											</tr>
+										<c:choose>
+											<c:when test="${empty startDate && empty endDate}">
+												<tr>
+													<th scope="row"><fmt:formatDate value="${sales.salesDate}" type="date" /></th>
+													<td>${sales.salesAmount}</td>
+													<td>${sales.salesVolume}</td>
+													<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${sales.salesPrice}" /></td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<c:if test="${startDate <= sales.salesDate && sales.salesDate <= endDate}">
+													<tr>
+														<th scope="row"><fmt:formatDate value="${sales.salesDate}" type="date" /></th>
+														<td>${sales.salesAmount}</td>
+														<td>${sales.salesVolume}</td>
+														<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${sales.salesPrice}" /></td>
+													</tr>
+												</c:if>
+											</c:otherwise>
+										</c:choose>
 										</c:forEach>
 									</tbody>
 								</table>
@@ -66,6 +103,15 @@
 	<%@ include file="./includes/footerAdmin.jsp"%>
 
 	<script>
+		let startDate = document.querySelector("#startDate").value;
+		let endDate = document.querySelector("#endDate").value;
+		$(".period a.btn").attr("href", "adminSalesManage?startDate="+startDate+"&endDate="+endDate);
+		$(".dateInput").on("change", (e)=> {
+			startDate = document.querySelector("#startDate").value;
+			endDate = document.querySelector("#endDate").value;
+		$(".period a.btn").attr("href", "adminSalesManage?startDate="+startDate+"&endDate="+endDate);
+		})
+	
 		$(".table-bordered").css({"textAlign": "center"})
 		$(".datatable-table").css({"textAlign": "center"})
 		$(".datatable-table th").css({"textAlign": "center"})

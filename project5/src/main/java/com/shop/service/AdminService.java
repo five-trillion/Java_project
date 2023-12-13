@@ -84,4 +84,6 @@ public interface AdminService {
 	// 정산 -----------------
 	// 매출관리정보
 	public List<SalesVO> getSalesInfo();
+	// 가입자조회
+	public List<SalesVO> getJoinView();
 }

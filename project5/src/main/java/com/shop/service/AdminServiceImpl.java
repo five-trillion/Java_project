@@ -72,6 +72,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public List<SalesVO> getJoinView() {
+		return mapper.getJoinView();
+	}
+
+	@Override
 	public boolean prodRemove(String prodNo) {
 		log.info("상품 삭제 service 지나가는 중");
 		return mapper.prodRemove(prodNo) == 1;

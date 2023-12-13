@@ -145,6 +145,9 @@
 		from order_info i left join order_detail d on i.orderNo = d.orderNo
 		group by i.orderDate;
 	</select>
-	
+	<!-- 가입자 조회 -->
+	<select id="getJoinView" resultType="com.shop.domain.SalesVO">
+		select date(regDate) as salesDate, count(regDate) as salesAmount from users group by date(regDate);
+	</select>
 	
 </mapper>
