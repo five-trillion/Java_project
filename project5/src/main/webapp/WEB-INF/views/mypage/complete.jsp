@@ -18,19 +18,19 @@
     	<form id="frm_order_result" name="frm_order_result" action="" method="post" target="_self" enctype="multipart/form-data">
 				<input id="order_id" name="order_id" value="20231213-0000119" type="hidden">
 				<input id="bank_url_hidden" name="bank_url_hidden" value="" type="hidden"><div class="xans-element- xans-order xans-order-result xans-record-">
-			<div class="orderInfo">
+			<div class="orderInfo" style="text-align: center; margin: 0 0 50px;">
 			    <p class="fs16">
 	                <strong class="fs18">고객님의 주문이 완료 되었습니다.</strong><br>
 	                주문내역 및 배송에 관한 안내는 <a href="/mypage/order">주문조회</a> 를 통하여 확인 가능합니다.
-	            </p>
+	            </p><br>
 	            <ul>
-					<li class="fs16">주문번호 : <strong><c:out value="${orderNo}"/></strong></li>
-	                <li class="fs16">주문일자 : <span></span></li>
+					<li class="fs16">주문번호 : <strong><c:out value="${order[0].orderNo}"/></strong></li>
+	                <li class="fs16">주문일자 : <span><fmt:formatDate value="${order[0].orderDate}" pattern="yyyy-MM-dd HH:mm:ss"/></span></li>
 	            </ul>
 			</div>
 			
 			<div class="orderListArea">
-	            <div class="shoping__cart__table">
+	            <div class="shoping__cart__table" style="border-top: 1px solid var(--acr1); padding: 20px 0 0;">
 	        		<table>
 	        			<caption>주문상품</caption>
 	        			<thead>
@@ -60,7 +60,6 @@
 		                        </td>
 		                    </tr>
 		                    <c:set var="orderSum" value="${orderSum + order.salePrice * order.orderCnt}"/>
-		                    <c:set var="orderNo" value="${order.orderNo}"/>
 		                    </c:forEach>
 		                </tbody>
 		            </table>
@@ -113,7 +112,7 @@
 	            </div>
 	        </div>
 			
-			<div class="orderArea">
+			<div class="orderArea" style="margin: 50px 0 50px;">
 	            <div class="title">
 	                <h3>배송지정보</h3>
 	            </div>
@@ -152,8 +151,8 @@
 			        
 			<div class="ec-base-button">
 	            <span class="gRight">
-	                <a href="/" class="btnNormalFix sizeS">쇼핑계속하기</a>
-	                <a href="/myshop/order/list.html" class="btnSubmitFix sizeS">주문확인하기</a>
+	                <a href="/shop" class="btnNormalFix sizeS">쇼핑계속하기</a>
+	                <a href="/mypage/order" class="btnSubmitFix sizeS">주문확인하기</a>
 	            </span>
 	        </div>
 			
