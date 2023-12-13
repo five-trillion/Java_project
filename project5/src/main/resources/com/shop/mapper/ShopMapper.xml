@@ -34,8 +34,8 @@
 	
 	<!-- 상세조회 -->
 	<select id="prodDetail" parameterType="java.lang.String" resultType="com.shop.domain.ProductVO">
-		select * 
-		from product
+		select *, (select codeName from code where codeNum = p.brand) as brandName
+		from product p
 		where prodNo = #{prodNo}
 	</select>
 	
@@ -188,26 +188,27 @@
 	<!-- 주문 정보 -->
 	<insert id="orderInfo">
 	 insert into order_info(orderNo, userNo, orderDate, orderSum, userPoint, orderFee, orderSta)
-	     values(#{orderNo}, #{userNo}, current_timestamp, #{orderSum}, #{userPoint}, 3000, #{orderSta})
+	     values(#{orderNo}, #{userNo}, current_timestamp, #{orderSum}, #{userPoint}, 3000, 0)
 	</insert>
 	   
 	<!-- 주문 상세 정보 --> 
 	<insert id="orderDetail">
-	 insert into order_detail(orderNo, orderListNo, prodNo, orderCnt, prodSum)
-	     select #{orderNo}, #{orderListNo}, prodNo, orderCnt, #{prodSum}
-	         from cart
+	 insert into order_detail(orderNo, orderListNo, prodNo, orderCnt, totalPrice)
+	     select #{orderNo}, #{orderListNo}, prodNo, orderCnt, (select salePrice from product where prodNo=c.prodNo)*orderCnt
+	         from cart c
 	</insert> 
 	
 	<!-- 배송 정보 -->
 	<insert id="deliInfo">
-	 insert into delivery(deliNo, orderNo, deliStart, deliInfo, orderAddr, recipient, recipientTel)
-	     values(#{deliNo}, #{orderNo}, current_timestamp, #{deliInfo}, #{orderAddr}, #{recipient}, #{recipientTel})
+	 insert into delivery(deliNo, orderNo, deliInfo, orderzip, orderAddr, recipient, recipientTel, recPhone, recEmail, deliMsg)
+	     values(#{deliNo}, #{orderNo}, #{deliInfo}, #{orderzip}, #{orderAddr}, #{recipient}, #{recipientTel}, #{recPhone}, #{recEmail}, #{deliMsg})
 	</insert>
 	
 	<select id="getCom" resultType="com.shop.domain.OrderVO">
-		select oi.* , od.*, d.*
-		from order_info oi, order_detail od, delivery d
-		where oi.orderNo = od.orderNo and oi.orderNo = d.orderNo;
+		select oi.* , od.*, d.*, p.prodName,salePrice,prodMainImg
+		from order_info oi, order_detail od, delivery d, product p
+		where oi.orderNo = od.orderNo and oi.orderNo = d.orderNo and od.prodNo=p.prodNo
+		and oi.orderNo = #{orderNo};
 	</select>
 	
 </mapper>

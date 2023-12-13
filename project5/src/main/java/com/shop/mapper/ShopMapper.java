@@ -122,6 +122,6 @@ public interface ShopMapper {
 	public void deliInfo(DeliveryVO deliVO) throws Exception;
 	
 	//주문완료 페이지
-	public List<OrderVO> getCom() throws Exception;
+	public List<OrderVO> getCom(String orderNo) throws Exception;
 	
 }

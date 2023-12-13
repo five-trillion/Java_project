@@ -141,7 +141,7 @@
 	                                    <div class="product-notify-title"> 상품정보 제공고시</div>
 	                                    <div class="product-notify-group tabled full-width">
 	                                    <div class="product-notify-label table-cell">품명 및 모델명</div>
-	                                    <div class="product-notify-value table-cell">[${name.codeName}] ${prd.prodName}</div></div>
+	                                    <div class="product-notify-value table-cell">[${prd.brandName}] ${prd.prodName}</div></div>
 	                                    <div class="product-notify-group tabled full-width">
 	                                    <div class="product-notify-label table-cell">법에 의한 인증·허가 등을 받았음을 확인할 수 있는 경우 그에 대한 사항</div>
 	                                    <div class="product-notify-value table-cell">상품상세 참조</div></div>
@@ -150,7 +150,7 @@
 	                                    <div class="product-notify-value table-cell">대한민국</div></div>
 	                                    <div class="product-notify-group tabled full-width">
 	                                    <div class="product-notify-label table-cell">제조자</div>
-	                                    <div class="product-notify-value table-cell">${name.codeName}</div></div>
+	                                    <div class="product-notify-value table-cell">${prd.brandName}</div></div>
 	                                    <div class="product-notify-group tabled full-width">
 	                                    <div class="product-notify-label table-cell">소비자상담 관련 전화번호</div>
 	                                    <div class="product-notify-value table-cell">상품상세 참조</div></div>

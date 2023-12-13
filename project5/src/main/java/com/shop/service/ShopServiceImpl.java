@@ -229,8 +229,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public List<OrderVO> getCom() throws Exception{
-		return mapper.getCom();
+	public List<OrderVO> getCom(String orderNo) throws Exception{
+		return mapper.getCom(orderNo);
 	}
 	
 	

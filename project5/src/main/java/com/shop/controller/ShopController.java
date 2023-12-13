@@ -85,24 +85,9 @@ public class ShopController {
 	public String detail(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
 		
         service.updateProdCnt(prodNo); // 조회 수 업데이트
+        
         ProductVO proddetail = service.prodDetail(prodNo); // 상세 정보 조회
         model.addAttribute("prd", proddetail);
-        
-        List<CodeVO> codeList = adminService.prodCodeInsert(); // 브랜드 이름 띄우기 위한 코드 테이블
-    	
-        String targetCodeNum = proddetail.getBrand();
-        CodeVO newList = null;
-        System.out.println("before" + newList);
-        
-        for (CodeVO code : codeList) {
-            if (code.getCodeId().equals("brand") && code.getCodeNum().equals(targetCodeNum)) {
-            	newList = code;
-            	System.out.println("for" + newList);
-                break;
-            }
-        }
-        System.out.println("after" + newList);
-        model.addAttribute("name", newList);
         
         List<ReviewVO> revidlist = service.reviewdList(prodNo); // 해당상품 리뷰목록구현
         model.addAttribute("rlist", revidlist);
@@ -131,11 +116,9 @@ public class ShopController {
 	            log.error("User information not found in session");
 	            return "redirect:/shop/login"; 
 	        }
-	        HttpSession session2 = request.getSession();
 	        long userNo = uVo.getUserNo();
 	        List<CartVO> clist = service.getCart(userNo);
 	        model.addAttribute("cart", clist);
-	        session2.setAttribute("cart", clist);
 	        return "shop/cart";
 	    } catch (Exception e) {
 	        log.error("Error fetching getcart", e);
@@ -169,7 +152,7 @@ public class ShopController {
         return "shop/checkout";
 	}
 	@RequestMapping(value = "/complete", method = RequestMethod.POST)
-	public String order(HttpSession session, OrderInfoVO order, OrderDetailVO orderdtVO, DeliveryVO deli) throws Exception {
+	public String order(@RequestParam("totalPrice") int totalPrice, HttpServletRequest request, HttpSession session, OrderInfoVO order, OrderDetailVO orderdtVO, DeliveryVO deli) throws Exception {
 		 UsersVO uVo = (UsersVO)session.getAttribute("user");  
 		 if (uVo == null) {
 			 System.out.println("user정보가 없습니다");
@@ -187,19 +170,24 @@ public class ShopController {
 		 }
 		 
 		 String orderNo = ymd + "_" + subNum;
-		 System.out.println(orderNo);
+		 System.out.println("주문번호 : " + orderNo);
 		 
 		 order.setOrderNo(orderNo);
 		 order.setUserNo(userNo);
 		 service.orderInfo(order);
+		 System.out.println(order);
 		 
-		 orderdtVO.setOrderNo(orderNo);   
+		 orderdtVO.setOrderNo(orderNo);
+		 orderdtVO.setTotalPrice(totalPrice);
 		 service.orderDetail(orderdtVO);
+		 System.out.println(orderdtVO);
 		 
-		 String deliNo = ymd + "_" + subNum;
-		 deli.setDeliNo(deliNo);
 		 deli.setOrderNo(orderNo);
 		 service.deliInfo(deli);
+		 System.out.println(deli);
+		 
+		 HttpSession ordersession = request.getSession();
+	     ordersession.setAttribute("odr", order);
 		 
 		 CartVO cartVO = new CartVO();
 		 cartVO.setUserNo(uVo.getUserNo());
@@ -208,14 +196,20 @@ public class ShopController {
 		 return "redirect:/complete";  
 	}
 	@RequestMapping(value="/complete", method = RequestMethod.GET)
-	public String complete(@RequestBody HttpSession session, Model model) throws Exception {
+	public String complete(HttpSession session, HttpSession ordersession, Model model) throws Exception {
 		try {
 	        UsersVO uVo = (UsersVO) session.getAttribute("user");
 	        if (uVo == null) {
 	            return "redirect:/shop/login";
 	        }
-			List<OrderVO> order = service.getCom();
+	        
+	        OrderInfoVO orderVO = (OrderInfoVO) ordersession.getAttribute("odr");
+	        String orderNo = orderVO.getOrderNo();
+	        System.out.println("주문완료: " + orderNo);
+	        
+			List<OrderVO> order = service.getCom(orderNo);
 			model.addAttribute("order", order);
+			System.out.println(order);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

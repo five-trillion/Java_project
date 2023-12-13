@@ -14,57 +14,52 @@
     
 	<section class="checkout spad" style="padding-top: 50px;">
         <div class="container" style="padding-left: 50px; padding-right: 50px;">
-        	<div class="shoping__cart__table">
-        		<h4>주문상품</h4>
-        		<table>
-        			<thead>
-                        <tr>
-                        	<th>선택</th>
-                            <th colspan="2" class="shoping__product">상품정보</th>
-                            <th>수량</th>
-                            <th>주문금액</th>
-                            <th><!-- 삭제 버튼 --></th>
-                        </tr>
-                    </thead>
-	                <tbody>
-	                	<c:forEach items="${order}" var="order">
-	                    <tr>
-	                    	<td class="shoping__cart__item__close" style="width:80px; text-align: center;">
-	                            <span><input type="checkbox"></span>
-	                        </td>
-	                    	<td class="shoping__cart__total">
-	                            <img src="${contextPath}/resources/upload/product/thumbnails/${order.prodMainImg}" alt="" style="width:100px;">
-	                        </td>
-	                        <td class="shoping__cart__item" style="padding-left: 20px; width: 420px;">
-	                            <h5>${order.prodName}</h5> <br>
-	                            <input type="hidden" value="${order.cartNo}">
-	                            <h6>가격: <fmt:formatNumber pattern="###,###,###.##" value="${order.salePrice}" /></h6>
-	                        </td>
-	                        <td class="shoping__cart__quantity" style="width:110px;">
-	                            <div class="quantity">
-	                            	<h6>X${order.orderCnt}</h6>
-	                            </div>
-	                        </td>
-	                        <td class="shoping__cart__total">
-	                            <fmt:formatNumber pattern="###,###,###.##" value="${order.totalPrice}" />
-	                        </td>
-	                        <td class="shoping__cart__item__close">
-	                            <a class="delete_btn" data-cartno="${order.cartNo}"><span class="icon_close"></span></a>
-	                        </td>
-	                    </tr>
-	                    <c:set var="total" value="${total + order.salePrice * order.orderCnt}"/>
-	                    </c:forEach>
-	                </tbody>
-	            </table>
-	            <p class="message  fs14" style="margin: 10px 0 0 10px;">
-	            상품구매금액 <strong>${total}원</strong> + 배송비 3,000원 = 합계 : <strong><fmt:formatNumber pattern="###,###,###.##" value="${total+3000}"/>원</strong></p>
-        	</div>
-            <div class="checkout__form">
-                <h4>배송 정보</h4>
-                <form role="form" method="post" autocomplete="off" action="/complete">
+        	
+        	<form role="form" method="post" autocomplete="off" action="/complete">
+	        	<div class="shoping__cart__table">
+	        		<h4>주문상품</h4>
+	        		<table>
+	        			<thead>
+	                        <tr>
+	                            <th colspan="2" class="shoping__product">상품정보</th>
+	                            <th>수량</th>
+	                            <th>주문금액</th>
+	                        </tr>
+	                    </thead>
+		                <tbody>
+		                	<c:forEach items="${order}" var="order">
+		                    <tr>
+		                    	<td class="shoping__cart__total">
+		                            <img src="${contextPath}/resources/upload/product/thumbnails/${order.prodMainImg}" alt="" style="width:100px;">
+		                        </td>
+		                        <td class="shoping__cart__item" style="padding-left: 20px; width: 420px;">
+		                            <h5>${order.prodName}</h5> <br>
+		                            <input type="hidden" value="${order.cartNo}">
+		                            <h6>가격: <fmt:formatNumber pattern="###,###,###.##" value="${order.salePrice}" /></h6>
+		                        </td>
+		                        <td class="shoping__cart__quantity" style="width:110px;">
+		                            <div class="quantity">
+		                            	<h6>X${order.orderCnt}</h6>
+		                            </div>
+		                        </td>
+		                        <td class="shoping__cart__total">
+		                            <fmt:formatNumber pattern="###,###,###.##" value="${order.totalPrice}" />
+		                            <input type="hidden" id="totalPrice" name="totalPrice" value="${order.totalPrice}">
+		                        </td>
+		                    </tr>
+		                    <c:set var="orderSum" value="${orderSum + order.salePrice * order.orderCnt}"/>
+		                    </c:forEach>
+		                </tbody>
+		            </table>
+		            <p class="message  fs14" style="margin: 10px 0 0 10px;">
+			            상품구매금액 <strong><fmt:formatNumber pattern="###,###,###.##" value="${orderSum}"/>원</strong> + 배송비 3,000원 
+			            = 합계 : <strong><fmt:formatNumber pattern="###,###,###.##" value="${orderSum+3000}"/>원</strong>
+		            </p>
+	        	</div>
+	        	<div class="checkout__form">
+                	<h4>배송 정보</h4>
                 
-                <input type="hidden" name="orderSum" value="${total+3000}" />
-                
+                	<input type="hidden" id="orderSum" name="orderSum" value="${orderSum}">
                     <div class="row">
                         <div class="col-lg-12 col-md-6">
                             <div class="row">
@@ -83,7 +78,7 @@
                             	<div class="col-lg-12">
 		                            <div class="checkout__input">
 		                            	<p>주소<span>*</span></p>
-		                            		<input type="text" id="zip" name="zip" value="${user.zip}" placeholder="우편번호">
+		                            		<input type="text" id="orderzip" name="orderzip" value="${user.zip}" placeholder="우편번호">
 					                      	<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" style="width: 15%; text-align: center; padding-left: 0;"><br>
 											<p></p><input type="text" id="address1" name="address1" value="address1" placeholder="주소"><br>
 											<p></p><input type="text" id="address2" name="address2" value="address2" placeholder="상세주소">
@@ -118,7 +113,7 @@
 			                       	<input list="tel1List" id="tel1" name="tel1" value="tel1" style="font-size: 12px;"> -
 								   	<input type="text" id="tel2" name="tel2" value="tel2" maxlength="4"> - 
 								   	<input type="text" id="tel3" name="tel3" value="tel3" maxlength="4"> 
-								   	<input type="hidden" name="tel" id="tel" value="${user.tel}">
+								   	<input type="hidden" name="recipientTel" id="recipientTel" value="${user.tel}">
 			                    	</div>
 			                    </div>
 			                </div>
@@ -129,7 +124,7 @@
 				                       	<input type="text" id="phone1" name="phone1" maxlength="3" value="010" required> - 
 									   	<input type="text" id="phone2" name="phone2" maxlength="4" value="phone2"required> - 
 									   	<input type="text" id="phone3" name="phone3" maxlength="4" value="phone3" required> 
-									   	<input type="hidden" name="phone" id="phone" value="${user.phone}">
+									   	<input type="hidden" name="recPhone" id="recPhone" value="${user.phone}">
 									</div>
                                 </div>
                             </div>
@@ -148,22 +143,22 @@
 		                                	<option value="empas.com">empas.com</option>
 		                                 </datalist>
 		                                 <input list="email2List" id="email2" name="email2" value="email2" style="font-size: 12px;" required>
-		                                 <input type="hidden" name="email" id="email" value="${user.email}">
+		                                 <input type="hidden" name="recEmail" id="recEmail" value="${user.email}">
                            			</div>
                            		</div>
                             </div>
                             
                             <div class="checkout__input">
                                 <p>배송메세지</p>
-                                <input type="text" id="deliInfo" name="deliInfo">
+                                <input type="text" id="deliMsg" name="deliMsg">
                             </div>
                         </div>
                     </div>
                     <div style="text-align:center;">
                     	<button type="submit" class="site-btn" style="padding: 13px 60px;">결제하기</button>
                     </div>
-                </form>
-            </div>
+       		 	</div>
+            </form>
         </div>
     </section>
     
@@ -173,18 +168,18 @@
 	$(".checkout__input > p").css({"width" : "150px"});
 	
 	//휴대폰 
-    var phone = document.getElementById('phone').value;
+    var phone = document.getElementById('recPhone').value;
 	var phoneArr = phone.split("-");
 	document.getElementById('phone2').value = phoneArr[1];
 	document.getElementById('phone3').value = phoneArr[2];
 	//집전화
-	var tel = document.getElementById('tel').value;
+	var tel = document.getElementById('recipientTel').value;
 	var telArr = tel.split("-");
 	document.getElementById('tel1').value = telArr[0];
 	document.getElementById('tel2').value = telArr[1];
 	document.getElementById('tel3').value = telArr[2];
 	//이메일
-	var email = document.getElementById('email').value;
+	var email = document.getElementById('recEmail').value;
 	var emailArr = email.split("@");
 	document.getElementById('email1').value = emailArr[0];
 	document.getElementById('email2').value = emailArr[1];

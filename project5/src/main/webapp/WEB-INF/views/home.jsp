@@ -18,9 +18,7 @@
     <section class="hero">
         <div class="container">
         	<div class="row">
-                
                 <div class="col-lg-12">
-                    
                     <div class="hero__item set-bg" data-setbg="${contextPath}/resources/shop/img/hero/main_bnr02.png">
                         <div class="hero__text">
                             <span>MURMUR</span>
