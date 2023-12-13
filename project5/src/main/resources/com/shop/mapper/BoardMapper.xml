@@ -128,7 +128,7 @@
 					<if test="keyword != null">
 						and b.boardTitle like concat('%', #{keyword}, '%')
 					</if>  
-					order by b.boardReg desc) as T2 
+					order by b.boardReg desc) as T3 
        		limit #{skip},#{amount}
     	</select>
     	 

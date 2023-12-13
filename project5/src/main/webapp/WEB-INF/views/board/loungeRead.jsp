@@ -64,6 +64,7 @@
 										</div>
 									</td>
 								</tr>
+								
 							</tbody>
 						</table>
 						<input type="hidden" name="boardTitle" value="${freeDetail.boardTitle}">

@@ -1,5 +1,10 @@
 package com.shop.controller;
   
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.BoardVO;
@@ -150,25 +156,56 @@ public class BoardController {
 	
 	//자유게시판 글쓰기 페이지 이동
 	@RequestMapping(value="/loungeWrite", method=RequestMethod.GET) 
-	public void loungeWriteGET() {
-		System.out.println("자유게시판 글쓰기 페이지 진입");
-	}
-	
-	//자유게시판 게시물 작성
-	@RequestMapping(value="/loungeWrite", method=RequestMethod.POST)
-	public String loungeWritePOST(BoardVO board, RedirectAttributes rttr, HttpSession session) throws Exception {
+	public void loungeWriteGET(RedirectAttributes rttr, HttpSession session) {
 		UsersVO user = (UsersVO) session.getAttribute("user");
 		if(user != null) {
-			board.setUserNo(user.getUserNo());
-			System.out.println("자유게시판 글쓰기 성공");
-			boardservice.freeRegister(board);
-			rttr.addFlashAttribute("result", "write success");
-			return "redirect:/board/lounge";
+			System.out.println("자유게시판 글쓰기 페이지 진입");
 		} else {
 			System.out.println("자유게시판 글쓰기 실패");
 			rttr.addFlashAttribute("needLogin", "로그인이 필요합니다.");
-			return "redirect:/shop/login";
-		}		
+		}	
+	} 
+	
+	//자유게시판 게시물 작성
+	@RequestMapping(value="/loungeWrite", method=RequestMethod.POST)
+	public String loungeWritePOST(BoardVO board, UsersVO user, RedirectAttributes rttr, HttpSession session, @RequestParam("uploadFile") MultipartFile[] uploadFiles) throws Exception {
+		
+		System.out.println("자유게시판 파일업로드 .....");
+		String uploadFolder = "D:/Java_project/project5/src/main/webapp/resources/upload/lounge/";
+		//파일 업로드 날짜별로 폴더 구분
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Date date = new Date();
+		String str = sdf.format(date);
+		File uploadPath = new File(uploadFolder, str);
+		if(uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		for(int i = 0; i < uploadFiles.length; i++) {
+			System.out.println("-----------------------------------------------");
+			System.out.println("파일 이름 : " + uploadFiles[i].getOriginalFilename());
+			System.out.println("파일 타입 : " + uploadFiles[i].getContentType());
+			System.out.println("파일 크기 : " + uploadFiles[i].getSize());	
+			
+			// 파일 이름 
+			String uploadFileName = uploadFiles[i].getOriginalFilename();
+			// 고유 식별자 적용 파일 이름
+			String uuid = UUID.randomUUID().toString();
+			uploadFileName = uuid + "_" + uploadFileName;
+			// 파일 위치, 파일 이름을 합친 File 객체 
+			File saveFile = new File(uploadPath, uploadFileName);
+			board.setBoardImg(uploadFileName);
+			// 파일 저장 
+			try {
+				uploadFiles[i].transferTo(saveFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}
+		board.setUserNo(user.getUserNo());
+		System.out.println("자유게시판 글쓰기 성공");
+		boardservice.freeRegister(board);
+		rttr.addFlashAttribute("result", "write success");
+		return "redirect:/board/lounge";
 	}
 	
 	//자유게시판 게시물 수정 페이지 이동

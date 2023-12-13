@@ -125,7 +125,7 @@
 				            </ul> 
 				        	<div class="board_search_wrap">
 					            <button type="button" id="writeForm" name="writeForm" 
-									onclick="location.href='/board/loungeWrite'" style="float:left"
+									onclick="checkLoginAndRedirect('/board/loungeWrite')" style="float:left"
 									class="btnSubmitFix sizeS"> 글쓰기
 								</button> 
 						    	<div class="search_area">
@@ -144,6 +144,8 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	
 	<%@ include file="../includes/footer.jsp"%>
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -170,17 +172,31 @@
 		$(".pageInfo a").on("click", function(e){
 			e.preventDefault();
 	        moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-	        moveForm.attr("action", "/board/qna");
+	        moveForm.attr("action", "/board/lounge");
 	        moveForm.submit();
 	    });
 		
-		 $(".search_area button").on("click", function(e){
-		        e.preventDefault();
-		        let val = $("input[name='keyword']").val();
-		        moveForm.find("input[name='keyword']").val(val);
-		        moveForm.find("input[name='pageNum']").val(1);
-		        moveForm.submit();
-		 });
+		$(".search_area button").on("click", function(e){
+	        e.preventDefault();
+	        let val = $("input[name='keyword']").val();
+	        moveForm.find("input[name='keyword']").val(val);
+	        moveForm.find("input[name='pageNum']").val(1);
+	        moveForm.submit();
+		});
+		 
+		 function checkLoginAndRedirect(url) {
+		        // 여기서 로그인 여부를 확인
+		        let user = '<c:out value="${user}"/>';
+		        
+		        if (user === '') {
+		            // 로그인이 필요한 경우
+		            alert("로그인이 필요합니다.");
+		            location.href = '/shop/login';
+		        } else {
+		            // 로그인이 되어 있는 경우
+		            location.href = url;
+		        }
+		    }
 	</script>
 </body>
 
