@@ -8,7 +8,37 @@
 <meta charset="UTF-8">
 <title>자유게시판 게시물 상세페이지</title>
 <%@ include file="../includes/src.jsp"%>
-
+<style>
+	.n_board table tr .boardread_top {
+		display:block;
+	}
+	.board_title {
+		font-size:30px;
+		text-align:center;
+	}
+	.board_writer_date {
+		font-size:15px;
+		text-align:right;
+	}
+	.boardbtn {
+		text-align: center;
+   		padding: 30px;
+	}
+	.boardbtn button {
+		width: 75px;
+	    height: 50px;
+	    display: inline-block;
+	}
+	textarea {
+		border:1px #888888 solid;
+		background-color:white;
+		padding: 10px;
+	    font-size: 12px;
+	    width: 80%;
+	    resize: none;
+	    box-sizing: border-box;
+	}
+</style>
 </head>
 
 <body>
@@ -24,47 +54,35 @@
 					</div>
 					<p class="imgArea displaynone"></p>
 				</div>
-				<div class="boardSort">
-					<span
-						class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
-				</div>
 				<form method="get" id="frm" name="frm" action="/board/loungeModify" enctype="multipart/form-data">
 					<div class="n_board line typeList gBorder">
-						<table border="1" summary="">
+						<table>
 							<caption>게시판 목록</caption>
-							<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
+							<thead>
 								<tr>
-									<td>
+									<td class="boardread_top">
 										<input type="hidden" id="boardNo" name="boardNo" value="${freeDetail.boardNo}">
-										<div class="chk fs12">제목</div>
-										<div class="subject left fs12">
+										<div class="board_title">
 											<c:out value="${freeDetail.boardTitle}"></c:out>
 										</div>
-									</td>
-									<td>
-										<div class="chk fs12">작성자</div>
-										<div class="subject left fs12">
-											<c:out value="${freeDetail.userNick}"></c:out> 
-										</div>
-									</td>
-									<td>
-										<div class="chk fs12">작성일</div>
-										<div class="subject left fs12">
-											<fmt:formatDate pattern="yyyy-MM-dd" value="${freeDetail.boardReg}"/>
+										<div> </div>
+										<div class="board_writer_date">
+											작성자 <b><c:out value="${freeDetail.userNick}"/></b>&nbsp;&nbsp;&nbsp;
+											작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${freeDetail.boardReg}"/></b>
 										</div>
 									</td>
 								</tr>
 							</thead>
-							<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
+							<tbody>
 								<tr>
 									<td>
 										<div class="chk fs13">내용</div>
 										<div class="subject left fs13">
+											<img src="${contextPath}/resources/upload/lounge/${freeDetail.boardImg}" alt="게시글 이미지">
 											<c:out value="${freeDetail.boardContent}"></c:out>
 										</div>
 									</td>
 								</tr>
-								
 							</tbody>
 						</table>
 						<input type="hidden" name="boardTitle" value="${freeDetail.boardTitle}">
@@ -76,41 +94,54 @@
 						</div>
 					</div>
 				</form>
+				
+				<!-- 댓글 -->
+				
+				<form method="post" id="replyfrm" name="replyfrm" action="/reply/boRepWrite">
+					<div class="n_board line typeList gBorder">
+						<table>
+							<thead>
+								<tr>
+									<td>
+										<div> 리플  2<%-- <c:out value={replycnt}/> --%> </div>
+									</td>
+								<tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="hidden" name="boardNo" value="${freeDetail.boardNo}">
+										<input type="hidden" name="userNo" value="${freeDetail.userNo}">
+										<textarea id="boRepContent" name="boRepContent" rows="4"></textarea>
+										<div class="boardbtn">
+											<button type="submit">등록</button>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<c:forEach var="reply" items="${reply}">
+										<td>
+											<div>
+												작성자 <b><c:out value="${reply.userNick}"/></b>&nbsp;&nbsp;&nbsp;
+												작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.boRepReg}"/></b><br>
+												<c:out value="${reply.boRepContent}"/>
+												
+											</div>
+										</td>
+									</c:forEach>	
+								</tr>
+							</tbody>
+						</table>
+						<%-- <input type="hidden" name="boardTitle" value="${freeDetail.boardTitle}">
+						<input type="hidden" name="boardContent" value="${freeDetail.boardContent}"> --%>
+						
+						<div class="boardbtn">
+							<!-- <button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
+							<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button> -->
+						</div>
+					</div>
+				</form>
 			</div>
-
-			<div
-				class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002 ec-base-paginate">
-				<a href="?board_no=1&amp;page=1" class="prev"><img
-					src="//img.echosting.cafe24.com/skin/base/common/btn_page_prev.gif"
-					alt="이전 페이지"></a>
-				<ol>
-					<li class="xans-record-"><a href="?board_no=1&amp;page=1"
-						class="this">1</a></li>
-				</ol>
-				<a href="?board_no=1&amp;page=1" class="next"><img
-					src="//img.echosting.cafe24.com/skin/base/common/btn_page_next.gif"
-					alt="다음 페이지"></a>
-			</div>
-
-			<form id="boardSearchForm" name="" action="/board/free/list.html"
-				method="get" target="_top" enctype="multipart/form-data">
-				<input id="board_no" name="board_no" value="1" type="hidden">
-				<input id="page" name="page" value="1" type="hidden"> <input
-					id="board_sort" name="board_sort" value="" type="hidden">
-				<div
-					class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">
-					<fieldset class="boardSearch" style="float:right;">
-						<legend>게시물 검색</legend>
-						<p>
-							<input id="search" name="search" fw-filter="" fw-label=""
-								fw-msg="" class="inputTypeText" placeholder="" value=""
-								type="text"> <a href="#none" class="btnSubmitFix sizeS"
-								onclick="BOARD.form_submit('boardSearchForm');">찾기</a>
-						</p>
-					</fieldset>
-				</div>
-			</form>
-			
 		</div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>

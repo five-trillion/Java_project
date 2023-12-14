@@ -60,7 +60,7 @@
 									<td>
 										<div class="chk fs13">첨부</div>
 										<div class="subject left fs13">
-											<input type="file" id="uploadFile" name="uploadFile" multiple>
+											<input type="file" id="uploadFile" name="uploadFile">
 										</div>
 									</td>
 								</tr>
@@ -110,7 +110,7 @@
 			contentType : false,
 			data : formData,
 			type : 'POST',
-			dataType : 'jason'
+			dataType : 'json'
 		});
 	});
 	

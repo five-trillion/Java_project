@@ -12,4 +12,5 @@ public class BoardReplyVO {
 	private String boRepContent; //게시물 댓글 내용
 	private Date boRepReg; //게시물 댓글 등록일
 	private Date boRepUpdate; //게시물 댓글 수정일
+	private String userNick;
 }
