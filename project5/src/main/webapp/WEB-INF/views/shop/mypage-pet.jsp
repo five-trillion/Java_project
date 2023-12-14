@@ -28,8 +28,9 @@
 	
 		 <div class="container">
          	<h2 style="text-align:center; font-weight:bold;">반려견 정보</h2><br>
-         	<p style="text-align:center;">반려견의 정보를 입력해주세요. 이벤트와 사은품 증정에 이용됩니다.</p>
+         	<p style="text-align:center;">반려견의 정보를 입력해주세요. 이벤트 및 사은품 증정에 이용됩니다.</p>
          	<div class="addpet">
+         		<div id="pet-info-container"> </div>
          		<div id="form-container" class="form-container">
           			<button onclick="addForm()" class="btnSubmitFix sizeS" style="font-size:15px; border-radius:45px">추가</button>
           		</div>
@@ -63,41 +64,69 @@
   	<%@ include file="../includes/footer.jsp" %>
   	
 <script>
-	let formIndex = 0;
+	let formIndex = 0; //폼의 인덱스
+	let formCreated = false; // 추가된 폼이 있는지 여부를 확인하기 위한 변수
+	
 	function addForm() {
-        formIndex++;
+    if (!formCreated) {
+        formCreated = true;
 
         const formContainer = document.getElementById('form-container');
 
         const formDiv = document.createElement('div');
         formDiv.innerHTML = `<br>
-        	<form id="form-${formIndex}" action="mypage-pet" method="post" onsubmit="submitForm(${formIndex});">
-                <label for="name-${formIndex}">이름:</label>
-                <input type="text" id="name-${formIndex}" required>
-                <label for="type-${formIndex}">종류:</label>
-                <input type="text" id="type-${formIndex}" required>
-                <label for="age-${formIndex}">나이:</label>
-                <input type="text" id="age-${formIndex}" required>
-                <button type="submit">확인</button>
-            </form>
+        	<form id="form-${formIndex}" onsubmit="submitForm(${formIndex}); return false;">
+	            <label for="name-${formIndex}">이름:</label>
+	            <input type="text" id="name-${formIndex}" required>
+	            <label for="type-${formIndex}">종류:</label>
+	            <input type="text" id="kind-${formIndex}" required>
+	            <label for="age-${formIndex}">나이:</label>
+	            <input type="text" id="age-${formIndex}" required>
+	            <button type="submit">확인</button>
+	        </form>
         `;
 
         formContainer.appendChild(formDiv);
-    }
+   		}
+	}
 	
 	function submitForm(index) {
-        const name = document.getElementById(`name-${index}`).value;
-        const type = document.getElementById(`type-${index}`).value;
-        const age = document.getElementById(`age-${index}`).value;
+	    const name = document.getElementById(`name-${index}`).value;
+	    const kind = document.getElementById(`kind-${index}`).value;
+	    const age = document.getElementById(`age-${index}`).value;
 
-        // 여기에서 서버로 데이터를 전송하거나, 로컬 스토리지에 저장하거나 원하는 작업을 수행할 수 있습니다.
-        console.log(`이름: ${name}, 종류: ${type}, 나이: ${age}`);
+	    // 서버로 데이터 전송
+	    const formData = new FormData();
+	    formData.append('petName', name);
+	    formData.append('petKind', type);
+	    formData.append('petAge', age);
 
-        // 이후에 폼을 삭제하거나 원하는 동작을 수행할 수 있습니다.
-        const formContainer = document.getElementById('form-container');
-        const formToRemove = document.getElementById(`form-${index}`);
-        formContainer.removeChild(formToRemove);
-    }
+	    fetch('/shop/mypage-pet', {
+	        method: 'POST',
+	        body: formData
+	    })
+	    .then(response => response.json())
+	    .then(data => {
+	        // 서버 응답 처리
+	        console.log(data);
+
+	        // 정보를 표시할 영역에 추가
+	        const petInfoContainer = document.getElementById('pet-info-container');
+	        const petInfoDiv = document.createElement('div');
+	        petInfoDiv.innerHTML = `<p>${name} - ${kind} - ${age}</p>`;
+	        petInfoContainer.appendChild(petInfoDiv);
+	    })
+	    .catch(error => {
+	        console.error('Error:', error);
+	    });
+
+	    // 이후에 폼을 삭제하거나 원하는 동작을 수행할 수 있습니다.
+	    const formContainer = document.getElementById('form-container');
+	    const formToRemove = document.getElementById(`form-${index}`);
+	    formContainer.removeChild(formToRemove);
+
+	    formCreated = false;
+	}
 </script>
  	
 </body>
