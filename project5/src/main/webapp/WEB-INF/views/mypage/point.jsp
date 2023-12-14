@@ -105,5 +105,8 @@
 	
 	<%@include file="../includes/footer.jsp" %>
 	
+	<script>
+	$(".mileage").addClass("on");
+	</script>
 </body>
 </html>
