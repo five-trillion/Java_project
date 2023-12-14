@@ -309,57 +309,46 @@
 
 								<div class="card-body pb-0">
 									<h5 class="card-title">
-										게시판 글 순위
+										상품 순위
 									</h5>
 
 									<table class="table table-borderless">
 										<thead>
 											<tr>
 												<th scope="col">#</th>
-												<th scope="col">게시판 분류</th>
-												<th scope="col">제목</th>
-												<th scope="col">조회수</th>
+												<th scope="col">상품명</th>
+												<th scope="col">판매량</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-1.jpg" alt=""></a></th>
+												<th scope="row">1</th>
 												<td><a href="#" class="text-primary fw-bold">Ut
 														inventore ipsa voluptas nulla</a></td>
-												<td>$64</td>
 												<td class="fw-bold">124</td>
 											</tr>
 											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-2.jpg" alt=""></a></th>
+												<th scope="row">2</th>
 												<td><a href="#" class="text-primary fw-bold">Exercitationem
 														similique doloremque</a></td>
-												<td>$46</td>
 												<td class="fw-bold">98</td>
 											</tr>
 											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-3.jpg" alt=""></a></th>
+												<th scope="row">3</th>
 												<td><a href="#" class="text-primary fw-bold">Doloribus
 														nisi exercitationem</a></td>
-												<td>$59</td>
 												<td class="fw-bold">74</td>
 											</tr>
 											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-4.jpg" alt=""></a></th>
+												<th scope="row">4</th>
 												<td><a href="#" class="text-primary fw-bold">Officiis
 														quaerat sint rerum error</a></td>
-												<td>$32</td>
 												<td class="fw-bold">63</td>
 											</tr>
 											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-5.jpg" alt=""></a></th>
+												<th scope="row">5</th>
 												<td><a href="#" class="text-primary fw-bold">Sit
 														unde debitis delectus repellendus</a></td>
-												<td>$79</td>
 												<td class="fw-bold">41</td>
 											</tr>
 										</tbody>
@@ -405,40 +394,35 @@
 										</thead>
 										<tbody>
 											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-1.jpg" alt=""></a></th>
+												<th scope="row">1</th>
 												<td><a href="#" class="text-primary fw-bold">Ut
 														inventore ipsa voluptas nulla</a></td>
 												<td>$64</td>
 												<td class="fw-bold">124</td>
 											</tr>
 											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-2.jpg" alt=""></a></th>
+												<th scope="row">2</th>
 												<td><a href="#" class="text-primary fw-bold">Exercitationem
 														similique doloremque</a></td>
 												<td>$46</td>
 												<td class="fw-bold">98</td>
 											</tr>
 											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-3.jpg" alt=""></a></th>
+												<th scope="row">3</th>
 												<td><a href="#" class="text-primary fw-bold">Doloribus
 														nisi exercitationem</a></td>
 												<td>$59</td>
 												<td class="fw-bold">74</td>
 											</tr>
 											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-4.jpg" alt=""></a></th>
+												<th scope="row">4</th>
 												<td><a href="#" class="text-primary fw-bold">Officiis
 														quaerat sint rerum error</a></td>
 												<td>$32</td>
 												<td class="fw-bold">63</td>
 											</tr>
 											<tr>
-												<th scope="row"><a href="#"><img
-														src="assets/img/product-5.jpg" alt=""></a></th>
+												<th scope="row">5</th>
 												<td><a href="#" class="text-primary fw-bold">Sit
 														unde debitis delectus repellendus</a></td>
 												<td>$79</td>

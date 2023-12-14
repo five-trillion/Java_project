@@ -17,14 +17,15 @@
             <div class="checkout__form">
                 <h2 style="text-align:center; font-weight:bold;">회원가입</h2>
                 <div class="checkout__input"><P style="float:right;"><span>*</span> 필수입력사항</P></div>
-                <form action="join" method="post" name="frm" id="frm">
-                	<div class="col-lg-8 col-md-6">
+                <form action="join" method="post" name="frm" class="joinForm" id="frm">
+                	<div class="col-lg-8 col-md-6 joinBox">
 	                   <div class="checkout__input">
 	                        <p>아이디<span>*</span></p>
-	                        <input type="text" name="userId" class="id_input" placeholder="영문과 숫자를 조합하여 6~16자로 입력해주세요." required>
-	                        <span class="id_input_re_1" style="color:green; display:none;">사용 가능한 아이디입니다.</span>
-	                        <span class="id_input_re_2" style="color:red; display:none;">이미 존재하는 아이디입니다.</span>
-	
+	                        <div class="inputBlock">
+		                        <input type="text" name="userId" class="id_input" placeholder="영문과 숫자를 조합하여 6~16자로 입력해주세요." required>
+		                        <span class="id_input_re_1" style="color:green; display:none;">사용 가능한 아이디입니다.</span>
+		                        <span class="id_input_re_2" style="color:red; display:none;">이미 존재하는 아이디입니다.</span>
+	                        </div>
 	                    </div>
 	                    <div class="checkout__input">
 	                        <p>비밀번호<span>*</span></p>
@@ -38,14 +39,16 @@
 	                        <p>이름<span>*</span></p>
 	                        <input type="text" name="userName" required>
 	                    </div>
-                      	<div class="checkout__input">
+                      	<div class="checkout__input calling">
 	                        <p>휴대전화<span>*</span></p>
-	                       	<input type="text" id="phone1" name="phone1" maxlength="3" value="010" required> - 
-						   	<input type="text" id="phone2" name="phone2" maxlength="4" required> - 
-						   	<input type="text" id="phone3" name="phone3" maxlength="4" required> 
-						   	<input type="hidden" name="phone" id="phone">
+	                        <div class="phoneBox">
+		                       	<input type="text" id="phone1" name="phone1" maxlength="3" value="010" required> - 
+												   	<input type="text" id="phone2" name="phone2" maxlength="4" required> - 
+												   	<input type="text" id="phone3" name="phone3" maxlength="4" required> 
+												   	<input type="hidden" name="phone" id="phone">
+	                        </div>
 	                    </div>
-	                    <div class="checkout__input">
+	                    <div class="checkout__input calling">
 	                        <p>집전화</p>
 	                       	<datalist id="tel1List"> 
 	                       		<option value="02">02</option>
@@ -65,39 +68,45 @@
 	                       		<option value="062">062</option>
 	                       		<option value="063">063</option>
 	                     		<option value="064">064</option>
-	                       	</datalist> 
-	                       	<input list="tel1List" id="tel1" name="tel1"> - 
-						   	<input type="text" id="tel2" name="tel2" maxlength="4"> - 
-						   	<input type="text" id="tel3" name="tel3" maxlength="4"> 
-						   	<input type="hidden" name="tel" id="tel">
-	                    </div>
+	                       	</datalist>
+													<div class="phoneBox">
+													<input list="tel1List" id="tel1" name="tel1"> - <input
+														type="text" id="tel2" name="tel2" maxlength="4"> - <input
+														type="text" id="tel3" name="tel3" maxlength="4"> <input
+														type="hidden" name="tel" id="tel">
+													</div>
+											</div>
 	                    <div class="row">
 	                        <div class="col-lg-6">
 	                            <div class="checkout__input">
 	                                <p>이메일<span>*</span></p>
-	                                <input type="text" id="email1" name="email1" required> @
-	                                <datalist id="email2List">
-	                                	<option value="gmail.com">gmail.com</option>
-	                                	<option value="naver.com">naver.com</option>
-	                                	<option value="daum.net">daum.net</option>
-	                                	<option value="hanmail.net">hanmail.net</option>
-	                                	<option value="yahoo.co.kr">yahoo.co.kr</option>
-	                                	<option value="hotmail.com">hotmail.com</option>
-	                                	<option value="empas.com">empas.com</option>
-	                                 </datalist>
-	                                 <input list="email2List" id="email2" name="email2" required placeholder="직접입력">
-	                                <input type="hidden" name="email" id="email">
+	                                <div class="phoneBox">
+		                                <input type="text" id="email1" name="email1" required> @
+		                                <datalist id="email2List">
+		                                	<option value="gmail.com">gmail.com</option>
+		                                	<option value="naver.com">naver.com</option>
+		                                	<option value="daum.net">daum.net</option>
+		                                	<option value="hanmail.net">hanmail.net</option>
+		                                	<option value="yahoo.co.kr">yahoo.co.kr</option>
+		                                	<option value="hotmail.com">hotmail.com</option>
+		                                	<option value="empas.com">empas.com</option>
+		                                 </datalist>
+		                                 <input list="email2List" id="email2" name="email2" required placeholder="직접입력">
+		                                <input type="hidden" name="email" id="email">
+	                                </div>
 	                            </div>
 	                        </div>
 	                    </div>
 	                    <div class="checkout__input">
 	                        <p>주소<span>*</span></p> 
-	                      	<input type="text" id="zip" name="zip" placeholder="우편번호">
-	                      	<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-							<input type="text" id="address1" name="address1" placeholder="주소"><br>
-							<input type="text" id="address2" name="address2" placeholder="상세주소">
-							<!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
-							<input type="hidden" name="address" id="address">
+	                        <div class="inputBlock">
+		                      	<input type="text" id="zip" name="zip" placeholder="우편번호">
+		                      	<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+														<input type="text" id="address1" name="address1" placeholder="주소"><br>
+														<input type="text" id="address2" name="address2" placeholder="상세주소">
+														<!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
+														<input type="hidden" name="address" id="address">
+	                    		</div>
 	                    </div>  
 	                  	<div class="checkout__input">
 	                        <p>닉네임</p>
@@ -149,7 +158,6 @@
     
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
-    	
     	function joinCheck() {	//유효성 검사
     		//아이디
     		if(document.frm.userId.value.length == 0) {
