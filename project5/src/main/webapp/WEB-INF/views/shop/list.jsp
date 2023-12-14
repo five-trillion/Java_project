@@ -29,6 +29,7 @@
                         <div class="sidebar__item">
                             <h4>Brand</h4>
                             <ul>
+                            	<li><a class="shopclick" href="/shop">전체 상품</a></li>
                                 <li><a class="ncclick" href="/shop/brand?b=nc">네츄럴코어</a></li>
                                 <li><a class="dkclick" href="/shop/brand?b=dk">달링키친</a></li>
                                 <li><a class="loclick" href="/shop/brand?b=lo">로투스</a></li>
@@ -47,21 +48,14 @@
                     
                     <div class="filter__item">
                         <div class="row">
-                            <div class="col-lg-4 col-md-5">
-                                <div class="filter__sort">
-                                    <span>Sort By</span>
-                                    <select>
-                                        <option value="0">Default</option>
-                                        <option value="0">Default</option>
-                                    </select>
+                            <div class="col-lg-4 col-md-3">
+                                <div class="filter__found" style="text-align: left;">
+                                    <h6>상품 <span><c:out value="${fn:length(prodlist)}"/></span></h6>
                                 </div>
+                            </div>
+                            <div class="col-lg-4 col-md-5">
                             </div>
                             <div class="col-lg-4 col-md-4">
-                                <div class="filter__found">
-                                    <h6><span><c:out value="${fn:length(prodlist)}"/></span> Products found</h6>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-3">
                             </div>
                         </div>
                     </div>

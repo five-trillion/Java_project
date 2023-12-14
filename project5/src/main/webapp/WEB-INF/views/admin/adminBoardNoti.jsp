@@ -52,7 +52,7 @@
 												<th scope="row">${board.boardNo}</th>
 												<td>${board.boardTitle}</td>
 												<td><fmt:formatDate value="${board.boardReg}" type="date"></fmt:formatDate></td>
-												<td><div class="btn btn-primary"><i class="bx bxs-pencil"></i></div></td>
+												<td><div class="btn btn-primary" onClick="window.open('/admin/adminBoardReview?boardNo=${board.boardNo}','_blank', 'width=1000, height=500, top=200, left=400')"><i class="bx bxs-pencil"></i></div></td>
 												<td>${board.boardCnt}</td>
 												<td>
 													<!-- Large Modal -->
@@ -70,7 +70,7 @@
 																	<div class="row mb-3">
 													                  <label for="boardTitle" class="col-sm-2 col-form-label">제 목</label>
 													                  <div class="col-sm-10">
-													                    <input type="text" class="form-control" id="boardTitle" name="boardTitle" value="${board.boardContent}" readonly>
+													                    <input type="text" class="form-control" id="boardTitle" name="boardTitle" value="${board.boardTitle}" readonly>
 													                  </div>
 													                </div>
 																	<div class="row mb-3">
@@ -81,7 +81,7 @@
 													                </div>
 																</div>
 																<div class="modal-footer">
-																	<a href="adminUserModify"><button type="button" class="btn btn-secondary"
+																	<a href="adminNotiModify?boardNo=${board.boardNo}"><button type="button" class="btn btn-secondary"
 																		data-bs-dismiss="modal">수정</button></a>
 																	<button type="button" class="btn btn-primary modalClose">닫기</button>
 																</div>

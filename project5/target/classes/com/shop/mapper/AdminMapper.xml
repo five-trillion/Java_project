@@ -54,7 +54,14 @@
 	<select id="getUsers" resultType="com.shop.domain.UsersVO">
 		select * from users
 	</select>
-	
+	<!-- 유저 정보 가져오기 -->
+	<select id="getUserDetail" resultType="com.shop.domain.UsersVO">
+		select * from users where userNo = #{userNo}
+	</select>
+	<!-- 유저 정보 수정 -->
+	<update id="UpdateUserDetail">
+		update users set nick = #{nick}, tel = #{tel}, phone = #{phone}, email = #{email}, zip = #{zip},  address = #{address}, admin= #{admin} where userNo = #{userNo}
+	</update>
 	<!-- 유저 권한 변경 -->
 	<update id="adminChange">
 		update users set admin = #{admin} where userNo =  #{userNo}
@@ -82,16 +89,35 @@
 		insert into board
 		values (default, #{userNo}, 1, #{boardTitle}, #{boardContent}, default, default, #{boardImg}, 0, null, null);
 	</insert>
+	<!-- 공지 수정 -->
+	<update id="notiModify">
+		update board set boardTitle=#{boardTitle}, boardContent=#{boardContent}, boardUpdate=default,boardImg=#{boardImg} where boardNo = #{boardNo}
+	</update>
 	<!-- 질의 답변 작성 -->
 	<insert id="ansComplete">
 		insert into answer
 		values (#{boardNo}, #{ansTitle}, #{ansContent}, default)
 	</insert>
+	<!-- 답변 가져오기 -->
+	<select id="getAnswer" resultType="com.shop.domain.AnswerVO">
+		select * from answer where boardNo = #{boardNo}
+	</select>
+	<!-- 답변 수정하기 -->
+	<update id="updateAnswer">
+		update answer set ansTitle=#{ansTitle}, ansContent=#{ansContent} where boardNo = #{boardNo} 
+	</update>
 	<!-- 게시판 삭제 -->
 	<delete id="boardDelete">
 		delete from board where boardNo = #{boardNo};
 	</delete>
-	
+	<!-- 게시판 리뷰보기 -->
+	<select id="getBoardReview" resultType="com.shop.domain.BoardReplyVO">
+		select * from board_reply where boardNo = #{boardNo}
+	</select>
+	<!-- 게시판 리뷰삭제 -->
+	<delete id="boardReviwDelete">
+		delete from board_reply where boRepNo = #{boRepNo}
+	</delete>
 	<!-- 신고 조회 -->
 	<select id="getReport" resultType="com.shop.domain.ReportVO">
 		select * from report order by processingYn
@@ -113,7 +139,15 @@
 		update report set processingYn = 1 where repoNo = #{repoNo} ;
 	</update>
 	
-	
-	
+	<!-- 매출정산 관리 -->
+	<select id="getSalesInfo" resultType="com.shop.domain.SalesVO">
+		select i.orderDate as salesDate ,sum(d.orderCnt) as salesAmount, (select count(orderNo) from order_info where orderDate = i.orderDate) as salesVolume, sum(d.prodSum) as salesPrice
+		from order_info i left join order_detail d on i.orderNo = d.orderNo
+		group by i.orderDate;
+	</select>
+	<!-- 가입자 조회 -->
+	<select id="getJoinView" resultType="com.shop.domain.SalesVO">
+		select date(regDate) as salesDate, count(regDate) as salesAmount from users group by date(regDate);
+	</select>
 	
 </mapper>

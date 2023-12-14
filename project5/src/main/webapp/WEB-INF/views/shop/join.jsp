@@ -17,15 +17,14 @@
             <div class="checkout__form">
                 <h2 style="text-align:center; font-weight:bold;">회원가입</h2>
                 <div class="checkout__input"><P style="float:right;"><span>*</span> 필수입력사항</P></div>
-                <form action="join" method="post" name="frm" id="frm">
-                	<div class="col-lg-8 col-md-6">
+                <form action="join" method="post" name="frm" class="joinForm" id="frm">
+                	<div class="col-lg-8 col-md-6 joinBox">
 	                   <div class="checkout__input">
 	                        <p>아이디<span>*</span></p>
 	                        <input type="text" name="userId" class="id_input" placeholder="영문과 숫자를 조합하여 6~16자로 입력해주세요." required>
-	                        <span class="id_input_re_1" style="color:green; display:none;">사용 가능한 아이디입니다.</span>
-	                        <span class="id_input_re_2" style="color:red; display:none;">이미 존재하는 아이디입니다.</span>
-	
-	                    </div>
+	                        <span class="id_input_re" style="color:red; display:none;">이미 존재하는 아이디입니다.</span>
+						</div>
+
 	                    <div class="checkout__input">
 	                        <p>비밀번호<span>*</span></p>
 	                        <input type="password" name="userPw" placeholder="영문과 숫자, 특수문자를 조합하여 6~16자로 입력해주세요." required>
@@ -38,14 +37,16 @@
 	                        <p>이름<span>*</span></p>
 	                        <input type="text" name="userName" required>
 	                    </div>
-                      	<div class="checkout__input">
+                      	<div class="checkout__input calling">
 	                        <p>휴대전화<span>*</span></p>
-	                       	<input type="text" id="phone1" name="phone1" maxlength="3" value="010" required> - 
-						   	<input type="text" id="phone2" name="phone2" maxlength="4" required> - 
-						   	<input type="text" id="phone3" name="phone3" maxlength="4" required> 
-						   	<input type="hidden" name="phone" id="phone">
+	                        <div class="phoneBox">
+		                       	<input type="text" id="phone1" name="phone1" maxlength="3" value="010" required> - 
+												   	<input type="text" id="phone2" name="phone2" maxlength="4" required> - 
+												   	<input type="text" id="phone3" name="phone3" maxlength="4" required> 
+												   	<input type="hidden" name="phone" id="phone">
+	                        </div>
 	                    </div>
-	                    <div class="checkout__input">
+	                    <div class="checkout__input calling">
 	                        <p>집전화</p>
 	                       	<datalist id="tel1List"> 
 	                       		<option value="02">02</option>
@@ -65,39 +66,45 @@
 	                       		<option value="062">062</option>
 	                       		<option value="063">063</option>
 	                     		<option value="064">064</option>
-	                       	</datalist> 
-	                       	<input list="tel1List" id="tel1" name="tel1"> - 
-						   	<input type="text" id="tel2" name="tel2" maxlength="4"> - 
-						   	<input type="text" id="tel3" name="tel3" maxlength="4"> 
-						   	<input type="hidden" name="tel" id="tel">
-	                    </div>
+	                       	</datalist>
+													<div class="phoneBox">
+													<input list="tel1List" id="tel1" name="tel1"> - <input
+														type="text" id="tel2" name="tel2" maxlength="4"> - <input
+														type="text" id="tel3" name="tel3" maxlength="4"> <input
+														type="hidden" name="tel" id="tel">
+													</div>
+											</div>
 	                    <div class="row">
 	                        <div class="col-lg-6">
 	                            <div class="checkout__input">
 	                                <p>이메일<span>*</span></p>
-	                                <input type="text" id="email1" name="email1" required> @
-	                                <datalist id="email2List">
-	                                	<option value="gmail.com">gmail.com</option>
-	                                	<option value="naver.com">naver.com</option>
-	                                	<option value="daum.net">daum.net</option>
-	                                	<option value="hanmail.net">hanmail.net</option>
-	                                	<option value="yahoo.co.kr">yahoo.co.kr</option>
-	                                	<option value="hotmail.com">hotmail.com</option>
-	                                	<option value="empas.com">empas.com</option>
-	                                 </datalist>
-	                                 <input list="email2List" id="email2" name="email2" required placeholder="직접입력">
-	                                <input type="hidden" name="email" id="email">
+	                                <div class="phoneBox">
+		                                <input type="text" id="email1" name="email1" required> @
+		                                <datalist id="email2List">
+		                                	<option value="gmail.com">gmail.com</option>
+		                                	<option value="naver.com">naver.com</option>
+		                                	<option value="daum.net">daum.net</option>
+		                                	<option value="hanmail.net">hanmail.net</option>
+		                                	<option value="yahoo.co.kr">yahoo.co.kr</option>
+		                                	<option value="hotmail.com">hotmail.com</option>
+		                                	<option value="empas.com">empas.com</option>
+		                                 </datalist>
+		                                 <input list="email2List" id="email2" name="email2" required placeholder="직접입력">
+		                                <input type="hidden" name="email" id="email">
+	                                </div>
 	                            </div>
 	                        </div>
 	                    </div>
 	                    <div class="checkout__input">
 	                        <p>주소<span>*</span></p> 
-	                      	<input type="text" id="zip" name="zip" placeholder="우편번호">
-	                      	<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-							<input type="text" id="address1" name="address1" placeholder="주소"><br>
-							<input type="text" id="address2" name="address2" placeholder="상세주소">
-							<!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
-							<input type="hidden" name="address" id="address">
+	                        <div class="inputBlock">
+		                      	<input type="text" id="zip" name="zip" placeholder="우편번호">
+		                      	<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+														<input type="text" id="address1" name="address1" placeholder="주소"><br>
+														<input type="text" id="address2" name="address2" placeholder="상세주소">
+														<!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
+														<input type="hidden" name="address" id="address">
+	                    		</div>
 	                    </div>  
 	                  	<div class="checkout__input">
 	                        <p>닉네임</p>
@@ -116,26 +123,42 @@
 	                        </label>
 	                  	</div>
 	                  	<div class="checkout__input__checkbox">
-	                  		<label for="checkbox1">
-	                            <a href="#" style="color:black;">[필수] 이용약관 동의</a>
-	                            <input type="checkbox" id="checkbox1" name="checkbox1">
-	                            <span class="checkmark"></span>
-	                        </label>
-	                  	</div>
+					        <label for="checkbox1" id="labelCheckbox1">
+           						<span style="color:black; text-decoration:underline; cursor: pointer;" onclick="toggleTerms('termsContent1')">[필수] 이용약관 동의</span>
+					            <input type="checkbox" id="checkbox1" name="checkbox1">
+					            <span class="checkmark"></span>
+					        </label>
+					    </div>
+	                  	<div id="termsContent1" style="display: none;">
+							이용약관 입력 이용약관 입력 이용약관 입력
+							이용약관 입력 이용약관 입력 이용약관 입력
+							이용약관 입력 이용약관 입력 이용약관 입력
+						</div>
 	                  	<div class="checkout__input__checkbox">
-	                  		<label for="checkbox2">
-	                            <a href="#" style="color:black;">[필수] 개인정보 수집 및 이용 동의</a>
+	                  		<label for="checkbox2" id="labelCheckbox2">
+	                            <span style="color:black; text-decoration:underline; cursor: pointer;" onclick="toggleTerms('termsContent2')">[필수] 개인정보 수집 및 이용 동의</span>
 	                            <input type="checkbox" id="checkbox2" name="checkbox2">
 	                            <span class="checkmark"></span>
 	                        </label>
 	                  	</div>
+	                  	<div id="termsContent2" style="display: none;">
+							개인정보 수집 및 이용 동의 내용 입력
+							개인정보 수집 및 이용 동의 내용 입력
+							개인정보 수집 및 이용 동의 내용 입력
+						</div>
 	                  	<div class="checkout__input__checkbox">
-	                  		<label for="checkbox3">
-	                            <a href="#" style="color:black;">[선택] 마케팅 활용 동의 및 광고 수신 동의</a>
+	                  		<label for="checkbox3" id="labelCheckbox3">
+	                          	<span style="color:black; text-decoration:underline; cursor: pointer;" onclick="toggleTerms('termsContent3')">[선택] 마케팅 활용 동의 및 광고 수신 동의</span>
 	                            <input type="checkbox" id="checkbox3" name="checkbox3" onchange="eventYn()">
 	                            <span class="checkmark"></span>
 	                        </label>
 	                  	</div>
+	                  	<div id="termsContent3" style="display: none;">
+							마케팅 활용 동의 및 광고 수신 동의 내용 입력
+							마케팅 활용 동의 및 광고 수신 동의 내용 입력
+							마케팅 활용 동의 및 광고 수신 동의 내용 입력
+							지금 버튼이 엉망임 수정 필요
+						</div>
 	                  	<input type="hidden" id="eventYn" name="eventYn" value="1">
 	                  	<div class="checkout__input">
 	                  		<input type="submit" value ="회원가입" onclick="return joinCheck()" class="join_btn">
@@ -149,30 +172,52 @@
     
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript">
+
     	
-    	function joinCheck() {	//유효성 검사
-    		//아이디
-    		if(document.frm.userId.value.length == 0) {
-    			alert("아이디를 입력해주세요.")
+    	function joinCheck() {	//유효성 검사 함수
+        //아이디
+    		var userId = document.frm.userId.value;
+    		var userIdReg = /^[a-zA-Z0-9]{6,16}$/;
+    		if(userId.length == 0) {
+    			alert("아이디를 입력해주세요.");
     			frm.userId.focus();
     			return false;
     		}
+    		if(!userIdReg.test(userId)){
+    			alert("아이디는 영문과 숫자를 포함하여 6~16자로 입력해주세요.");
+    			frm.userId.focus();
+    			return false;
+    		}
+    		if ($('.id_input_re').css('display') !== 'none') {
+    	        alert("이미 존재하는 아이디입니다. 다른 아이디를 입력해주세요.");
+    	        return false;
+    	    }
+    		
     		//비밀번호
-    		if(document.frm.userPw.value.length == 0) {
-    			alert("비밀번호를 입력해주세요.")
+    		var userPw = document.frm.userPw.value;
+    		var userPwCk = document.frm.userPwCk.value;
+    		var userPwReg = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]).{6,16}$/;
+    		if(userPw.length == 0) {
+    			alert("비밀번호를 입력해주세요.");
     			frm.userPw.focus();
     			return false;
     		}
-    		if(document.frm.userPwCk.value.length == 0) {
-    			alert("비밀번호를 다시 입력해주세요.")
+    		if(userPwCk.length == 0) {
+    			alert("비밀번호를 다시 입력해주세요.");
     			frm.userPwCk.focus();
     			return false;
     		}
     		if(document.frm.userPw.value != document.frm.userPwCk.value) {
-    			alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.")
+    			alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
     			frm.userPwCk.select();
     			return false;
     		}
+    		if(!userPwReg.test(userPw)) {
+    			alert("영문, 숫자, 특수문자를 조합하여 6자 이상 16자 이하의 비밀번호를 입력해주세요.");
+    			frm.userPw.focus();
+    			return false;
+    		}
+    		
     		//이름
     		if(document.frm.userName.value.length == 0) {
     			alert("이름을 입력해주세요.")
@@ -200,12 +245,25 @@
     			frm.phone3.focus();
     			return false;
     		}
+    		if (!/^\d+$/.test(phone1) || !/^\d+$/.test(phone2) || !/^\d+$/.test(phone3)) {
+    	        alert("휴대전화 번호를 정확히 입력해주세요.");
+    	        return false;
+    	    }
+    		
     		//집전화
     		var tel1 = document.getElementById('tel1').value;
     		var tel2 = document.getElementById('tel2').value;
     		var tel3 = document.getElementById('tel3').value;
     		var tel = tel1 + "-" + tel2 + "-" + tel3;
     		document.getElementById('tel').value = tel;
+    		if (tel1.length > 0 && tel2.length > 0 &&tel3.length > 0) {
+    	        // 숫자만 입력되었는지 검증
+    	        if (!/^\d+$/.test(tel1) || !/^\d+$/.test(tel2) || !/^\d+$/.test(tel3)) {
+    	            alert("집전화 번호를 정확히 입력해주세요.");
+    	            document.frm.tel1.focus();
+    	            return false;
+    	        }
+    	    }
     		//이메일
     		var email1 = document.getElementById('email1').value;
     		var email2 = document.getElementById('email2').value;
@@ -221,6 +279,7 @@
     			frm.email2.focus();
     			return false;
     		}
+    		
     		//주소
     		if(document.frm.zip.value == "") {
     			alert("우편번호를 입력해주세요.");
@@ -241,6 +300,13 @@
     			frm.address2.focus();
     			return false;
     		}
+    		
+    		// 닉네임
+    	    if (document.frm.nick.value.length > 8) {
+    	        alert("닉네임은 8글자 이하로 입력해주세요.");
+    	        frm.nick.focus();
+    	        return false;
+    	    }
     		
     		//생년월일
     		var inputBirth = document.getElementById("inputBirth").value;
@@ -295,26 +361,40 @@
     		eventYn.value = checkbox3.checked ? "0" : "1";
     	}
     	
+    	function toggleTerms(contentId) {
+            var checkbox = document.getElementById('checkbox1');
+            var labelCheckbox1 = document.getElementById('labelCheckbox1');
+            var termsContent = document.getElementById(contentId);
+
+            if (!checkbox.checked) {
+                checkbox.checked = true;
+            }
+
+            if (termsContent.style.display === 'none') {
+                termsContent.style.display = 'block';
+            } else {
+                termsContent.style.display = 'none';
+            }
+        }
     	
+    	//아이디 중복체크 
     	$('.id_input').on("propertychange change keyup paste input", function(){
-			var userId = $('.id_input').val();
-    		var data = {userId : userId}
-    		$.ajax({
-    			type : "post",
-    			url : "/shop/userIdCk",
-    			data : data,
-    			success : function(result) {
-    				//console.log("성공 여부" + result);
-    				if(result != 'fail') {
-    					$('.id_input_re_1').css("display","inline-block");
-    					$('.id_input_re_2').css("display","none");
-    				} else {
-    					$('.id_input_re_2').css("display","inline-block");
-    					$('.id_input_re_1').css("display","none");
-    				}
-    			} 
-    		});
-		}); 
+    	    var userId = $('.id_input').val();
+    	    var data = {userId : userId}
+    	    $.ajax({
+    	        type : "post",
+    	        url : "/shop/userIdCk",
+    	        data : data,
+    	        success : function(result) {
+    	            // console.log("성공 여부" + result);
+    	            if(result == 'fail') {
+    	                $('.id_input_re').css("display","inline-block");
+    	            } else {
+    	                $('.id_input_re').css("display","none");
+    	            }
+    	        } 
+    	    });
+    	});  
     	
     	function execDaumPostcode() {
     		new daum.Postcode({
@@ -332,28 +412,6 @@
 	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
 	                    addr = data.jibunAddress;
 	                }
-
-	            	/* // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-	                if(data.userSelectedType === 'R'){
-	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-	                        extraAddr += data.bname;
-	                    }
-	                    // 건물명이 있고, 공동주택일 경우 추가한다.
-	                    if(data.buildingName !== '' && data.apartment === 'Y'){
-	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-	                    }
-	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-	                    if(extraAddr !== ''){
-	                        extraAddr = ' (' + extraAddr + ')';
-	                    }
-	                    // 조합된 참고항목을 해당 필드에 넣는다.
-	                    document.getElementById("extraAddress").value = extraAddr;
-	                
-	                } else {
-	                    document.getElementById("extraAddress").value = '';
-	                } */
 
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
 	                document.getElementById('zip').value = data.zonecode;

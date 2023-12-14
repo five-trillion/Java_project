@@ -48,31 +48,32 @@
 											<tr>
 												<th scope="row">${board.boardNo}</th>
 												<td>${board.boardTitle}</td>
-												<td><fmt:formatDate value="${board.boardReg}" type="date"></fmt:formatDate></td>
-												<td>
-													<c:choose>
+												<td><fmt:formatDate value="${board.boardReg}"
+														type="date"></fmt:formatDate></td>
+												<td><c:choose>
 														<c:when test="${board.secretYn == 0}">
 															<i class="bx bx-lock-open larger" style="color: gray;"></i>
 														</c:when>
 														<c:otherwise>
 															<i class="bx bxs-lock-alt larger" style="color: black;"></i>
 														</c:otherwise>
-													</c:choose>
-												</td>
-												<td>
-													<c:choose>
+													</c:choose></td>
+												<td><c:choose>
 														<c:when test="${board.ansNo == 0}">
-															<i class="bx bxs-checkbox-minus larger" style="color: red;"></i>
+															<i class="bx bxs-checkbox-minus larger"
+																style="color: red;"></i>
 														</c:when>
 														<c:otherwise>
-															<i class="bx bxs-checkbox-checked larger" style="color: green;"></i>
+															<i class="bx bxs-checkbox-checked larger"
+																style="color: green;"></i>
 														</c:otherwise>
-													</c:choose>
-												</td>
+													</c:choose></td>
 												<td>${board.boardCnt}</td>
 												<td>
 													<!-- Large Modal -->
-													<div class="btn btn-primary modalBtn"><i class="bx bx-search-alt-2"></i></div>
+													<div class="btn btn-primary modalBtn">
+														<i class="bx bx-search-alt-2"></i>
+													</div>
 
 													<div class="modal fade" tabindex="-1">
 														<div class="modal-dialog modal-lg">
@@ -84,29 +85,43 @@
 																</div>
 																<div class="modal-body">
 																	<div class="row mb-3">
-													                  <label for="boardTitle" class="col-sm-2 col-form-label">제 목</label>
-													                  <div class="col-sm-10">
-													                    <input type="text" class="form-control" id="boardTitle" name="boardTitle" value="${board.boardContent}" readonly>
-													                  </div>
-													                </div>
+																		<label for="boardTitle"
+																			class="col-sm-2 col-form-label">제 목</label>
+																		<div class="col-sm-10">
+																			<input type="text" class="form-control"
+																				id="boardTitle" name="boardTitle"
+																				value="${board.boardContent}" readonly>
+																		</div>
+																	</div>
 																	<div class="row mb-3">
-													                  <label for="boardContent" class="col-sm-2 col-form-label">내 용</label>
-													                  <div class="col-sm-10">
-													                    <textarea rows="10" class="form-control" id="boardContent" name="boardContent" readonly>${board.boardContent}</textarea>
-													                  </div>
-													                </div>
+																		<label for="boardContent"
+																			class="col-sm-2 col-form-label">내 용</label>
+																		<div class="col-sm-10">
+																			<textarea rows="10" class="form-control"
+																				id="boardContent" name="boardContent" readonly>${board.boardContent}</textarea>
+																		</div>
+																	</div>
 																</div>
 																<div class="modal-footer">
 																	<c:choose>
 																		<c:when test="${board.ansNo == 0}">
-																		<a href="adminBoardQnaAnswer?boardNo=${board.boardNo}"><button type="button" class="btn btn-secondary"
-																		data-bs-dismiss="modal">답변하기</button></a>
-																		<button type="button" class="btn btn-primary modalClose">닫기</button>
+																			<a
+																				href="adminBoardQnaAnswer?boardNo=${board.boardNo}"><button
+																					type="button" class="btn btn-secondary"
+																					data-bs-dismiss="modal">답변하기</button></a>
+																			<button type="button"
+																				class="btn btn-primary modalClose">닫기</button>
 																		</c:when>
-																		<c:otherwise><div class="btn btn-secondary"
-																		data-bs-dismiss="modal" style="background-color: green;">답변완료</div></c:otherwise>
+																		<c:otherwise>
+																			<a
+																				href="adminBoardQnaModify?boardNo=${board.boardNo}"
+																				class="btn btn-secondary"
+																				style="background-color: green;">답변수정</a>
+																			<button type="button"
+																				class="btn btn-primary modalClose">닫기</button>
+																		</c:otherwise>
 																	</c:choose>
-																	
+
 																</div>
 															</div>
 														</div>
@@ -114,7 +129,10 @@
 												</td>
 												<td>
 													<!-- Large Modal -->
-													<div class="btn btn-primary modalBtn" style="background-color: red; border-color: red;"><i class="bx bx-x"></i></div>
+													<div class="btn btn-primary modalBtn"
+														style="background-color: red; border-color: red;">
+														<i class="bx bx-x"></i>
+													</div>
 
 													<div class="modal fade" id="largeModal" tabindex="-1">
 														<div class="modal-dialog modal-lg">
@@ -124,13 +142,13 @@
 																	<button type="button" class="btn-close"
 																		data-bs-dismiss="modal" aria-label="Close"></button>
 																</div>
-																<div class="modal-body">
-																	삭제 처리 하시겠습니까?
-																</div>
+																<div class="modal-body">삭제 처리 하시겠습니까?</div>
 																<div class="modal-footer">
-																	<a href="adminUserDelete?userNo=${user.userNo}"><button type="button" class="btn btn-secondary"
-																		data-bs-dismiss="modal">삭제</button></a>
-																	<button type="button" class="btn btn-primary modalClose">닫기</button>
+																	<a href="adminUserDelete?userNo=${user.userNo}"><button
+																			type="button" class="btn btn-secondary"
+																			data-bs-dismiss="modal">삭제</button></a>
+																	<button type="button"
+																		class="btn btn-primary modalClose">닫기</button>
 																</div>
 															</div>
 														</div>
@@ -153,7 +171,7 @@
 		<!-- End #main -->
 	</div>
 	<%@ include file="./includes/footerAdmin.jsp"%>
-	
+
 	<script>
 		$(".larger").css({"fontSize" : "24px"})
 		$(".table-bordered").css({"textAlign": "center"})
