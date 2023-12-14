@@ -3005,7 +3005,7 @@ ol {
 		font-weight:400;	
 	}
 	.next, .prev {
-	    border: 1px solid #ccc;
+	    /* border: 1px solid #ccc; */
 	    padding: 0 10px;
 	}	
   

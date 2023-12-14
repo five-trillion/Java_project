@@ -103,7 +103,7 @@
 							<thead>
 								<tr>
 									<td>
-										<div> 리플  2<%-- <c:out value={replycnt}/> --%> </div>
+										<div> 리플 <%-- <c:out value={replycnt}/> --%> </div>
 									</td>
 								<tr>
 							</thead>
@@ -111,10 +111,10 @@
 								<tr>
 									<td>
 										<input type="hidden" name="boardNo" value="${freeDetail.boardNo}">
-										<input type="hidden" name="userNo" value="${freeDetail.userNo}">
-										<textarea id="boRepContent" name="boRepContent" rows="4"></textarea>
+										<input type="hidden" name="userNo" value="${user.userNo}">
+										<textarea id="boRepContent" name="boRepContent" rows="5"></textarea>
 										<div class="boardbtn">
-											<button type="submit">등록</button>
+											<button type="button" id="registerBtn" name="registerBtn" onclick="checkLoginAndRedirect()">등록</button>
 										</div>
 									</td>
 								</tr>
@@ -125,15 +125,12 @@
 												작성자 <b><c:out value="${reply.userNick}"/></b>&nbsp;&nbsp;&nbsp;
 												작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.boRepReg}"/></b><br>
 												<c:out value="${reply.boRepContent}"/>
-												
 											</div>
 										</td>
 									</c:forEach>	
 								</tr>
 							</tbody>
 						</table>
-						<%-- <input type="hidden" name="boardTitle" value="${freeDetail.boardTitle}">
-						<input type="hidden" name="boardContent" value="${freeDetail.boardContent}"> --%>
 						
 						<div class="boardbtn">
 							<!-- <button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
@@ -149,6 +146,21 @@
 	function submitForm() {
 		document.getElementById('frm').submit();
 	}
+	
+	function checkLoginAndRedirect() {
+        // 여기서 로그인 여부를 확인
+        let user = '<c:out value="${user}"/>';
+        
+        if (user === '') {
+            // 로그인이 필요한 경우
+            alert("로그인이 필요합니다.");
+            location.href = '/shop/login';
+        } else {
+            // 로그인이 되어 있는 경우
+        	document.getElementById('replyfrm').submit();
+        }
+    }
+	
 </script>
 </body>
 
