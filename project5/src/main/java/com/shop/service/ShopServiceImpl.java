@@ -10,6 +10,7 @@ import com.shop.domain.CartVO;
 import com.shop.domain.DeliveryVO;
 import com.shop.domain.OrderDetailVO;
 import com.shop.domain.OrderInfoVO;
+import com.shop.domain.OrderVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
 import com.shop.domain.UsersVO;
@@ -208,8 +209,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public List<CartVO> removeCart(long userNo) throws Exception {
-		return mapper.removeCart(userNo);
+	public int removeCart(CartVO cartVO) throws Exception {
+		return mapper.removeCart(cartVO);
 	}
 	
 	@Override
@@ -225,6 +226,21 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public void deliInfo(DeliveryVO deliVO) throws Exception {
 		mapper.deliInfo(deliVO);
+	}
+	
+	@Override
+	public List<OrderVO> getCom(String orderNo) throws Exception{
+		return mapper.getCom(orderNo);
+	}
+	
+	@Override
+	public List<OrderVO> getorder(long userNo) throws Exception{
+		return mapper.getorder(userNo);
+	}
+	
+	//마이페이지 주문상세조회
+	public List<OrderVO> getordetail(String orderNo, String prodNo) throws Exception {
+		return mapper.getordetail(orderNo, prodNo);
 	}
 	
 }

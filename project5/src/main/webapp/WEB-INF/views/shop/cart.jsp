@@ -64,7 +64,7 @@
 	                                            <div class="pro-qty">
 	                                                <input type="text" id="orderCnt" class="quantity_input" value="${cart.orderCnt}">
 	                                            </div>
-	                                            <a class="modify_btn" data-cartno="${cart.cartNo}">변경</a>
+	                                            <a class="primary-btn cart-btn modify_btn" data-cartno="${cart.cartNo}">변경</a>
 	                                        </div>
 	                                    </td>
 	                                    <td class="shoping__cart__total">

@@ -96,8 +96,8 @@
 	            </div>
 	        </div>
 	    </div>
-	    <form method="post" action="login" id="frm" name="frm" onsubmit="return saveIdCk()">
-	    	<div class="col-lg-8 col-md-6">
+	    <form method="post" action="login" id="frm" name="frm" style="text-align: center;"onsubmit="return saveIdCk()">
+	    	<div class="col-lg-12 col-md-6">
             	<div class="checkout__input">
                 	<input type="text" name="userId" placeholder="아이디">
                 </div>
@@ -113,19 +113,26 @@
                		<div class ="login_warn"> 아이디 혹은 비밀번호를 다시 입력해주세요.</div>
 
                 </c:if>
-	            <div class="col-lg-8 col-md-6">
+	            <div class="col-lg-12 col-md-6">
 	            	<div class="checkout__input">
-	            		<input type="submit" value="로그인">
+	            		<input type="submit" value="로그인" style="padding: 0;">
 	            	</div>
 	           	</div>
 	        </div>
-	        <div class="checkout__input"><a href="/shop/join">회원가입</a></div> 	
-	        <div class="checkout__input"><a href="#">아이디/비밀번호 찾기</a></div> 
-	    
+	        <div class="footer__widget">
+                        <ul style="width: 100%;">
+                            <li><a href="/shop/join" class="checkout__input"> 회원가입 </a></li>
+                            <li> | </li>
+                            <li><a href="#" class="checkout__input"> 아이디/비밀번호 찾기 </a></li>
+                        </ul>
+        			</div>
 	    </form>
 	</div>
 	
 	<%@ include file="../includes/footer.jsp" %>
+	<script>
+	$(".checkout__input > input").css({"width" : "40%"});
+	</script>
 	
 </body>
 </html>

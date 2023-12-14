@@ -18,14 +18,12 @@
     <section class="hero">
         <div class="container">
         	<div class="row">
-                
                 <div class="col-lg-12">
-                    
                     <div class="hero__item set-bg" data-setbg="${contextPath}/resources/shop/img/hero/main_bnr02.png">
                         <div class="hero__text">
                             <span>MURMUR</span>
                             <h3>즐거움으로 가득한 반려생활<br/>그 이상을 응원해요</h3>
-                            <p>Special Event</p>
+                            <p>Special Discount</p>
                             <a href="shop" class="primary-btn">SHOP NOW</a>
                         </div>
                     </div>
@@ -112,7 +110,8 @@
 		                        </div>
 		                        <div class="featured__item__text">
 		                            <h6>${prdl.prodName}</h6>
-		                            <h5>${prdl.salePrice}</h5>
+		                            <h5 class="product_sale_strike"><fmt:formatNumber value="${prdl.netPrice}" pattern="###,###,###.##"/>원</h5>
+		                            <h5><fmt:formatNumber pattern="###,###,###.##" value="${prdl.salePrice}" />원</h5>
 		                        </div>
 	                        </div>
 	                    </div>
@@ -157,7 +156,7 @@
                                         </div>
                                     </td>
                                     <td class="shoping__cart__quantity">
-                                        ${free.userNick} 닉네임 (아이디)
+                                        ${free.userNick}
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         댓글 : 0
