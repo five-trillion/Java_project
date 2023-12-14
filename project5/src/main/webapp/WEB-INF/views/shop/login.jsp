@@ -14,6 +14,9 @@
 	text-align: center;
 	color: red;
 }
+.checkout__input input {
+	width: 100%;
+}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -91,7 +94,6 @@
 	<%@ include file="../includes/header.jsp"%>
 
 	<div class="container">
-<<<<<<< HEAD
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="contact__form__title">

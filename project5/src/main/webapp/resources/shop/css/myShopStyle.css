@@ -15,20 +15,30 @@
 .loginForm .col-lg-8 .checkout__input {
 	width: 100%;
 }
+.checkout__input__checkbox label.loginCheck {
+	padding-left: 20px;
+}
 
 /* 로그인폼 까지 ---------------------*/
 .joinForm .joinBox {
 	margin : 0 auto;
 }
+.joinForm .joinBox .checkout__input {
+	display: flex;
+	align-items: center;
+}
+.joinForm .joinBox .checkout__input input{
+	width: 100%;
+}
 .joinForm .joinBox .checkout__input .phoneBox {
 	display: flex;
 	align-items: center;
 }
-
-.joinForm .joinBox .checkout__input {
-	display: flex;
+.joinForm .joinBox .chekcout_input .phoneBox input{
+	width: auto;
 }
-.checkout__input__checkbox label.loginCheck {
-	padding-left: 20px;
+.joinForm .joinBox .checkout__input p{
+	margin: 0;
+	width: 20%;
 }
 /* 회원가입폼 까지 ----------------------------- */
