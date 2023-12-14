@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.shop.mapper.ReplyMapper">
+	
+		<!-- 댓글 목록 -->
+		<select id="getReplyList" parameterType="java.lang.Long" resultType="com.shop.domain.BoardReplyVO">
+			select BoRepNo, boardNo, r.userNo, boRepContent, boRepReg, boRepUpdate, u.nick as userNick
+			from board_reply r
+			left join users u on r.userNo = u.userNo
+			where boardNo = #{boardNo}
+			order by r.boRepReg desc
+		</select>
+		
+		<!-- 댓글 작성 -->
+		<insert id="replyRegister" parameterType="com.shop.domain.BoardReplyVO">
+			insert into board_reply (boRepNo, boardNo, userNo, boRepContent, boRepReg, boRepUpdate)
+			values (default, #{boardNo}, #{userNo}, #{boRepContent}, default, default)
+		</insert>
+			
+		<!-- 댓글 수정 -->
+		<update id="replyModify" parameterType="com.shop.domain.BoardReplyVO">
+			update board_reply 
+			set boRepContent = #{boRepContent}
+			where boRepNo = #{boRepNo} 
+			and boardNo = #{boardNo}
+		</update>
+			
+		<!-- 댓글 삭제 -->
+		<delete id="relpyDelete" parameterType="com.shop.domain.BoardReplyVO">
+			delete from board_reply
+			where boRepNo = #{boRepNo} 
+			and boardNo = #{boardNo}
+		</delete>
+		
+	</mapper>

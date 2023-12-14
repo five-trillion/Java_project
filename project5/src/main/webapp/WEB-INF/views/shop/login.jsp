@@ -83,6 +83,7 @@
 
 		}
 	}
+	
 </script>
 
 </head>
@@ -90,6 +91,7 @@
 	<%@ include file="../includes/header.jsp"%>
 
 	<div class="container">
+<<<<<<< HEAD
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="contact__form__title">
@@ -116,7 +118,6 @@
 				</div>
 				<c:if test="${result==0}">
 					<div class="login_warn">아이디 혹은 비밀번호를 다시 입력해주세요.</div>
-
 				</c:if>
 				<div class="col-lg-8 col-md-6">
 					<div class="checkout__input">
