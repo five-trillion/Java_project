@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시판 글수정하기</title>
+<title>QnA 글쓰기</title>
 <%@ include file="../includes/src.jsp"%>
 
 </head>
@@ -19,7 +19,7 @@
 			<div class="xans-element- xans-board xans-board-listpackage-1002 xans-board-listpackage xans-board-1002 ">
 				<div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
 					<div class="page_title fs60">
-						<font color="#555555">자유게시판</font>
+						<font color="#555555">QnA</font>
 					</div>
 					<p class="imgArea displaynone"></p>
 				</div>
@@ -27,17 +27,17 @@
 					<span
 						class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
 				</div>
-				<form method="post" id="frm" name="frm" action="/board/loungeModify"> <!-- enctype="multipart/form-data" -->
+				<form method="post" id="frm" name="frm" action="/board/qnaWrite"> <!-- enctype="multipart/form-data" -->
 					<div class="n_board line typeList gBorder">
 						<table border="1" summary="">
 							<caption>게시판 목록</caption>
 							<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
 								<tr>
 									<td>
+										<input type="hidden" id="userNo" name="userNo" value="${user.userNo}">
 										<div class="chk fs12">제목</div>
 										<div class="subject left fs12">
-											<input type="text" id="boardTitle" name="boardTitle" value="${freeDetail.boardTitle}">
-											<input type="hidden" id="boardNo" name="boardNo" value="${freeDetail.boardNo}">
+											<input type="text" id="boardTitle" name="boardTitle">
 										</div>
 									</td>
 								</tr>
@@ -47,7 +47,7 @@
 									<td>
 										<div class="chk fs13">내용</div>
 										<div class="subject left fs13">
-											<textarea style="background-color:white;" rows="10" cols="50" id="boardContent" id="boardContent" name="boardContent">${freeDetail.boardContent}</textarea>
+											<textarea style="background-color:white;" rows="10" cols="50" id="boardContent" name="boardContent"></textarea>
 										</div>
 									</td>
 								</tr>
@@ -62,10 +62,8 @@
 							</tbody>
 						</table>
 						<div class="boardbtn" style="text-align:center; margin:20px auto;">
-							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
-							<input type="reset" value="취소">
-							<button type="button" id="deletebtn" name="deletebtn" onclick="showDeleteModal()">삭제</button>
-							<input type="submit" value="수정" onclick="return freeCheck()">
+							<button type="button" id="qna" name="qna" onclick="location.href='/board/qna'">목록</button>
+							<input type="submit" value="작성" onclick="return freeCheck()">
 						</div>
 					</div>
 				</form>
@@ -109,7 +107,7 @@
 		</div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>
-<script type="text/javascript">
+<script>
 	function freeCheck() {
 		if(document.frm.boardTitle.value == "") {
 			alert("게시물의 제목을 입력해주세요.");
@@ -121,35 +119,8 @@
 			frm.boardContent.focus();
 			return false;
 		}
-	} 
-	
-	function showDeleteModal() {
-        // 모달창을 띄우는 코드 추가
-        // 여기에 모달창 HTML 및 스타일을 추가하세요
-        let modalHtml = '<div id="deleteModal" class="modal">';
-        modalHtml += '<div class="modal-content">';
-        modalHtml += '<span class="close" onclick="closeModal()">&times;</span>';
-        modalHtml += '<p>정말로 삭제하시겠습니까?</p>';
-        modalHtml += '<button onclick="confirmDelete()">확인</button>';
-        modalHtml += '</div>';
-        modalHtml += '</div>';
-        
-        // body에 모달창 추가
-        $("body").append(modalHtml);
-        $("#deleteModal").modal("show");
-    }
-	 function confirmDelete() {
-         // 삭제 확인 버튼을 눌렀을 때의 처리
-         document.frm.action = "/board/loungeDelete";
-         document.frm.submit();
-     }
-
-     function closeModal() {
-         // 모달창 닫기
-         $("#deleteModal").remove();
-     }
-	
-	</script>
+	}
+</script>
 </body>
 
 </html>
