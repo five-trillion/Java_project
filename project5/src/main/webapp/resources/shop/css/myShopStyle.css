@@ -28,10 +28,6 @@
 .joinForm .joinBox .checkout__input {
 	display: flex;
 }
-.joinForm .joinBox .checkout__input p:first-child{
-	width: 120px;
-}
-
 .checkout__input__checkbox label.loginCheck {
 	padding-left: 20px;
 }

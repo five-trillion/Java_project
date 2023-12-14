@@ -82,8 +82,6 @@
 					<li><a href="adminSalesManage"> <i
 							class="bi bi-circle"></i><span>매출 관리</span>
 					</a></li>
-					<li><a href="#"> <i class="bi bi-circle"></i><span>방문자</span>
-					</a></li>
 					<li><a href="adminJoinView"> <i class="bi bi-circle"></i><span>가입자</span>
 					</a></li>
 				</ul></li>

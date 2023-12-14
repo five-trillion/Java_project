@@ -3,6 +3,7 @@ package com.shop.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -315,7 +316,7 @@ public class AdminController {
 	public String adminBoardDelete(@RequestParam("boardNo") int boardNo) {
 		adminService.boardDelete(boardNo);
 		
-		return "redirect:/admin/adminBoardNoti";
+		return "redirect:/shop/join";
 	}
 	
 	// 매출관리
@@ -325,6 +326,7 @@ public class AdminController {
 		String endDate = request.getParameter("endDate");
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		List<SalesVO> saleList = adminService.getSalesInfo();
 		
 		
 		if ((startDate != null && startDate != "") && (endDate != null && endDate != "")) {
@@ -335,41 +337,61 @@ public class AdminController {
 			request.setAttribute("endDate", endDateFormat);
 			System.out.println(startDateFormat);
 			System.out.println(endDateFormat);
-		} else {
+		} else if ((startDate != null && startDate != "")) {
+			Date startDateFormat = format.parse(startDate);
+			System.out.println("여기2");
+			request.setAttribute("startDate", startDateFormat);
+			request.setAttribute("endDate", endDate);
+		} else if (endDate != null && endDate != "") {
+			Date endDateFormat = format.parse(endDate);
+			System.out.println("여기3");
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("endDate", endDateFormat);
+		}
+		else {
 			request.setAttribute("startDate", startDate);
 			request.setAttribute("endDate", endDate);
 		}
-		
-		/*
-		 * if (startDate != null && startDate != "" && endDate != null && endDate != "")
-		 * { Date startDateFormat = format.parse(startDate); Date endDateFormat =
-		 * format.parse(endDate);
-		 * 
-		 * request.setAttribute("startDate", startDateFormat);
-		 * request.setAttribute("endDate", endDateFormat); } else if ((startDate != null
-		 * || startDate != "") && (endDate == null || endDate == "")) { Date
-		 * startDateFormat = format.parse(startDate); request.setAttribute("startDate",
-		 * startDateFormat); request.setAttribute("endDate", endDate); } else if
-		 * ((startDate == null || startDate == "") && (endDate != null || endDate !=
-		 * "")) { Date endDateFormat = format.parse(endDate);
-		 * request.setAttribute("startDate", startDate); request.setAttribute("endDate",
-		 * endDateFormat); } else {
-		 */
-			
-		// }
-		System.out.println(startDate == null);
+		System.out.println(startDate != null);
 		System.out.println(startDate != "");
-		System.out.println("매출관리3");
 		System.out.println("매출관리4");
 		
 		
-		List<SalesVO> saleList = adminService.getSalesInfo();
 		request.setAttribute("sales", saleList);
+		System.out.println(saleList.get(0).getSalesDate());
 	}
 	
 	// 가입자
 	@GetMapping("/adminJoinView")
 	public void adminJoinView(HttpServletRequest request) throws Exception {
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		if ((startDate != null && startDate != "") && (endDate != null && endDate != "")) {
+			Date startDateFormat = format.parse(startDate);
+			Date endDateFormat = format.parse(endDate);
+		
+			request.setAttribute("startDate", startDateFormat);
+			request.setAttribute("endDate", endDateFormat);
+			System.out.println(startDateFormat);
+			System.out.println(endDateFormat);
+		} else if ((startDate != null && startDate != "")) {
+			Date startDateFormat = format.parse(startDate);
+			System.out.println("여기2");
+			request.setAttribute("startDate", startDateFormat);
+			request.setAttribute("endDate", endDate);
+		} else if (endDate != null && endDate != "") {
+			Date endDateFormat = format.parse(endDate);
+			System.out.println("여기3");
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("endDate", endDateFormat);
+		}
+		else {
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("endDate", endDate);
+		}
 		
 		List<SalesVO> joinList = adminService.getJoinView();
 		request.setAttribute("join", joinList);

@@ -15,8 +15,8 @@
 			<ul class="d-flex align-items-center">
 
 				<li class="nav-item dropdown pe-3">
-				<span class="d-none d-md-block" style="display: inline-block!important">관리자 페이지입니다. <span style="font-weight: bold;">K. Anderson</span>님 환영합니다!</span>
-				<a href="#" class="btn btn-primary" style="display: inline-block">로그아웃</a>
+				<span class="d-none d-md-block" style="display: inline-block!important">관리자 페이지입니다. <span style="font-weight: bold;">${user.nick}</span>님 환영합니다!</span>
+				<a href="/shop/logout" class="btn btn-primary" style="display: inline-block">로그아웃</a>
 				<a href="/" class="btn btn-primary shopHome" style="display: inline-block; background-color: orange; border-color: orange">홈페이지가기</a>
 				<!-- End Profile Iamge Icon -->
 
