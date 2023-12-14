@@ -114,26 +114,42 @@
 	                        </label>
 	                  	</div>
 	                  	<div class="checkout__input__checkbox">
-	                  		<label for="checkbox1">
-	                            <a href="#" style="color:black;">[필수] 이용약관 동의</a>
-	                            <input type="checkbox" id="checkbox1" name="checkbox1">
-	                            <span class="checkmark"></span>
-	                        </label>
-	                  	</div>
+					        <label for="checkbox1" id="labelCheckbox1">
+           						<span style="color:black; text-decoration:underline; cursor: pointer;" onclick="toggleTerms('termsContent1')">[필수] 이용약관 동의</span>
+					            <input type="checkbox" id="checkbox1" name="checkbox1">
+					            <span class="checkmark"></span>
+					        </label>
+					    </div>
+	                  	<div id="termsContent1" style="display: none;">
+							이용약관 입력 이용약관 입력 이용약관 입력
+							이용약관 입력 이용약관 입력 이용약관 입력
+							이용약관 입력 이용약관 입력 이용약관 입력
+						</div>
 	                  	<div class="checkout__input__checkbox">
-	                  		<label for="checkbox2">
-	                            <a href="#" style="color:black;">[필수] 개인정보 수집 및 이용 동의</a>
+	                  		<label for="checkbox2" id="labelCheckbox2">
+	                            <span style="color:black; text-decoration:underline; cursor: pointer;" onclick="toggleTerms('termsContent2')">[필수] 개인정보 수집 및 이용 동의</span>
 	                            <input type="checkbox" id="checkbox2" name="checkbox2">
 	                            <span class="checkmark"></span>
 	                        </label>
 	                  	</div>
+	                  	<div id="termsContent2" style="display: none;">
+							개인정보 수집 및 이용 동의 내용 입력
+							개인정보 수집 및 이용 동의 내용 입력
+							개인정보 수집 및 이용 동의 내용 입력
+						</div>
 	                  	<div class="checkout__input__checkbox">
-	                  		<label for="checkbox3">
-	                            <a href="#" style="color:black;">[선택] 마케팅 활용 동의 및 광고 수신 동의</a>
+	                  		<label for="checkbox3" id="labelCheckbox3">
+	                          	<span style="color:black; text-decoration:underline; cursor: pointer;" onclick="toggleTerms('termsContent3')">[선택] 마케팅 활용 동의 및 광고 수신 동의</span>
 	                            <input type="checkbox" id="checkbox3" name="checkbox3" onchange="eventYn()">
 	                            <span class="checkmark"></span>
 	                        </label>
 	                  	</div>
+	                  	<div id="termsContent3" style="display: none;">
+							마케팅 활용 동의 및 광고 수신 동의 내용 입력
+							마케팅 활용 동의 및 광고 수신 동의 내용 입력
+							마케팅 활용 동의 및 광고 수신 동의 내용 입력
+							지금 버튼이 엉망임 수정 필요
+						</div>
 	                  	<input type="hidden" id="eventYn" name="eventYn" value="1">
 	                  	<div class="checkout__input">
 	                  		<input type="submit" value ="회원가입" onclick="return joinCheck()" class="join_btn">
@@ -336,7 +352,23 @@
     		eventYn.value = checkbox3.checked ? "0" : "1";
     	}
     	
+    	function toggleTerms(contentId) {
+            var checkbox = document.getElementById('checkbox1');
+            var labelCheckbox1 = document.getElementById('labelCheckbox1');
+            var termsContent = document.getElementById(contentId);
+
+            if (!checkbox.checked) {
+                checkbox.checked = true;
+            }
+
+            if (termsContent.style.display === 'none') {
+                termsContent.style.display = 'block';
+            } else {
+                termsContent.style.display = 'none';
+            }
+        }
     	
+    	//아이디 중복체크 
     	$('.id_input').on("propertychange change keyup paste input", function(){
     	    var userId = $('.id_input').val();
     	    var data = {userId : userId}
@@ -371,28 +403,6 @@
 	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
 	                    addr = data.jibunAddress;
 	                }
-
-	            	/* // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-	                if(data.userSelectedType === 'R'){
-	                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-	                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-	                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-	                        extraAddr += data.bname;
-	                    }
-	                    // 건물명이 있고, 공동주택일 경우 추가한다.
-	                    if(data.buildingName !== '' && data.apartment === 'Y'){
-	                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-	                    }
-	                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-	                    if(extraAddr !== ''){
-	                        extraAddr = ' (' + extraAddr + ')';
-	                    }
-	                    // 조합된 참고항목을 해당 필드에 넣는다.
-	                    document.getElementById("extraAddress").value = extraAddr;
-	                
-	                } else {
-	                    document.getElementById("extraAddress").value = '';
-	                } */
 
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
 	                document.getElementById('zip').value = data.zonecode;

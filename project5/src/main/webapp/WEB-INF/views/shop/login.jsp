@@ -59,7 +59,7 @@
 	<%@ include file="../includes/footer.jsp" %>
 	
 <script type="text/javascript">
-    $(document).ready(function() {
+   /*  $(document).ready(function() {
         // 페이지 로딩 시 저장된 아이디 확인
         var savedId = getCookie("savedId");
         if (savedId !== "") {
@@ -106,7 +106,67 @@
             }
         }
         return "";
+    } */
+    
+    
+    $(function() {
+    	var cookie_userId = getLogin();
+    	console.log("stored userId from cookie : " + cookie_userId);
+    	if(cookie_userId != "") {
+    		$("#userId").val(cookie_userId);
+    		$("#saveId").prop("checked",true);
+    		console.log("Setting userId from cookie");
+    	}
+    	$("#saveId").on("click",function() {
+    		var _this = this;
+    		var isRemember;
+    		if($(_this).is(":checked")) {
+    			isRemember = confirm ("아이디를 저장하시겠습니까?");
+    			if(!isRemember){
+    				$(_this).prop("checked",false);
+    				console.log("User chose to remember")
+    			}
+    		}
+    	});
+    	$("#loginBtn").on("click",function() {
+    		if($("#saveId").is(":checked")) {
+    			saveLogin($("#userId").val());
+    			console.log("Saving userId");
+    		} else {
+    			saveLogin("");
+    			console.log("Clearing userId")
+    		}
+    	});	
+    });
+    
+    function saveLogin(userId) {
+    	if(userId != "") {
+    		setSave("userId",userId,7);
+    	} else {
+    		setSave("userId",userId,-1);
+    	}
+    };
+    
+    function setSave(name,value,expiredays) {
+    	var date = new Date();
+    	date.setDate(date.getDate()+expiredays);
+    	document.cookie = name+"="+escape(value)+";path=/;expires="+date.toGMTString()+";"
     }
+    
+    function getLogin() {
+    	var ck = document.cookie+";";
+    	var index = ck.indexOf("userId",0);
+    	var val = "";
+    	
+    	if(index != -1) {
+    		ck = ck.substring(index,ck.length);
+    		begin = ck.indexOf("=",0)+1;
+    		end = ck.indexOf(";",begin);
+    		val = unescape(ck.substring(begin,end));
+    	}
+    	return val;
+    } 
+    
 </script>
 </body>
 </html>
