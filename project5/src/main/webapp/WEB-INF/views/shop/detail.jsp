@@ -90,7 +90,7 @@
 				            });
 					            
 				            function cartAlert(result) {
-				            	console.log("Function called");
+				            	console.log("cartadd function called");
                     	        if (result == '0') {
                     	            alert("장바구니에 추가를 하지 못하였습니다.");
                     	        } else if (result == '1') {

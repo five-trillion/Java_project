@@ -20,7 +20,7 @@
 				<input id="bank_url_hidden" name="bank_url_hidden" value="" type="hidden"><div class="xans-element- xans-order xans-order-result xans-record-">
 			<div class="orderInfo" style="text-align: center; margin: 0 0 50px;">
 			    <p class="fs16">
-	                <strong class="fs18">고객님의 주문이 완료 되었습니다.</strong><br>
+	                <strong class="fs18">고객님의 주문이 완료되었습니다.</strong><br>
 	                주문내역 및 배송에 관한 안내는 <a href="/mypage/order">주문조회</a> 를 통하여 확인 가능합니다.
 	            </p><br>
 	            <ul>
@@ -121,28 +121,28 @@
 						<caption>배송지 정보</caption>
 	                    <tbody>
 							<tr>
-								<td class="fs15"> <span class="row fs12">받으시는분</span><span>박주영</span></td>
+								<td class="fs15"> <span class="row fs12">받으시는분</span><span>${order[0].recipient}</span></td>
 	                        </tr>
 							<tr class="">
 								<td class="fs15">
-								<span class="row fs12">우편번호</span><span>06122</span></td>
+								<span class="row fs12">우편번호</span><span>${order[0].orderzip}</span></td>
 	                        </tr>
 							<tr class="">
 								<td class="fs15">
-								<span class="row fs12">주소</span><span>서울 강남구 논현로111길 3 휴먼스페이스주상복합아파트</span></td>
+								<span class="row fs12">주소</span><span>${order[0].orderAddr}</span></td>
 	                        </tr>
 							<tr>
 								<td class="fs15">
-								<span class="row fs12">일반전화</span></td>
+								<span class="row fs12">일반전화</span><span>${order[0].recipientTel}</span></td>
 	                        </tr>
 							<tr>
 								<td class="fs15">
-									<span class="row fs12">휴대전화</span><span>010-1111-1111</span>                        
+									<span class="row fs12">휴대전화</span><span>${order[0].recPhone}</span>                        
 								</td>
 							</tr>
 							<tr>
 								<td class="fs15">
-									<span class="row fs12">배송메시지</span><span></span></td>
+									<span class="row fs12">배송메시지</span><span>${order[0].deliMsg}</span></td>
 	                        </tr>
 						</tbody>
 					</table>
@@ -151,8 +151,8 @@
 			        
 			<div class="ec-base-button">
 	            <span class="gRight">
-	                <a href="/shop" class="btnNormalFix sizeS">쇼핑계속하기</a>
-	                <a href="/mypage/order" class="btnSubmitFix sizeS">주문확인하기</a>
+	                <a href="/shop" class="primary-btn">쇼핑 계속하기</a>
+	                <a href="/mypage/order" class="primary-btn">주문확인하기</a>
 	            </span>
 	        </div>
 			

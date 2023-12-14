@@ -49,7 +49,7 @@
                     <div class="filter__item">
                         <div class="row">
                             <div class="col-lg-4 col-md-3">
-                                <div class="filter__found">
+                                <div class="filter__found" style="text-align: left;">
                                     <h6>상품 <span><c:out value="${fn:length(prodlist)}"/></span></h6>
                                 </div>
                             </div>

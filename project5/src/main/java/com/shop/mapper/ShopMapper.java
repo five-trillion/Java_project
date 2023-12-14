@@ -124,4 +124,10 @@ public interface ShopMapper {
 	//주문완료 페이지
 	public List<OrderVO> getCom(String orderNo) throws Exception;
 	
+	//마이페이지 주문내역
+	public List<OrderVO> getorder(long userNo) throws Exception;
+	
+	//마이페이지 주문상세조회
+	public List<OrderVO> getordetail(String orderNo, String prodNo) throws Exception;
+	
 }

@@ -233,5 +233,14 @@ public class ShopServiceImpl implements ShopService {
 		return mapper.getCom(orderNo);
 	}
 	
+	@Override
+	public List<OrderVO> getorder(long userNo) throws Exception{
+		return mapper.getorder(userNo);
+	}
+	
+	//마이페이지 주문상세조회
+	public List<OrderVO> getordetail(String orderNo, String prodNo) throws Exception {
+		return mapper.getordetail(orderNo, prodNo);
+	}
 	
 }

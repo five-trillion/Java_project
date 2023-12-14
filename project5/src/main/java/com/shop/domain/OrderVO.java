@@ -14,6 +14,8 @@ public class OrderVO {
 	private int orderFee; //배송비
 	private int orderSta; //주문상태
 	
+	private String odst; //코드테이블 주문상태
+	
 	private int orderListNo; //주문순서번호
 	private String prodNo; //상품코드
 	private int orderCnt; //주문수량
@@ -27,6 +29,7 @@ public class OrderVO {
 	private String recipient; //수취인
 	private String recipientTel; //수취인 연락처
 	private String recPhone; //수취인 휴대폰번호
+	private String deliMsg; //배송메시지
 	
 	private String prodName; //상품명
 	private int salePrice; //할인판매가

@@ -211,4 +211,18 @@
 		and oi.orderNo = #{orderNo};
 	</select>
 	
+	<select id="getorder" resultType="com.shop.domain.OrderVO">
+		select oi.* , od.*, d.*, p.prodName,salePrice,prodMainImg, (select codeName from code where codeId = 'orderSta' and codeNum = oi.orderSta) as odst
+		from order_info oi, order_detail od, delivery d, product p
+		where oi.orderNo = od.orderNo and oi.orderNo = d.orderNo and od.prodNo=p.prodNo
+		and userNo=#{userNo}
+	</select>
+	
+	<select id="getordetail" resultType="com.shop.domain.OrderVO">
+		select oi.* , od.*, d.*, p.prodName,salePrice,prodMainImg, (select codeName from code where codeId = 'orderSta' and codeNum = oi.orderSta) as odst
+		from order_info oi, order_detail od, delivery d, product p
+		where oi.orderNo = od.orderNo and oi.orderNo = d.orderNo and od.prodNo=p.prodNo
+		and oi.orderNo = #{orderNo} and od.prodNo=#{prodNo}
+	</select>
+	
 </mapper>

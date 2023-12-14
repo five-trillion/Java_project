@@ -209,7 +209,6 @@ public class ShopController {
 	        
 			List<OrderVO> order = service.getCom(orderNo);
 			model.addAttribute("order", order);
-			System.out.println(order);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -219,20 +218,44 @@ public class ShopController {
 	public String mypage() {
 		return "mypage/mypage";
 	}
+	@RequestMapping(value="mypage/order", method = RequestMethod.GET)
+	public String mypage_order(HttpSession session, Model model) throws Exception {
+		try {
+	        UsersVO uVo = (UsersVO) session.getAttribute("user");
+	        if (uVo == null) {
+	            return "redirect:/shop/login";
+	        }
+	        long userNo = uVo.getUserNo();
+			List<OrderVO> order = service.getorder(userNo);
+			model.addAttribute("order", order);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "mypage/order";
+	}
+	@RequestMapping(value="mypage/order_detail", method = RequestMethod.GET)
+	public String mypage_od(@RequestParam("orderNo") String orderNo, @RequestParam("prodNo") String prodNo, OrderVO orderVO, HttpSession session, Model model) throws Exception {
+		try {
+	        UsersVO uVo = (UsersVO) session.getAttribute("user");
+	        if (uVo == null) {
+	            return "redirect:/shop/login";
+	        }
+	        
+	        System.out.println(orderVO);
+	        
+			List<OrderVO> order = service.getordetail(orderNo, prodNo);
+			model.addAttribute("order", order);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "mypage/order_detail";
+	}
 	@RequestMapping(value="mypage/content", method = RequestMethod.GET)
 	public void mypage_content() {
 		
 	}
-	@RequestMapping(value="mypage/order", method = RequestMethod.GET)
-	public void mypage_order() {
-		
-	}
 	@RequestMapping(value="mypage/point", method = RequestMethod.GET)
 	public void mypage_point() {
-		
-	}
-	@RequestMapping(value="mypage/user", method = RequestMethod.GET)
-	public void mypage_user() {
 		
 	}
 	/* 

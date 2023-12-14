@@ -29,7 +29,7 @@
                     <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab" aria-selected="false">작성한 게시글</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab" aria-selected="false">작성한 댓글</a>
+                    <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab" aria-selected="false">작성한 댓글</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -46,6 +46,12 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="tabs-3" role="tabpanel">
+                    <div class="product__details__tab__desc">
+                        <h6>Products Infomation</h6>
+                        <p>.</p>
+                    </div>
+                </div>
+                <div class="tab-pane" id="tabs-4" role="tabpanel">
                     <div class="product__details__tab__desc">
                         <h6>Products Infomation</h6>
                         <p>.</p>

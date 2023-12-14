@@ -150,7 +150,7 @@
                             
                             <div class="checkout__input">
                                 <p>배송메세지</p>
-                                <input type="text" id="deliMsg" name="deliMsg">
+                                <input type="text" id="deliMsg" name="deliMsg" style="width: 565px;">
                             </div>
                         </div>
                     </div>
