@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시판 글수정하기</title>
+<title>QnA 글수정하기</title>
 <%@ include file="../includes/src.jsp"%>
 
 </head>
@@ -19,7 +19,7 @@
 			<div class="xans-element- xans-board xans-board-listpackage-1002 xans-board-listpackage xans-board-1002 ">
 				<div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
 					<div class="page_title fs60">
-						<font color="#555555">자유게시판</font>
+						<font color="#555555">QnA</font>
 					</div>
 					<p class="imgArea displaynone"></p>
 				</div>
@@ -27,7 +27,7 @@
 					<span
 						class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
 				</div>
-				<form method="post" id="frm" name="frm" action="/board/loungeModify"> <!-- enctype="multipart/form-data" -->
+				<form method="post" id="frm" name="frm" action="/board/qnaModify"> <!-- enctype="multipart/form-data" -->
 					<div class="n_board line typeList gBorder">
 						<table border="1" summary="">
 							<caption>게시판 목록</caption>
@@ -36,8 +36,8 @@
 									<td>
 										<div class="chk fs12">제목</div>
 										<div class="subject left fs12">
-											<input type="text" id="boardTitle" name="boardTitle" value="${freeDetail.boardTitle}">
-											<input type="hidden" id="boardNo" name="boardNo" value="${freeDetail.boardNo}">
+											<input type="text" id="boardTitle" name="boardTitle" value="${qnaDetail.boardTitle}">
+											<input type="hidden" id="boardNo" name="boardNo" value="${qnaDetail.boardNo}">
 										</div>
 									</td>
 								</tr>
@@ -47,7 +47,7 @@
 									<td>
 										<div class="chk fs13">내용</div>
 										<div class="subject left fs13">
-											<textarea style="background-color:white;" rows="10" cols="50" id="boardContent" id="boardContent" name="boardContent">${freeDetail.boardContent}</textarea>
+											<textarea style="background-color:white;" rows="10" cols="50" id="boardContent" id="boardContent" name="boardContent">${qnaDetail.boardContent}</textarea>
 										</div>
 									</td>
 								</tr>
@@ -62,7 +62,7 @@
 							</tbody>
 						</table>
 						<div class="boardbtn" style="text-align:center; margin:20px auto;">
-							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
+							<button type="button" id="qna" name="qna" onclick="location.href='/board/qna'">목록</button>
 							<input type="reset" value="취소">
 							<button type="button" id="deletebtn" name="deletebtn" onclick="showDeleteModal()">삭제</button>
 							<input type="submit" value="수정" onclick="return freeCheck()">
@@ -140,7 +140,7 @@
     }
 	 function confirmDelete() {
          // 삭제 확인 버튼을 눌렀을 때의 처리
-         document.frm.action = "/board/loungeDelete";
+         document.frm.action = "/board/qnaDelete";
          document.frm.submit();
      }
 

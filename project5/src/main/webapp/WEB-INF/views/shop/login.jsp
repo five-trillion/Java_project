@@ -81,6 +81,7 @@
 	      
 	 }
 	}
+	
 </script>
 
 </head>
@@ -120,10 +121,11 @@
 	        </div>
 	        <div class="checkout__input"><a href="/shop/join">회원가입</a></div> 	
 	        <div class="checkout__input"><a href="#">아이디/비밀번호 찾기</a></div> 
-	        
+	    
 	    </form>
 	</div>
 	
 	<%@ include file="../includes/footer.jsp" %>
+	
 </body>
 </html>
