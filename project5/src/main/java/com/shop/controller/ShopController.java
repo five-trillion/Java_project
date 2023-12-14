@@ -251,8 +251,17 @@ public class ShopController {
 		return "mypage/order_detail";
 	}
 	@RequestMapping(value="mypage/content", method = RequestMethod.GET)
-	public void mypage_content() {
-		
+	public String mypage_content(HttpSession session, Model model) {
+		try {
+	        UsersVO uVo = (UsersVO) session.getAttribute("user");
+	        if (uVo == null) {
+	            return "redirect:/shop/login";
+	        } 
+	        
+		} catch (Exception e) {
+				e.printStackTrace();
+		}
+		return "mypage/content";
 	}
 	@RequestMapping(value="mypage/point", method = RequestMethod.GET)
 	public void mypage_point() {

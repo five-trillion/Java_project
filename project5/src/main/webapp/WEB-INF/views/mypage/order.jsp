@@ -5,9 +5,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>주문내역</title>
-<%@include file="../includes/src.jsp" %>
+	<meta charset="UTF-8">
+	<title>주문내역</title>
+	<%@include file="../includes/src.jsp" %>
+	<style>
+	
+	.typeList{
+	display: none;
+	}
+	.typeList.current{
+		display: inherit;
+	}
+	</style>
 </head>
 <body>
 
@@ -17,14 +26,12 @@
 	
 		<%@include file="../includes/mp_header.jsp" %>
 		<div class="page_wrap">
-		    <div class="xans-element- xans-myshop xans-myshop-orderhistorytab ec-base-tab product__details__tab" style="padding-top: 0;">
-			    <ul class="menu col-2 nav nav-tabs" style="margin-bottom:0;max-width: 100%;padding: 0;" role="tablist">
+		    <div class="xans-element- xans-myshop xans-myshop-orderhistorytab ec-base-tab" style="padding-top: 0;">
+			    <ul class="menu col-2 " style="margin-bottom:0;max-width: 100%;padding: 0;">
 					<li class="tab_class selected nav-item" data-tab="tab-1">
-						<a data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">
-						주문내역조회 (<span id="xans_myshop_total_orders"><c:out value="${fn:length(order)}"/></span>)</a></li>
+						<a>주문내역조회 (<span id="xans_myshop_total_orders"><c:out value="${fn:length(order)}"/></span>)</a></li>
 			        <li class="tab_class_cs nav-item" data-tab="tab-2">
-			        	<a data-toggle="tab" href="#tabs-2" role="tab" aria-selected="true">
-			        	취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">0</span>)</a>
+			        	<a>취소/반품/교환 내역 (<span id="xans_myshop_total_orders_cs">0</span>)</a>
 			        </li>
 			    </ul>
 			</div>
@@ -68,8 +75,7 @@
 		<li></li>
 		<li class="displaynone">기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
 		            <li class="">기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 주문처리완료 후 36개월 이내의 주문내역을 조회하실 수 있습니다.</li>
-		            <li class=" ">완료 후 36개월 이상 경과한 주문은 <a href="javascript:OrderHistory.searchPast(false)">[과거주문내역]</a>에서 확인할 수 있습니다.</li>
-		            <li>주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</li>
+		            <li class=" ">완료 후 36개월 이상 경과한 주문은 상담 (070-4897-1148) 바랍니다.</li>
 		            <li class="">취소/교환/반품 신청은 배송완료일 기준 7일까지 가능합니다.</li>
 		        </ul>
 		</div>
@@ -78,7 +84,7 @@
 		</form>
 		
 		<div class="tab-content">
-		<div id="tab-1 tabs-1" class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList current tab-pane active" role="tabpanel">
+		<div id="tab-1" class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList current">
 		        
 		<table border="1" summary="">
 		<caption>주문 상품 정보</caption>
@@ -143,7 +149,7 @@
 		</table>
 		</div>
 		
-		<div id="tab-2 tabs-2" class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList tab-pane" role="tabpanel">
+		<div id="tab-2" class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList">
 		<table border="1" summary="">
 <caption>취소/반품/교환</caption>
             <thead><tr>
@@ -232,7 +238,6 @@
 		$('ul.menu li').click(function(){
 			var tab_id = $(this).attr('data-tab');
 
-			$('ul.menu li').removeClass('current');
 			$('.typeList').removeClass('current');
 
 			$(this).addClass('current');
