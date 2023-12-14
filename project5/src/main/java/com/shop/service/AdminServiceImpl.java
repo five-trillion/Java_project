@@ -15,6 +15,7 @@ import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReportVO;
 import com.shop.domain.ReviewReplyVO;
+import com.shop.domain.SalesVO;
 import com.shop.domain.UsersVO;
 import com.shop.mapper.AdminMapper;
 
@@ -25,11 +26,56 @@ import lombok.extern.log4j.Log4j;
 public class AdminServiceImpl implements AdminService {
 
 	@Override
+	public void UpdateUserDetail(UsersVO usersVo) {
+		mapper.UpdateUserDetail(usersVo);
+	}
+
+	@Override
+	public UsersVO getUserDetail(long userNo) {
+		return mapper.getUserDetail(userNo);
+	}
+
+	@Override
+	public void updateAnswer(AnswerVO answerVo) {
+		mapper.updateAnswer(answerVo);
+	}
+
+	@Override
+	public List<SalesVO> getSalesInfo() {
+		return mapper.getSalesInfo();
+	}
+
+	@Override
+	public void boardReviwDelete(long boRepNo) {
+		mapper.boardReviwDelete(boRepNo);
+	}
+
+	@Override
+	public AnswerVO getAnswer(long boardNo) {
+		return mapper.getAnswer(boardNo);
+	}
+
+	@Override
+	public void notiModify(BoardVO boardVo) {
+		mapper.notiModify(boardVo);
+	}
+
+	@Override
 	public boolean prodModify(ProductVO prodVo) {
 		log.info("상품정보 변경 service 지나가는 중");
 		return mapper.prodUpdate(prodVo) == 1;
 	}
 	
+	@Override
+	public List<BoardReplyVO> getBoardReview(long boardNo) {
+		return mapper.getBoardReview(boardNo);
+	}
+
+	@Override
+	public List<SalesVO> getJoinView() {
+		return mapper.getJoinView();
+	}
+
 	@Override
 	public boolean prodRemove(String prodNo) {
 		log.info("상품 삭제 service 지나가는 중");

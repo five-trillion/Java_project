@@ -2,6 +2,9 @@ package com.shop.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,6 +29,7 @@ import com.shop.domain.CodeVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReportVO;
 import com.shop.domain.ReviewReplyVO;
+import com.shop.domain.SalesVO;
 import com.shop.domain.UsersVO;
 import com.shop.service.AdminService;
 
@@ -162,7 +166,17 @@ public class AdminController {
 		
 		request.setAttribute("userList", userList); 
 	}
-	
+	// 회원정보 수정
+	@GetMapping("/adminUserModify")
+	public void adminUserModify(@RequestParam("userNo") long userNo, HttpServletRequest request) throws Exception {
+		UsersVO uVo = adminService.getUserDetail(userNo);
+		request.setAttribute("user", uVo);
+	}
+	@PostMapping("/adminUserModify")
+	public String adminUserModify(UsersVO uVo) throws Exception {
+		adminService.UpdateUserDetail(uVo);
+		return "redirect:/admin/adminUserManage";
+	}
 	// 회원관리 삭제
 	@GetMapping("/adminUserDelete")
 	public String adminUserDelete(@RequestParam("userNo") long userNo) {
@@ -197,6 +211,21 @@ public class AdminController {
 		
 		return "redirect:/admin/adminBoardNoti";
 	}
+	// 공지 수정
+	@GetMapping("/adminNotiModify")
+	public void adminNotiModify(@RequestParam("boardNo") long boardNo, HttpServletRequest request) throws Exception {
+		BoardVO noti = adminService.getBoardDetail(boardNo);
+		request.setAttribute("noti", noti);
+	}
+	@PostMapping("/adminNotiModify")
+	public String adminNotiModifyComple(BoardVO bVo, MultipartHttpServletRequest mf, HttpServletRequest request) throws Exception {
+		String uploadPath = "D:/Java_project/project5/src/main/webapp/resources/upload/notice/";
+		MultipartFile boardImgMulti = mf.getFile("boardImgMulti");
+		bVo.setBoardImg(prodFileUpload(boardImgMulti, uploadPath));
+		adminService.notiModify(bVo);
+		
+		return "redirect:/admin/adminBoardNoti";
+	}
 	// 게시판관리 이동 (질의)
 	@GetMapping("/adminBoardQna")
 	public void adminBoardQna(HttpServletRequest request)  throws Exception {
@@ -216,6 +245,20 @@ public class AdminController {
 		adminService.ansComplete(answerVo);
 		return "redirect:/admin/adminBoardQna";
 	}
+	// 답변 수정
+	@GetMapping("/adminBoardQnaModify")
+	public void adminBoardQnaModify(@RequestParam("boardNo") long boardNo, HttpServletRequest request) {
+		BoardVO bVo = adminService.getBoardDetail(boardNo);
+		request.setAttribute("question", bVo);
+		
+		AnswerVO aVo = adminService.getAnswer(boardNo);
+		request.setAttribute("answer", aVo);
+	}
+	@PostMapping("/adminBoardQnaModify")
+	public String adminBoardQnaModifyComple(AnswerVO answerVo) {
+		adminService.updateAnswer(answerVo);
+		return "redirect:/admin/adminBoardQna";
+	}
 	// 게시판관리 이동 (자유)
 	@GetMapping("/adminBoardFree")
 	public void adminBoardFree(HttpServletRequest request)  throws Exception {
@@ -224,7 +267,20 @@ public class AdminController {
 		request.setAttribute("boardList", freeList);
 		log.info("adminBoardFree 도착");
 	}
-	
+	// 게시판 리뷰보기
+	@GetMapping("/adminBoardReview")
+	public void adminBoardReview(@RequestParam("boardNo") long boardNo, HttpServletRequest request) {
+		List<BoardReplyVO> repList = adminService.getBoardReview(boardNo);
+		
+		request.setAttribute("repList", repList);
+	}
+	// 게시판 리뷰삭제
+	@GetMapping("/adminBoardReviewDelete")
+	public String adminBoardReviewDelete(@RequestParam("boRepNo") long boRepNo, @RequestParam("boardNo") long boardNo, RedirectAttributes reAttr) {
+		adminService.boardReviwDelete(boRepNo);
+		reAttr.addAttribute("boardNo", boardNo);
+		return "redirect:/admin/adminBoardReview";
+	}
 	// 게시판관리 이동 (신고관리)
 	@GetMapping("/adminBoardReport")
 	public void adminBoardReport(HttpServletRequest request)  throws Exception {
@@ -260,6 +316,85 @@ public class AdminController {
 	public String adminBoardDelete(@RequestParam("boardNo") int boardNo) {
 		adminService.boardDelete(boardNo);
 		
-		return "redirect:/admin/adminBoardNoti";
+		return "redirect:/shop/join";
 	}
+	
+	// 매출관리
+	@GetMapping("/adminSalesManage")
+	public void adminSalesManage(HttpServletRequest request) throws Exception {
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		List<SalesVO> saleList = adminService.getSalesInfo();
+		
+		
+		if ((startDate != null && startDate != "") && (endDate != null && endDate != "")) {
+			Date startDateFormat = format.parse(startDate);
+			Date endDateFormat = format.parse(endDate);
+		
+			request.setAttribute("startDate", startDateFormat);
+			request.setAttribute("endDate", endDateFormat);
+			System.out.println(startDateFormat);
+			System.out.println(endDateFormat);
+		} else if ((startDate != null && startDate != "")) {
+			Date startDateFormat = format.parse(startDate);
+			System.out.println("여기2");
+			request.setAttribute("startDate", startDateFormat);
+			request.setAttribute("endDate", endDate);
+		} else if (endDate != null && endDate != "") {
+			Date endDateFormat = format.parse(endDate);
+			System.out.println("여기3");
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("endDate", endDateFormat);
+		}
+		else {
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("endDate", endDate);
+		}
+		System.out.println(startDate != null);
+		System.out.println(startDate != "");
+		System.out.println("매출관리4");
+		
+		
+		request.setAttribute("sales", saleList);
+		System.out.println(saleList.get(0).getSalesDate());
+	}
+	
+	// 가입자
+	@GetMapping("/adminJoinView")
+	public void adminJoinView(HttpServletRequest request) throws Exception {
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		if ((startDate != null && startDate != "") && (endDate != null && endDate != "")) {
+			Date startDateFormat = format.parse(startDate);
+			Date endDateFormat = format.parse(endDate);
+		
+			request.setAttribute("startDate", startDateFormat);
+			request.setAttribute("endDate", endDateFormat);
+			System.out.println(startDateFormat);
+			System.out.println(endDateFormat);
+		} else if ((startDate != null && startDate != "")) {
+			Date startDateFormat = format.parse(startDate);
+			System.out.println("여기2");
+			request.setAttribute("startDate", startDateFormat);
+			request.setAttribute("endDate", endDate);
+		} else if (endDate != null && endDate != "") {
+			Date endDateFormat = format.parse(endDate);
+			System.out.println("여기3");
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("endDate", endDateFormat);
+		}
+		else {
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("endDate", endDate);
+		}
+		
+		List<SalesVO> joinList = adminService.getJoinView();
+		request.setAttribute("join", joinList);
+	}
+	
 }

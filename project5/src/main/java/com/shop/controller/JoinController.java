@@ -27,7 +27,6 @@ public class JoinController {
 	//회원가입 페이지 이동
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public void joinGET() {
-		
 		System.out.println("회원가입 페이지 진입");
 	}
 	

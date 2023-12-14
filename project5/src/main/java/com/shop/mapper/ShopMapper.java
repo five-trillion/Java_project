@@ -2,8 +2,13 @@ package com.shop.mapper;
 
 import java.util.List;
 
+import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CartVO;
+import com.shop.domain.DeliveryVO;
+import com.shop.domain.OrderDetailVO;
+import com.shop.domain.OrderInfoVO;
+import com.shop.domain.OrderVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
 import com.shop.domain.UsersVO;
@@ -35,7 +40,17 @@ public interface ShopMapper {
 	 
 	//상품 전체목록 처리를 위한 메소드 
 	public List<ProductVO> prodList() throws Exception;
-	 
+	
+		//---------------------------------------------------------------------------
+		//상품목록
+	
+		public List<ProductVO> prodbrandList(String brand) throws Exception;
+
+		public List<ProductVO> prodcatList(String category) throws Exception;
+		
+		
+		//---------------------------------------------------------------------------
+	
 	//상품 선택목록(상세보기)을 위한 메소드 
 	public ProductVO prodDetail(String prodNo) throws Exception;
 	
@@ -44,7 +59,15 @@ public interface ShopMapper {
 	
 	//메인페이지 인기상품 출력을 위한 메소드
 	public List<ProductVO> prodpopList() throws Exception;
-	 
+	
+	//상품 개수 출력
+	public int getpcount() throws Exception;
+	
+	//브랜드별 상품개수 출력
+	public int getbcount() throws Exception;
+	
+	//카테고리별 상품개수 출력
+	public int getccount() throws Exception;
 	//---------------------------------------------------------------------------
 	
 	//리뷰 전체목록 처리를 위한 메소드 
@@ -82,10 +105,49 @@ public interface ShopMapper {
 	//장바구니 목록
 	public List<CartVO> getCart(long userNo) throws Exception;
 	
+	//주문완료 시 장바구니 목록 삭제
+	public int removeCart(CartVO cartVO) throws Exception;
+	
 	//카트에 있는 상품인지 조회
 	public CartVO countCart(CartVO cartVO) throws Exception;
 	
 	//---------------------------------------------------------------------------
 	
+	//주문 테이블 정보 추가
+	public void orderInfo(OrderInfoVO orderVO) throws Exception;
+	
+	//주문상세 테이블 정보 추가
+	public void orderDetail(OrderDetailVO orderdtVO) throws Exception;
+	
+	//배송 테이블 정보 추가
+	public void deliInfo(DeliveryVO deliVO) throws Exception;
+	
+	//주문완료 페이지
+	public List<OrderVO> getCom(String orderNo) throws Exception;
+	
+	//마이페이지 주문내역
+	public List<OrderVO> getorder(long userNo) throws Exception;
+	
+	//마이페이지 주문상세조회
+	public List<OrderVO> getordetail(String orderNo, String prodNo) throws Exception;
+	
+	//---------------------------------------------------------------------------
+	
+	//마이페이지 리뷰작성페이지 띄우기
+	public List<ProductVO> getProd(long userNo) throws Exception;
+	
+	//마이페이지 리뷰목록 띄우기
+	public List<ReviewVO> getRevi(long userNo) throws Exception;
+	
+	//마이페이지 작성한게시글 띄우기
+	public List<BoardVO> getLounge(long userNo) throws Exception;
+	
+	//마이페이지 작성한댓글 띄우기
+	public List<BoardReplyVO> getReply(long userNo) throws Exception;
+	
+	//마이페이지 문의 띄우기
+	public List<BoardVO> getQna(long userNo) throws Exception;
+	
+	//---------------------------------------------------------------------------
 	
 }

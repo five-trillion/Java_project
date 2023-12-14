@@ -14,11 +14,28 @@
 		select * 
 		from product
 	</select>
+		
+		<!-- ==================================================================== -->
+		<!-- 상품목록 -->
+		
+		<select id="prodbrandList" resultType="com.shop.domain.ProductVO">
+			select * 
+			from product
+			where brand=#{brand};
+		</select>
+		
+		<select id="prodcatList" resultType="com.shop.domain.ProductVO">
+			select * 
+			from product
+			where category=#{category};
+		</select>
+		
+		<!-- ==================================================================== -->
 	
 	<!-- 상세조회 -->
 	<select id="prodDetail" parameterType="java.lang.String" resultType="com.shop.domain.ProductVO">
-		select * 
-		from product
+		select *, (select codeName from code where codeNum = p.brand) as brandName
+		from product p
 		where prodNo = #{prodNo}
 	</select>
 	
@@ -29,6 +46,29 @@
 		 where prodNo = #{prodNo}
 	</update>
 	
+	<!-- 상품개수 출력 -->
+	<select id="getpcount" resultType="int">
+  		select count(*)
+  		from product
+  	</select> 
+  	
+  	<!-- 브랜드별 상품개수 출력 -->
+  	<select id="getbcount" resultType="int">
+  		select count(*)
+  		from product
+  		where brand = #{brand}
+  	</select>
+  	
+  	<!-- 카테고리별 상품개수 출력 -->
+	<select id="getccount" resultType="int">
+  		select count(*)
+  		from product
+  		where category = #{category}
+  	</select>
+	
+	<!-- ==================================================================== -->
+	<!-- 메인 -->
+	
 	<!-- 인기상품 메인페이지 출력 -->
 	<select id="prodpopList" resultType="com.shop.domain.ProductVO">
 		select * 
@@ -37,6 +77,16 @@
 		limit 8
 	</select>
 	
+	<!-- 인기글 조회 -->
+	<select id="freepopList" resultType="com.shop.domain.BoardVO">
+		select b.* , u.nick as userNick
+		from board b
+		join users u on b.userNo = u.userNo
+		where b.boardClass = 3
+		order by b.boardNo desc
+		limit 3
+	</select>
+		
 	<!-- ==================================================================== -->
 	<!-- 리뷰 -->
 	
@@ -49,10 +99,11 @@
 	
 	<!-- 상품상세페이지 리뷰 조회 -->
 	<select id="reviewdList" resultType="com.shop.domain.ReviewVO">
-		select * 
-		from review
+		select r.* , u.nick as userNick
+		from review r
+		join users u on r.userNo = u.userNo
 		where prodNo = #{prodNo}
-		order by reviNo desc
+		order by r.reviNo desc
 	</select>
 	
 	<!-- 상세조회 -->
@@ -122,13 +173,59 @@
 		where userNo = #{userNo}
 	</select>
 	
+	<delete id="removeCart" parameterType="com.shop.domain.CartVO">
+		delete from cart where userNo = #{userNo}
+	</delete>
+	
 	<select id="countCart" resultType="com.shop.domain.CartVO">
 		select * from cart 
 		where userNo = #{userNo} and prodNo = #{prodNo}
 	</select>
 	
 	<!-- ==================================================================== -->
-	<!-- 회원 -->
+	<!-- 주문 -->
+	
+	<!-- 주문 정보 -->
+	<insert id="orderInfo">
+	 insert into order_info(orderNo, userNo, orderDate, orderSum, userPoint, orderFee, orderSta)
+	     values(#{orderNo}, #{userNo}, current_timestamp, #{orderSum}, #{userPoint}, 3000, 0)
+	</insert>
+	   
+	<!-- 주문 상세 정보 --> 
+	<insert id="orderDetail">
+	 insert into order_detail(orderNo, orderListNo, prodNo, orderCnt, totalPrice)
+	     select #{orderNo}, #{orderListNo}, prodNo, orderCnt, (select salePrice from product where prodNo=c.prodNo)*orderCnt
+	         from cart c
+	</insert> 
+	
+	<!-- 배송 정보 -->
+	<insert id="deliInfo">
+	 insert into delivery(deliNo, orderNo, deliInfo, orderzip, orderAddr, recipient, recipientTel, recPhone, recEmail, deliMsg)
+	     values(#{deliNo}, #{orderNo}, #{deliInfo}, #{orderzip}, #{orderAddr}, #{recipient}, #{recipientTel}, #{recPhone}, #{recEmail}, #{deliMsg})
+	</insert>
+	
+	<select id="getCom" resultType="com.shop.domain.OrderVO">
+		select oi.* , od.*, d.*, p.prodName,salePrice,prodMainImg
+		from order_info oi, order_detail od, delivery d, product p
+		where oi.orderNo = od.orderNo and oi.orderNo = d.orderNo and od.prodNo=p.prodNo
+		and oi.orderNo = #{orderNo};
+	</select>
+	
+	<select id="getorder" resultType="com.shop.domain.OrderVO">
+		select oi.* , od.*, d.*, p.prodName,salePrice,prodMainImg, (select codeName from code where codeId = 'orderSta' and codeNum = oi.orderSta) as odst
+		from order_info oi, order_detail od, delivery d, product p
+		where oi.orderNo = od.orderNo and oi.orderNo = d.orderNo and od.prodNo=p.prodNo
+		and userNo=#{userNo}
+	</select>
+	
+	<select id="getordetail" resultType="com.shop.domain.OrderVO">
+		select oi.* , od.*, d.*, p.prodName,salePrice,prodMainImg, (select codeName from code where codeId = 'orderSta' and codeNum = oi.orderSta) as odst
+		from order_info oi, order_detail od, delivery d, product p
+		where oi.orderNo = od.orderNo and oi.orderNo = d.orderNo and od.prodNo=p.prodNo
+		and oi.orderNo = #{orderNo} and od.prodNo=#{prodNo}
+	</select>
+	
+	
 	
 	
 </mapper>

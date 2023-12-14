@@ -47,7 +47,7 @@
 								</h5>
 
 								<!-- Vertical Form -->
-								<form name="answer" method="post" class="row g-3">
+								<form name="answer" method="post" class="row g-3" onsubmit="return answerCheck()">
 									<input type="hidden" id="boardNo" name="boardNo" value="${question.boardNo}">
 									<div class="col-12">
 										<label for="inputNanme4" class="form-label">제 목</label> <input
@@ -62,6 +62,7 @@
 									<div class="text-center">
 										<button type="submit" class="btn btn-primary">답변제출</button>
 										<button type="reset" class="btn btn-secondary">초기화</button>
+										<a href="adminBoardQna" class="btn btn-success">목록</a>
 									</div>
 								</form>
 								<!-- Vertical Form -->
@@ -85,7 +86,15 @@
 			"width" : "50%",
 		});
 		function answerCheck() {
-			document.answer.ansTitle
+			if (document.answer.ansTitle.value == "") {
+				alert("제목을 입력해 주세요");
+				return false;
+			}
+			if (document.answer.ansContent.value == "") {
+				alert("내용을 입력해 주세요");
+				return false;
+			}
+			return true
 		}
 	</script>
 </body>

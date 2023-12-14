@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.shop.domain.BoardVO;
 import com.shop.domain.CartVO;
+import com.shop.domain.DeliveryVO;
+import com.shop.domain.OrderDetailVO;
+import com.shop.domain.OrderInfoVO;
+import com.shop.domain.OrderVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
 import com.shop.domain.UsersVO;
@@ -36,6 +40,16 @@ public interface ShopService {
 	// ======================상품======================
 	//전체목록 처리를 위한 메소드
 	public List<ProductVO> prodList() throws Exception;
+	
+		//---------------------------------------------------------------------------
+		//상품목록
+	
+		public List<ProductVO> prodbrandList(String brand) throws Exception;
+		
+		public List<ProductVO> prodcatList(String category) throws Exception;
+		
+		
+		//---------------------------------------------------------------------------
 	
 	//선택목록(글읽기)을 위한 메소드
 	public ProductVO prodDetail(String prodNo) throws Exception;
@@ -81,9 +95,30 @@ public interface ShopService {
 	//장바구니 목록 조회
 	public List<CartVO> getCart(long userNo) throws Exception;
 	
+	//주문완료 시 장바구니 목록 삭제
+	public int removeCart(CartVO cartVO) throws Exception;
+	
 	//카트에 있는 상품인지 조회
 //	public CartVO countCart(CartVO cartVO) throws Exception;
 	
-	// ======================회원======================
+	// ======================주문======================
+	
+	//주문 테이블 정보 추가
+	public void orderInfo(OrderInfoVO orderVO) throws Exception;
+	
+	//주문상세 테이블 정보 추가
+	public void orderDetail(OrderDetailVO orderdtVO) throws Exception;
+	
+	//배송 테이블 정보 추가
+	public void deliInfo(DeliveryVO deliVO) throws Exception;
+	
+	//주문완료 페이지
+	public List<OrderVO> getCom(String orderNo) throws Exception;
+	
+	//주문완료 페이지
+	public List<OrderVO> getorder(long userNo) throws Exception;
+	
+	//마이페이지 주문상세조회
+	public List<OrderVO> getordetail(String orderNo, String prodNo) throws Exception;
 	
 }

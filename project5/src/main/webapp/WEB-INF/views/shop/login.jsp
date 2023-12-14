@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,26 +17,32 @@
  	</style>
 </head>
 <body>
-	<%@ include file="../includes/header.jsp" %>
-	
-	<div class="container">
-	    <div class="row">
-	        <div class="col-lg-12">
-	            <div class="contact__form__title">
-	                <h2>로그인</h2>
-	            </div>
-	        </div>
-	    </div>
-	    <form method="post" action="login" id="frm" name="frm" onsubmit="return saveIdCk()">
-	    	<div class="col-lg-8 col-md-6">
-            	<div class="checkout__input">
-                	<input type="text" name="userId" placeholder="아이디">
-                </div>
-                <div class="checkout__input">
-                	<input type="password" name="userPw" placeholder="비밀번호">
-				</div>
+	<%@ include file="../includes/header.jsp"%>
 
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="contact__form__title">
+					<h2>로그인</h2>
+				</div>
+			</div>
+		</div>
+		<form method="post" action="login" id="frm" class="loginForm"
+			name="frm" onsubmit="return saveIdCk()">
+			<div class="col-lg-8 col-md-6">
+				<div class="col-lg-8 col-md-6">
+					<div class="checkout__input">
+						<input type="text" name="userId" placeholder="아이디">
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-6">
+					<div class="checkout__input">
+						<input type="password" name="userPw" placeholder="비밀번호">
+					</div>
+				</div>
 				<div class="checkout__input__checkbox">
+
 	                <input type="checkbox" id="saveId" name="saveId" onclick="saveId()"> 아이디 저장
 	                 <span class="checkmark"></span>
                 </div>
@@ -168,5 +174,6 @@
     } 
     
 </script>
+
 </body>
 </html>
