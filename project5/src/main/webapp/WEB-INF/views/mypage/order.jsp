@@ -189,6 +189,8 @@
 	
 	<%@include file="../includes/footer.jsp" %>
 	<script>
+	$(".order").addClass("on");
+	
 	$(".nice-select").css({"display":"none"});
 	$("#order_status").css({"disp3lay":"block"});
 	</script>

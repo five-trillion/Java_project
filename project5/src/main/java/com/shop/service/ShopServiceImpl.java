@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.shop.domain.BoardVO;
 import com.shop.domain.CartVO;
+import com.shop.domain.DeliveryVO;
+import com.shop.domain.OrderDetailVO;
+import com.shop.domain.OrderInfoVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
 import com.shop.domain.UsersVO;
@@ -73,12 +76,24 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public List<ProductVO> prodList() throws Exception{
 		try {
-			System.out.println("=====Service.prodList=====");
+//			System.out.println("=====Service.prodList=====");
 			return mapper.prodList();
 		} catch (Exception e) {
 		      log.error("Error fetching prodlist", e);
 		      return null;
 		}
+	}
+	
+	@Override
+	public List<ProductVO> prodbrandList(String brand) throws Exception{
+		System.out.println("=====Service.prodbrandList=====");
+		return mapper.prodbrandList(brand);
+	}
+	
+	@Override
+	public List<ProductVO> prodcatList(String category) throws Exception{
+		System.out.println("=====Service.prodcategoryList=====");
+		return mapper.prodcatList(category);
 	}
 	
 	@Override
@@ -190,6 +205,26 @@ public class ShopServiceImpl implements ShopService {
 	public List<CartVO> getCart(long userNo) throws Exception {
 		System.out.println("=====Service.getcart=====");
 		return mapper.getCart(userNo);
+	}
+	
+	@Override
+	public List<CartVO> removeCart(long userNo) throws Exception {
+		return mapper.removeCart(userNo);
+	}
+	
+	@Override
+	public void orderInfo(OrderInfoVO orderVO) throws Exception {
+		mapper.orderInfo(orderVO);
+	}
+	
+	@Override
+	public void orderDetail(OrderDetailVO orderdtVO) throws Exception{
+		mapper.orderDetail(orderdtVO);
+	}
+	
+	@Override
+	public void deliInfo(DeliveryVO deliVO) throws Exception {
+		mapper.deliInfo(deliVO);
 	}
 	
 }

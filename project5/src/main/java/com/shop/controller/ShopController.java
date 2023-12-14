@@ -1,5 +1,7 @@
 package com.shop.controller;
 
+import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.CartVO;
+import com.shop.domain.DeliveryVO;
+import com.shop.domain.OrderDetailVO;
+import com.shop.domain.OrderInfoVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
 import com.shop.domain.UsersVO;
@@ -38,15 +44,39 @@ public class ShopController {
 	ShopService service;
 	
 	@RequestMapping(value="shop", method = RequestMethod.GET)
-	public String list(Model model) throws Exception {
+	public String list(HttpServletRequest request, Model model) throws Exception {
 		try {
 //			logger.info("=======controller.prodlist========");
 			List<ProductVO> prodlist = service.prodList();
 			model.addAttribute("prodlist", prodlist);
+			System.out.println("a");
 			return "shop/list";
 		} catch(Exception e) {
 			logger.error("Error fetching prodlist", e);
             return "error";
+		}
+	}
+	@RequestMapping(value="shop/brand", method = RequestMethod.GET)
+	public String brandlist(@RequestParam("b") String brand, Model model) throws Exception {
+		try {
+			List<ProductVO> prodlist = service.prodbrandList(brand);
+			model.addAttribute("prodlist", prodlist);
+			System.out.println("c");
+			return "shop/list";
+		} catch(Exception e) {
+			logger.error("Error fetching prodlist", e);
+			return "error";
+		}
+	}
+	@RequestMapping(value="shop/category", method = RequestMethod.GET)
+	public String catlist(@RequestParam("c") String category, Model model) throws Exception {
+		try {
+			List<ProductVO> prodlist = service.prodcatList(category);
+			model.addAttribute("prodlist", prodlist);
+			return "shop/list";
+		} catch(Exception e) {
+			logger.error("Error fetching prodlist", e);
+			return "error";
 		}
 	}
 	@RequestMapping(value = "shop/detail", method = RequestMethod.GET)
@@ -60,6 +90,7 @@ public class ShopController {
 	        
 	        List<ReviewVO> revidlist = service.reviewdList(prodNo); // 해당상품 리뷰목록구현
 	        model.addAttribute("rlist", revidlist);
+	        System.out.println(revidlist == null);
 	        
 	    }
 		return "shop/detail";
@@ -79,10 +110,7 @@ public class ShopController {
 	@RequestMapping(value="/cart/{userNo}", method = RequestMethod.GET)
 	public String getcart(HttpServletRequest request, HttpSession session, Model model) throws Exception {
 	    try {
-	        log.info("=======controller.getcart========");
-
 	        UsersVO uVo = (UsersVO) session.getAttribute("user");
-
 	        // 세션에 "uVO" 속성이 없거나 값이 null인 경우 처리
 	        if (uVo == null) {
 	            log.error("User information not found in session");
@@ -110,9 +138,59 @@ public class ShopController {
 		return "redirect:/cart/"+ cartVO.getUserNo();
 	}
 	@RequestMapping(value = "checkout", method = RequestMethod.GET)
-	public String checkout() {
-		return "shop/checkout";
+	public String checkout(HttpSession session, Model model) throws Exception {
+	    try {
+	        UsersVO uVo = (UsersVO) session.getAttribute("user");
+	        if (uVo == null) {
+	            return "redirect:/shop/login";
+	        }
+	        long userNo = uVo.getUserNo();
+	        List<CartVO> cartVO = service.getCart(userNo);
+	        model.addAttribute("order", cartVO);
+
+	        return "shop/checkout";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "error";
+	    }
 	}
+	@RequestMapping(value = "/complete", method = RequestMethod.POST)
+	public String order(HttpSession session, OrderInfoVO order, OrderDetailVO orderdtVO, DeliveryVO deliVO) throws Exception {
+	 logger.info("order");
+	 
+	 UsersVO user = (UsersVO)session.getAttribute("user");  
+	 long userNo = user.getUserNo();
+	 
+	 Calendar cal = Calendar.getInstance();
+	 int year = cal.get(Calendar.YEAR);
+	 String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+	 String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));
+	 String subNum = "";
+	 
+	 for(int i = 1; i <= 6; i ++) {
+	  subNum += (int)(Math.random() * 10);
+	 }
+	 
+	 String orderNo = ymd + "_" + subNum;
+	 
+	 order.setOrderNo(orderNo);
+	 order.setUserNo(userNo);
+	 service.orderInfo(order);
+	 orderdtVO.setOrderDtNo(orderNo);   
+	 service.orderDetail(orderdtVO);
+	 service.deliInfo(deliVO);
+	 service.removeCart(userNo);
+	 
+	 return "redirect:/mypage/complete";  
+	}
+//	@RequestMapping(value="complete", method = RequestMethod.GET)
+//	public String complete(@RequestBody long userNo) throws Exception {
+//		//장바구니 목록을 주문,배송 테이블에 옮기기
+//		
+//		//해당 회원의 장바구니 목록 삭제
+//		service.removeCart(userNo);
+//		return "mypage/complete";
+//	}
 	@RequestMapping(value="mypage", method = RequestMethod.GET)
 	public String mypage() {
 		return "mypage/mypage";

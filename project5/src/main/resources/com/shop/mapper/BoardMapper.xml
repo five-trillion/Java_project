@@ -140,6 +140,7 @@
 			<if test="keyword != null">
 				and boardTitle like concat ('%', #{keyword}, '%')
 			</if>
+
 		</select>
 		
 		<!-- 조회 수 처리 -->
