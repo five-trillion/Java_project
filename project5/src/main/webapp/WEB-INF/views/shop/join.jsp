@@ -24,16 +24,17 @@
 			<form action="join" method="post" name="frm" class="joinForm"
 				id="frm">
 				<div class="col-lg-8 col-md-6 joinBox">
-					<div class="checkout__input">
+					<div class="checkout__input relative">
 						<p>
 							아이디<span>*</span>
 						</p>
-						<div class="inputBlock">
-							<input type="text" name="userId" class="id_input"
-								placeholder="영문과 숫자를 조합하여 6~16자로 입력해주세요." required> <span
-								class="id_input_re_1" style="color: green; display: none;">사용
-								가능한 아이디입니다.</span> <span class="id_input_re_2"
-								style="color: red; display: none;">이미 존재하는 아이디입니다.</span>
+						<input type="text" name="userId" class="id_input"
+							placeholder="영문과 숫자를 조합하여 6~16자로 입력해주세요." required>
+						<div class="idMsg">
+							<span
+							class="id_input_re_1" style="color: green; display: none;">사용
+							가능한 아이디입니다.</span> <span class="id_input_re_2"
+							style="color: red; display: none;">이미 존재하는 아이디입니다.</span>
 						</div>
 					</div>
 					<div class="checkout__input">
@@ -60,11 +61,13 @@
 						<p>
 							휴대전화<span>*</span>
 						</p>
+						<div class="phoneBox">
 							<input type="text" id="phone1" name="phone1" maxlength="3"
 								value="010" required> - <input type="text" id="phone2"
 								name="phone2" maxlength="4" required> - <input
 								type="text" id="phone3" name="phone3" maxlength="4" required>
 							<input type="hidden" name="phone" id="phone">
+						</div>
 					</div>
 					<div class="checkout__input">
 						<p>집전화</p>
@@ -114,8 +117,8 @@
 								id="email">
 						</div>
 					</div>
-					<div class="checkout__input">
-						<p>
+					<div class="checkout__input highText">
+						<p class="highText">
 							주소<span>*</span>
 						</p>
 						<div class="inputBlock">
@@ -181,6 +184,7 @@
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
+	
 		function joinCheck() { //유효성 검사
 			//아이디
 			if (document.frm.userId.value.length == 0) {

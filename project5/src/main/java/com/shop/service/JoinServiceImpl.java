@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,11 @@ public class JoinServiceImpl implements JoinService {
 	}
 
 	
+	@Override
+	public List<PetVO> getPet(long userNo) throws Exception {
+		return joinmapper.getPet(userNo);
+	}
+
 	@Override 
 	public void updateUser(UsersVO user) throws Exception {
 		joinmapper.updateUser(user);
