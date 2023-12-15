@@ -72,5 +72,5 @@ public interface BoardMapper {
 		 
 		// 자유게시판 글삭제를 위한 메서드 
 		public int freeDelete(long boardNo) throws Exception;
-
+	
 }

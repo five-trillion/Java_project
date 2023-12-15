@@ -4,8 +4,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.BoardReplyVO;
@@ -19,7 +21,7 @@ public class ReplyController {
 	@Autowired
 	private ReplyService replyservice;
 	
-	//자유게시판 댓글 작성
+	// 자유게시판 댓글 작성
 	@RequestMapping(value="/boRepWrite", method=RequestMethod.POST)
 	public String boRepWritePOST(BoardReplyVO boRep, RedirectAttributes rttr, HttpSession session) throws Exception {
 		replyservice.replyRegister(boRep);
@@ -33,4 +35,22 @@ public class ReplyController {
 			return "redirect:/shop/login";
 		}	
 	}
+
+    // 댓글 수정 처리
+    @RequestMapping(value="/boRepModify", method=RequestMethod.POST)
+    public String boRepModifyPOST(BoardReplyVO boRep, RedirectAttributes rttr) throws Exception {
+    	replyservice.replyModify(boRep);
+    	rttr.addFlashAttribute("msg", "댓글이 수정되었습니다.");
+        return "redirect:/board/loungeRead?boardNo=" + boRep.getBoardNo();
+    }
+
+    // 댓글 삭제 처리
+    @RequestMapping(value="/boRepDelete", method=RequestMethod.POST)
+    public String boRepDeletePOST(@RequestParam("boRepNo") Long boRepNo, @RequestParam("boardNo") Long boardNo, RedirectAttributes rttr) throws Exception {
+    	replyservice.replyDelete(boRepNo);
+    	System.out.println(boRepNo);
+    	System.out.println(boardNo);
+        rttr.addFlashAttribute("msg", "댓글이 삭제되었습니다.");
+        return "redirect:/board/loungeRead?boardNo=" + boardNo;
+    }
 }

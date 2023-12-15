@@ -34,7 +34,7 @@
 		background-color:white;
 		padding: 10px;
 	    font-size: 12px;
-	    width: 80%;
+	    width: 100%;
 	    resize: none;
 	    box-sizing: border-box;
 	}
@@ -103,7 +103,7 @@
 							<thead>
 								<tr>
 									<td>
-										<div> 리플 <%-- <c:out value={replycnt}/> --%> </div>
+										<div> 리플 <%-- <c:out value={boRepCnt}/> --%> </div>
 									</td>
 								<tr>
 							</thead>
@@ -121,10 +121,17 @@
 								<tr>
 									<c:forEach var="reply" items="${reply}">
 										<td>
-											<div>
+											<div style="width:900px;">
 												작성자 <b><c:out value="${reply.userNick}"/></b>&nbsp;&nbsp;&nbsp;
 												작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.boRepReg}"/></b><br>
 												<c:out value="${reply.boRepContent}"/>
+											</div>
+											<div>
+												<c:if test="${user.userNo eq reply.userNo}">
+													<button type="button" class="btn btn-primary" data-toggle="modal" 
+													data-target="#replyModal" data-replyid="${reply.boRepNo}" 
+													data-replycontent="${reply.boRepContent}">수정</button> 
+												</c:if>
 											</div>
 										</td>
 									</c:forEach>	
@@ -141,6 +148,33 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- modal -->
+	<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
+	    <div class="modal-dialog modal-lg" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="replyModalLabel">수정 / 삭제</h5>
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">&times;</span>
+	                </button>
+	            </div>
+	            <div class="modal-body">
+	                <form id="replyForm">
+	                    <input type="hidden" id="replyId" name="replyId">
+	                    <div class="form-group">
+	                        <label for="replyContent">댓글 내용</label>
+	                        <textarea class="form-control" id="replyContent" name="replyContent" rows="3"></textarea>
+	                    	<input type="hidden" name="boardNo" value="${freeDetail.boardNo}">
+	                    </div>
+	                    <button type="button" class="btn btn-primary" onclick="modifyReply()">수정</button>
+	                    <button type="button" class="btn btn-danger" onclick="deleteReply()">삭제</button>
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
 	<%@ include file="../includes/footer.jsp"%>
 <script>
 	function submitForm() {
@@ -159,6 +193,68 @@
             // 로그인이 되어 있는 경우
         	document.getElementById('replyfrm').submit();
         }
+    }
+	
+	$('#replyModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // 클릭된 버튼
+        var replyId = button.data('replyid'); // 댓글 ID
+        var replyContent = button.data('replycontent'); // 댓글 내용
+
+        // 모달 내용 설정
+        $('#replyId').val(replyId);
+        $('#replyContent').val(replyContent);
+    });
+
+    // 댓글 수정 함수
+    function modifyReply() {
+        let replyId = $('#replyId').val();
+        let replyContent = $('#replyContent').val();
+        let boardNo = $('#boardNo').val();
+       
+		$.ajax({
+            type: 'POST',
+            url: '/reply/boRepModify', // 수정 처리를 수행할 컨트롤러의 URL
+            data: {
+                boRepNo: replyId,
+                boRepContent: replyContent,
+                boardNo: boardNo
+            },
+            success: function (data) {
+              	console.log("댓글 수정 성공!!")
+              	document.getElementById('replyForm').submit();
+            },
+            error: function (error) {
+                console.error('댓글 수정 실패:', error);
+            }
+        });
+
+        // 모달 닫기
+        $('#replyModal').modal('hide');
+    }
+
+    // 댓글 삭제 함수
+    function deleteReply() {
+        let replyId = $('#replyId').val();
+        let boardNo = $('#boardNo').val();
+       
+		 $.ajax({
+            type: 'POST',
+            url: '/reply/boRepDelete', // 삭제 처리를 수행할 컨트롤러의 URL
+            data: {
+                boRepNo: replyId,
+                boardNo: boardNo
+            },
+            success: function (data) {
+            	console.log("댓글 삭제 성공!!")
+            	document.getElementById('replyForm').submit();
+            },
+            error: function (error) {
+                console.error('댓글 삭제 실패:', error);
+            }
+        });
+
+        // 모달 닫기
+        $('#replyModal').modal('hide');
     }
 	
 </script>

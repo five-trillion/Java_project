@@ -12,6 +12,14 @@
 			order by r.boRepReg desc
 		</select>
 		
+		<!-- 댓글 개수 조회 -->
+		<update id="getReplyCnt">
+			update board b
+			set b.boRepCnt = ( select count(r.boRepNo) 
+							 from board_reply r
+							 where b.boardNo = r.boardNo )
+		</update>
+		
 		<!-- 댓글 작성 -->
 		<insert id="replyRegister" parameterType="com.shop.domain.BoardReplyVO">
 			insert into board_reply (boRepNo, boardNo, userNo, boRepContent, boRepReg, boRepUpdate)
@@ -27,10 +35,9 @@
 		</update>
 			
 		<!-- 댓글 삭제 -->
-		<delete id="relpyDelete" parameterType="com.shop.domain.BoardReplyVO">
+		<delete id="replyDelete" parameterType="java.lang.Long">
 			delete from board_reply
 			where boRepNo = #{boRepNo} 
-			and boardNo = #{boardNo}
 		</delete>
 		
 	</mapper>

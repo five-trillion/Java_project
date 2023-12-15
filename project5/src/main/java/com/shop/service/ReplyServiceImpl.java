@@ -19,14 +19,15 @@ public class ReplyServiceImpl implements ReplyService {
 		return replymapper.getReplyList(boardNo);
 	}
 	
-	public int getReplyCnt(int boardNo) throws Exception  {
-		return replymapper.getReplyCnt(boardNo);
-	}
-	
 	@Override
 	public int replyRegister(BoardReplyVO boRep) throws Exception {
 		return replymapper.replyRegister(boRep);
 	}
+	
+	 @Override
+	    public BoardReplyVO getReplyByNo(Long boRepNo) throws Exception {
+	        return replymapper.getReplyByNo(boRepNo);
+	    }
 	
 	@Override
 	public void replyModify(BoardReplyVO boRep) throws Exception {
@@ -34,8 +35,8 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 	
 	@Override
-	public void replyDelete(BoardReplyVO boRep) throws Exception {
-		replymapper.replyDelete(boRep);
+	public void replyDelete(Long boRepNo) throws Exception {
+		replymapper.replyDelete(boRepNo);
 	}
 }
 
