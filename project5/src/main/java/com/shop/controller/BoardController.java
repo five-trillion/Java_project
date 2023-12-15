@@ -178,29 +178,24 @@ public class BoardController {
 	//자유게시판 게시물 작성
 	@RequestMapping(value="/loungeWrite", method=RequestMethod.POST)
 	public String loungeWritePOST(BoardVO board, UsersVO user, RedirectAttributes rttr, HttpSession session, @RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
-		
-		System.out.println("자유게시판 파일업로드 .....");
 		String uploadFolder = "D:/Java_project/project5/src/main/webapp/resources/upload/lounge/";
-		
-		System.out.println("-----------------------------------------------");
-		System.out.println("파일 이름 : " + uploadFile.getOriginalFilename());
-		System.out.println("파일 타입 : " + uploadFile.getContentType());
-		System.out.println("파일 크기 : " + uploadFile.getSize());	
-		
-		// 파일 이름 
-		String uploadFileName = uploadFile.getOriginalFilename();
-		// 고유 식별자 적용 파일 이름
-		String uuid = UUID.randomUUID().toString();
-		uploadFileName = uuid + "_" + uploadFileName;
-		// 파일 위치, 파일 이름을 합친 File 객체 
-		File saveFile = new File(uploadFolder, uploadFileName);
-		board.setBoardImg(uploadFileName);
+		board.setUserNo(user.getUserNo());
 		// 파일 저장 
-		try {
-			uploadFile.transferTo(saveFile);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
+		if (uploadFile != null && !uploadFile.isEmpty()) {
+			// 파일 이름 
+			String uploadFileName = uploadFile.getOriginalFilename();
+			// 고유 식별자 적용 파일 이름
+			String uuid = UUID.randomUUID().toString();
+			uploadFileName = uuid + "_" + uploadFileName;
+			// 파일 위치, 파일 이름을 합친 File 객체 
+			File saveFile = new File(uploadFolder, uploadFileName);
+			board.setBoardImg(uploadFileName);
+			try {
+				uploadFile.transferTo(saveFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}
 		
 		board.setUserNo(user.getUserNo());
 		System.out.println("자유게시판 글쓰기 성공");
@@ -213,12 +208,34 @@ public class BoardController {
 	@RequestMapping(value="/loungeModify", method=RequestMethod.GET) 
 	public void loungeModifyGET(@RequestParam("boardNo") Long boardNo, Model model) throws Exception {
 		System.out.println("자유게시판 게시물 수정 페이지 진입");
+		BoardVO freeDetail = boardservice.freeDetail(boardNo);
+		model.addAttribute("freeDetail", freeDetail);
+		model.addAttribute("boardImg", freeDetail.getBoardImg());
 		model.addAttribute("freeDetail", boardservice.freeDetail(boardNo)); 
 	}
 	
 	//자유게시판 게시물 수정
 	@RequestMapping(value="/loungeModify", method=RequestMethod.POST)
-	public String loungeModifyPOST(BoardVO board, RedirectAttributes rttr, Model model) throws Exception {
+	public String loungeModifyPOST(BoardVO board, RedirectAttributes rttr, Model model, @RequestParam(value="updateFile", required=false) MultipartFile updateFile) throws Exception {
+		String uploadFolder = "D:/Java_project/project5/src/main/webapp/resources/upload/lounge/";
+		// 이전 파일명 가져오기
+		String existFileName = boardservice.freeDetail(board.getBoardNo()).getBoardImg();
+		// 새로 업로드된 파일이 있는지 확인
+		if (updateFile != null && !updateFile.isEmpty()) {
+			String uploadFileName = updateFile.getOriginalFilename();
+			String uuid = UUID.randomUUID().toString();
+			uploadFileName = uuid + "_" + uploadFileName;
+			File existFile = new File(uploadFolder, existFileName);
+			// 기존 파일 삭제
+			if(existFile.exists()) {
+				existFile.delete();
+			}
+			// 새 파일 저장
+	        File saveFile = new File(uploadFolder, uploadFileName);
+	        updateFile.transferTo(saveFile);
+	        // 업로드된 파일명 설정
+	        board.setBoardImg(uploadFileName);
+		}
 		boardservice.freeUpdate(board);
 		System.out.println("자유게시판 게시글 수정 성공");
 		rttr.addFlashAttribute("result","modify success");

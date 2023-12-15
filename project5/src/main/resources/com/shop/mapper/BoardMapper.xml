@@ -169,8 +169,8 @@
 			update board
 			   set boardTitle = #{boardTitle},
 			   		boardContent= #{boardContent},
-			   		boardUpdate = default
-			   		<!-- boardImg = #{boardImg} -->
+			   		boardUpdate = default,
+			   		boardImg = #{boardImg}
 			 where boardNo = #{boardNo}
 		</update>
 		

@@ -7,7 +7,17 @@
 <meta charset="UTF-8">
 <title>자유게시판 글수정하기</title>
 <%@ include file="../includes/src.jsp"%>
-
+	<style>
+		.boardbtn button {
+			width : 100px;
+			height: 50px;
+		}
+		.boardbtn input {
+			width : 100px;
+			height: 50px;
+			border :none;
+		}
+	</style>
 </head>
 
 <body>
@@ -21,45 +31,39 @@
 					<div class="page_title fs60">
 						<font color="#555555">자유게시판</font>
 					</div>
-					<p class="imgArea displaynone"></p>
 				</div>
-				<div class="boardSort">
-					<span
-						class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
-				</div>
-				<form method="post" id="frm" name="frm" action="/board/loungeModify"> <!-- enctype="multipart/form-data" -->
+				<form method="post" id="frm" name="frm" action="/board/loungeModify" enctype="multipart/form-data">
 					<div class="n_board line typeList gBorder">
-						<table border="1" summary="">
+						<table>
 							<caption>게시판 목록</caption>
-							<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
-								<tr>
-									<td>
-										<div class="chk fs12">제목</div>
-										<div class="subject left fs12">
-											<input type="text" id="boardTitle" name="boardTitle" value="${freeDetail.boardTitle}">
-											<input type="hidden" id="boardNo" name="boardNo" value="${freeDetail.boardNo}">
-										</div>
-									</td>
-								</tr>
-							</thead>
-							<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
-								<tr>
-									<td>
-										<div class="chk fs13">내용</div>
-										<div class="subject left fs13">
-											<textarea style="background-color:white;" rows="10" cols="50" id="boardContent" id="boardContent" name="boardContent">${freeDetail.boardContent}</textarea>
-										</div>
-									</td>
-								</tr>
-								<!-- <tr>
-									<td>
-										<div class="chk fs13">첨부</div>
-										<div class="subject left fs13">
-											<input type="file">
-										</div>
-									</td>
-								</tr> -->
-							</tbody>
+							<tr>
+								<td>
+									<div class="chk fs12">제목</div>
+									<div class="subject left fs12">
+										<input type="text" id="boardTitle" name="boardTitle" value="${freeDetail.boardTitle}">
+										<input type="hidden" id="boardNo" name="boardNo" value="${freeDetail.boardNo}">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="chk fs13">내용</div>
+									<div class="subject left fs13">
+										<textarea style="background-color:white;" rows="10" cols="50" id="boardContent" name="boardContent">${freeDetail.boardContent}</textarea>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="chk fs13">첨부</div>
+									<div class="subject left fs13">
+										 <c:if test="${not empty boardImg}">
+							                <img src="/resources/upload/lounge/${boardImg}" alt="첨부이미지" style="max-width: 150px; max-height: 150px;">
+							                <input type="file" id="updateFile" name="updateFile">
+										</c:if>
+									</div>
+								</td>
+							</tr>
 						</table>
 						<div class="boardbtn" style="text-align:center; margin:20px auto;">
 							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
@@ -70,43 +74,28 @@
 					</div>
 				</form>
 			</div>
-
-			<div
-				class="xans-element- xans-board xans-board-paging-1002 xans-board-paging xans-board-1002 ec-base-paginate">
-				<a href="?board_no=1&amp;page=1" class="prev"><img
-					src="//img.echosting.cafe24.com/skin/base/common/btn_page_prev.gif"
-					alt="이전 페이지"></a>
-				<ol>
-					<li class="xans-record-"><a href="?board_no=1&amp;page=1"
-						class="this">1</a></li>
-				</ol>
-				<a href="?board_no=1&amp;page=1" class="next"><img
-					src="//img.echosting.cafe24.com/skin/base/common/btn_page_next.gif"
-					alt="다음 페이지"></a>
-			</div>
-
-			<form id="boardSearchForm" name="" action="/board/free/list.html"
-				method="get" target="_top" enctype="multipart/form-data">
-				<input id="board_no" name="board_no" value="1" type="hidden">
-				<input id="page" name="page" value="1" type="hidden"> <input
-					id="board_sort" name="board_sort" value="" type="hidden">
-				<div
-					class="xans-element- xans-board xans-board-search-1002 xans-board-search xans-board-1002 ">
-					<fieldset class="boardSearch" style="float:right;">
-						<legend>게시물 검색</legend>
-						<p>
-							<input id="search" name="search" fw-filter="" fw-label=""
-								fw-msg="" class="inputTypeText" placeholder="" value=""
-								type="text"> <a href="#none" class="btnSubmitFix sizeS"
-								onclick="BOARD.form_submit('boardSearchForm');">찾기</a>
-						</p>
-					</fieldset>
-				</div>
-			</form>
-			<!-- 관리자 전용 메뉴 -->
-
-			<!-- // 관리자 전용 메뉴 -->
 		</div>
+	</div>
+	
+	<!-- modal -->
+	<div id="deleteModal" class="modal" tabindex="-1" role="dialog">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title">삭제 확인</h5>
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">&times;</span>
+	                </button>
+	            </div>
+	            <div class="modal-body">
+	                <p>정말로 삭제하시겠습니까?</p>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+	                <button type="button" class="btn btn-primary" onclick="confirmDelete()">확인</button>
+	            </div>
+	        </div>
+	    </div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>
 <script type="text/javascript">
@@ -124,19 +113,7 @@
 	} 
 	
 	function showDeleteModal() {
-        // 모달창을 띄우는 코드 추가
-        // 여기에 모달창 HTML 및 스타일을 추가하세요
-        let modalHtml = '<div id="deleteModal" class="modal">';
-        modalHtml += '<div class="modal-content">';
-        modalHtml += '<span class="close" onclick="closeModal()">&times;</span>';
-        modalHtml += '<p>정말로 삭제하시겠습니까?</p>';
-        modalHtml += '<button onclick="confirmDelete()">확인</button>';
-        modalHtml += '</div>';
-        modalHtml += '</div>';
-        
-        // body에 모달창 추가
-        $("body").append(modalHtml);
-        $("#deleteModal").modal("show");
+    	$("#deleteModal").modal("show");
     }
 	 function confirmDelete() {
          // 삭제 확인 버튼을 눌렀을 때의 처리
@@ -148,7 +125,7 @@
          // 모달창 닫기
          $("#deleteModal").remove();
      }
-	
+     
 	</script>
 </body>
 

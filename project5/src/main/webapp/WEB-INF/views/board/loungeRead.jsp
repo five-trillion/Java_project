@@ -52,7 +52,6 @@
 					<div class="page_title fs60">
 						<font color="#555555">자유게시판</font>
 					</div>
-					<p class="imgArea displaynone"></p>
 				</div>
 				<form method="get" id="frm" name="frm" action="/board/loungeModify" enctype="multipart/form-data">
 					<div class="n_board line typeList gBorder">
@@ -76,9 +75,11 @@
 							<tbody>
 								<tr>
 									<td>
-										<div class="chk fs13">내용</div>
 										<div class="subject left fs13">
-											<img src="${contextPath}/resources/upload/lounge/${freeDetail.boardImg}" alt="게시글 이미지">
+											<c:if test = "${freeDetail.boardImg ne null}">
+												<img src="${contextPath}/resources/upload/lounge/${freeDetail.boardImg}">
+											</c:if>
+											<br><br>
 											<c:out value="${freeDetail.boardContent}"></c:out>
 										</div>
 									</td>
@@ -89,8 +90,14 @@
 						<input type="hidden" name="boardContent" value="${freeDetail.boardContent}">
 						
 						<div class="boardbtn">
-							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
-							<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button>
+							<c:if test="${user.userNo ne freeDetail.userNo}"> 
+								<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
+								<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()" disabled>수정</button>
+							</c:if>		
+							<c:if test="${user.userNo eq freeDetail.userNo}"> 
+								<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
+								<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button>
+							</c:if>
 						</div>
 					</div>
 				</form>
