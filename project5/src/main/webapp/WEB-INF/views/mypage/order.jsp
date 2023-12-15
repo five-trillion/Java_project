@@ -23,7 +23,6 @@
 	<%@include file="../includes/header.jsp" %>
 	
 	<div id="contents" style="padding: 0 0 80px;">
-	
 		<%@include file="../includes/mp_header.jsp" %>
 		<div class="page_wrap">
 		    <div class="xans-element- xans-myshop xans-myshop-orderhistorytab ec-base-tab" style="padding-top: 0;">
@@ -75,7 +74,7 @@
 		<li></li>
 		<li class="displaynone">기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
 		            <li class="">기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 주문처리완료 후 36개월 이내의 주문내역을 조회하실 수 있습니다.</li>
-		            <li class=" ">완료 후 36개월 이상 경과한 주문은 상담 (070-4897-1148) 바랍니다.</li>
+		            <li class=" ">완료 후 36개월 이상 경과한 주문은 전화상담 (070-4897-1148) 바랍니다.</li>
 		            <li class="">취소/교환/반품 신청은 배송완료일 기준 7일까지 가능합니다.</li>
 		        </ul>
 		</div>
@@ -116,7 +115,7 @@
                                            	</p>                            
 		                            		<p><a href="/mypage/order_detail?orderNo=${order.orderNo}&prodNo=${order.prodNo}" class="btnNormal" onclick="">상세정보</a></p>
 										</div>
-		                        		<div class="thumb"><a href="/shop/detail?prodNo=${order.prodNo}"><img src="${contextPath}/resources/upload/product/thumbnails/${order.prodMainImg}" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a></div>
+		                        		<div class="thumb"><a href="/shop/detail?prodNo=${order.prodNo}"><img src="${contextPath}/resources/upload/product/main/${order.prodMainImg}" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a></div>
 		                        		<div class="product left top">
 		                            		<strong class="name fs14" onclick="location.href='/shop/detail?prodNo=${order.prodNo}'">${order.prodName}</strong>
 		                            		<ul class="xans-element- xans-myshop xans-myshop-optionset option fs10"><li class="">
@@ -226,6 +225,7 @@
 		<!-- snap review end -->
 		
 	</div>
+	</div>
 	
 	<%@include file="../includes/footer.jsp" %>
 	<script>
@@ -242,6 +242,14 @@
 
 			$(this).addClass('current');
 			$("#"+tab_id).addClass('current');
+		});
+		$('.tab_class_cs').click(function(){
+			$('.tab_class').removeClass('selected');
+			$(this).addClass('selected');
+		});
+		$('.tab_class').click(function(){
+			$('.tab_class_cs').removeClass('selected');
+			$(this).addClass('selected');
 		});
 	});
 	</script>

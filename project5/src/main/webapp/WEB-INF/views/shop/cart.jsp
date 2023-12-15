@@ -52,7 +52,7 @@
 	                                        <span><input type="checkbox"></span>
 	                                    </td>
 	                                	<td class="shoping__cart__total">
-	                                        <img src="${contextPath}/resources/upload/product/thumbnails/${cart.prodMainImg}" alt="" style="width:100px;">
+	                                        <img src="${contextPath}/resources/upload/product/main/${cart.prodMainImg}" alt="" style="width:100px;">
 	                                    </td>
 	                                    <td class="shoping__cart__item" style="padding-left: 20px; width: 420px;">
 	                                        <h5>${cart.prodName}</h5> <br>

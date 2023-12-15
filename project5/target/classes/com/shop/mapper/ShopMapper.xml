@@ -222,10 +222,44 @@
 		select oi.* , od.*, d.*, p.prodName,salePrice,prodMainImg, (select codeName from code where codeId = 'orderSta' and codeNum = oi.orderSta) as odst
 		from order_info oi, order_detail od, delivery d, product p
 		where oi.orderNo = od.orderNo and oi.orderNo = d.orderNo and od.prodNo=p.prodNo
-		and oi.orderNo = #{orderNo} and od.prodNo=#{prodNo}
+		and oi.orderNo = #{orderNo}
 	</select>
 	
+	<select id="getProd" resultType="com.shop.domain.OrderVO">
+		select oi.orderNo,userNo,orderDate, od.prodNo,orderCnt, p. prodName,prodMainImg 
+		from order_info oi, order_detail od, product p 
+		where oi.orderNo = od.orderNo and od.prodNo=p.prodNo
+		and userNo=#{userNo}
+	</select>
 	
+	<select id="getRevi" resultType="com.shop.domain.ReviewVO">
+		select * 
+		from review
+		where userNo = #{userNo}
+		order by reviNo desc
+	</select>
 	
+	<select id="getLounge" resultType="com.shop.domain.BoardVO">
+		select * 
+		from board
+		where boardClass = 3
+		and userNo = #{userNo}
+		order by boardNo desc
+	</select>
+	
+	<select id="getReply" resultType="com.shop.domain.BoardReplyVO">
+		select * 
+		from board_reply
+		where userNo = #{userNo}
+		order by reviNo desc
+	</select>
+	
+	<select id="getQna" resultType="com.shop.domain.BoardVO">
+		select * 
+		from board
+		where boardClass = 2
+		and userNo = #{userNo}
+		order by boardNo desc
+	</select>
 	
 </mapper>

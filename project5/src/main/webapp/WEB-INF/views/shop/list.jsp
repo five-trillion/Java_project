@@ -66,7 +66,7 @@
 	                        <div class="col-lg-4 col-md-6 col-sm-6">
 	                        	<div class="click-area" onclick="location.href='/shop/detail?prodNo=${prd.prodNo}'">
 		                            <div class="product__item">
-		                                <div class="product__item__pic set-bg" data-setbg="${contextPath}/resources/upload/product/thumbnails/${prd.prodMainImg}">
+		                                <div class="product__item__pic set-bg" data-setbg="${contextPath}/resources/upload/product/main/${prd.prodMainImg}">
 		                                </div>
 		                                <div class="product__item__text">
 		                                	<input type="hidden" name="prodNo" value="${prd.prodNo}">

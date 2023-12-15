@@ -103,7 +103,7 @@
 	                <div class="col-lg-3 col-md-4 col-sm-6 mix ${prdl.category}">
 	                    <div class="featured__item">
 	                    	<div class="click-area" onclick="location.href='/shop/detail?prodNo=${prdl.prodNo}'">
-		                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/upload/product/thumbnails/${prdl.prodMainImg}">
+		                        <div class="featured__item__pic set-bg" data-setbg="${contextPath}/resources/upload/product/main/${prdl.prodMainImg}">
 		                        	<ul class="product__item__pic__hover">
 	                               		<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
 		                            </ul>

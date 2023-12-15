@@ -2,6 +2,7 @@ package com.shop.service;
 
 import java.util.List;
 
+import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CartVO;
 import com.shop.domain.DeliveryVO;
@@ -119,6 +120,23 @@ public interface ShopService {
 	public List<OrderVO> getorder(long userNo) throws Exception;
 	
 	//마이페이지 주문상세조회
-	public List<OrderVO> getordetail(String orderNo, String prodNo) throws Exception;
+	public List<OrderVO> getordetail(String orderNo) throws Exception;
+	
+	// =====================================================
+	
+	//마이페이지 리뷰작성페이지 띄우기
+	public List<OrderVO> getProd(long userNo) throws Exception;
+	
+	//마이페이지 리뷰목록 띄우기
+	public List<ReviewVO> getRevi(long userNo) throws Exception;
+	
+	//마이페이지 작성한게시글 띄우기
+	public List<BoardVO> getLounge(long userNo) throws Exception;
+	
+	//마이페이지 작성한댓글 띄우기
+	public List<BoardReplyVO> getReply(long userNo) throws Exception;
+	
+	//마이페이지 문의 띄우기
+	public List<BoardVO> getQna(long userNo) throws Exception;
 	
 }

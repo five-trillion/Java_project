@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.shop.domain.BoardReplyVO;
+import com.shop.domain.BoardVO;
 import com.shop.domain.CartVO;
 import com.shop.domain.CodeVO;
 import com.shop.domain.DeliveryVO;
@@ -234,7 +236,7 @@ public class ShopController {
 		return "mypage/order";
 	}
 	@RequestMapping(value="mypage/order_detail", method = RequestMethod.GET)
-	public String mypage_od(@RequestParam("orderNo") String orderNo, @RequestParam("prodNo") String prodNo, OrderVO orderVO, HttpSession session, Model model) throws Exception {
+	public String mypage_od(@RequestParam("orderNo") String orderNo, OrderVO orderVO, HttpSession session, Model model) throws Exception {
 		try {
 	        UsersVO uVo = (UsersVO) session.getAttribute("user");
 	        if (uVo == null) {
@@ -243,7 +245,7 @@ public class ShopController {
 	        
 	        System.out.println(orderVO);
 	        
-			List<OrderVO> order = service.getordetail(orderNo, prodNo);
+			List<OrderVO> order = service.getordetail(orderNo);
 			model.addAttribute("order", order);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -256,7 +258,23 @@ public class ShopController {
 	        UsersVO uVo = (UsersVO) session.getAttribute("user");
 	        if (uVo == null) {
 	            return "redirect:/shop/login";
-	        } 
+	        }
+	        long userNo = uVo.getUserNo();
+	        
+	        List<OrderVO> rvreg = service.getProd(userNo);
+	        model.addAttribute("rvreg", rvreg);
+	        
+	        List<ReviewVO> revi = service.getRevi(userNo);
+	        model.addAttribute("revi", revi);
+	        
+	        List<BoardVO> loun = service.getLounge(userNo);
+	        model.addAttribute("loun", loun);
+	        
+	        List<BoardReplyVO> repl = service.getReply(userNo);
+	        model.addAttribute("repl", repl);
+	        
+	        List<BoardVO> qna = service.getQna(userNo);
+	        model.addAttribute("qna", qna);
 	        
 		} catch (Exception e) {
 				e.printStackTrace();
@@ -267,101 +285,5 @@ public class ShopController {
 	public void mypage_point() {
 		
 	}
-	/* 
-	@RequestMapping(value="review", method = RequestMethod.GET)
-	public List<ReviewVO> reviewList() throws Exception {
-		return "review";
-	}
 	
-	@RequestMapping(value="review", method = RequestMethod.GET)
-	public ReviewVO reviewDetail(int reviNo) throws Exception {
-		return "review";
-	}
-	
-	@RequestMapping(value="review", method = RequestMethod.GET)
-	public int updateReviewCnt(int reviNo) throws Exception {
-		return "review";
-	}
-	
-	@RequestMapping(value="review", method = RequestMethod.GET)
-	public int reviewRegister(ReviewVO reviVO) throws Exception {
-		return "review";
-	}
-	
-	@RequestMapping(value="review", method = RequestMethod.GET)
-	public int reviewUpdate(ReviewVO reviVO) throws Exception {
-		return "review";
-	}
-	
-	@Override
-	public int reviewDelete(int reviNo) throws Exception {
-		return mapper.reviewDelete(reviNo);
-	}
-	@RequestMapping(value="shop/freelist", method = RequestMethod.GET)
-	public ModelAndView freelist(Model model) throws Exception {
-	      
-	      log.info("=========list==========");
-	      ModelAndView mav = new ModelAndView();
-	      
-	      List<BoardVO> freelist = service.freeList();
-	      mav.addObject("freelist", freelist);
-	      mav.setViewName("freelist");
-	      
-	      return mav;
-	} 
-	@RequestMapping(value="shop/freedetail", method = RequestMethod.GET)
-	public String freedetail(@RequestParam("boardNo") int boardNo, Model model) throws Exception {
-		BoardVO freeboard = service.freeDetail(boardNo);
-		model.addAttribute("freeboard", freeboard);
-//		댓글목록
-		List<BoardReply> list = service.getDetail(boardNo);
-		model.addAttribute("list", list);
-		return "detail";
-	}
-//	글쓰기폼
-	@RequestMapping(value="shop/freeregister", method = RequestMethod.GET)
-	public String register() {
-		return "register";
-	}
-//	글쓰기 저장
-	@RequestMapping(value="shop/freeregister", method = RequestMethod.POST)
-	public String register(BoardVO boardVO, HttpServletRequest request)throws Exception {
-		request.setCharacterEncoding("utf-8");
-		log.info("내용 : " + boardVO);
-		int r = service.freeRegister(boardVO);
-		return "redirect:list";
-	}
-	
-	
-//	글 수정 폼(기존데이터 전송- 글읽기)
-	@RequestMapping(value="shop/freeupdate", method = RequestMethod.GET)
-	public String update(@RequestParam("boardNo") int boardNo, Model model) throws Exception {
-		BoardVO freeboard = service.freeDetail(boardNo);
-		model.addAttribute("freeboard", freeboard);		
-		return "update";
-	}	
-//	글 수정 저장
-	@RequestMapping(value = "shop/freeupdate", method = RequestMethod.POST)
-	public String update(BoardVO boardVO, RedirectAttributes rttr,HttpServletRequest request) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		int r = service.freeUpdate(boardVO);
-		// 수정에 성공하면 목록보기로 이동
-		if (r > 0) {
-			rttr.addFlashAttribute("msg", "수정에 성공 하였습니다.");
-			return "redirect:list";
-		}
-		// 수정에 실패하면 수정보기 화면으로 이동
-		return "redirect:update?bno=" + boardVO.getBoardNo();
-	}
-	
-	@RequestMapping(value="shop/freedelete",method = RequestMethod.GET)
-	public String delete(@RequestParam("boardNo") int boardNo, RedirectAttributes rttr) throws Exception {
-		int r = service.freeDelete(boardNo);
-		
-		if(r > 0) {
-			rttr.addFlashAttribute("msg","글삭제에 성공하였습니다.");
-			return "redirect:list";
-		}
-		return "redirect:detail?bno=" + boardNo;
-	} */
 }
