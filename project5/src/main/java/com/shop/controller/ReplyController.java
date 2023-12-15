@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,13 +22,17 @@ public class ReplyController {
 	
 	// 자유게시판 댓글 작성
 	@RequestMapping(value="/boRepWrite", method=RequestMethod.POST)
-	public String boRepWritePOST(BoardReplyVO boRep, RedirectAttributes rttr, HttpSession session) throws Exception {
+	public String boRepWritePOST(BoardReplyVO boRep, RedirectAttributes rttr, HttpSession session,@RequestParam("pageNum") int pageNum, @RequestParam("amount") int amount) throws Exception {
 		replyservice.replyRegister(boRep);
+		System.out.println(boRep);
+		
 		UsersVO user = (UsersVO) session.getAttribute("user");
 		if(user != null) {
 			System.out.println("댓글 등록 완료");
-			rttr.addFlashAttribute("boardNo",  boRep.getBoardNo());
-			return "redirect:/board/loungeRead?boardNo="+boRep.getBoardNo();
+			rttr.addAttribute("boardNo",  boRep.getBoardNo());
+			rttr.addAttribute("pageNum", pageNum);
+			rttr.addAttribute("amount", amount);
+			return "redirect:/board/loungeRead";
 		} else {
 			System.out.println("자유게시판 글쓰기 실패");
 			return "redirect:/shop/login";

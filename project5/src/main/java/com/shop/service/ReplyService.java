@@ -9,7 +9,7 @@ import com.shop.domain.BoardReplyVO;
 @Service
 public interface ReplyService {
 	
-/* ======================== 공지사항, QnA, 자유게시판  ======================== */ 
+/* ======================== QnA, 자유게시판  ======================== */ 
 	
 	// 댓글 조회
 	public List<BoardReplyVO> getReplyList(long boardNo) throws Exception;

@@ -88,14 +88,14 @@
 						</table>
 						<input type="hidden" name="boardTitle" value="${freeDetail.boardTitle}">
 						<input type="hidden" name="boardContent" value="${freeDetail.boardContent}">
-						
+						<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+						<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
 						<div class="boardbtn">
+							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge?pageNum=${cri.pageNum}&amount=${cri.amount}'">목록</button>
 							<c:if test="${user.userNo ne freeDetail.userNo}"> 
-								<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
 								<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()" disabled>수정</button>
 							</c:if>		
 							<c:if test="${user.userNo eq freeDetail.userNo}"> 
-								<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
 								<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button>
 							</c:if>
 						</div>
@@ -119,6 +119,8 @@
 									<td>
 										<input type="hidden" name="boardNo" value="${freeDetail.boardNo}">
 										<input type="hidden" name="userNo" value="${user.userNo}">
+										<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+										<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
 										<textarea id="boRepContent" name="boRepContent" rows="5"></textarea>
 										<div class="boardbtn">
 											<button type="button" id="registerBtn" name="registerBtn" onclick="checkLoginAndRedirect()">등록</button>
@@ -129,9 +131,17 @@
 									<c:forEach var="reply" items="${reply}">
 										<td>
 											<div style="width:900px;">
-												작성자 <b><c:out value="${reply.userNick}"/></b>&nbsp;&nbsp;&nbsp;
-												작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.boRepReg}"/></b><br>
-												<c:out value="${reply.boRepContent}"/>
+												<c:if test="${freeDetail.userNo eq reply.userNo}">
+													작성자 <b><c:out value="${reply.userNick}"/></b>&nbsp;&nbsp;&nbsp;
+													작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.boRepReg}"/></b><br>
+													<!-- 게시글 작성자의 댓글 구분 -->
+													<p style="color:#FF0033;"><c:out value="${reply.boRepContent}"/></p>
+												</c:if>
+												<c:if test="${freeDetail.userNo ne reply.userNo}">
+													작성자 <b><c:out value="${reply.userNick}"/></b>&nbsp;&nbsp;&nbsp;
+													작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.boRepReg}"/></b><br>
+													<p><c:out value="${reply.boRepContent}"/></p>
+												</c:if>
 											</div>
 											<div>
 												<c:if test="${user.userNo eq reply.userNo}">
@@ -145,11 +155,6 @@
 								</tr>
 							</tbody>
 						</table>
-						
-						<div class="boardbtn">
-							<!-- <button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
-							<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button> -->
-						</div>
 					</div>
 				</form>
 			</div>
@@ -256,7 +261,7 @@
             	document.getElementById('replyForm').submit();
             },
             error: function (error) {
-                console.error('댓글 삭제 실패:', error);
+            	console.error('댓글 삭제 실패:', error);
             }
         });
 

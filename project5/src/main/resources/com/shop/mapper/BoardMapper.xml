@@ -87,8 +87,8 @@
 		
 		<!-- 게시물 작성 -->
 		<insert id="qnaRegister" parameterType="com.shop.domain.BoardVO">
-			INSERT INTO board(boardNo, userNo, boardClass, boardTitle, boardContent, boardReg, <!-- boardImg, --> boardCnt)
-	  		VALUES(default, #{userNo}, 2, #{boardTitle}, #{boardContent}, default, <!-- #{boardImg}, --> 0)
+			INSERT INTO board(boardNo, userNo, boardClass, boardTitle, boardContent, boardReg, boardImg, boardCnt)
+	  		VALUES(default, #{userNo}, 2, #{boardTitle}, #{boardContent}, default, #{boardImg}, 0)
 	  	</insert>
 		
 		<!-- 게시물 수정 -->
@@ -96,8 +96,8 @@
 			update board
 			   set boardTitle = #{boardTitle},
 			   		boardContent= #{boardContent},
-			   		boardUpdate = default
-			   		<!-- boardImg = #{boardImg} -->
+			   		boardUpdate = default,
+			   		boardImg = #{boardImg}
 			 where boardNo = #{boardNo}
 		</update>
 		

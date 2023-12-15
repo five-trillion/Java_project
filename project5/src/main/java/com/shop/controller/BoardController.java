@@ -81,44 +81,85 @@ public class BoardController {
 	
 	//QnA 게시물 읽기 페이지 이동
 	@RequestMapping(value="/qnaRead", method=RequestMethod.GET) 
-	public void qnaReadGET(@RequestParam("boardNo") Long boardNo, Model model) throws Exception {
+	public void qnaReadGET(@RequestParam("boardNo") Long boardNo, @RequestParam("pageNum") int pageNum, @RequestParam("amount") int amount, Model model, Criteria cri) throws Exception {
 		System.out.println("QnA 게시물 읽기 페이지 진입");
 		boardservice.updateQnaCnt(boardNo);
 		model.addAttribute("qnaDetail", boardservice.qnaDetail(boardNo));
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("amount", amount);
+		model.addAttribute("cri", cri);
+
 	} 
 
 	//QnA 글쓰기 페이지 이동
 	@RequestMapping(value="/qnaWrite", method=RequestMethod.GET) 
-	public void qnaWriteGET() {
-		System.out.println("QnA 글쓰기 페이지 진입");
+	public void qnaWriteGET(RedirectAttributes rttr, HttpSession session) {
+		UsersVO user = (UsersVO) session.getAttribute("user");
+		if(user != null) {
+			System.out.println("QnA 글쓰기 페이지 진입");
+		} else {
+			System.out.println("QnA 글쓰기 실패");
+			rttr.addFlashAttribute("needLogin","로그인이 필요합니다.");
+		}
+		
 	}
 	
 	//QnA 게시물 작성 
 	@RequestMapping(value="/qnaWrite", method=RequestMethod.POST)
-	public String qnaWritePOST(BoardVO board, RedirectAttributes rttr, HttpSession session) throws Exception {
-		UsersVO user = (UsersVO) session.getAttribute("user");
-		if(user != null) {
-			board.setUserNo(user.getUserNo());
-			System.out.println("QnA 글쓰기 성공");
-			boardservice.qnaRegister(board);
-			rttr.addFlashAttribute("result", "write success");
-			return "redirect:/board/qna";
-		} else {
-			System.out.println("QnA 글쓰기 실패(로그인 필요)");
-			return "redirect:/shop/login";
-		}		
+	public String qnaWritePOST(BoardVO board, UsersVO user,RedirectAttributes rttr, HttpSession session, @RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
+		String uploadFolder = "D:/Java_project/project5/src/main/webapp/resources/upload/qna/";
+		board.setUserNo(user.getUserNo());
+		
+		// 파일 저장 
+		if (uploadFile != null && !uploadFile.isEmpty()) {
+			// 파일 이름 
+			String uploadFileName = uploadFile.getOriginalFilename();
+			// 고유 식별자 적용 파일 이름
+			String uuid = UUID.randomUUID().toString();
+			uploadFileName = uuid + "_" + uploadFileName;
+			// 파일 위치, 파일 이름을 합친 File 객체 
+			File saveFile = new File(uploadFolder, uploadFileName);
+			board.setBoardImg(uploadFileName);
+			try {
+				uploadFile.transferTo(saveFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+		}
+		board.setUserNo(user.getUserNo());
+		System.out.println("QnA 글쓰기 성공");
+		boardservice.qnaRegister(board);
+		rttr.addFlashAttribute("result", "write success");
+		return "redirect:/board/qna";
 	}
 	
 	//QnA 게시물 수정 페이지 이동
 	@RequestMapping(value="/qnaModify", method=RequestMethod.GET) 
 	public void qnaModifyGET(@RequestParam("boardNo") Long boardNo, Model model) throws Exception {
 		System.out.println("QnA 게시물 수정 페이지 진입");
+		BoardVO qnaDetail = boardservice.qnaDetail(boardNo);
+		model.addAttribute("qnaDetail",qnaDetail);
+		model.addAttribute("boardImg",qnaDetail.getBoardImg());
 		model.addAttribute("qnaDetail", boardservice.qnaDetail(boardNo)); 
 	}
 	
 	//QnA 게시물 수정
 	@RequestMapping(value="/qnaModify", method=RequestMethod.POST)
-	public String qnaModifyPOST(BoardVO board, RedirectAttributes rttr, Model model) throws Exception {
+	public String qnaModifyPOST(BoardVO board, RedirectAttributes rttr, Model model, @RequestParam(value="updateFile", required=false) MultipartFile updateFile) throws Exception {
+		String uploadFolder = "D:/Java_project/project5/src/main/webapp/resources/upload/qna/";
+		String existFileName = boardservice.qnaDetail(board.getBoardNo()).getBoardImg();
+		if (updateFile != null && !updateFile.isEmpty()) {
+			String uploadFileName = updateFile.getOriginalFilename();
+			String uuid = UUID.randomUUID().toString();
+			uploadFileName = uuid + "_" + uploadFileName;
+			File existFile = new File(uploadFolder, existFileName);
+			if(existFile.exists()) {
+				existFile.delete();
+			}
+			File saveFile = new File(uploadFolder, uploadFileName);
+	        updateFile.transferTo(saveFile);
+	        board.setBoardImg(uploadFileName);
+		}
 		boardservice.qnaUpdate(board);
 		System.out.println("QnA 게시글 수정 성공");
 		rttr.addFlashAttribute("result","modify success");
@@ -153,11 +194,13 @@ public class BoardController {
 	
 	//자유게시판 게시물 읽기 페이지 이동
 	@RequestMapping(value="/loungeRead", method=RequestMethod.GET) 
-	public void loungeReadGET(@RequestParam("boardNo") Long boardNo, Model model) throws Exception {
+	public void loungeReadGET(@RequestParam("boardNo") Long boardNo, @RequestParam("pageNum") int pageNum, @RequestParam("amount") int amount, Model model, Criteria cri) throws Exception {
 		System.out.println("자유게시판 게시물 읽기 페이지 진입");
 		boardservice.updateFreeCnt(boardNo);
 		model.addAttribute("freeDetail", boardservice.freeDetail(boardNo));
-		
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("amount", amount);
+		model.addAttribute("cri", cri);
 		//댓글 조회
 		List<BoardReplyVO> reply = replyservice.getReplyList(boardNo);
 		model.addAttribute("reply",reply);

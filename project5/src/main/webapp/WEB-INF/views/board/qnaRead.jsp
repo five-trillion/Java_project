@@ -8,7 +8,28 @@
 <meta charset="UTF-8">
 <title>QnA 게시물 상세페이지</title>
 <%@ include file="../includes/src.jsp"%>
-
+<style>
+	.n_board table tr .boardread_top {
+		display:block;
+	}
+	.board_title {
+		font-size:30px;
+		text-align:center;
+	}
+	.board_writer_date {
+		font-size:15px;
+		text-align:right;
+	}
+	.boardbtn {
+		text-align: center;
+   		padding: 30px;
+	}
+	.boardbtn button {
+		width: 75px;
+	    height: 50px;
+	    display: inline-block;
+	}
+</style>
 </head>
 
 <body>
@@ -22,60 +43,56 @@
 					<div class="page_title fs60">
 						<font color="#555555">QnA</font>
 					</div>
-					<p class="imgArea displaynone"></p>
-				</div>
-				<div class="boardSort">
-					<span
-						class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
 				</div>
 				<form method="get" id="frm" name="frm" action="/board/qnaModify" enctype="multipart/form-data">
 					<div class="n_board line typeList gBorder">
-						<table border="1" summary="">
+						<table>
 							<caption>게시판 목록</caption>
-							<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
+							<thead>
 								<tr>
-									<td>
+									<td class="boardread_top">
 										<input type="hidden" id="boardNo" name="boardNo" value="${qnaDetail.boardNo}">
-										<div class="chk fs12">제목</div>
-										<div class="subject left fs12">
+										<div class="board_title">
 											<c:out value="${qnaDetail.boardTitle}"></c:out>
 										</div>
-									</td>
-									<td>
-										<div class="chk fs12">작성자</div>
-										<div class="subject left fs12">
-											<c:out value="${qnaDetail.userNick}"></c:out> 
-										</div>
-									</td>
-									<td>
-										<div class="chk fs12">작성일</div>
-										<div class="subject left fs12">
-											<fmt:formatDate pattern="yyyy-MM-dd" value="${qnaDetail.boardReg}"/>
+										<div> </div>
+										<div class="board_writer_date">
+											작성자 <b><c:out value="${qnaDetail.userNick}"/></b>&nbsp;&nbsp;&nbsp;
+											작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${qnaDetail.boardReg}"/></b>
 										</div>
 									</td>
 								</tr>
 							</thead>
-							<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
+							<tbody>
 								<tr>
 									<td>
-										<div class="chk fs13">내용</div>
 										<div class="subject left fs13">
+											<c:if test = "${qnaDetail.boardImg ne null}">
+												<img src="${contextPath}/resources/upload/notice/${qnaDetail.boardImg}">
+											</c:if> 
+											<br><br>
 											<c:out value="${qnaDetail.boardContent}"></c:out>
 										</div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
-			
+						<input type="hidden" name="boardTitle" value="${qnaDetail.boardTitle}">
+						<input type="hidden" name="boardContent" value="${qnaDetail.boardContent}">
+						<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+						<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
 						<div class="boardbtn">
-							<button type="button" id="qna" name="qna" onclick="location.href='/board/qna'">목록</button>
-							<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button>
+							<button type="button" id="qna" name="qna" onclick="location.href='/board/qna?pageNum=${cri.pageNum}&amount=${cri.amount}'">목록</button>
+							<c:if test="${user.userNo ne qnaDetail.userNo}"> 
+								<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()" disabled>수정</button>
+							</c:if>		
+							<c:if test="${user.userNo eq qnaDetail.userNo}"> 
+								<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button>
+							</c:if>
 						</div>
 					</div>
 				</form>
 			</div>
-
-			
 		</div>
 	</div>
 	<%@ include file="../includes/footer.jsp"%>
@@ -83,6 +100,7 @@
 	function submitForm() {
 		document.getElementById('frm').submit();
 	}
+
 </script>
 </body>
 
