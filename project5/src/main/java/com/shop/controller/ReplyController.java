@@ -41,19 +41,24 @@ public class ReplyController {
 
     // 댓글 수정 처리
     @RequestMapping(value="/boRepModify", method=RequestMethod.POST)
-    public String boRepModifyPOST(BoardReplyVO boRep, RedirectAttributes rttr) throws Exception {
+    public String boRepModifyPOST(BoardReplyVO boRep, @RequestParam("pageNum") int pageNum, @RequestParam("amount") int amount, RedirectAttributes rttr) throws Exception {
     	replyservice.replyModify(boRep);
+    	System.out.println(boRep);
+    	rttr.addAttribute("boardNo", boRep.getBoardNo());
+    	rttr.addAttribute("pageNum", pageNum);
+    	rttr.addAttribute("amount", amount);
     	rttr.addFlashAttribute("msg", "댓글이 수정되었습니다.");
-        return "redirect:/board/loungeRead?boardNo=" + boRep.getBoardNo();
+        return "redirect:/board/loungeRead";
     }
 
     // 댓글 삭제 처리
     @RequestMapping(value="/boRepDelete", method=RequestMethod.POST)
-    public String boRepDeletePOST(@RequestParam("boRepNo") Long boRepNo, @RequestParam("boardNo") Long boardNo, RedirectAttributes rttr) throws Exception {
+    public String boRepDeletePOST(@RequestParam("boRepNo") Long boRepNo, @RequestParam("boardNo") Long boardNo, @RequestParam("pageNum") int pageNum, @RequestParam("amount") int amount, RedirectAttributes rttr) throws Exception {
     	replyservice.replyDelete(boRepNo);
-    	System.out.println(boRepNo);
-    	System.out.println(boardNo);
+    	rttr.addAttribute("boardNo", boardNo);
+    	rttr.addAttribute("pageNum", pageNum);
+    	rttr.addAttribute("amount", amount);
         rttr.addFlashAttribute("msg", "댓글이 삭제되었습니다.");
-        return "redirect:/board/loungeRead?boardNo=" + boardNo;
+        return "redirect:/board/loungeRead";
     }
 }
