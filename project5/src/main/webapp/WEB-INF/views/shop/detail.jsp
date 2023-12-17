@@ -30,17 +30,17 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
-                                src="${contextPath}/resources/upload/product/${prd.prodImg1}" alt="">
+                                src="${contextPath}/resources/upload/product/detail/${prd.prodImg1}" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
-                        	<img data-imgbigurl="${contextPath}/resources/upload/product/${prd.prodImg1}"
-                                src="${contextPath}/resources/upload/product/${prd.prodImg1}" alt="">
-                            <img data-imgbigurl="${contextPath}/resources/upload/product/${prd.prodImg2}"
-                                src="${contextPath}/resources/upload/product/${prd.prodImg2}" alt="">
-                            <img data-imgbigurl="${contextPath}/resources/upload/product/${prd.prodImg3}"
-                                src="${contextPath}/resources/upload/product/${prd.prodImg3}" alt="">
-                            <img data-imgbigurl="${contextPath}/resources/shop/img/product/${prd.prodImg4}"
-                                src="${contextPath}/resources/upload/product/${prd.prodImg4}" alt="">
+                        	<img data-imgbigurl="${contextPath}/resources/upload/product/detail/${prd.prodImg1}"
+                                src="${contextPath}/resources/upload/product/detail/${prd.prodImg1}" alt="">
+                            <img data-imgbigurl="${contextPath}/resources/upload/product/detail/${prd.prodImg2}"
+                                src="${contextPath}/resources/upload/product/detail/${prd.prodImg2}" alt="">
+                            <img data-imgbigurl="${contextPath}/resources/upload/product/detail/${prd.prodImg3}"
+                                src="${contextPath}/resources/upload/product/detail/${prd.prodImg3}" alt="">
+                            <img data-imgbigurl="${contextPath}/resources/shop/img/product/detail/${prd.prodImg4}"
+                                src="${contextPath}/resources/upload/product/detail/${prd.prodImg4}" alt="">
                         </div>
                     </div>
                 </div>
@@ -48,12 +48,7 @@
                     <div class="product__details__text">
                         <h3>${prd.prodName}</h3>
                         <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>(<c:out value="${fn:length(rlist)}"/> reviews)</span>
+                            <span><c:out value="${fn:length(rlist)}"/> reviews</span>
                         </div>
                         <div class="product__details__price"><fmt:formatNumber value="${prd.salePrice}" pattern="###,###,###.##"/>원</div>
                         <p>${prd.prodInfo}</p>
@@ -134,9 +129,9 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel" style="text-align:center;" >
-                                <div class="product__details__tab__desc">${code}
+                                <div class="product__details__tab__desc">
 									<div id="hiddenContent03" class="example01" style="max-height:1100px; overflow:hidden;">
-										<img src="${contextPath}/resources/upload/product/details/${prd.detailImg}">
+										<img src="${contextPath}/resources/upload/product/info/${prd.detailImg}">
 										<div class="product-notify-wrap " style="text-align:left; padding: 0 30px;">
 	                                    <div class="product-notify-title"> 상품정보 제공고시</div>
 	                                    <div class="product-notify-group tabled full-width">
