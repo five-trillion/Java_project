@@ -132,6 +132,11 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
+	public List<ProductVO> search(String keyword) throws Exception{
+		return mapper.search(keyword);
+	}
+	
+	@Override
 	public List<ReviewVO> reviewList() throws Exception {
 		try {
 //			System.out.println("=====Service.prodreviList=====");

@@ -23,6 +23,9 @@ public interface ShopMapper {
 	//자유게시판 전체목록 처리를 위한 메소드 
 	public List<BoardVO> freeList() throws Exception;
 	
+	//상품검색
+	public List<ProductVO> search(String keyword) throws Exception;
+	
 	//자유게시판 선택목록(글읽기)을 위한 메소드 
 	public BoardVO freeDetail(int boardNo) throws Exception;
 	

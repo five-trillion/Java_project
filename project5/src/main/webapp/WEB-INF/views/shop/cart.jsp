@@ -23,7 +23,6 @@
 							<table border="1" summary="">
 								<thead>
 	                                <tr>
-	                                	<th>선택</th>
 	                                    <th colspan="2" class="shoping__product">상품정보</th>
 	                                    <th>수량</th>
 	                                    <th>주문금액</th>
@@ -37,7 +36,6 @@
 	                        <table>
 	                            <thead>
 	                                <tr>
-	                                	<th>선택</th>
 	                                    <th colspan="2" class="shoping__product">상품정보</th>
 	                                    <th>수량</th>
 	                                    <th>주문금액</th>
@@ -48,9 +46,6 @@
 	                            	<c:forEach items="${cart}" var="cart">
 	                            	<input type="hidden" value="${cart.cartNo}">
 	                                <tr>
-	                                	<td class="shoping__cart__item__close" style="width:80px; text-align: center;">
-	                                        <span><input type="checkbox"></span>
-	                                    </td>
 	                                	<td class="shoping__cart__total">
 	                                        <img src="${contextPath}/resources/upload/product/main/${cart.prodMainImg}" alt="" style="width:100px;">
 	                                    </td>

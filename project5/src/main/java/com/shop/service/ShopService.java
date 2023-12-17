@@ -61,6 +61,9 @@ public interface ShopService {
 	//메인페이지 인기상품 출력을 위한 메소드
 	public List<ProductVO> prodpopList() throws Exception;
 	
+	//상품검색
+	public List<ProductVO> search(String keyword) throws Exception;
+	
 	// ======================리뷰======================
 	//리뷰 전체목록 처리를 위한 메소드 
 	public List<ReviewVO> reviewList() throws Exception;

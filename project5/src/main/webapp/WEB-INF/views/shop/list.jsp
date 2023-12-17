@@ -71,6 +71,8 @@
 		                                <div class="product__item__text">
 		                                	<input type="hidden" name="prodNo" value="${prd.prodNo}">
 		                                    <h6>${prd.prodName}</h6>
+		                                    <h5 style="color:#dd1111; font-size:14px;">
+		                                    <fmt:formatNumber type="number" maxFractionDigits="0" value="${(1 - prd.salePrice / prd.netPrice) * 100}" />%</h5>
 									       	<h5 class="product_sale_strike"><fmt:formatNumber value="${prd.netPrice}" pattern="###,###,###.##"/>원</h5>
 									        <h5 class="salePrice "><fmt:formatNumber value="${prd.salePrice}" pattern="###,###,###.##"/>원</h5>
 		                                </div>

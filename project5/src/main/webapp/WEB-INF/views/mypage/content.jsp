@@ -66,6 +66,15 @@
 										</td>
 									</tr>
 								</thead>
+								<c:choose>
+					            	<c:when test="${rvreg.isEmpty()}">
+					<tbody>
+						<tr>
+							<td><p class="message  fs14">리뷰 작성 가능 내역이 없습니다.</p></td>
+						</tr>
+					</tbody>
+					            	</c:when>
+					            	<c:otherwise>
 								<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
 									<c:forEach items="${rvreg}" var="rvreg" varStatus="loop">
 										<tr style="background-color: #FFFFFF; color: #555555;"
@@ -96,6 +105,8 @@
 										</tr>
 									</c:forEach>
 								</tbody>
+								</c:otherwise>
+								</c:choose>
 							</table>
 						</div>
                     </div>
@@ -117,6 +128,15 @@
 										</td>
 									</tr>
 								</thead>
+								<c:choose>
+					            	<c:when test="${revi.isEmpty()}">
+					<tbody>
+						<tr>
+							<td><p class="message  fs14">리뷰 내역이 없습니다.</p></td>
+						</tr>
+					</tbody>
+					            	</c:when>
+					            	<c:otherwise>
 								<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
 									<c:forEach items="${revi}" var="revi" varStatus="loop">
 										<tr style="background-color: #FFFFFF; color: #555555;"
@@ -156,6 +176,8 @@
 										</tr>
 									</c:forEach>
 								</tbody>
+								</c:otherwise>
+								</c:choose>
 							</table>
 						</div>
                     </div>
@@ -176,6 +198,15 @@
 										</td>
 									</tr>
 								</thead>
+								<c:choose>
+					            	<c:when test="${loun.isEmpty()}">
+					<tbody>
+						<tr>
+							<td><p class="message  fs14">작성 내역이 없습니다.</p></td>
+						</tr>
+					</tbody>
+					            	</c:when>
+					            	<c:otherwise>
 								<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
 									<c:forEach items="${loun}" var="loun" varStatus="loop">
 										<tr style="background-color: #FFFFFF; color: #555555;"
@@ -198,6 +229,8 @@
 										</tr>
 									</c:forEach>
 								</tbody>
+								</c:otherwise>
+								</c:choose>
 							</table>
 						</div>
                     </div>
@@ -217,6 +250,15 @@
 										</td>
 									</tr>
 								</thead>
+								<c:choose>
+					            	<c:when test="${repl.isEmpty()}">
+					<tbody>
+						<tr>
+							<td><p class="message  fs14">작성한 댓글이 없습니다.</p></td>
+						</tr>
+					</tbody>
+					            	</c:when>
+					            	<c:otherwise>
 								<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
 									<c:forEach items="${repl}" var="repl" varStatus="loop">
 										<tr style="background-color: #FFFFFF; color: #555555;"
@@ -239,6 +281,8 @@
 										</tr>
 									</c:forEach>
 								</tbody>
+								</c:otherwise>
+								</c:choose>
 							</table>
 						</div>
                     </div>
@@ -258,6 +302,15 @@
 										</td>
 									</tr>
 								</thead>
+								<c:choose>
+					            	<c:when test="${qna.isEmpty()}">
+					<tbody>
+						<tr>
+							<td><p class="message  fs14">문의 내역이 없습니다.</p></td>
+						</tr>
+					</tbody>
+					            	</c:when>
+					            	<c:otherwise>
 								<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
 									<c:forEach items="${qna}" var="qna" varStatus="loop">
 										<tr style="background-color: #FFFFFF; color: #555555;"
@@ -280,6 +333,8 @@
 										</tr>
 									</c:forEach>
 								</tbody>
+								</c:otherwise>
+								</c:choose>
 							</table>
 						</div>
                     </div>

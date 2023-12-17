@@ -48,12 +48,7 @@
                     <div class="product__details__text">
                         <h3>${prd.prodName}</h3>
                         <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>(<c:out value="${fn:length(rlist)}"/> reviews)</span>
+                            <span><c:out value="${fn:length(rlist)}"/> reviews</span>
                         </div>
                         <div class="product__details__price"><fmt:formatNumber value="${prd.salePrice}" pattern="###,###,###.##"/>원</div>
                         <p>${prd.prodInfo}</p>

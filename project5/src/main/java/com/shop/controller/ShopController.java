@@ -83,6 +83,12 @@ public class ShopController {
 			return "error";
 		}
 	}
+	@RequestMapping(value="/search", method = RequestMethod.GET)
+	public String search(@RequestParam String keyword, Model model) throws Exception {
+		List<ProductVO> slist = service.search(keyword);
+		model.addAttribute("prodlist", slist);
+		return "shop/list";
+	}
 	@RequestMapping(value = "shop/detail", method = RequestMethod.GET)
 	public String detail(@RequestParam("prodNo") String prodNo, Model model) throws Exception {
 		
@@ -96,7 +102,6 @@ public class ShopController {
         
 		return "shop/detail";
 	}
-	
 	@RequestMapping(value="/cart/add", method = RequestMethod.POST)
 	@ResponseBody
 	public String addcart(@RequestBody CartVO cartVO, HttpSession session) throws Exception {

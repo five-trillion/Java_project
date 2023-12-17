@@ -101,7 +101,11 @@
 		            </thead>
 		            <c:choose>
 		            	<c:when test="${order.isEmpty()}">
-		<p class="message  fs14">주문 내역이 없습니다.</p>
+		<tbody>
+			<tr>
+				<td><p class="message  fs14">주문 내역이 없습니다.</p></td>
+			</tr>
+		</tbody>
 		            	</c:when>
 		            	<c:otherwise>
 							<tbody class="center">
