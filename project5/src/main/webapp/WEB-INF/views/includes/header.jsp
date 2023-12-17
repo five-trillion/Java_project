@@ -180,7 +180,7 @@
                             	<ul class="header__menu__dropdown">
                                     <li><a href="/board/notice">공지사항</a></li>
                                     <li><a href="/board/qna">QnA</a></li>
-                                    <li><a href="#">Review</a></li>
+                                    <li><a href="/board/review">Review</a></li>
                                     <li><a href="/board/lounge">자유게시판</a></li>
                                 </ul>
                             </li>

@@ -40,4 +40,42 @@
 			where boRepNo = #{boRepNo} 
 		</delete>
 		
+		<!-- ================================ Review 댓글 ================================ -->
+		
+		<!-- 댓글 목록 -->
+		<select id="getReviewReplyList" parameterType="java.lang.Long" resultType="com.shop.domain.ReviewReplyVO">
+			select reviRepNo, reviNo, r.userNo, reviRepContent, reviRepReg, reviRepUpdate, u.nick as userNick
+			from review_reply r
+			left join users u on r.userNo = u.userNo
+			where reviNo = #{reviNo}
+			order by r.reviRepReg desc
+		</select>
+		
+		<!-- 댓글 개수 조회
+		<update id="getReviewReplyCnt">
+			update board b
+			set b.boRepCnt = ( select count(r.boRepNo) 
+							 from board_reply r
+							 where b.boardNo = r.boardNo )
+		</update> -->
+		
+		<!-- 댓글 작성 -->
+		<insert id="reviewReplyRegister" parameterType="com.shop.domain.ReviewReplyVO">
+			insert into review_reply (reviRepNo, reviNo, userNo, reviRepContent, reviRepReg, reviRepUpdate)
+			values (default, #{reviNo}, #{userNo}, #{reviRepContent}, default, default)
+		</insert>
+			
+		<!-- 댓글 수정 -->
+		<update id="reviewReplyModify" parameterType="com.shop.domain.ReviewReplyVO">
+			update review_reply 
+			set reviRepContent = #{reviRepContent}
+			where reviRepNo = #{reviRepNo} 
+			and reviNo = #{reviNo}
+		</update>
+			
+		<!-- 댓글 삭제 -->
+		<delete id="reviewReplyDelete" parameterType="java.lang.Long">
+			delete from review_reply
+			where reviRepNo = #{reviRepNo} 
+		</delete>
 	</mapper>

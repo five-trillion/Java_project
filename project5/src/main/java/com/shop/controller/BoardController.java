@@ -20,6 +20,7 @@ import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.Criteria;
 import com.shop.domain.PageMakerVO;
+import com.shop.domain.ReviewReplyVO;
 import com.shop.domain.UsersVO;
 import com.shop.service.BoardService;
 import com.shop.service.ReplyService;
@@ -294,4 +295,34 @@ public class BoardController {
 		rttr.addFlashAttribute("result", "delete success");
 		return "redirect:/board/lounge";
 	}
+	
+	// ================================= Review =================================
+	//Review 페이지 이동
+	@RequestMapping(value="/review", method=RequestMethod.GET)
+	public void reviewGET(Model model, Criteria cri) throws Exception {
+		System.out.println("리뷰게시판 페이지 진입");
+		model.addAttribute("reviewList", boardservice.getReviewListPaging(cri));
+		int total = boardservice.getReviewTotal(cri);
+		System.out.println("리뷰게시판 총 게시물 수:" + total);
+		PageMakerVO pagemake = new PageMakerVO(cri,total);
+		System.out.println("pageNum:" + cri.getPageNum());
+		model.addAttribute("pageNum", cri.getPageNum());
+		model.addAttribute("amount", cri.getAmount());
+		model.addAttribute("pageMaker", pagemake);
+	}
+	
+	//Review 게시물 읽기 페이지 이동
+		@RequestMapping(value="/reviewRead", method=RequestMethod.GET) 
+		public void reviewReadGET(@RequestParam("reviNo") Long reviNo, @RequestParam("pageNum") int pageNum, @RequestParam("amount") int amount, Model model, Criteria cri) throws Exception {
+			System.out.println("자유게시판 게시물 읽기 페이지 진입");
+			boardservice.updateFreeCnt(reviNo);
+			model.addAttribute("reviewDetail", boardservice.reviewDetail(reviNo));
+			model.addAttribute("pageNum", pageNum);
+			model.addAttribute("amount", amount);
+			model.addAttribute("cri", cri);
+			//댓글 조회
+			List<ReviewReplyVO> reply = replyservice.getReviewReplyList(reviNo);
+			model.addAttribute("reply",reply);
+			System.out.println(reply);
+		} 
 } 

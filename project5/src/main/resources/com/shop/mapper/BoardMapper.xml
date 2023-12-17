@@ -187,4 +187,42 @@
 			 where boardNo = #{boardNo}
 		</update>
 		
+		<!-- ================================ Review ================================ -->
+		
+		<!-- 전체 게시물 목록(페이징) -->
+		<select id="getReviewListPaging" resultType="com.shop.domain.ReviewVO">
+    		select * from (
+                	select r.* , u.nick as userNick
+					from review r
+					join users u on r.userNo = u.userNo
+					<if test="keyword != null">
+						where r.reviTitle like concat('%', #{keyword}, '%')
+					</if>  
+					order by r.reviReg desc) as T3 
+       		limit #{skip},#{amount}
+    	</select>
+    	
+    	<!-- 게시물 총 개수 -->
+    	<select id="getReviewTotal" resultType="int">
+	    	select count(*) 
+	    	from review
+	    	<if test="keyword != null">
+	    		where reviTitle like concat ('%', #{keyword}, '%')
+	    	</if>
+    	</select>
+  
+		<!-- 조회 수 처리 -->
+		<update id="updateReviewCnt" parameterType="java.lang.Long">
+			update review 
+			set reviCnt = reviCnt + 1 
+			where reviNo = #{reviNo}
+		</update>
+		
+		<!-- 상세조회 -->
+		<select id="reviewDetail" parameterType="java.lang.Long" resultType="com.shop.domain.ReviewVO">
+			select r.*, u.nick as userNick 
+			from review r
+			join users u on r.userNo = u.userNo
+			where reviNo = #{reviNo}
+		</select>
 	</mapper>
