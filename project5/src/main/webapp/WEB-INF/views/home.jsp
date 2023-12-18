@@ -91,9 +91,9 @@
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".fe">사료</li>
-                            <li data-filter=".sn">간식</li>
-                            <li data-filter=".nu">영양제</li>
+                            <li data-filter=".FE">사료</li>
+                            <li data-filter=".SN">간식</li>
+                            <li data-filter=".NU">영양제</li>
                         </ul>
                     </div>
                 </div>
