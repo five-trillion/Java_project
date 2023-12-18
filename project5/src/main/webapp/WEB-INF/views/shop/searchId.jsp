@@ -47,7 +47,7 @@
 			</div>
             <div class="col-lg-8 col-md-6">
             	<div class="checkout__input">
-            		<input type="submit" id="searchBtn" onclick="searchBtn()" value="확인">
+            		<input type="submit" id="searchBtn" onclick="return searchCk()" value="확인">
             	</div>
            	</div>
 	    </form>
@@ -56,6 +56,7 @@
 	<%@ include file="../includes/footer.jsp" %>
 	
 <script type="text/javascript">
+
 	function showEmailInput() {
 		document.getElementById("emailInput").style.display = "block";
 	    document.getElementById("phoneInput").style.display = "none";

@@ -142,35 +142,33 @@ public class JoinController {
 	
 	// 아이디 찾기
 	@RequestMapping(value="searchId", method=RequestMethod.POST) 
-	public String searchIdPOST(Model model, @RequestParam String userName, @RequestParam String email, @RequestParam String phone, @RequestParam String searchType, RedirectAttributes rttr) {
-		 try {
-		        UsersVO searchUser = null;
-
-		        // 라디오 버튼에 따라 검색 조건 다르게 설정
-		        if ("email".equals(searchType)) {
-		            searchUser = joinservice.searchIdByEmail(userName, email);
-		            System.out.println(searchUser);
-		        } else if ("phone".equals(searchType)) {
-		            searchUser = joinservice.searchIdByPhone(userName, phone);
+	public String searchIdPOST(UsersVO user, @RequestParam String searchType, RedirectAttributes rttr) {
+		UsersVO searchUser = null;
+		try {
+		      	// 라디오 버튼에 따라 검색 조건 다르게 설정
+		        if (searchType.equals("email")) {
+		            searchUser = joinservice.searchIdByEmail(user);
+		        } else if (searchType.equals("phone")) {
+		            searchUser = joinservice.searchIdByPhone(user);
 		        }
 
 		        if (searchUser != null) {
-		            // 일치하는 회원이 있다면 해당 회원의 아이디를 FlashAttribute에 추가하여 전달
-		            rttr.addFlashAttribute("userId", searchUser.getUserId());
+		            rttr.addAttribute("userId", searchUser.getUserId());
 		        } else {
-		            // 일치하는 회원이 없으면 메시지 전달
-		            rttr.addFlashAttribute("notFound", true);
+		            rttr.addAttribute("notFound", true);
 		        }
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		    }
-
-	    return "redirect:/shop/showId";
+		return "redirect:/shop/showId";
 	}
 	
 	//회원 아이디 찾기 결과 페이지 이동
 	@RequestMapping(value="showId", method=RequestMethod.GET)
-	public void showIdGET() {
+	public void showIdGET(RedirectAttributes rttr,@RequestParam("userId") String userId, Model model)  {
+		rttr.addAttribute(userId, "userId");
+		model.addAttribute("userId", userId);	
+		
 		System.out.println("아이디 찾기 결과 페이지 진입");
 	}
 	
@@ -178,5 +176,11 @@ public class JoinController {
 	public void searchPwGET() {
 		System.out.println("비밀번호 찾기 페이지 진입");
 	}
+	
+	@RequestMapping(value="searchPw", method=RequestMethod.POST)
+    public String searchPwPOST(UsersVO user, @RequestParam String searchType, RedirectAttributes rttr) {
+		
+		return "redirect:/";
+    }	
 }
 

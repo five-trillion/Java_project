@@ -23,6 +23,14 @@ public interface JoinService {
 	public void insertPet(PetVO pet) throws Exception;
 	
 	// 회원 아이디 찾기 
-	public UsersVO searchIdByEmail(String userName, String email) throws Exception;
-	public UsersVO searchIdByPhone(String userName, String phone) throws Exception;
+	public UsersVO searchIdByEmail(UsersVO user) throws Exception;
+	public UsersVO searchIdByPhone(UsersVO user) throws Exception;
+	
+	// 비밀번호 찾기 - 새로운 임시 비밀번호 생성 및 메일 전송
+    public void sendTempPw(String userId, String userName, String email) throws Exception;
+    public void updateTempPw(String userId, String tempPw) throws Exception;
+
+    // 아이디, 이름, 이메일 일치 여부 확인
+    public boolean isValidUser(String userId, String userName, String email);
+
 }

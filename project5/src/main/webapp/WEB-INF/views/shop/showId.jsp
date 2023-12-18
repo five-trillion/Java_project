@@ -33,11 +33,13 @@
 		<div class="result-box">
 			<c:choose>
 				<c:when test="${not empty userId}">
-					<p>회원님의 정보로 가입된 아이디가 n개 있습니다.<p>
-		        	<p>${userId}</p>  	
+					<p>회원님의 정보로 가입된 아이디가 1개 있습니다.<p>
+		        	<p>${userId}</p> 
+		        	<button type="button" onclick="location.href='/shop/searchPw'">비밀번호 찾기</button>
 				</c:when>
 		        <c:otherwise>
 		        	<p>조회결과가 없습니다.</p>
+		        	<button type="button" onclick="window.history.go(-1)">이전 페이지로</button>
 		       	</c:otherwise>
 			</c:choose>
 		</div>

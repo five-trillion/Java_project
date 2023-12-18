@@ -50,19 +50,35 @@
 		</insert>
 		
 		<!-- 이메일로 회원 아이디 찾기 -->
-		<select id="searchIdByEmail" resultType="String">
-			select userId 
+		<select id="searchIdByEmail" resultType="com.shop.domain.UsersVO">
+			select * 
 			from users
 			where userName = #{userName}
 			and email = #{email}
 		</select>
 		
 		<!-- 휴대폰번호로 회원 아이디 찾기 -->
-		<select id="searchIdByPhone" resultType="String">
-			select userId 
+		<select id="searchIdByPhone" resultType="com.shop.domain.UsersVO">
+			select *
 			from users
 			where userName = #{userName}
 			and phone = #{phone}
 		</select>
+		
+		<!-- 회원 비밀번호 찾기 -->
+		<select id="searchPw">
+			select * 
+			from users
+			where userId = #{userId}
+			and userName = #{userName}
+			and email = #{email}
+		</select>
+		
+		<!-- 회원 비밀번호 임의 설정 -->
+		<update id="generateTempPw">
+		    update users
+		    set userPw = #{tempPw}
+		    where userId = #{userId}
+		</update>
 		
 	</mapper>
