@@ -20,6 +20,7 @@ import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.Criteria;
 import com.shop.domain.PageMakerVO;
+import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewReplyVO;
 import com.shop.domain.ReviewVO;
 import com.shop.domain.UsersVO;
@@ -241,7 +242,6 @@ public class BoardController {
 				e.printStackTrace();
 			} 
 		}
-		
 		board.setUserNo(user.getUserNo());
 		System.out.println("자유게시판 글쓰기 성공");
 		boardservice.freeRegister(board);
@@ -327,21 +327,27 @@ public class BoardController {
 			System.out.println(reply);
 		}
 		
-	//자유게시판 글쓰기 페이지 이동
+	//리뷰쓰기 페이지 이동
 	@RequestMapping(value="/reviewWrite", method=RequestMethod.GET) 
-	public void reviewWriteGET(RedirectAttributes rttr, HttpSession session) {
+	public void reviewWriteGET(RedirectAttributes rttr, HttpSession session, @RequestParam("prodNo") String prodNo, Model model) {
 		UsersVO user = (UsersVO) session.getAttribute("user");
 		if(user != null) {
 			System.out.println("자유게시판 글쓰기 페이지 진입");
+			try {
+				ProductVO prod = boardservice.getproduct(prodNo);
+				model.addAttribute("prod", prod);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else {
 			System.out.println("자유게시판 글쓰기 실패");
 			rttr.addFlashAttribute("needLogin", "로그인이 필요합니다.");
 		}	
 	} 
 	
-	//자유게시판 게시물 작성
+	//리뷰 작성
 	@RequestMapping(value="/reviewWrite", method=RequestMethod.POST)
-	public String reviewWritePOST(ReviewVO review, UsersVO user, RedirectAttributes rttr, HttpSession session, @RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
+	public String reviewWritePOST(ReviewVO review, UsersVO user, RedirectAttributes rttr, HttpSession session, @RequestParam("uploadFile") MultipartFile uploadFile, @RequestParam("prodNo") String prodNo) throws Exception {
 		String uploadFolder = "D:/Java_project/project5/src/main/webapp/resources/upload/review/";
 		review.setUserNo(user.getUserNo());
 		// 파일 저장 
@@ -364,7 +370,7 @@ public class BoardController {
 			System.out.println("자유게시판 글쓰기 성공");
 			boardservice.reviewRegister(review);
 			rttr.addFlashAttribute("result", "write success");
-			return "redirect:/board/lounge";
+			return "redirect:/mypage/content";
 		}
 	
 

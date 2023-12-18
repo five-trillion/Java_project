@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Contents</title>
 <%@include file="../includes/src.jsp" %>
 <style>
 	.product__details__tab .nav-tabs:after, .product__details__tab .nav-tabs:before {
@@ -16,7 +16,8 @@
 		text-align: center;
 	}
 	.typeList {
-		width: 70%;
+		width: 80%;
+		margin: 0 auto;
 	}
 </style>
 </head>
@@ -70,7 +71,7 @@
 					            	<c:when test="${rvreg.isEmpty()}">
 					<tbody>
 						<tr>
-							<td><p class="message  fs14">리뷰 작성 가능 내역이 없습니다.</p></td>
+							<td><p class="message  fs14">리뷰 작성 가능한 상품이 없습니다.</p></td>
 						</tr>
 					</tbody>
 					            	</c:when>
@@ -98,10 +99,10 @@
 														</ul>
 		                        					</div>
 												</div>
-												<div class=" fs13 writer_date">
-													<input type="button" class="site-btn" id="writeForm" name="writeForm" 
-														onclick="location.href='/board/reviewWrite'" value="리뷰작성">
-												</div>
+												<form class=" fs13 writer_date" action="/board/reviewWrite">
+													<input type="hidden" name="prodNo" id="prodNo" value="${rvreg.prodNo}">
+													<input type="submit" class="site-btn" value="리뷰작성">
+												</form>
 											</td>
 										</tr>
 									</c:forEach>
@@ -286,7 +287,6 @@
 									<tr style="">
 										<td>
 											<div class="subject left fs12">제목</div>
-											<div class="writer fs12">작성자</div>
 											<div class=" fs12 writer_date">작성일</div>
 										</td>
 									</tr>

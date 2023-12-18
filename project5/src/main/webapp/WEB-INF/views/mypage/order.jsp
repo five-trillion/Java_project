@@ -117,7 +117,7 @@
                                            	<p>
                                            		<fmt:formatDate value="${order.orderDate}" pattern="yyyy-MM-dd HH:mm:ss"/><br>[${order.orderNo}]
                                            	</p>                            
-		                            		<p><a href="/mypage/order_detail?orderNo=${order.orderNo}&prodNo=${order.prodNo}" class="btnNormal" onclick="">상세정보</a></p>
+		                            		<p><a href="/mypage/order_detail?orderNo=${order.orderNo}" class="btnNormal" onclick="">상세정보</a></p>
 										</div>
 		                        		<div class="thumb"><a href="/shop/detail?prodNo=${order.prodNo}"><img src="${contextPath}/resources/upload/product/main/${order.prodMainImg}" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a></div>
 		                        		<div class="product left top">

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시판 글쓰기</title>
+<title>Review</title>
 <%@ include file="../includes/src.jsp"%>
 	<style>
 	.boardbtn button {
@@ -27,15 +28,18 @@
 	#myform label{
 	    font-size: 3em;
 	    color: transparent;
-	    text-shadow: 0 0 0 #f0f0f0;
+	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 	}
 	#myform label:hover{
 	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 	}
 	#myform label:hover ~ label{
-	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	    text-shadow: 0 0 0 #f0f0f0;
 	}
 	#myform input[type=radio]:checked ~ label{
+	    text-shadow: 0 0 0 #f0f0f0;
+	}
+	#myform input[type=radio]:last-of-type:checked ~ label{
 	    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 	}
 	#reviewContents {
@@ -64,29 +68,56 @@
 					</div>
 				</div>
 				<form method="post" id="frm" name="frm" action="/board/reviewWrite" enctype="multipart/form-data">  
+					
+					<div class="n_board line typeList gBorder">
+						<table border="1" summary="">
+							<caption>상품 정보</caption>
+							<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
+								<tr style="">
+									<td>
+										<div class="writer_date fs12"></div>
+										<div class="subject left fs12">상품</div>
+									</td>
+								</tr>
+							</thead>
+							<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
+								<tr style="background-color: #FFFFFF; color: #555555;"
+									class="xans-record-">
+									<td>
+										<input type="hidden" id="prodNo" name="prodNo" value="${prod.prodNo}">
+										<div class="writer_date fs13">
+											<img src="${contextPath}/resources/upload/product/main/${prod.prodMainImg}" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
+										</div>
+										<div class="subject left fs13">
+                        					<div class="product left top">
+                            					<strong class="name fs14">${prod.prodName}</strong>
+                        					</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
 					<div class="n_board line typeList gBorder">
 						<table>
 							<caption>게시판 목록</caption>
 							<tr>
 								<td>
 									<div class="chk fs13">평점</div>
-									
-									<form class="mb-3" name="myform" id="myform" method="post">
-										<fieldset>
+										<fieldset class="mb-3" name="myform" id="myform">
 											<span class="text-bold">별점을 선택해주세요</span>
-											<input type="radio" name="reviewStar" value="5" id="rate1"><label
-												for="rate1">★</label>
-											<input type="radio" name="reviewStar" value="4" id="rate2"><label
-												for="rate2">★</label>
-											<input type="radio" name="reviewStar" value="3" id="rate3"><label
-												for="rate3">★</label>
-											<input type="radio" name="reviewStar" value="2" id="rate4"><label
-												for="rate4">★</label>
-											<input type="radio" name="reviewStar" value="1" id="rate5"><label
-												for="rate5">★</label>
+											<label for="rate1" style="margin: 0 15px 0 5px;">★</label>
+											<input type="radio" name="rating" value="1" id="rate1">
+											<label for="rate2">★</label>
+											<input type="radio" name="rating" value="2" id="rate2">
+											<label for="rate3">★</label>
+											<input type="radio" name="rating" value="3" id="rate3">
+											<label for="rate4">★</label>
+											<input type="radio" name="rating" value="4" id="rate4">
+											<label for="rate5">★</label>
+											<input type="radio" name="rating" value="5" id="rate5">
 										</fieldset>
-									</form>		
-									
 								</td>
 							</tr>
 							<tr>

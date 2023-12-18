@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.shop.domain.BoardVO;
 import com.shop.domain.Criteria;
+import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
 
 public interface BoardService {
@@ -87,6 +88,9 @@ public interface BoardService {
 			
 	// Review 선택목록(글읽기)을 위한 메서드 
 	public ReviewVO reviewDetail(long reviNo) throws Exception;
+	
+	//상품 리뷰창 상품정보를 위한 메소드 
+	public ProductVO getproduct(String prodNo) throws Exception;
 
 	// 리뷰쓰기를 위한 메서드 
 	public void reviewRegister(ReviewVO review) throws Exception;
