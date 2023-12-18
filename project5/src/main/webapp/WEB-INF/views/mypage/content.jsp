@@ -16,7 +16,7 @@
 		text-align: center;
 	}
 	.typeList {
-		margin: 0 113px;
+		width: 70%;
 	}
 </style>
 </head>
@@ -85,7 +85,7 @@
 												</div>
 												<div class="writer fs13">
 													<a href="/shop/detail?prodNo=${rvreg.prodNo}">
-														<img src="${contextPath}/resources/upload/product/thumbnails/${order.prodMainImg}" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
+														<img src="${contextPath}/resources/upload/product/main/${rvreg.prodMainImg}" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="">
 														</a>
 												</div>
 												<div class="subject left fs13">
@@ -99,7 +99,8 @@
 		                        					</div>
 												</div>
 												<div class=" fs13 writer_date">
-													<input type="button" class="site-btn" value="리뷰작성">
+													<input type="button" class="site-btn" id="writeForm" name="writeForm" 
+														onclick="location.href='/board/reviewWrite'" value="리뷰작성">
 												</div>
 											</td>
 										</tr>
@@ -114,15 +115,14 @@
                 
                 <div class="tab-pane" id="tabs-2" role="tabpanel">
                     <div class="product__details__tab__desc">
-                        <div class="product__details__tab__desc">
                         <div class="n_board line typeList gBorder">
 							<table border="1" summary="">
 								<caption>게시판 목록</caption>
 								<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
 									<tr style="">
 										<td>
-											<div class="chk fs12"></div>
-											<div class="writer fs12"></div>
+											<div class="subject left fs12">상품</div>
+											<div class="writer fs12">평점</div>
 											<div class="subject left fs12">제목</div>
 											<div class=" fs12 writer_date">작성일</div>
 										</td>
@@ -132,7 +132,7 @@
 					            	<c:when test="${revi.isEmpty()}">
 					<tbody>
 						<tr>
-							<td><p class="message  fs14">리뷰 내역이 없습니다.</p></td>
+							<td><p class="message  fs14">작성하신 리뷰 내역이 없습니다.</p></td>
 						</tr>
 					</tbody>
 					            	</c:when>
@@ -142,8 +142,10 @@
 										<tr style="background-color: #FFFFFF; color: #555555;"
 											class="xans-record-">
 											<td>
-												<div class="chk fs13">
-													<c:out value=""/>
+												<div class="subject left fs13">
+													<a href='/shop/detail?prodNo=${revi.prodNo}'>
+													<c:out value="${revi.prodName}"/>
+													</a>
 												</div>
 												<div class="writer fs13">
 													<c:if test="${revi.rating == 1}">
@@ -163,14 +165,10 @@
                           							</c:if>
 												</div>
 												<div class="subject left fs13">
-													<a href='/board/reviRead?reviNo=<c:out value="${revi.reviNo}"/>'>
 													<c:out value="${revi.reviTitle}"/></a>
 												</div>
 												<div class=" fs13 writer_date">
 													<fmt:formatDate pattern="yyyy-MM-dd" value="${revi.reviReg}"/>
-												</div>
-												<div class=" fs13 hit">
-													<c:out value=""/>
 												</div>
 											</td>
 										</tr>
@@ -180,7 +178,6 @@
 								</c:choose>
 							</table>
 						</div>
-                    </div>
                     </div>
                 </div>
                 
@@ -212,11 +209,8 @@
 										<tr style="background-color: #FFFFFF; color: #555555;"
 											class="xans-record-">
 											<td>
-												<div class="chk fs13">
-													<c:out value="${loun.boardNo}"/>
-												</div>
 												<div class="subject left fs13">
-													<a href='/board/loungeRead?boardNo=<c:out value="${loun.boardNo}"/>'>
+													<a href='/board/loungeRead?boardNo=<c:out value="${loun.boardNo}"/>&pageNum=${pageNum}&amount=${amount}'>
 													<c:out value="${loun.boardTitle}"/></a>
 												</div>
 												<div class=" fs13 writer_date">
@@ -246,7 +240,6 @@
 										<td>
 											<div class="subject left fs12">댓글</div>
 											<div class=" fs12 writer_date">작성일</div>
-											<div class=" fs12 hit">조회수</div>
 										</td>
 									</tr>
 								</thead>
@@ -264,18 +257,14 @@
 										<tr style="background-color: #FFFFFF; color: #555555;"
 											class="xans-record-">
 											<td>
-												<div class="chk fs13">
-													<c:out value="${repl.boardNo}"/>
-												</div>
 												<div class="subject left fs13">
-													<a href='/board/loungeRead?boardNo=<c:out value="${repl.boardNo}"/>'>
-													<c:out value="${repl.boardTitle}"/></a>
+													<a href='/board/loungeRead?boardNo=<c:out value="${repl.boardNo}"/>&pageNum=${pageNum}&amount=${amount}'>
+													<c:out value="${repl.boRepContent}"/></a>
 												</div>
 												<div class=" fs13 writer_date">
-													<fmt:formatDate pattern="yyyy-MM-dd" value="${repl.boardUpdate}"/>
+													<fmt:formatDate pattern="yyyy-MM-dd" value="${repl.boRepUpdate}"/>
 												</div>
 												<div class=" fs13 hit">
-													<c:out value="${repl.boardCnt}"/>
 												</div>
 											</td>
 										</tr>

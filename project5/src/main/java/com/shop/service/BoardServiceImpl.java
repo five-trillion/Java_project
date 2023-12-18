@@ -149,6 +149,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardmapper.reviewDetail(reviNo);
 	}
 	
+	@Override
+	public void reviewRegister(ReviewVO review) throws Exception {
+		boardmapper.reviewRegister(review);
+	}
+	
 	
 }
 

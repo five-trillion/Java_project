@@ -118,10 +118,7 @@
 				                </c:if>    
 				            </ul> 
 				        	<div class="board_search_wrap">
-					            <button type="button" id="writeForm" name="writeForm" 
-									onclick="checkLoginAndRedirect('/board/loungeWrite')" style="float:left"
-									class="btnSubmitFix sizeS"> 글쓰기
-								</button> 
+					            
 						    	<div class="search_area">
 						            <input type="text" name="keyword" value="${pageMaker.cri.keyword }">
 						            <button>검색</button>

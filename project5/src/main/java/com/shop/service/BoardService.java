@@ -88,5 +88,7 @@ public interface BoardService {
 	// Review 선택목록(글읽기)을 위한 메서드 
 	public ReviewVO reviewDetail(long reviNo) throws Exception;
 
+	// 리뷰쓰기를 위한 메서드 
+	public void reviewRegister(ReviewVO review) throws Exception;
 }
 

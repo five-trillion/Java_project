@@ -225,4 +225,10 @@
 			join users u on r.userNo = u.userNo
 			where reviNo = #{reviNo}
 		</select>
+		
+		<!-- 리뷰 작성 -->
+		<insert id="reviewRegister" parameterType="com.shop.domain.ReviewVO">
+			INSERT INTO board(reviNo, userNo, prodNo, reviTitle, reviContent, reviReg, rating, userImg, reviCnt)
+	  		VALUES(#{reviNo}, #{userNo}, #{prodNo}, #{reviTitle}, #{reviContent}, default, #{rating}, #{userImg}, 0)
+	  	</insert>
 	</mapper>
