@@ -232,6 +232,12 @@
 		and oi.orderNo = #{orderNo}
 	</select>
 	
+	<delete id="deleteOrder" parameterType="java.lang.Integer">
+		delete from order_info where orderNo = #{orderNo};
+		delete from order_detail where orderNo = #{orderNo};
+		delete from delivery where orderNo = #{orderNo};
+	</delete>
+	
 	<select id="getProd" resultType="com.shop.domain.OrderVO">
 		select oi.orderNo,userNo,orderDate, od.prodNo,orderCnt, p. prodName,prodMainImg 
 		from order_info oi, order_detail od, product p 

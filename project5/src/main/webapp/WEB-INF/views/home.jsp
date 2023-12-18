@@ -155,9 +155,6 @@
                                         ${free.userNick}
                                     </td>
                                     <td class="shoping__cart__quantity">
-                                        댓글 : 0
-                                    </td>
-                                    <td class="shoping__cart__quantity">
                                         <fmt:formatDate pattern="yyyy-MM-dd" value="${free.boardReg}"/>
                                     </td>
                                 </tr>
