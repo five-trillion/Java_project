@@ -58,17 +58,12 @@
 					<div class="page_title fs60">
 						<font color="#555555">자유게시판</font>
 					</div>
-					<p class="imgArea displaynone"></p>
-				</div>
-				<div class="boardSort">
-					<span
-						class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
 				</div>
 				<div class="n_board line typeList gBorder">
-					<table border="1" summary="">
+					<table>
 						<caption>게시판 목록</caption>
 						<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
-							<tr style="">
+							<tr>
 								<td>
 									<div class="chk fs12">번호</div>
 									<div class="displaynone cate fs12">카테고리</div>
@@ -81,21 +76,20 @@
 						</thead>
 						<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
 							<c:forEach items="${freeList}" var="board" varStatus="status">
-								<tr style="background-color: #FFFFFF; color: #555555;"
-									class="xans-record-">
+								<tr>
 									<td>
 										<div class="chk fs13">
 											${pageMaker.total - (pageMaker.cri.pageNum - 1) * pageMaker.cri.amount - status.index}
 										</div>
 										<div class="subject left fs13">
-											<a href='/board/loungeRead?boardNo=<c:out value="${board.boardNo}"/>'>
+											<a href='/board/loungeRead?boardNo=<c:out value="${board.boardNo}"/>&pageNum=${pageNum}&amount=${amount}'>
 											<c:out value="${board.boardTitle}"/></a>
 										</div>
 										<div class="writer fs13">
 											<c:out value="${board.userNick}"/>
 										</div>
 										<div class=" fs13 writer_date">
-											<fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardUpdate}"/>
+											<fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardReg}"/>
 										</div>
 										<div class=" fs13 hit">
 											<c:out value="${board.boardCnt}"/>
@@ -125,7 +119,7 @@
 				            </ul> 
 				        	<div class="board_search_wrap">
 					            <button type="button" id="writeForm" name="writeForm" 
-									onclick="checkLoginAndRedirect('/board/loungeWrite')" style="float:left"
+									onclick="location.href='/board/loungeWrite'" style="float:left"
 									class="btnSubmitFix sizeS"> 글쓰기
 								</button> 
 						    	<div class="search_area">
@@ -134,8 +128,7 @@
 						        </div>
 			    			</div>    
 			    		</div>
-				    
-					    <form id="moveForm" method="get">
+				    	<form id="moveForm" method="get">
 					    	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
 		      					<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
 		      					<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
@@ -162,7 +155,7 @@
 					alert("수정이 완료되었습니다.");
 				}
 				if(result === "delete success") {
-					alert("삭제가 완료되었습니다.")
+					alert("삭제가 완료되었습니다.");
 				}
 			}
 		});
@@ -184,19 +177,19 @@
 	        moveForm.submit();
 		});
 		 
-		 function checkLoginAndRedirect(url) {
-		        // 여기서 로그인 여부를 확인
-		        let user = '<c:out value="${user}"/>';
-		        
-		        if (user === '') {
-		            // 로그인이 필요한 경우
-		            alert("로그인이 필요합니다.");
-		            location.href = '/shop/login';
-		        } else {
-		            // 로그인이 되어 있는 경우
-		            location.href = url;
-		        }
-		    }
+		function checkLoginAndRedirect(url) {
+	        // 여기서 로그인 여부를 확인
+	        let user = '<c:out value="${user}"/>';
+        
+	        if (user === '') {
+	            // 로그인이 필요한 경우
+	            alert("로그인이 필요합니다.");
+	            location.href = '/shop/login';
+	        } else {
+	            // 로그인이 되어 있는 경우
+	            location.href = url;
+	        }
+		}
 	</script>
 </body>
 

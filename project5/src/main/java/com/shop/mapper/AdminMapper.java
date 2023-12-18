@@ -18,6 +18,11 @@ import com.shop.domain.SalesVO;
 import com.shop.domain.UsersVO;
 
 public interface AdminMapper {
+	// adminHome
+	public SalesVO getTodaySales();
+	public SalesVO getTodayJoin();
+	public List<SalesVO> getProdRanking();
+	public List<BoardVO> getBoardRanking();
 	// 회원관리---------
 	// 회원리스트
 	public List<UsersVO> getUsers();

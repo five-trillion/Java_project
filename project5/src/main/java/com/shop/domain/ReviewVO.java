@@ -18,4 +18,5 @@ public class ReviewVO {
 	private int reviCnt; //리뷰 조회 수
 	
 	private String userNick; //게시물 작성자 닉네임(회원번호로 users 테이블에 있는 nick을 담을 임의의 변수)
+	private String prodName; //마이페이지 리뷰탭에 불러올 상품명
 }

@@ -138,9 +138,7 @@
 	<script>
 	let formIndex = 0;
 	function addForm() {
-    if (!formCreated) {
-        formCreated = true;
-
+		
         const formContainer = document.querySelector('.petSubmitForm');
         const formDiv = document.createElement("div");
 					formDiv.innerHTML = `<br>
@@ -159,10 +157,10 @@
 							</div>
 						</div>
         `;
+  
         formContainer.appendChild(formDiv);
         $("#formIndex").val(formIndex);
-    }
-	
+	}
 	function submitForm(index) {
 	    const name = document.getElementById(`name-${index}`).value;
 	    const kind = document.getElementById(`kind-${index}`).value;
@@ -181,7 +179,7 @@
     }
 	
 	$(".btnSubmitFix").on("click",() => {
-		
+		$(".petSubmit input[type=submit]").css({"display": "inline-block", "margin-top": "30px"});
 	})
 </script>
 

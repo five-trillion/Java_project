@@ -7,6 +7,15 @@
 <meta charset="UTF-8">
 <title>회원정보 수정</title>
  	<%@ include file="../includes/src.jsp" %>
+ 	<style>
+ 	.inputBlock input {
+ 		margin : 0;
+ 	}
+ 	.grid {
+ 		display: grid;
+ 		grid-template: 
+ 	}
+ 	</style>
 </head>
 
 <body>
@@ -36,55 +45,61 @@
 	                        <p>이름<span>*</span></p>
 	                        <input type="text" name="userName" value="${user.userName}" required>
 	                    </div>
-                      	<div class="checkout__input">
+                      	<div class="checkout__input flex">
 	                        <p>휴대전화<span>*</span></p>
-	                       	<input type="text" id="phone1" name="phone1" maxlength="3" value="010" required> - 
-						   	<input type="text" id="phone2" name="phone2" maxlength="4" value="phone2"required> - 
-						   	<input type="text" id="phone3" name="phone3" maxlength="4" value="phone3" required> 
-						   	<input type="hidden" name="phone" id="phone" value="${user.phone}">
+	                        <div class="inputBlock" style="display: inline-block; margin-bottom: 10px;">
+		                       	<input type="text" id="phone1" name="phone1" maxlength="3" value="010" required> - 
+							   	<input type="text" id="phone2" name="phone2" maxlength="4" value="phone2"required> - 
+							   	<input type="text" id="phone3" name="phone3" maxlength="4" value="phone3" required> 
+							   	<input type="hidden" name="phone" id="phone" value="${user.phone}">
+	                        </div>
 	                    </div>
 	                    <div class="checkout__input">
 	                        <p>집전화</p>
-	                       	<datalist id="tel1List"> 
-	                       		<option value="02">02</option>
-	                       		<option value="031">031</option>
-	                       		<option value="032">032</option>
-	                       		<option value="033">033</option>
-	                       		<option value="041">041</option>
-	                       		<option value="042">042</option>
-	                       		<option value="043">043</option>
-	                       		<option value="044">044</option>
-	                       		<option value="051">051</option>
-	                       		<option value="052">052</option>
-	                       		<option value="053">053</option>
-	                       		<option value="054">054</option>
-	                       		<option value="055">055</option>
-	                       		<option value="061">061</option>
-	                       		<option value="062">062</option>
-	                       		<option value="063">063</option>
-	                     		<option value="064">064</option>
-	                       	</datalist> 
-	                       	<input list="tel1List" id="tel1" name="tel1" value="tel1"> - 
-						   	<input type="text" id="tel2" name="tel2" value="tel2" maxlength="4"> - 
-						   	<input type="text" id="tel3" name="tel3" value="tel3" maxlength="4"> 
-						   	<input type="hidden" name="tel" id="tel" value="${user.tel}">
+	                        <div class="inputBlock" style="display: inline-block; margin-bottom: 10px;">
+		                       	<datalist id="tel1List"> 
+		                       		<option value="02">02</option>
+		                       		<option value="031">031</option>
+		                       		<option value="032">032</option>
+		                       		<option value="033">033</option>
+		                       		<option value="041">041</option>
+		                       		<option value="042">042</option>
+		                       		<option value="043">043</option>
+		                       		<option value="044">044</option>
+		                       		<option value="051">051</option>
+		                       		<option value="052">052</option>
+		                       		<option value="053">053</option>
+		                       		<option value="054">054</option>
+		                       		<option value="055">055</option>
+		                       		<option value="061">061</option>
+		                       		<option value="062">062</option>
+		                       		<option value="063">063</option>
+		                     		<option value="064">064</option>
+		                       	</datalist> 
+		                       	<input list="tel1List" id="tel1" name="tel1" value="tel1"> - 
+							   	<input type="text" id="tel2" name="tel2" value="tel2" maxlength="4"> - 
+							   	<input type="text" id="tel3" name="tel3" value="tel3" maxlength="4"> 
+							   	<input type="hidden" name="tel" id="tel" value="${user.tel}">
+						   	</div>
 	                    </div>
 	                    <div class="row">
-	                        <div class="col-lg-6">
+	                        <div class="col-lg-12">
 	                            <div class="checkout__input">
 	                                <p>이메일<span>*</span></p>
-	                                <input type="text" id="email1" name="email1" value="email1" required> @
-	                                <datalist id="email2List">
-	                                	<option value="gmail.com">gmail.com</option>
-	                                	<option value="naver.com">naver.com</option>
-	                                	<option value="daum.net">daum.net</option>
-	                                	<option value="hanmail.net">hanmail.net</option>
-	                                	<option value="yahoo.co.kr">yahoo.co.kr</option>
-	                                	<option value="hotmail.com">hotmail.com</option>
-	                                	<option value="empas.com">empas.com</option>
-	                                 </datalist>
-	                                 <input list="email2List" id="email2" name="email2" value="eamil2" required>
-	                                <input type="hidden" name="email" id="email" value="${user.email}">
+	                                <div class="inputBlock" style="display: inline-block; margin-bottom: 10px;">
+		                                <input type="text" id="email1" name="email1" value="email1" required> @
+		                                <datalist id="email2List">
+		                                	<option value="gmail.com">gmail.com</option>
+		                                	<option value="naver.com">naver.com</option>
+		                                	<option value="daum.net">daum.net</option>
+		                                	<option value="hanmail.net">hanmail.net</option>
+		                                	<option value="yahoo.co.kr">yahoo.co.kr</option>
+		                                	<option value="hotmail.com">hotmail.com</option>
+		                                	<option value="empas.com">empas.com</option>
+		                                 </datalist>
+		                                 <input list="email2List" id="email2" name="email2" value="eamil2" required>
+		                                <input type="hidden" name="email" id="email" value="${user.email}">
+	                                </div>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -102,12 +117,34 @@
 	                        <input type="text" id="nick" name="nick" value="${user.nick}" placeholder="사용하실 닉네임을 8글자 이내로 입력해주세요.">
 	                    </div>
 	                	<div class="checkout__input">
+	                		<button type="button" id="deletebtn" name="deletebtn" onclick="showDeleteModal()">삭제</button>
 	                  		<input type="submit" value ="수정하기" onclick="return modifyCheck()" class="join_btn">
 	                  	</div>  
 	                </div>
                 </form>
             </div>
         </div>
+        
+        <!-- 회원탈퇴 modal -->
+		<div id="deleteModal" class="modal" tabindex="-1" role="dialog">
+		    <div class="modal-dialog" role="document">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <h5 class="modal-title">회원탈퇴</h5>
+		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                    <span aria-hidden="true">&times;</span>
+		                </button>
+		            </div>
+		            <div class="modal-body">
+		                <p>회원탈퇴하시면 현재 보유 중인 포인트가 전부 소멸됩니다. 정말로 탈퇴하시겠습니까? </p>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+		                <button type="button" class="btn btn-primary" onclick="confirmDelete()">확인</button>
+		            </div>
+		        </div>
+		    </div>
+		</div>
         
   	<%@ include file="../includes/footer.jsp" %>
     
@@ -236,6 +273,22 @@
 	            }
 	        }).open();
 	    }
+    	
+    	// 회원 탈퇴 모달
+    	function showDeleteModal() {
+        	$("#deleteModal").modal("show");
+        }
+    	
+    	function confirmDelete() {
+             // 삭제 확인 버튼을 눌렀을 때의 처리
+             document.frm.action = "/shop/mypage-delete";
+             document.frm.submit();
+         }
+    	 
+		function closeModal() {
+             // 모달창 닫기
+             $("#deleteModal").remove();
+         }
 	  
     </script>
 

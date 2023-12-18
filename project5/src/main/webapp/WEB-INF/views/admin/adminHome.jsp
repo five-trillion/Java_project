@@ -58,9 +58,9 @@
 											<i class="bi bi-cart"></i>
 										</div>
 										<div class="ps-3">
-											<h6>145</h6>
-											<span class="text-success small pt-1 fw-bold">12%</span> <span
-												class="text-muted small pt-2 ps-1">increase</span>
+											<h6>${sales.salesAmount}</h6>
+											<!-- <span class="text-success small pt-1 fw-bold">12%</span> <span
+												class="text-muted small pt-2 ps-1">increase</span> -->
 
 										</div>
 									</div>
@@ -99,60 +99,15 @@
 											<i class="bi bi-currency-dollar"></i>
 										</div>
 										<div class="ps-3">
-											<h6>$3,264</h6>
-											<span class="text-success small pt-1 fw-bold">8%</span> <span
-												class="text-muted small pt-2 ps-1">increase</span>
+											<h6>&#8361;${sales.salesPrice}</h6>
+											<!-- <span class="text-success small pt-1 fw-bold">8%</span> <span
+												class="text-muted small pt-2 ps-1">increase</span> -->
 
 										</div>
 									</div>
 								</div>
 
 							</div>
-						</div>
-						<!-- End 오늘 주문량 -->
-
-						<!-- 오늘 방문자 -->
-						<div class="col-xxl-4 col-xl-12 topBox">
-
-							<div class="card info-card customers-card">
-
-								<div class="filter">
-									<a class="icon" href="#" data-bs-toggle="dropdown"><i
-										class="bi bi-three-dots"></i></a>
-									<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-										<li class="dropdown-header text-start">
-											<h6>Filter</h6>
-										</li>
-
-										<li><a class="dropdown-item" href="#">Today</a></li>
-										<li><a class="dropdown-item" href="#">This Month</a></li>
-										<li><a class="dropdown-item" href="#">This Year</a></li>
-									</ul>
-								</div>
-
-								<div class="card-body">
-									<h5 class="card-title">
-										오늘 방문자
-									</h5>
-
-									<div class="d-flex align-items-center">
-										<div
-											class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-											<i class="bi bi-people"></i>
-										</div>
-										<div class="ps-3">
-											<h6>1244</h6>
-											<span class="text-danger small pt-1 fw-bold">12%</span> <span
-												class="text-muted small pt-2 ps-1">decrease</span>
-
-										</div>
-									</div>
-
-								</div>
-							</div>
-							
-							
-
 						</div>
 						<!-- End 오늘 주문량 -->
 						
@@ -186,9 +141,9 @@
 											<i class="bi bi-people"></i>
 										</div>
 										<div class="ps-3">
-											<h6>1244</h6>
-											<span class="text-danger small pt-1 fw-bold">12%</span> <span
-												class="text-muted small pt-2 ps-1">decrease</span>
+											<h6>${join.salesAmount}</h6>
+											<!-- <span class="text-danger small pt-1 fw-bold">12%</span> <span
+												class="text-muted small pt-2 ps-1">decrease</span> -->
 
 										</div>
 									</div>
@@ -204,7 +159,7 @@
 						<!-- End Customers Card -->
 
 						<!-- 매출 그래프 -->
-						<div class="col-12">
+						<!-- <div class="col-12">
 							<div class="card">
 
 								<div class="filter">
@@ -226,7 +181,7 @@
 										매출 그래
 									</h5>
 
-									<!-- Line Chart -->
+									Line Chart
 									<div id="reportsChart"></div>
 
 									<script>
@@ -281,12 +236,12 @@
                       }).render();
                     });
                   </script>
-									<!-- End Line Chart -->
+									End Line Chart
 
 								</div>
 
 							</div>
-						</div>
+						</div> -->
 						<!-- End 매출 그래프 -->
 
 						<!-- 상품 판매 순위 -->
@@ -321,36 +276,13 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<th scope="row">1</th>
-												<td><a href="#" class="text-primary fw-bold">Ut
-														inventore ipsa voluptas nulla</a></td>
-												<td class="fw-bold">124</td>
-											</tr>
-											<tr>
-												<th scope="row">2</th>
-												<td><a href="#" class="text-primary fw-bold">Exercitationem
-														similique doloremque</a></td>
-												<td class="fw-bold">98</td>
-											</tr>
-											<tr>
-												<th scope="row">3</th>
-												<td><a href="#" class="text-primary fw-bold">Doloribus
-														nisi exercitationem</a></td>
-												<td class="fw-bold">74</td>
-											</tr>
-											<tr>
-												<th scope="row">4</th>
-												<td><a href="#" class="text-primary fw-bold">Officiis
-														quaerat sint rerum error</a></td>
-												<td class="fw-bold">63</td>
-											</tr>
-											<tr>
-												<th scope="row">5</th>
-												<td><a href="#" class="text-primary fw-bold">Sit
-														unde debitis delectus repellendus</a></td>
-												<td class="fw-bold">41</td>
-											</tr>
+											<c:forEach var="prod" items="${prodRanking}" varStatus="status">
+												<tr>
+													<th scope="row">${status.index+1}</th>
+													<td><a href="#" class="text-primary fw-bold">${prod.prodName}</a></td>
+													<td class="fw-bold">${prod.salesAmount}</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 
@@ -393,41 +325,18 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<th scope="row">1</th>
-												<td><a href="#" class="text-primary fw-bold">Ut
-														inventore ipsa voluptas nulla</a></td>
-												<td>$64</td>
-												<td class="fw-bold">124</td>
-											</tr>
-											<tr>
-												<th scope="row">2</th>
-												<td><a href="#" class="text-primary fw-bold">Exercitationem
-														similique doloremque</a></td>
-												<td>$46</td>
-												<td class="fw-bold">98</td>
-											</tr>
-											<tr>
-												<th scope="row">3</th>
-												<td><a href="#" class="text-primary fw-bold">Doloribus
-														nisi exercitationem</a></td>
-												<td>$59</td>
-												<td class="fw-bold">74</td>
-											</tr>
-											<tr>
-												<th scope="row">4</th>
-												<td><a href="#" class="text-primary fw-bold">Officiis
-														quaerat sint rerum error</a></td>
-												<td>$32</td>
-												<td class="fw-bold">63</td>
-											</tr>
-											<tr>
-												<th scope="row">5</th>
-												<td><a href="#" class="text-primary fw-bold">Sit
-														unde debitis delectus repellendus</a></td>
-												<td>$79</td>
-												<td class="fw-bold">41</td>
-											</tr>
+											<c:forEach var="board" items="${boardRanking}" varStatus="status">
+												<tr>
+													<th scope="row">${status.index+1}</th>
+													<td>
+														<c:if test="${board.boardClass == 1}">공지게시판</c:if>
+														<c:if test="${board.boardClass == 2}">질의게시판</c:if>
+														<c:if test="${board.boardClass == 3}">자유게시판</c:if>
+													</td>
+													<td><a href="#" class="text-primary fw-bold">${board.boardTitle}</a></td>
+													<td class="fw-bold">${board.boardCnt}</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
 
@@ -442,7 +351,6 @@
 				<!-- End Left side columns -->
 
 			<!-- End Right side columns -->
-
 			</div>
 		</section>
 
@@ -450,5 +358,8 @@
 	<!-- End #main -->
 </div>
 	<%@ include file="./includes/footerAdmin.jsp" %>
+	<script>
+		$(".topBox").css({"width": "33.333333%"});
+	</script>
 </body>
 </html>

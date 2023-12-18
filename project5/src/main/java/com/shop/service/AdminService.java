@@ -18,6 +18,11 @@ import com.shop.domain.UsersVO;
 import lombok.extern.log4j.Log4j;
 
 public interface AdminService {
+	// adminHome
+	public SalesVO getTodaySales();
+	public SalesVO getTodayJoin();
+	public List<SalesVO> getProdRanking();
+	public List<BoardVO> getBoardRanking();
 
 	// 회원 -----------
 	// 회원리스트
