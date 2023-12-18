@@ -10,4 +10,5 @@ public class SalesVO {
 	private int salesAmount; // 량
 	private int salesVolume; // 건수
 	private int salesPrice; // 금액
+	private String prodName;
 }

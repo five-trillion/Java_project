@@ -134,25 +134,6 @@
 			<div class="checkout__input">
 				<a href="#">아이디/비밀번호 찾기</a>
 			</div>
-			<input type="checkbox" id="saveId" name="saveId" onclick="saveId()">
-			아이디 저장 <span class="checkmark"></span>
-			<c:if test="${result==0}">
-				<div class="login_warn">아이디 혹은 비밀번호를 다시 입력해주세요.</div>
-
-				</c:if>
-	            <div class="col-lg-8 col-md-6">
-	            	<div class="checkout__input">
-	            		<input type="submit" id="loginBtn" value="로그인">
-	            	</div>
-	           	</div>
-
-	        <div class="checkout__input"><a href="/shop/join">회원가입</a></div> 	
-	        <div class="checkout__input">
-	        	<a href="/shop/searchId">아이디 찾기</a> &nbsp;/&nbsp;
-	        	<a href="/shop/searchPw">비밀번호 찾기</a>
-	        </div> 
-	        
-	    </form>
 
 	</div>
 
