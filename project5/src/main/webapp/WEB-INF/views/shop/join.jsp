@@ -184,7 +184,6 @@
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript">
-	
 		function joinCheck() { //유효성 검사
 			//아이디
 			if (document.frm.userId.value.length == 0) {
@@ -306,7 +305,6 @@
 			eventYn.value = checkbox3.checked ? "0" : "1";
 			return true;
 		}
-
 		//생년월일 함수
 		function formatBirth(inputBirth) {
 			var year = inputBirth.substring(0, 4);
@@ -405,6 +403,7 @@
 			}).open();
 		}
 	</script>
+
 
 </body>
 </html>

@@ -2,6 +2,8 @@ package com.shop.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CartVO;
@@ -20,6 +22,9 @@ public interface ShopMapper {
 	
 	//자유게시판 전체목록 처리를 위한 메소드 
 	public List<BoardVO> freeList() throws Exception;
+	
+	//상품검색
+	public List<ProductVO> search(String keyword) throws Exception;
 	
 	//자유게시판 선택목록(글읽기)을 위한 메소드 
 	public BoardVO freeDetail(int boardNo) throws Exception;
@@ -129,12 +134,12 @@ public interface ShopMapper {
 	public List<OrderVO> getorder(long userNo) throws Exception;
 	
 	//마이페이지 주문상세조회
-	public List<OrderVO> getordetail(String orderNo, String prodNo) throws Exception;
+	public List<OrderVO> getordetail(String orderNo) throws Exception;
 	
 	//---------------------------------------------------------------------------
 	
 	//마이페이지 리뷰작성페이지 띄우기
-	public List<ProductVO> getProd(long userNo) throws Exception;
+	public List<OrderVO> getProd(long userNo) throws Exception;
 	
 	//마이페이지 리뷰목록 띄우기
 	public List<ReviewVO> getRevi(long userNo) throws Exception;
@@ -149,5 +154,7 @@ public interface ShopMapper {
 	public List<BoardVO> getQna(long userNo) throws Exception;
 	
 	//---------------------------------------------------------------------------
+	
+	
 	
 }

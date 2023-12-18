@@ -138,10 +138,10 @@
 	<script>
 	let formIndex = 0;
 	function addForm() {
-        formIndex++;
+    if (!formCreated) {
+        formCreated = true;
 
         const formContainer = document.querySelector('.petSubmitForm');
-
         const formDiv = document.createElement("div");
 					formDiv.innerHTML = `<br>
 						<div class="col-lg-12 petForm">
@@ -164,13 +164,16 @@
     }
 	
 	function submitForm(index) {
-        const name = document.getElementById(`name-${index}`).value;
-        const type = document.getElementById(`type-${index}`).value;
-        const age = document.getElementById(`age-${index}`).value;
+	    const name = document.getElementById(`name-${index}`).value;
+	    const kind = document.getElementById(`kind-${index}`).value;
+	    const age = document.getElementById(`age-${index}`).value;
 
-        // 여기에서 서버로 데이터를 전송하거나, 로컬 스토리지에 저장하거나 원하는 작업을 수행할 수 있습니다.
-        console.log(`이름: ${name}, 종류: ${type}, 나이: ${age}`);
-
+	    // 서버로 데이터 전송
+	    const formData = new FormData();
+	    formData.append('petName', name);
+	    formData.append('petKind', type);
+	    formData.append('petAge', age);
+	    
         // 이후에 폼을 삭제하거나 원하는 동작을 수행할 수 있습니다.
         const formContainer = document.getElementById('form-container');
         const formToRemove = document.getElementById(`form-${index}`);
