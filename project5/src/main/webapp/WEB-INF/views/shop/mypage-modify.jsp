@@ -117,12 +117,34 @@
 	                        <input type="text" id="nick" name="nick" value="${user.nick}" placeholder="사용하실 닉네임을 8글자 이내로 입력해주세요.">
 	                    </div>
 	                	<div class="checkout__input">
+	                		<button type="button" id="deletebtn" name="deletebtn" onclick="showDeleteModal()">삭제</button>
 	                  		<input type="submit" value ="수정하기" onclick="return modifyCheck()" class="join_btn">
 	                  	</div>  
 	                </div>
                 </form>
             </div>
         </div>
+        
+        <!-- 회원탈퇴 modal -->
+		<div id="deleteModal" class="modal" tabindex="-1" role="dialog">
+		    <div class="modal-dialog" role="document">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		                <h5 class="modal-title">회원탈퇴</h5>
+		                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		                    <span aria-hidden="true">&times;</span>
+		                </button>
+		            </div>
+		            <div class="modal-body">
+		                <p>회원탈퇴하시면 현재 보유 중인 포인트가 전부 소멸됩니다. 정말로 탈퇴하시겠습니까? </p>
+		            </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+		                <button type="button" class="btn btn-primary" onclick="confirmDelete()">확인</button>
+		            </div>
+		        </div>
+		    </div>
+		</div>
         
   	<%@ include file="../includes/footer.jsp" %>
     
@@ -251,6 +273,22 @@
 	            }
 	        }).open();
 	    }
+    	
+    	// 회원 탈퇴 모달
+    	function showDeleteModal() {
+        	$("#deleteModal").modal("show");
+        }
+    	
+    	function confirmDelete() {
+             // 삭제 확인 버튼을 눌렀을 때의 처리
+             document.frm.action = "/shop/mypage-delete";
+             document.frm.submit();
+         }
+    	 
+		function closeModal() {
+             // 모달창 닫기
+             $("#deleteModal").remove();
+         }
 	  
     </script>
 
