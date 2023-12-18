@@ -58,14 +58,9 @@
 					<div class="page_title fs60">
 						<font color="#555555">NOTICE</font>
 					</div>
-					<p class="imgArea displaynone"></p>
-				</div>
-				<div class="boardSort">
-					<span
-						class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
 				</div>
 				<div class="n_board line typeList gBorder">
-					<table border="1" summary="">
+					<table>
 						<caption>게시판 목록</caption>
 						<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
 							<tr style="">
