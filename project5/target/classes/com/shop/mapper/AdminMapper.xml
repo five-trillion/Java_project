@@ -4,9 +4,28 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.mapper.AdminMapper">
 	
+	<!-- admin Home 통계 -->
+	<select id="getTodaySales" resultType="com.shop.domain.SalesVO">
+		select date(i.orderDate) as salesDate ,sum(d.orderCnt) as salesAmount, sum((select count(orderNo) from order_info where orderDate = i.orderDate)) as salesVolume, sum(d.prodSum) as salesPrice
+		from order_info i left join order_detail d on i.orderNo = d.orderNo
+        where date(i.orderDate) = date(now())
+		group by date(i.orderDate);
+	</select>
+	<select id="getTodayJoin" resultType="com.shop.domain.SalesVO">
+		select date(regDate) as salesDate, count(regDate) as salesAmount from users where date(regDate) = date(now()) group by date(regDate);
+	</select>
+	<select id="getProdRanking" resultType="com.shop.domain.SalesVO">
+		select p.prodName, sum(d.orderCnt) as salesAmount from order_detail d join product p on d.prodNo = p.prodNo
+		group by d.prodNo
+		order by salesAmount desc limit 5;
+	</select>
+	<select id="getBoardRanking" resultType="com.shop.domain.BoardVO">
+		select * from board order by boardCnt desc limit 5;
+	</select>
+	
 	<!-- 상품 등록 -->
 	<insert id="prodInsert">
-	  	insert into product 
+	  	insert into product
 	  	values (#{prodNo},#{category}, #{brand},  #{prodName},#{costPrice}, #{netPrice}, #{salePrice}, #{prodMainImg}, #{prodImg1}, #{prodImg2}, #{prodImg3}, #{prodImg4}, #{detailImg}, #{prodInfo}, default, default, #{prodRest}, 0)
   	</insert>
   	
@@ -279,11 +298,12 @@
 		update report set processingYn = 1 where repoNo = #{repoNo} ;
 	</update>
 	
+	
 	<!-- 매출정산 관리 -->
 	<select id="getSalesInfo" resultType="com.shop.domain.SalesVO">
-		select i.orderDate as salesDate ,sum(d.orderCnt) as salesAmount, (select count(orderNo) from order_info where orderDate = i.orderDate) as salesVolume, sum(d.prodSum) as salesPrice
+		select date(i.orderDate) as salesDate ,sum(d.orderCnt) as salesAmount, sum((select count(orderNo) from order_info where orderDate = i.orderDate)) as salesVolume, sum(d.prodSum) as salesPrice
 		from order_info i left join order_detail d on i.orderNo = d.orderNo
-		group by i.orderDate;
+		group by date(i.orderDate);
 	</select>
 	<!-- 가입자 조회 -->
 	<select id="getJoinView" resultType="com.shop.domain.SalesVO">
