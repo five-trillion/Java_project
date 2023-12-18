@@ -114,7 +114,7 @@
 </resultMap>
 
 <resultMap id="orderDetailResult" type="com.shop.domain.OrderDetailVO">
-    <id property="orderDtNo" column="orderDtNo"/>
+    <id property="orderNo" column="orderNo"/>
     <result property="orderListNo" column="orderListNo"/>
     <result property="prodNo" column="prodNo"/>
     <result property="orderCnt" column="orderCnt"/>
@@ -163,7 +163,7 @@
         p.prodName AS prodName,
         p.salePrice AS salePrice
     FROM order_info oi
-    INNER JOIN order_detail od ON oi.orderNo = od.orderDtNo
+    INNER JOIN order_detail od ON oi.orderNo = od.orderNo
     INNER JOIN delivery d ON oi.orderNo = d.orderNo
     INNER JOIN product p ON od.prodNo = p.prodNo;
 </select>
@@ -200,7 +200,7 @@
         p.prodName AS prodName,
         p.salePrice AS salePrice
     FROM order_info oi
-    INNER JOIN order_detail od ON oi.orderNo = od.orderDtNo
+    INNER JOIN order_detail od ON oi.orderNo = od.orderNo
     INNER JOIN delivery d ON oi.orderNo = d.orderNo
     INNER JOIN product p ON od.prodNo = p.prodNo
     WHERE oi.orderSta = 0;
@@ -228,7 +228,7 @@
         p.prodName AS prodName,
         p.salePrice AS salePrice
     FROM order_info oi
-    INNER JOIN order_detail od ON oi.orderNo = od.orderDtNo
+    INNER JOIN order_detail od ON oi.orderNo = od.orderNo
     INNER JOIN delivery d ON oi.orderNo = d.orderNo
     INNER JOIN product p ON od.prodNo = p.prodNo
     WHERE oi.orderNo = #{orderNo}

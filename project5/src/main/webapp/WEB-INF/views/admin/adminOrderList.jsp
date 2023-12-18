@@ -55,7 +55,7 @@
 												<td>${orderlist.orderSta}</td>
 												<td>
 													<!-- Large Modal -->
-													<%-- <div class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#orderModal${orderlist.orderNo}"> --%>
+													
 													<div class="btn btn-primary modalBtn" data-bs-target="#orderModal${orderlist.orderNo}">
 														조회
 													</div>
@@ -96,7 +96,8 @@
 														              <!-- End Bordered Table -->
 																</div>
 																<div class="modal-footer">
-																	<button type="button" class="btn btn-secondary"																		data-bs-dismiss="modal" onclick="adminOrderDetailOpen(${orderlist.orderNo})">상세 내역</button>
+																	<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal" 
+																	onclick="adminOrderDetailOpen(${orderlist.orderNo})">상세 내역</button>
 																	<button type="button" class="btn btn-primary modalClose">닫기</button>
 																</div>
 															</div>
@@ -105,7 +106,7 @@
 												</td>
 												<td>
 													<!-- Large Modal -->
-													<%-- <div class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#orderModal${orderlist.orderNo}"> --%>
+												
 													<div class="btn btn-primary modalBtn" data-bs-target="#orderModal${orderlist.orderNo}">
 														운송장
 													</div>
@@ -170,7 +171,8 @@
 																	삭제 처리 하시겠습니까?
 																</div>
 																<div class="modal-footer">
-																	<a href="adminProdDelete?prodNo=${orderlist.orderDetailList}"><button type="button" class="btn btn-secondary"
+																	<a href="adminProdDelete?prodNo=${orderlist.orderDetailList}">
+																	<button type="button" class="btn btn-secondary"
 																		data-bs-dismiss="modal">삭제</button></a>
 																	<button type="button" class="btn btn-primary modalClose">닫기</button>
 																</div>

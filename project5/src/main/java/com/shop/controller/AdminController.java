@@ -214,7 +214,7 @@ public class AdminController {
 	//주문 상세 보기
 	@GetMapping("/adminOrderDetail")
 	public void adminOrderDetail(Model model) {
-	    // 서비스 레이어에서 주문, 상세, 배송, 상품 정보를 가져옵니다.
+	  
 	    List<OrderInfoVO> adminOrderDetail = adminService.adminOrderDetail();
 	    	    
 	    model.addAttribute("adminOrderDetail", adminOrderDetail);
