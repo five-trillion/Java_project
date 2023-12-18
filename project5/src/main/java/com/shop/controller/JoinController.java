@@ -1,5 +1,7 @@
 package com.shop.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.PetVO;
 import com.shop.domain.UsersVO;
+import com.shop.mapper.JoinMapper;
 import com.shop.service.JoinService;
 
 import lombok.AllArgsConstructor;
@@ -90,16 +93,35 @@ public class JoinController {
 
 	//반려견 정보 입력 페이지 이동
 	@RequestMapping(value="/mypage-pet", method = RequestMethod.GET)
-	public void petGET() {
+	public void petGET(HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		UsersVO uVo = (UsersVO)session.getAttribute("user");
+		
+		List<PetVO> pVo = joinservice.getPet(uVo.getUserNo());
+		request.setAttribute("petList", pVo);
 		System.out.println("반려견 정보입력 페이지 진입");
 	}
 	
 	//반려견 정보 입력
 	@RequestMapping(value="/mypage-pet", method = RequestMethod.POST)
-	public String petPOST(PetVO pet) throws Exception {
-		joinservice.insertPet(pet);
+	public String petPOST(PetVO pet, HttpServletRequest request) throws Exception {
+		int formIndex = Integer.parseInt(request.getParameter("formIndex"));
+		HttpSession session = request.getSession();
+		UsersVO uVo = (UsersVO)session.getAttribute("user");
+		for (int i=1; i <= formIndex; i++) {
+			
+			String petName = request.getParameter("petName"+i);
+			String petKind = request.getParameter("petKind"+i);
+			int petAge = Integer.parseInt(request.getParameter("petAge"+i));
+			pet.setPetName(petName);
+			pet.setPetKind(petKind);
+			pet.setPetAge(petAge);
+			pet.setUserNo(uVo.getUserNo());			
+			joinservice.insertPet(pet);
+		}
+		
 		System.out.println("반려견 정보입력 성공");
-		return "redirect:/shop/mypage";
+		return "redirect:/shop/mypage-pet";
 	}
 
 	//마이페이지 - 회원정보 수정 페이지 이동
