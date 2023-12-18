@@ -180,7 +180,7 @@
                             	<ul class="header__menu__dropdown">
                                     <li><a href="/board/notice">공지사항</a></li>
                                     <li><a href="/board/qna">QnA</a></li>
-                                    <li><a href="#">Review</a></li>
+                                    <li><a href="/board/review">Review</a></li>
                                     <li><a href="/board/lounge">자유게시판</a></li>
                                 </ul>
                             </li>
@@ -191,9 +191,8 @@
                 <div class="col-lg-4">
                 	<div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
-                                
-                                <input type="text" placeholder="What do yo u need?">
+                            <form action="/search" method="get">
+                                <input type="text" name="keyword" value="${search.keyword}" placeholder="검색할 상품을 입력하세요">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>

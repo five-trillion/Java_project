@@ -23,7 +23,6 @@
 	<%@include file="../includes/header.jsp" %>
 	
 	<div id="contents" style="padding: 0 0 80px;">
-	
 		<%@include file="../includes/mp_header.jsp" %>
 		<div class="page_wrap">
 		    <div class="xans-element- xans-myshop xans-myshop-orderhistorytab ec-base-tab" style="padding-top: 0;">
@@ -75,7 +74,7 @@
 		<li></li>
 		<li class="displaynone">기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 지난 주문내역을 조회하실 수 있습니다.</li>
 		            <li class="">기본적으로 최근 3개월간의 자료가 조회되며, 기간 검색시 주문처리완료 후 36개월 이내의 주문내역을 조회하실 수 있습니다.</li>
-		            <li class=" ">완료 후 36개월 이상 경과한 주문은 상담 (070-4897-1148) 바랍니다.</li>
+		            <li class=" ">완료 후 36개월 이상 경과한 주문은 전화상담 (070-4897-1148) 바랍니다.</li>
 		            <li class="">취소/교환/반품 신청은 배송완료일 기준 7일까지 가능합니다.</li>
 		        </ul>
 		</div>
@@ -102,7 +101,11 @@
 		            </thead>
 		            <c:choose>
 		            	<c:when test="${order.isEmpty()}">
-		<p class="message  fs14">주문 내역이 없습니다.</p>
+		<tbody>
+			<tr>
+				<td><p class="message  fs14">주문 내역이 없습니다.</p></td>
+			</tr>
+		</tbody>
 		            	</c:when>
 		            	<c:otherwise>
 							<tbody class="center">
@@ -116,7 +119,7 @@
                                            	</p>                            
 		                            		<p><a href="/mypage/order_detail?orderNo=${order.orderNo}&prodNo=${order.prodNo}" class="btnNormal" onclick="">상세정보</a></p>
 										</div>
-		                        		<div class="thumb"><a href="/shop/detail?prodNo=${order.prodNo}"><img src="${contextPath}/resources/upload/product/thumbnails/${order.prodMainImg}" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a></div>
+		                        		<div class="thumb"><a href="/shop/detail?prodNo=${order.prodNo}"><img src="${contextPath}/resources/upload/product/main/${order.prodMainImg}" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a></div>
 		                        		<div class="product left top">
 		                            		<strong class="name fs14" onclick="location.href='/shop/detail?prodNo=${order.prodNo}'">${order.prodName}</strong>
 		                            		<ul class="xans-element- xans-myshop xans-myshop-optionset option fs10"><li class="">
@@ -152,59 +155,24 @@
 		<div id="tab-2" class="xans-element- xans-myshop xans-myshop-orderhistorylistitem n_board typeList">
 		<table border="1" summary="">
 <caption>취소/반품/교환</caption>
-            <thead><tr>
-<td>
+            <thead>
+            	<tr>
+					<td>
                         <p class="fs12 number">주문일자 [주문번호]</p>
                         <p class="thumb"></p>
-                        <p class="fs12 product">상품</p>
+                        <p class="fs12 product" style="padding: 0px;">상품</p>
                         <p class="quantity"></p>
                         <p class="right"></p>
                         <p class="fs12 state">주문상태</p>
                     </td>
-                </tr></thead>
-<tbody class="center ">
-					<c:choose>
-		            	<c:when test="${order.isEmpty()}">
-<p class="message displaynone fs14">주문 내역이 없습니다.</p>
-                		</c:when>
-                		<c:otherwise>
-                			<tr class="xans-record-">
-<td>
-                        <div class="number fs12 ">
-                            <p></p>
-                            2023-12-11                            <p><a href="detail.html?order_id=20231211-0000125&amp;page=1&amp;history_start_date=2023-09-15&amp;history_end_date=2023-12-14" class="line">[20231211-0000125]</a></p>                            
-                            <p class="displaynone"><a href="#none" class="btnNormal" onclick="OrderHistory.getDetailInfo('?product_no=15&amp;cate_no=23&amp;order_id=20231211-0000125&amp;ord_item_code=20231211-0000125-01');">상세정보</a>
-                        </p>
-</div>
-                        <div class="thumb"><a href="/product/detail.html?product_no=15&amp;cate_no=23"><img src="//fnfn.kr/web/product/medium/202209/c06020d3a1d186e8c3d7f1bb9a54b1e0.png" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt=""></a></div>
-                        <div class="product left top">
-                            <strong class="name fs14"><a href="/product/픈픈-폼-플레이-샴푸-300ml/15/category/23/" class="ec-product-name">픈픈 폼 플레이 샴푸 300ml</a></strong>
-                            <div class="option fs10 ">[옵션: 단품/-], [향 선택 : 프레쉬 가든 1개]</div>
-                            <p class="gBlank5 displaynone">무이자할부 상품</p>
-                        </div>
-                        <div class="quantity fs14">1</div>
-                        <div class="right">
-<strong class="fs14">28,000원</strong><div class="displaynone"></div>
-</div>
-                        <div class="state fs14">
-                            <p class="txtEm">입금전취소</p>
-                            <p class="displaynone fs12">
-                                <span class="displaynone fs12 delv_c" style="margin-top:5px; display:block;"><a href="#" target="_self"></a></span>
-                                <a href="#none" class="line" onclick="">[]</a>
-                            </p>                            
-                            <a href="#none" class="btnNormal displaynone" onclick="OrderHistory.orderCancel('20231211-0000125')">주문취소</a>
-                            <a href="cancel.html?order_id=20231211-0000125" class="btnNormal displaynone">취소신청</a>
-                            <a href="exchange.html?order_id=20231211-0000125" class="btnNormal displaynone">교환신청</a>
-                            <a href="return.html?order_id=20231211-0000125" class="btnNormal displaynone">반품신청</a>
-                            <a href="#" class="btnSubmit snap_review_write_btn set" style="display: none;" data-params="?board_no=4&amp;product_no=15&amp;order_id=20231211-0000125" data-detail="OrderHistory.getDetailInfo('?product_no=15&amp;cate_no=23&amp;order_id=20231211-0000125&amp;ord_item_code=20231211-0000125-01');">구매후기</a>
-                            <a href="#none" class="btnNormal displaynone" onclick="OrderHistory.withdraw('C','20231211-0000125|15|000W|40972','F', 'F', 'F', 'T' , 'T')">취소철회</a>
-                            <a href="#none" class="btnNormal displaynone" onclick="OrderHistory.withdraw('E','20231211-0000125|15|000W|40972','F', 'F', 'F', 'T' , 'T')">교환철회</a>
-                            <a href="#none" class="btnNormal displaynone" onclick="OrderHistory.withdraw('R','20231211-0000125|15|000W|40972','F', 'F', 'F', 'T' , 'T')">반품철회</a>
-                        </div>
-                    </td>
                 </tr>
-                		</c:otherwise>
-                	</c:choose>
+            </thead>
+<tbody class="center ">
+	<tr>
+	<td>				
+<p class="message fs14">취소/반품/교환 내역이 없습니다.</p>
+    </td>
+    </tr>        		
 </tbody>
 </table>
 		</div>
@@ -226,6 +194,7 @@
 		<!-- snap review end -->
 		
 	</div>
+	</div>
 	
 	<%@include file="../includes/footer.jsp" %>
 	<script>
@@ -242,6 +211,14 @@
 
 			$(this).addClass('current');
 			$("#"+tab_id).addClass('current');
+		});
+		$('.tab_class_cs').click(function(){
+			$('.tab_class').removeClass('selected');
+			$(this).addClass('selected');
+		});
+		$('.tab_class').click(function(){
+			$('.tab_class_cs').removeClass('selected');
+			$(this).addClass('selected');
 		});
 	});
 	</script>

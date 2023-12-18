@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
- 	<%@ include file="../includes/src.jsp" %>
+<%@ include file="../includes/src.jsp"%>
 </head>
 	<style>
 		#termsContent1 {
@@ -33,22 +33,32 @@
 	</style>
 
 <body>
-   
-	<%@ include file="../includes/header.jsp" %>
-	
-		<div class="container">
-            <div class="checkout__form">
-                <h2 style="text-align:center; font-weight:bold;">회원가입</h2>
-                <div class="checkout__input"><P style="float:right;"><span>*</span> 필수입력사항</P></div>
-                <form action="join" method="post" name="frm" class="joinForm" id="frm">
-                	<div class="col-lg-8 col-md-6 joinBox">
-	                   <div class="checkout__input">
-	                        <p>아이디<span>*</span></p>
-	                        <input type="text" name="userId" class="id_input" placeholder="영문과 숫자를 조합하여 6~16자로 입력해주세요." required>
-	                        <span class="id_input_re" style="color:red; display:none;">이미 존재하는 아이디입니다.</span>
-						</div>
 
-	                    <div class="checkout__input">
+	<%@ include file="../includes/header.jsp"%>
+
+	<div class="container">
+		<div class="checkout__form">
+			<h2 style="text-align: center; font-weight: bold;">회원가입</h2>
+			<div class="checkout__input">
+				<P style="float: right;">
+					<span>*</span> 필수입력사항
+				</P>
+			</div>
+			<form action="join" method="post" name="frm" class="joinForm" id="frm">
+				<div class="col-lg-8 col-md-6 joinBox">
+					<div class="checkout__input relative">
+						<p>
+							아이디<span>*</span>
+						</p>
+						<input type="text" name="userId" class="id_input"
+							placeholder="영문과 숫자를 조합하여 6~16자로 입력해주세요." required>
+						<div class="idMsg">
+							<span
+							class="id_input_re_1" style="color: green; display: none;">사용
+							가능한 아이디입니다.</span> <span class="id_input_re_2"
+							style="color: red; display: none;">이미 존재하는 아이디입니다.</span>
+						</div>
+						<div class="checkout__input">
 	                        <p>비밀번호<span>*</span></p>
 	                        <input type="password" name="userPw" placeholder="영문과 숫자, 특수문자를 조합하여 6~16자로 입력해주세요." required>
 	                    </div>
@@ -64,9 +74,9 @@
 	                        <p>휴대전화<span>*</span></p>
 	                        <div class="phoneBox">
 		                       	<input type="text" id="phone1" name="phone1" maxlength="3" value="010" required> - 
-												   	<input type="text" id="phone2" name="phone2" maxlength="4" required> - 
-												   	<input type="text" id="phone3" name="phone3" maxlength="4" required> 
-												   	<input type="hidden" name="phone" id="phone">
+							   	<input type="text" id="phone2" name="phone2" maxlength="4" required> - 
+							   	<input type="text" id="phone3" name="phone3" maxlength="4" required> 
+							   	<input type="hidden" name="phone" id="phone">
 	                        </div>
 	                    </div>
 	                    <div class="checkout__input calling">
@@ -90,13 +100,13 @@
 	                       		<option value="063">063</option>
 	                     		<option value="064">064</option>
 	                       	</datalist>
-													<div class="phoneBox">
-													<input list="tel1List" id="tel1" name="tel1"> - <input
-														type="text" id="tel2" name="tel2" maxlength="4"> - <input
-														type="text" id="tel3" name="tel3" maxlength="4"> <input
-														type="hidden" name="tel" id="tel">
-													</div>
-											</div>
+							<div class="phoneBox">
+							<input list="tel1List" id="tel1" name="tel1"> - <input
+								type="text" id="tel2" name="tel2" maxlength="4"> - <input
+								type="text" id="tel3" name="tel3" maxlength="4"> <input
+								type="hidden" name="tel" id="tel">
+							</div>
+						</div>
 	                    <div class="row">
 	                        <div class="col-lg-6">
 	                            <div class="checkout__input">
@@ -123,11 +133,11 @@
 	                        <div class="inputBlock">
 		                      	<input type="text" id="zip" name="zip" placeholder="우편번호">
 		                      	<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-														<input type="text" id="address1" name="address1" placeholder="주소"><br>
-														<input type="text" id="address2" name="address2" placeholder="상세주소">
-														<!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
-														<input type="hidden" name="address" id="address">
-	                    		</div>
+								<input type="text" id="address1" name="address1" placeholder="주소"><br>
+								<input type="text" id="address2" name="address2" placeholder="상세주소">
+								<!-- <input type="text" id="extraAddress" placeholder="참고항목"> -->
+								<input type="hidden" name="address" id="address">
+                    		</div>
 	                    </div>  
 	                  	<div class="checkout__input">
 	                        <p>닉네임</p>
@@ -235,9 +245,10 @@
 	                  		<input type="submit" value ="회원가입" onclick="return joinCheck()" class="join_btn">
 	                  	</div>  
 	                </div>
-                </form>
-            </div>
+	            </div>
+            </form>
         </div>
+	</div>
         
   	<%@ include file="../includes/footer.jsp" %>
     
@@ -435,64 +446,112 @@
     	function toggleTerms(contentId, checkboxId) {
             var checkbox = document.getElementById(checkboxId);
             var termsContent = document.getElementById(contentId);
+    	}
 
-            if (!checkbox.checked) {
-                checkbox.checked = true;
-            }
+			//생년월일
+			var inputBirth = document.getElementById("inputBirth").value;
+			var birth = formatBirth(inputBirth);
+			if (inputBirth != "") {
+				if (inputBirth.length != 8 || isNaN(inputBirth)) {
+					alert("생년월일을 형식에 맞게 입력해주세요.")
+					document.frm.inputBirth.focus();
+					return false;
+				}
+			}
+			document.getElementById("birth").value = birth;
 
-            if (termsContent.style.display === 'none') {
-                termsContent.style.display = 'block';
-            } else {
-                termsContent.style.display = 'none';
-            }
-        }
-    	
-    	//아이디 중복체크 
-    	$('.id_input').on("propertychange change keyup paste input", function(){
-    	    var userId = $('.id_input').val();
-    	    var data = {userId : userId}
-    	    $.ajax({
-    	        type : "post",
-    	        url : "/shop/userIdCk",
-    	        data : data,
-    	        success : function(result) {
-    	            // console.log("성공 여부" + result);
-    	            if(result == 'fail') {
-    	                $('.id_input_re').css("display","inline-block");
-    	            } else {
-    	                $('.id_input_re').css("display","none");
-    	            }
-    	        } 
-    	    });
-    	});  
-    	
-    	function execDaumPostcode() {
-    		new daum.Postcode({
-    	    	oncomplete: function(data) {
-	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+			//약관
+			var checkboxAll = document.getElementById('checkboxAll');
+			var checkbox1 = document.getElementById('checkbox1');
+			var checkbox2 = document.getElementById('checkbox2');
+			var checkbox3 = document.getElementById('checkbox3');
 
-	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	                var addr = ''; // 주소 변수
-	                //var extraAddr = '';  //참고항목 변수
+			if (!checkbox1.checked) {
+				alert("이용약관을 읽고 동의해주세요.")
+				return false;
+			}
+			if (!checkbox2.checked) {
+				alert("개인정보 수집 및 이용을 읽고 동의해주세요.")
+				return false;
+			}
+			eventYn.value = checkbox3.checked ? "0" : "1";
+			return true;
+		}
+		//생년월일 함수
+		function formatBirth(inputBirth) {
+			var year = inputBirth.substring(0, 4);
+			var month = inputBirth.substring(4, 6);
+			var day = inputBirth.substring(6, 8);
+			return year + "/" + month + "/" + day;
+		}
 
-	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-	                    addr = data.roadAddress;
-	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-	                    addr = data.jibunAddress;
-	                }
+		//약관 함수
+		function checkAll() {
+			var checkboxAll = document.getElementById('checkboxAll');
+			var checkboxes = document.querySelectorAll('input[name^="checkbox"]');
+			for (var i = 0; i < checkboxes.length; i++) {
+				checkboxes[i].checked = checkboxAll.checked;
+			}
+		}
 
-	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById('zip').value = data.zonecode;
-	                document.getElementById("address1").value = addr;
-	                // 커서를 상세주소 필드로 이동한다.
-	                document.getElementById("address2").focus();
-	            }
-	        }).open();
-	    }
-	  
-    </script>
+		function eventYn() {
+			var checkbox3 = document.getElementById('checkbox3');
+			var eventYn = document.getElementById('eventYn');
+			eventYn.value = checkbox3.checked ? "0" : "1";
+		}
+
+		$('.id_input').on(
+				"propertychange change keyup paste input",
+				function() {
+					var userId = $('.id_input').val();
+					var data = {
+						userId : userId
+					}
+					$.ajax({
+						type : "post",
+						url : "/shop/userIdCk",
+						data : data,
+						success : function(result) {
+							//console.log("성공 여부" + result);
+							if (result != 'fail') {
+								$('.id_input_re_1').css("display",
+										"inline-block");
+								$('.id_input_re_2').css("display", "none");
+							} else {
+								$('.id_input_re_2').css("display",
+										"inline-block");
+								$('.id_input_re_1').css("display", "none");
+							}
+						}
+					});
+				});
+
+		function execDaumPostcode() {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+					// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+					var addr = ''; // 주소 변수
+					//var extraAddr = '';  //참고항목 변수
+
+					//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+						addr = data.roadAddress;
+					} else { // 사용자가 지번 주소를 선택했을 경우(J)
+						addr = data.jibunAddress;
+					}
+					// 우편번호와 주소 정보를 해당 필드에 넣는다.
+					document.getElementById('zip').value = data.zonecode;
+					document.getElementById("address1").value = addr;
+					// 커서를 상세주소 필드로 이동한다.
+					document.getElementById("address2").focus();
+				}
+			}).open();
+		}
+	</script>
+
 
 </body>
 </html>

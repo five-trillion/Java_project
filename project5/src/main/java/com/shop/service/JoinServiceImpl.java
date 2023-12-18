@@ -1,10 +1,10 @@
 package com.shop.service;
 
-import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.shop.domain.PetVO;
 import com.shop.domain.UsersVO;
 import com.shop.mapper.JoinMapper;
@@ -29,6 +29,12 @@ public class JoinServiceImpl implements JoinService {
 	public UsersVO loginUser(UsersVO user) throws Exception {
 		return joinmapper.loginUser(user);
 	}
+
+	@Override
+	public List<PetVO> getPet(long userNo) throws Exception {
+		return joinmapper.getPet(userNo);
+	}
+
 
 	@Override 
 	public void updateUser(UsersVO user) throws Exception {

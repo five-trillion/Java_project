@@ -30,7 +30,7 @@
 		                	<c:forEach items="${order}" var="order">
 		                    <tr>
 		                    	<td class="shoping__cart__total">
-		                            <img src="${contextPath}/resources/upload/product/thumbnails/${order.prodMainImg}" alt="" style="width:100px;">
+		                            <img src="${contextPath}/resources/upload/product/main/${order.prodMainImg}" alt="" style="width:100px;">
 		                        </td>
 		                        <td class="shoping__cart__item" style="padding-left: 20px; width: 420px;">
 		                            <h5>${order.prodName}</h5> <br>
@@ -44,7 +44,7 @@
 		                        </td>
 		                        <td class="shoping__cart__total">
 		                            <fmt:formatNumber pattern="###,###,###.##" value="${order.totalPrice}" />
-		                            <input type="hidden" id="totalPrice" name="totalPrice" value="${order.totalPrice}">
+		                            <input type="hidden" id="prodSum" name="prodSum" value="${order.totalPrice}">
 		                        </td>
 		                    </tr>
 		                    <c:set var="orderSum" value="${orderSum + order.salePrice * order.orderCnt}"/>
@@ -150,7 +150,7 @@
                             
                             <div class="checkout__input">
                                 <p>배송메세지</p>
-                                <input type="text" id="deliMsg" name="deliMsg" style="width: 565px;">
+                                <input type="text" id="deliMsg" name="deliMsg" style="width: 565px;" placeholder="100자 이내로 입력">
                             </div>
                         </div>
                     </div>

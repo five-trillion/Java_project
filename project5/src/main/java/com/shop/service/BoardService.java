@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.shop.domain.BoardVO;
 import com.shop.domain.Criteria;
+import com.shop.domain.ReviewVO;
 
 public interface BoardService {
 	
@@ -72,6 +73,22 @@ public interface BoardService {
 	 
 	// 자유게시판 글삭제를 위한 메서드 
 	public int freeDelete(long boardNo) throws Exception;
+	
+	// ----------------------------- Review -----------------------------
+	
+	// Review 게시판 목록 페이징
+	public List<ReviewVO> getReviewListPaging(Criteria cri);
+	
+	// Review 게시판 총 갯수
+    public int getReviewTotal(Criteria cri);
+	
+	// Review 조회수 증가를 위한 메서드
+	public int updateReviewCnt(long reviNo) throws Exception;
+			
+	// Review 선택목록(글읽기)을 위한 메서드 
+	public ReviewVO reviewDetail(long reviNo) throws Exception;
 
+	// 리뷰쓰기를 위한 메서드 
+	public void reviewRegister(ReviewVO review) throws Exception;
 }
 

@@ -76,6 +76,146 @@
 	<select id="getBoard" resultType="com.shop.domain.BoardVO">
 		select * from board where boardClass = #{boardClass}
 	</select>
+	
+	<!-- 주문 목록 불러오기 -->
+<resultMap id="orderInfoResult" type="com.shop.domain.OrderInfoVO">
+    <id property="orderNo" column="orderNo"/>
+    <result property="userNo" column="userNo"/>
+    <result property="orderDate" column="orderDate"/>
+    <result property="orderSum" column="orderSum"/>
+    <result property="userPoint" column="userPoint"/>
+    <result property="orderFee" column="orderFee"/>
+    <result property="orderSta" column="orderSta"/>
+    <!-- deliveryInfo로 변경 -->
+    <association property="deliveryInfo" resultMap="deliveryResult"/>
+    
+    <!-- orderDetailList로 변경 -->
+    <collection property="orderDetailList" resultMap="orderDetailResult"/>
+    
+</resultMap>
+
+<resultMap id="orderDetailResult" type="com.shop.domain.OrderDetailVO">
+    <id property="orderDtNo" column="orderDtNo"/>
+    <result property="orderListNo" column="orderListNo"/>
+    <result property="prodNo" column="prodNo"/>
+    <result property="orderCnt" column="orderCnt"/>
+    <result property="prodSum" column="prodSum"/>
+    
+    <!-- prodInfo로 변경 -->
+    <association property="prodInfo" resultMap="productResult"/>
+</resultMap>
+
+<resultMap id="deliveryResult" type="com.shop.domain.DeliveryVO">
+    <id property="deliNo" column="deliNo"/>
+    <result property="orderNo" column="deliOrderNo"/>
+    <result property="deliStart" column="deliStart"/>
+    <result property="deliInfo" column="deliInfo"/>
+    <result property="orderAddr" column="orderAddr"/>
+    <result property="recipient" column="recipient"/>
+    <result property="recipientTel" column="recipientTel"/>
+</resultMap>
+
+	<resultMap id="productResult" type="com.shop.domain.ProductVO">
+    <id property="prodNo" column="prodNo"/>
+    <result property="prodNo" column="prodNo"/>
+    <result property="prodName" column="prodName"/>
+    <result property="salePrice" column="salePrice"/>
+	</resultMap>
+
+<select id="orderList" resultMap="orderInfoResult, orderDetailResult, productResult, deliveryResult">
+        SELECT 
+        oi.orderNo,
+        oi.userNo,
+        oi.orderDate,
+        oi.orderSum,
+        oi.userPoint,
+        oi.orderFee,
+        oi.orderSta,
+        od.orderListNo,
+        od.prodNo,
+        od.orderCnt,
+        od.prodSum,
+        d.deliNo,
+        d.deliStart,
+        d.deliInfo,
+        d.orderAddr,
+        d.recipient,
+        d.recipientTel,
+        p.prodName AS prodName,
+        p.salePrice AS salePrice
+    FROM order_info oi
+    INNER JOIN order_detail od ON oi.orderNo = od.orderDtNo
+    INNER JOIN delivery d ON oi.orderNo = d.orderNo
+    INNER JOIN product p ON od.prodNo = p.prodNo;
+</select>
+
+<update id="deliInfo">
+        UPDATE delivery d, order_info oi
+        SET
+        d.deliInfo = #{deliInfo},
+        oi.orderSta = 3,
+        d.deliStart = current_timestamp
+        WHERE d.orderNo = oi.orderNo
+        AND oi.orderNo = #{orderNo};
+    </update>
+    
+    <select id="orderUnsetList" resultMap="orderInfoResult, orderDetailResult, productResult, deliveryResult">
+        SELECT 
+        oi.orderNo,
+        oi.userNo,
+        oi.orderDate,
+        oi.orderSum,
+        oi.userPoint,
+        oi.orderFee,
+        oi.orderSta,
+        od.orderListNo,
+        od.prodNo,
+        od.orderCnt,
+        od.prodSum,
+        d.deliNo,
+        d.deliStart,
+        d.deliInfo,
+        d.orderAddr,
+        d.recipient,
+        d.recipientTel,
+        p.prodName AS prodName,
+        p.salePrice AS salePrice
+    FROM order_info oi
+    INNER JOIN order_detail od ON oi.orderNo = od.orderDtNo
+    INNER JOIN delivery d ON oi.orderNo = d.orderNo
+    INNER JOIN product p ON od.prodNo = p.prodNo
+    WHERE oi.orderSta = 0;
+</select>
+
+<select id="adminOrderDetail" resultMap="orderInfoResult, orderDetailResult, productResult, deliveryResult">
+        SELECT 
+        oi.orderNo,
+        oi.userNo,
+        oi.orderDate,
+        oi.orderSum,
+        oi.userPoint,
+        oi.orderFee,
+        oi.orderSta,
+        od.orderListNo,
+        od.prodNo,
+        od.orderCnt,
+        od.prodSum,
+        d.deliNo,
+        d.deliStart,
+        d.deliInfo,
+        d.orderAddr,
+        d.recipient,
+        d.recipientTel,
+        p.prodName AS prodName,
+        p.salePrice AS salePrice
+    FROM order_info oi
+    INNER JOIN order_detail od ON oi.orderNo = od.orderDtNo
+    INNER JOIN delivery d ON oi.orderNo = d.orderNo
+    INNER JOIN product p ON od.prodNo = p.prodNo
+    WHERE oi.orderNo = #{orderNo}
+</select>
+
+
 	<!-- 질의게시판조회(답변여부 포함) -->
 	<select id="getBoardQna" resultType="com.shop.domain.BoardVO">
 		select b.*,a.boardNo as ansNo from board b left join answer a on b.boardNo = a.boardNo where boardClass = 2;

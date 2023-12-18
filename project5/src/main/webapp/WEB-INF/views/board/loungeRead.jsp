@@ -219,54 +219,62 @@
 
     // 댓글 수정 함수
     function modifyReply() {
-        let replyId = $('#replyId').val();
-        let replyContent = $('#replyContent').val();
-        let boardNo = $('#boardNo').val();
-       
+        var replyId = $('#replyId').val();
+        var replyContent = $('#replyContent').val();
+        var boardNo = $('#boardNo').val();
+        var pageNum = $('input[name=pageNum]').val();
+        var amount = $('input[name=amount]').val();
 		$.ajax({
             type: 'POST',
             url: '/reply/boRepModify', // 수정 처리를 수행할 컨트롤러의 URL
             data: {
                 boRepNo: replyId,
                 boRepContent: replyContent,
-                boardNo: boardNo
+                boardNo: boardNo,
+                pageNum: pageNum,
+                amount: amount
             },
             success: function (data) {
               	console.log("댓글 수정 성공!!")
-              	document.getElementById('replyForm').submit();
-            },
-            error: function (error) {
-                console.error('댓글 수정 실패:', error);
-            }
-        });
-
-        // 모달 닫기
-        $('#replyModal').modal('hide');
-    }
-
-    // 댓글 삭제 함수
-    function deleteReply() {
-        let replyId = $('#replyId').val();
-        let boardNo = $('#boardNo').val();
-       
-		 $.ajax({
-            type: 'POST',
-            url: '/reply/boRepDelete', // 삭제 처리를 수행할 컨트롤러의 URL
-            data: {
-                boRepNo: replyId,
-                boardNo: boardNo
-            },
-            success: function (data) {
-            	console.log("댓글 삭제 성공!!")
-            	document.getElementById('replyForm').submit();
+              	location.reload();
             },
             error: function (error) {
             	console.error('댓글 삭제 실패:', error);
             }
         });
 
+			$('#replyModal').modal('hide');
         // 모달 닫기
+    }
+
+    // 댓글 삭제 함수
+    function deleteReply() {
+        var replyId = $('#replyId').val();
+        var boardNo = $('#boardNo').val();
+        var pageNum = $('input[name=pageNum]').val();
+        var amount = $('input[name=amount]').val();
+       
+		 $.ajax({
+            type: 'POST',
+            url: '/reply/boRepDelete', // 삭제 처리를 수행할 컨트롤러의 URL
+            data: {
+                boRepNo: replyId,
+                boardNo: boardNo,
+                pageNum: pageNum,
+                amount: amount
+            },
+            dataType : "text",
+            success: function (data) {
+            	console.log("댓글 삭제 성공!!")
+            	location.reload();
+            },
+            error: function (error) {
+            	console.error('댓글 삭제 실패:', error);
+            }
+        });
         $('#replyModal').modal('hide');
+
+        
     }
 	
 </script>

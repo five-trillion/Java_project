@@ -86,6 +86,17 @@
 		order by b.boardNo desc
 		limit 3
 	</select>
+	
+	<!-- 검색 -->
+	<select id="search" resultType="com.shop.domain.ProductVO">
+   		select *
+		from product
+		where
+		<if test="keyword != null">
+			prodName like concat('%', #{keyword}, '%')
+		</if>  
+		order by prodNo
+   	 </select>
 		
 	<!-- ==================================================================== -->
 	<!-- 리뷰 -->
@@ -142,10 +153,6 @@
 	</update>
 	
 	<!-- ==================================================================== -->
-	<!-- 리뷰댓글 -->
-	
-	
-	<!-- ==================================================================== -->
 	<!-- 장바구니 -->
 	
 	
@@ -193,7 +200,7 @@
 	   
 	<!-- 주문 상세 정보 --> 
 	<insert id="orderDetail">
-	 insert into order_detail(orderNo, orderListNo, prodNo, orderCnt, totalPrice)
+	 insert into order_detail(orderNo, orderListNo, prodNo, orderCnt, prodSum)
 	     select #{orderNo}, #{orderListNo}, prodNo, orderCnt, (select salePrice from product where prodNo=c.prodNo)*orderCnt
 	         from cart c
 	</insert> 
@@ -222,10 +229,45 @@
 		select oi.* , od.*, d.*, p.prodName,salePrice,prodMainImg, (select codeName from code where codeId = 'orderSta' and codeNum = oi.orderSta) as odst
 		from order_info oi, order_detail od, delivery d, product p
 		where oi.orderNo = od.orderNo and oi.orderNo = d.orderNo and od.prodNo=p.prodNo
-		and oi.orderNo = #{orderNo} and od.prodNo=#{prodNo}
+		and oi.orderNo = #{orderNo}
 	</select>
 	
+	<select id="getProd" resultType="com.shop.domain.OrderVO">
+		select oi.orderNo,userNo,orderDate, od.prodNo,orderCnt, p. prodName,prodMainImg 
+		from order_info oi, order_detail od, product p 
+		where oi.orderNo = od.orderNo and od.prodNo=p.prodNo
+		and userNo=#{userNo}
+	</select>
 	
+	<select id="getRevi" resultType="com.shop.domain.ReviewVO">
+		select r.*, p.prodName 
+		from review r inner join product p
+		on r.prodNo = p.prodNo
+		where userNo = #{userNo}
+		order by reviNo desc
+	</select>
 	
+	<select id="getLounge" resultType="com.shop.domain.BoardVO">
+		select * 
+		from board
+		where boardClass = 3
+		and userNo = #{userNo}
+		order by boardNo desc
+	</select>
+	
+	<select id="getReply" resultType="com.shop.domain.BoardReplyVO">
+		select * 
+		from board_reply
+		where userNo = #{userNo}
+		order by boRepNo desc
+	</select>
+	
+	<select id="getQna" resultType="com.shop.domain.BoardVO">
+		select * 
+		from board
+		where boardClass = 2
+		and userNo = #{userNo}
+		order by boardNo desc
+	</select>
 	
 </mapper>

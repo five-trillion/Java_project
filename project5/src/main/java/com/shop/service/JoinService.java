@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import java.util.List;
+
 import com.shop.domain.PetVO;
 import com.shop.domain.UsersVO;
 
@@ -22,6 +24,9 @@ public interface JoinService {
 	// 반려견 정보 기입
 	public void insertPet(PetVO pet) throws Exception;
 	
+	// 반려견 정보 조회
+	public List<PetVO> getPet(long userNo) throws Exception;
+		
 	// 회원 아이디 찾기 
 	public UsersVO searchIdByEmail(UsersVO user) throws Exception;
 	public UsersVO searchIdByPhone(UsersVO user) throws Exception;
@@ -32,5 +37,8 @@ public interface JoinService {
 
     // 아이디, 이름, 이메일 일치 여부 확인
     public boolean isValidUser(String userId, String userName, String email);
+
+
+	
 
 }

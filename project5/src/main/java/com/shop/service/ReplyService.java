@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.shop.domain.BoardReplyVO;
+import com.shop.domain.ReviewReplyVO;
 
 @Service
 public interface ReplyService {
@@ -25,4 +26,18 @@ public interface ReplyService {
 	
 	// 댓글 삭제
 	public void replyDelete(Long boRepNo) throws Exception;
+	
+	/* ======================== Review  ======================== */ 
+	
+	// 댓글 조회
+	public List<ReviewReplyVO> getReviewReplyList(long reviNo) throws Exception;
+	
+	// 댓글 등록 
+	public int reviewReplyRegister(ReviewReplyVO reviRep) throws Exception;
+	
+	// 댓글 수정
+	public void reviewReplyModify(ReviewReplyVO reviRep) throws Exception;
+	
+	// 댓글 삭제
+	public void reviewReplyDelete(Long reviRepNo) throws Exception;
 }

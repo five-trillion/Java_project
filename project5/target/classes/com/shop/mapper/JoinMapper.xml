@@ -49,6 +49,11 @@
 			values (default, #{userNo}, #{petName}, #{petKind}, #{petAge})
 		</insert>
 		
+		<!-- 애완동물 정보 조회 -->
+		<select id="getPet" resultType="com.shop.domain.PetVO">
+			select * from pet where userNo = #{userNo}
+		</select>
+
 		<!-- 이메일로 회원 아이디 찾기 -->
 		<select id="searchIdByEmail" resultType="com.shop.domain.UsersVO">
 			select * 

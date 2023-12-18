@@ -44,7 +44,7 @@
 		                	<c:forEach items="${order}" var="order">
 		                    <tr>
 		                    	<td class="shoping__cart__total">
-		                            <img src="${contextPath}/resources/upload/product/thumbnails/${order.prodMainImg}" alt="" style="width:100px;">
+		                            <img src="${contextPath}/resources/upload/product/main/${order.prodMainImg}" alt="" style="width:100px;">
 		                        </td>
 		                        <td class="shoping__cart__item" style="padding-left: 20px; width: 420px;">
 		                            <h5>${order.prodName}</h5> <br>
@@ -56,7 +56,7 @@
 		                            </div>
 		                        </td>
 		                        <td class="shoping__cart__total">
-		                            <fmt:formatNumber pattern="###,###,###.##" value="${order.totalPrice}" />
+		                            <fmt:formatNumber pattern="###,###,###.##" value="${order.prodSum}" />
 		                        </td>
 		                    </tr>
 		                    <c:set var="orderSum" value="${orderSum + order.salePrice * order.orderCnt}"/>

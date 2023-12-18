@@ -12,6 +12,9 @@ import com.shop.domain.AnswerVO;
 import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
+import com.shop.domain.DeliveryVO;
+import com.shop.domain.OrderDetailVO;
+import com.shop.domain.OrderInfoVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReportVO;
 import com.shop.domain.ReviewReplyVO;
@@ -164,7 +167,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<ProductVO> getListProd() throws Exception {
+	public List<ProductVO> getListProd() {
 		System.out.println("prodList service 지나가는중");
 		return mapper.getListProd();
 	}
@@ -173,5 +176,44 @@ public class AdminServiceImpl implements AdminService {
 	public ProductVO getProd(String prodNo) {
 		log.info("getProd service 지나가는중"+prodNo);
 		return mapper.readProd(prodNo);
+	}
+	
+	@Override
+	public List<OrderDetailVO> getListOrederDetail() {
+		log.info("orderdetail 지나가는중");
+		return mapper.getListOrederDetail();
+	}
+	
+	@Override
+	public List<DeliveryVO> getListDelivery() {
+		log.info("delovery 지나가는중");
+		return mapper.getListDelivery();
+	}
+	@Override
+	public List<OrderInfoVO> orderList() {
+	    log.info("orderinfo 지나가는중");
+	    List<OrderInfoVO> result = mapper.orderList();
+	    log.info("OrderList Result: " + result);
+	    return result;
+	}
+	
+	@Override
+    public void deliInfo(String orderNo, String deliInfo) {
+        mapper.deliInfo(orderNo, deliInfo);
+    }
+	
+	@Override
+	public List<OrderInfoVO> orderUnsetList() {
+	    log.info("orderUnsetList 지나가는중");
+	    List<OrderInfoVO> result = mapper.orderUnsetList();
+	    log.info("OrderUnsetList Result: " + result);
+	    return result;
+	}
+	
+	public List<OrderInfoVO> adminOrderDetail(){
+		log.info("orderDetail 지나가는중");
+	    List<OrderInfoVO> result = mapper.adminOrderDetail();
+	    log.info("adminOrderDetail Result: " + result);
+	    return result;
 	}
 }
