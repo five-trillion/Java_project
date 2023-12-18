@@ -6,6 +6,9 @@ import com.shop.domain.AnswerVO;
 import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
+import com.shop.domain.DeliveryVO;
+import com.shop.domain.OrderDetailVO;
+import com.shop.domain.OrderInfoVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReportVO;
 import com.shop.domain.ReviewReplyVO;
@@ -35,6 +38,12 @@ public interface AdminService {
 	//
 	public List<CodeVO> prodCodeInsert();
 	
+	public boolean prodModify(ProductVO prodVo);
+	
+	public ProductVO getProd(String prodNo);
+	
+	public boolean prodRemove(String prodNo);
+	public List<ProductVO> getListProd() throws Exception;
 	
 	// 게시판 ----------
 	// 게시판 조회
@@ -73,14 +82,19 @@ public interface AdminService {
 	// 신고 처리
 	public void reportComplete(int repoNo);
 	// end 신고관리--------
-	public List<ProductVO> getListProd() throws Exception;
 	
-	public boolean prodModify(ProductVO prodVo);
+
+	public List<OrderInfoVO> orderList();
 	
-	public ProductVO getProd(String prodNo);
+	public List<OrderDetailVO> getListOrederDetail();
 	
-	public boolean prodRemove(String prodNo);
+	public List<DeliveryVO> getListDelivery();
 	
+	public void deliInfo(String orderNo, String deliInfo);
+	
+	public List<OrderInfoVO> orderUnsetList();
+	
+	public List<OrderInfoVO> adminOrderDetail();
 	// 정산 -----------------
 	// 매출관리정보
 	public List<SalesVO> getSalesInfo();

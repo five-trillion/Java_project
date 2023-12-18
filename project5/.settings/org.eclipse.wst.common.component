@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
 <<<<<<< HEAD
+            
+    
+    <wb-module deploy-name="controller-1.0.0-BUILD-SNAPSHOT">
+                        
+        
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+                        
+        
+=======
+<<<<<<< HEAD
 =======
         
     <wb-module deploy-name="controller-1.0.0-BUILD-SNAPSHOT">
@@ -19,6 +29,7 @@
     <wb-module deploy-name="controller-1.0.0-BUILD-SNAPSHOT">
                         
         
+>>>>>>> master
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
                         
         
@@ -28,15 +39,24 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
                         
         
+<<<<<<< HEAD
+        <property name="java-output-path" value="/project5/target/classes"/>
+                
+        <property name="context-root" value="controller"/>
+=======
         <property name="context-root" value="controller"/>
                         
         
         <property name="java-output-path" value="/project5/target/classes"/>
+>>>>>>> master
                     
     
     </wb-module>
         
 
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> master
 >>>>>>> master
 </project-modules>
