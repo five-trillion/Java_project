@@ -31,15 +31,15 @@
 		            </ul>
 		            <ul class="coldiv-3 orderstate ">
 		            	<li>
-		                    <strong><a href="/myshop/order/list.html?order_status=shipped_standby" class="fs30"><span id="xans_myshop_orderstate_shppied_standby_count">0</span></a></strong>
+		                    <strong><a href="/mypage/order" class="fs30"><span id="xans_myshop_orderstate_shppied_standby_count">0</span></a></strong>
 		                    <span class="fs11">배송 준비중</span>
 		                </li>
 						<li>
-		                    <strong><a href="/myshop/order/list.html?order_status=shipped_begin" class="fs30"><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a></strong>
+		                    <strong><a href="/mypage/order" class="fs30"><span id="xans_myshop_orderstate_shppied_begin_count">0</span></a></strong>
 		                    <span class="fs11">배송중</span>
                 		</li>
 						<li>
-		                    <strong><a href="/myshop/order/list.html?order_status=shipped_complate" class="fs30"><span id="xans_myshop_orderstate_shppied_complate_count">0</span></a></strong>
+		                    <strong><a href="/mypage/order" class="fs30"><span id="xans_myshop_orderstate_shppied_complate_count">0</span></a></strong>
 		                    <span class="fs11">배송완료</span>
                 		</li>
 					</ul>
@@ -56,15 +56,15 @@
 		            </ul>
 		            <ul class="xans-element- xans-myshop xans-myshop-orderstate coldiv-3 orderstate ">
 		            	<li>
-		                    <strong><a href="/myshop/order/list.html?order_status=order_cancel" class="fs30"><span id="xans_myshop_orderstate_order_cancel_count">0</span></a></strong>
+		                    <strong><a href="/mypage/order" class="fs30"><span id="xans_myshop_orderstate_order_cancel_count">0</span></a></strong>
 		                    <span class="fs11">취소</span>
                 		</li>
 						<li>
-		                    <strong><a href="/myshop/order/list.html?order_status=order_exchange" class="fs30"><span id="xans_myshop_orderstate_order_exchange_count">0</span></a></strong>
+		                    <strong><a href="/mypage/order" class="fs30"><span id="xans_myshop_orderstate_order_exchange_count">0</span></a></strong>
 		                    <span class="fs11">교환</span>
                 		</li>
 						<li>
-		                    <strong><a href="/myshop/order/list.html?order_status=order_return" class="fs30"><span id="xans_myshop_orderstate_order_return_count">0</span></a></strong>
+		                    <strong><a href="/mypage/order" class="fs30"><span id="xans_myshop_orderstate_order_return_count">0</span></a></strong>
 		                    <span class="fs11">반품</span>
                 		</li>
 					</ul>
