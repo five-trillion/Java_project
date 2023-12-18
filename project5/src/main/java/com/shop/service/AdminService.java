@@ -4,6 +4,9 @@ import java.util.List;
 
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
+import com.shop.domain.DeliveryVO;
+import com.shop.domain.OrderDetailVO;
+import com.shop.domain.OrderInfoVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.UsersVO;
 
@@ -23,11 +26,23 @@ public interface AdminService {
 	
 	public List<CodeVO> prodCodeInsert();
 	
-	public List<ProductVO> getListProd() throws Exception;
+	public List<ProductVO> getListProd();
 	
 	public boolean prodModify(ProductVO prodVo);
 	
 	public ProductVO getProd(String prodNo);
 	
 	public boolean prodRemove(String prodNo);
+	
+	public List<OrderInfoVO> orderList();
+	
+	public List<OrderDetailVO> getListOrederDetail();
+	
+	public List<DeliveryVO> getListDelivery();
+	
+	public void deliInfo(String orderNo, String deliInfo);
+	
+	public List<OrderInfoVO> orderUnsetList();
+	
+	public List<OrderInfoVO> adminOrderDetail();
 }

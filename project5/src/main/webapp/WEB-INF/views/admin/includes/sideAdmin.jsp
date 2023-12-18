@@ -12,10 +12,10 @@
 				</a>
 				<ul id="components-nav" class="nav-content collapse "
 					data-bs-parent="#sidebar-nav">
-					<li><a href="#"> <i
+					<li><a href="adminUnsetOrder"> <i
 							class="bi bi-circle"></i><span>미처리 조회</span>
 					</a></li>
-					<li><a href="#"> <i
+					<li><a href="adminOrderList"> <i
 							class="bi bi-circle"></i><span>주문 완료 조회</span>
 					</a></li>
 				</ul></li>

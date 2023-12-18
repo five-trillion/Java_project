@@ -3,24 +3,31 @@ package com.shop.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.domain.BoardVO;
 import com.shop.domain.CodeVO;
+import com.shop.domain.DeliveryVO;
+import com.shop.domain.OrderDetailVO;
+import com.shop.domain.OrderInfoVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.UsersVO;
 import com.shop.service.AdminService;
@@ -146,7 +153,57 @@ public class AdminController {
 		}
 		return "redirect:/admin/adminProdList";
 	}
-	  
+	
+	//주문 관련 시작
+	// 주문 목록
+	@GetMapping("/adminOrderList")
+	public void adminOrderList(Model model) {
+	    // 서비스 레이어에서 주문, 상세, 배송, 상품 정보를 가져옵니다.
+	    List<OrderInfoVO> orderlist = adminService.orderList();
+	    	    
+	    model.addAttribute("orderlist", orderlist);
+	   System.out.println(orderlist);
+
+	    // JSP 페이지로 이동합니다.   
+	}
+	
+	// 미처리 주문 목록
+	@GetMapping("/adminUnsetOrder")
+	public void adminUnsetOrder(Model model) {
+	    // 서비스 레이어에서 주문, 상세, 배송, 상품 정보를 가져옵니다.
+	    List<OrderInfoVO> orderUnsetList = adminService.orderUnsetList();
+	    	    
+	    model.addAttribute("orderUnsetList", orderUnsetList);
+	   System.out.println(orderUnsetList);
+
+	    // JSP 페이지로 이동합니다.   
+	}
+	
+	//송장 번호 입력 	
+	@GetMapping("/deliInfo")
+	@ResponseBody
+    public ResponseEntity<String> getDeliInfo(@RequestParam("orderNo") String orderNo,
+                                             @RequestParam("deliInfo") String deliInfo) {
+        // 서비스를 통해 주문 정보 업데이트
+        adminService.deliInfo(orderNo, deliInfo);
+
+        // 성공적으로 업데이트되었다고 가정하고 응답
+        return ResponseEntity.ok("Delivery info updated successfully.");
+    }
+	
+	//주문 상세 보기
+	@GetMapping("/adminOrderDetail")
+	public void adminOrderDetail(Model model) {
+	    // 서비스 레이어에서 주문, 상세, 배송, 상품 정보를 가져옵니다.
+	    List<OrderInfoVO> adminOrderDetail = adminService.adminOrderDetail();
+	    	    
+	    model.addAttribute("adminOrderDetail", adminOrderDetail);
+	   System.out.println(adminOrderDetail);
+
+	    // JSP 페이지로 이동합니다.   
+	}
+	
+	
 	// 회원관리 이동
 	@GetMapping("/adminUserManage") 
 	public void adminUserManage(HttpServletRequest request) throws Exception {
