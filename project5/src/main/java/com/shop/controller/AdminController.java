@@ -54,7 +54,16 @@ public class AdminController {
 	
 	// adminHome 이동
 	@GetMapping("/adminHome")
-	public void adminHome()  throws Exception {
+	public void adminHome(Model model)  throws Exception {
+		
+		SalesVO sales = adminService.getTodaySales();
+		SalesVO join = adminService.getTodayJoin();
+		List<SalesVO> pRk = adminService.getProdRanking();
+		List<BoardVO> bRk = adminService.getBoardRanking();
+		model.addAttribute("sales", sales);
+		model.addAttribute("join", join);		
+		model.addAttribute("prodRanking", pRk);
+		model.addAttribute("boardRanking", bRk);
 		log.info("adminHome 도착");
 	}
 	

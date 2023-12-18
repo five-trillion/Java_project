@@ -159,7 +159,7 @@ public class ShopController {
         return "shop/checkout";
 	}
 	@RequestMapping(value = "/complete", method = RequestMethod.POST)
-	public String order(@RequestParam("totalPrice") int totalPrice, HttpServletRequest request, HttpSession session, OrderInfoVO order, OrderDetailVO orderdtVO, DeliveryVO deli) throws Exception {
+	public String order(@RequestParam("prodSum") int prodSum, HttpServletRequest request, HttpSession session, OrderInfoVO order, OrderDetailVO orderdtVO, DeliveryVO deli) throws Exception {
 		 UsersVO uVo = (UsersVO)session.getAttribute("user");  
 		 if (uVo == null) {
 			 System.out.println("user정보가 없습니다");
@@ -185,7 +185,7 @@ public class ShopController {
 		 System.out.println(order);
 		 
 		 orderdtVO.setOrderNo(orderNo);
-		 orderdtVO.setTotalPrice(totalPrice);
+		 orderdtVO.setProdSum(prodSum);
 		 service.orderDetail(orderdtVO);
 		 System.out.println(orderdtVO);
 		 

@@ -27,6 +27,27 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @Service
 public class AdminServiceImpl implements AdminService {
+	
+	
+	@Override
+	public List<BoardVO> getBoardRanking() {
+		return mapper.getBoardRanking();
+	}
+
+	@Override
+	public List<SalesVO> getProdRanking() {
+		return mapper.getProdRanking();
+	}
+
+	@Override
+	public SalesVO getTodaySales() {
+		return mapper.getTodaySales();
+	}
+
+	@Override
+	public SalesVO getTodayJoin() {
+		return mapper.getTodayJoin();
+	}
 
 	@Override
 	public void UpdateUserDetail(UsersVO usersVo) {

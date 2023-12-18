@@ -134,25 +134,7 @@
 			<div class="checkout__input">
 				<a href="#">아이디/비밀번호 찾기</a>
 			</div>
-			<input type="checkbox" id="saveId" name="saveId" onclick="saveId()">
-			아이디 저장 <span class="checkmark"></span>
-			<c:if test="${result==0}">
-				<div class="login_warn">아이디 혹은 비밀번호를 다시 입력해주세요.</div>
 
-			</c:if>
-			<div class="col-lg-8 col-md-6">
-				<div class="checkout__input">
-					<input type="submit" id="loginBtn" value="로그인">
-				</div>
-			</div>
-			<div class="checkout__input">
-				<a href="/shop/join">회원가입</a>
-			</div>
-			<div class="checkout__input">
-				<a href="#">아이디/비밀번호 찾기</a>
-			</div>
-
-		</form>
 	</div>
 
 	<%@ include file="../includes/footer.jsp"%>
@@ -180,32 +162,6 @@
 		     });
 		 });
 
-		 // 쿠키 설정 함수
-		 function setCookie(name, value, days) {
-		     var expires = "";
-		     if (days) {
-		         var date = new Date();
-		         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-		         expires = "; expires=" + date.toUTCString();
-		     }
-		     document.cookie = name + "=" + (value || "") + expires + "; path=/";
-		 }
-
-		 // 쿠키 가져오기 함수
-		 function getCookie(name) {
-		     var nameEQ = name + "=";
-		     var cookies = document.cookie.split(';');
-		     for (var i = 0; i < cookies.length; i++) {
-		         var cookie = cookies[i];
-		         while (cookie.charAt(0) === ' ') {
-		             cookie = cookie.substring(1, cookie.length);
-		         }
-		         if (cookie.indexOf(nameEQ) === 0) {
-		             return cookie.substring(nameEQ.length, cookie.length);
-		         }
-		     }
-		     return "";
-		 } */
 
 		$(function() {
 			var cookie_userId = getLogin();

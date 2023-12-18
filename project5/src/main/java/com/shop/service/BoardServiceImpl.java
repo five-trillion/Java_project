@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.shop.domain.BoardVO;
 import com.shop.domain.Criteria;
+import com.shop.domain.ProductVO;
+import com.shop.domain.ReviewVO;
 import com.shop.mapper.BoardMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -126,6 +128,38 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int freeDelete(long boardNo) throws Exception {
 		return boardmapper.freeDelete(boardNo);
-	}		
+	}
+
+	@Override
+	public List<ReviewVO> getReviewListPaging(Criteria cri) {
+		return boardmapper.getReviewListPaging(cri);
+	}
+
+	@Override
+	public int getReviewTotal(Criteria cri) {
+		return boardmapper.getReviewTotal(cri);
+	}
+
+	@Override
+	public int updateReviewCnt(long reviNo) throws Exception {
+		return boardmapper.updateReviewCnt(reviNo);
+	}
+
+	@Override
+	public ReviewVO reviewDetail(long reviNo) throws Exception {
+		return boardmapper.reviewDetail(reviNo);
+	}
+	
+	@Override
+	public ProductVO getproduct(String prodNo) throws Exception{
+		return boardmapper.getproduct(prodNo);
+	}
+	
+	@Override
+	public void reviewRegister(ReviewVO review) throws Exception {
+		boardmapper.reviewRegister(review);
+	}
+	
+	
 }
 

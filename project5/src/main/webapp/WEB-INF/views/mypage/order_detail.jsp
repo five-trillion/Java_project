@@ -47,7 +47,7 @@
 			                            </div>
 			                        </td>
 			                        <td class="shoping__cart__total">
-			                            <fmt:formatNumber pattern="###,###,###.##" value="${order.totalPrice}" />
+			                            <fmt:formatNumber pattern="###,###,###.##" value="${order.prodSum}" />
 			                        </td>
 			                    </tr>
 			                    </c:forEach>

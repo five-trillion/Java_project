@@ -34,7 +34,7 @@
 		background-color:white;
 		padding: 10px;
 	    font-size: 12px;
-	    width: 80%;
+	    width: 100%;
 	    resize: none;
 	    box-sizing: border-box;
 	}
@@ -52,7 +52,6 @@
 					<div class="page_title fs60">
 						<font color="#555555">자유게시판</font>
 					</div>
-					<p class="imgArea displaynone"></p>
 				</div>
 				<form method="get" id="frm" name="frm" action="/board/loungeModify" enctype="multipart/form-data">
 					<div class="n_board line typeList gBorder">
@@ -76,9 +75,11 @@
 							<tbody>
 								<tr>
 									<td>
-										<div class="chk fs13">내용</div>
 										<div class="subject left fs13">
-											<img src="${contextPath}/resources/upload/lounge/${freeDetail.boardImg}" alt="게시글 이미지">
+											<c:if test = "${freeDetail.boardImg ne null}">
+												<img src="${contextPath}/resources/upload/lounge/${freeDetail.boardImg}">
+											</c:if>
+											<br><br>
 											<c:out value="${freeDetail.boardContent}"></c:out>
 										</div>
 									</td>
@@ -87,10 +88,16 @@
 						</table>
 						<input type="hidden" name="boardTitle" value="${freeDetail.boardTitle}">
 						<input type="hidden" name="boardContent" value="${freeDetail.boardContent}">
-						
+						<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+						<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
 						<div class="boardbtn">
-							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
-							<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button>
+							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge?pageNum=${cri.pageNum}&amount=${cri.amount}'">목록</button>
+							<c:if test="${user.userNo ne freeDetail.userNo}"> 
+								<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()" disabled>수정</button>
+							</c:if>		
+							<c:if test="${user.userNo eq freeDetail.userNo}"> 
+								<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button>
+							</c:if>
 						</div>
 					</div>
 				</form>
@@ -103,7 +110,7 @@
 							<thead>
 								<tr>
 									<td>
-										<div> 리플 <%-- <c:out value={replycnt}/> --%> </div>
+										<div> 리플 <%-- <c:out value={boRepCnt}/> --%> </div>
 									</td>
 								<tr>
 							</thead>
@@ -112,6 +119,8 @@
 									<td>
 										<input type="hidden" name="boardNo" value="${freeDetail.boardNo}">
 										<input type="hidden" name="userNo" value="${user.userNo}">
+										<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
+										<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
 										<textarea id="boRepContent" name="boRepContent" rows="5"></textarea>
 										<div class="boardbtn">
 											<button type="button" id="registerBtn" name="registerBtn" onclick="checkLoginAndRedirect()">등록</button>
@@ -121,26 +130,63 @@
 								<tr>
 									<c:forEach var="reply" items="${reply}">
 										<td>
+											<div style="width:900px;">
+												<c:if test="${freeDetail.userNo eq reply.userNo}">
+													작성자 <b><c:out value="${reply.userNick}"/></b>&nbsp;&nbsp;&nbsp;
+													작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.boRepReg}"/></b><br>
+													<!-- 게시글 작성자의 댓글 구분 -->
+													<p style="color:#FF0033;"><c:out value="${reply.boRepContent}"/></p>
+												</c:if>
+												<c:if test="${freeDetail.userNo ne reply.userNo}">
+													작성자 <b><c:out value="${reply.userNick}"/></b>&nbsp;&nbsp;&nbsp;
+													작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.boRepReg}"/></b><br>
+													<p><c:out value="${reply.boRepContent}"/></p>
+												</c:if>
+											</div>
 											<div>
-												작성자 <b><c:out value="${reply.userNick}"/></b>&nbsp;&nbsp;&nbsp;
-												작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.boRepReg}"/></b><br>
-												<c:out value="${reply.boRepContent}"/>
+												<c:if test="${user.userNo eq reply.userNo}">
+													<button type="button" class="btn btn-primary" data-toggle="modal" 
+													data-target="#replyModal" data-replyid="${reply.boRepNo}" 
+													data-replycontent="${reply.boRepContent}">수정</button> 
+												</c:if>
 											</div>
 										</td>
 									</c:forEach>	
 								</tr>
 							</tbody>
 						</table>
-						
-						<div class="boardbtn">
-							<!-- <button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
-							<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button> -->
-						</div>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	
+	<!-- modal -->
+	<div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
+	    <div class="modal-dialog modal-lg" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="replyModalLabel">수정 / 삭제</h5>
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">&times;</span>
+	                </button>
+	            </div>
+	            <div class="modal-body">
+	                <form id="replyForm">
+	                    <input type="hidden" id="replyId" name="replyId">
+	                    <div class="form-group">
+	                        <label for="replyContent">댓글 내용</label>
+	                        <textarea class="form-control" id="replyContent" name="replyContent" rows="3"></textarea>
+	                    	<input type="hidden" name="boardNo" value="${freeDetail.boardNo}">
+	                    </div>
+	                    <button type="button" class="btn btn-primary" onclick="modifyReply()">수정</button>
+	                    <button type="button" class="btn btn-danger" onclick="deleteReply()">삭제</button>
+	                </form>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
 	<%@ include file="../includes/footer.jsp"%>
 <script>
 	function submitForm() {
@@ -159,6 +205,76 @@
             // 로그인이 되어 있는 경우
         	document.getElementById('replyfrm').submit();
         }
+    }
+	
+	$('#replyModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // 클릭된 버튼
+        var replyId = button.data('replyid'); // 댓글 ID
+        var replyContent = button.data('replycontent'); // 댓글 내용
+
+        // 모달 내용 설정
+        $('#replyId').val(replyId);
+        $('#replyContent').val(replyContent);
+    });
+
+    // 댓글 수정 함수
+    function modifyReply() {
+        var replyId = $('#replyId').val();
+        var replyContent = $('#replyContent').val();
+        var boardNo = $('#boardNo').val();
+        var pageNum = $('input[name=pageNum]').val();
+        var amount = $('input[name=amount]').val();
+		$.ajax({
+            type: 'POST',
+            url: '/reply/boRepModify', // 수정 처리를 수행할 컨트롤러의 URL
+            data: {
+                boRepNo: replyId,
+                boRepContent: replyContent,
+                boardNo: boardNo,
+                pageNum: pageNum,
+                amount: amount
+            },
+            success: function (data) {
+              	console.log("댓글 수정 성공!!")
+              	location.reload();
+            },
+            error: function (error) {
+            	console.error('댓글 삭제 실패:', error);
+            }
+        });
+
+			$('#replyModal').modal('hide');
+        // 모달 닫기
+    }
+
+    // 댓글 삭제 함수
+    function deleteReply() {
+        var replyId = $('#replyId').val();
+        var boardNo = $('#boardNo').val();
+        var pageNum = $('input[name=pageNum]').val();
+        var amount = $('input[name=amount]').val();
+       
+		 $.ajax({
+            type: 'POST',
+            url: '/reply/boRepDelete', // 삭제 처리를 수행할 컨트롤러의 URL
+            data: {
+                boRepNo: replyId,
+                boardNo: boardNo,
+                pageNum: pageNum,
+                amount: amount
+            },
+            dataType : "text",
+            success: function (data) {
+            	console.log("댓글 삭제 성공!!")
+            	location.reload();
+            },
+            error: function (error) {
+            	console.error('댓글 삭제 실패:', error);
+            }
+        });
+        $('#replyModal').modal('hide');
+
+        
     }
 	
 </script>

@@ -68,10 +68,6 @@
                         <div onclick="location.href='/shop/brand?b=jf'" class="categories__item set-bg-cat" data-setbg="${contextPath}/resources/shop/img/categories/jf_logo.jpg" style="background-image: url(&quot;../../resources/shop/img/categories/jf_logo.jpg&quot;);">
                         </div>
                     </div></div></div></div>
-                    <div class="owl-nav">
-                    <button type="button" role="presentation" class="owl-prev"><span class="fa fa-angle-left"><span></span></span></button>
-                    <button type="button" role="presentation" class="owl-next"><span class="fa fa-angle-right"><span></span></span></button>
-                    </div>
                     <div class="owl-dots disabled"></div>
                     <div class="slide-progress"></div>
                 </div>
@@ -91,9 +87,9 @@
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
-                            <li data-filter=".fe">사료</li>
-                            <li data-filter=".sn">간식</li>
-                            <li data-filter=".nu">영양제</li>
+                            <li data-filter=".FE">사료</li>
+                            <li data-filter=".SN">간식</li>
+                            <li data-filter=".NU">영양제</li>
                         </ul>
                     </div>
                 </div>
