@@ -37,9 +37,32 @@
 			where userId = #{userId} 
 		</update>
 		
+		<!-- 회원탈퇴 -->
+		<delete id="deleteUser" parameterType="String">
+			delete from users 
+			where userId=#{userId}
+		</delete>
+		
 		<!-- 애완동물 정보 입력 -->
 		<insert id="insertPet">
 			insert into pet (petNo, userNo, petName, petKind, petAge)
 			values (default, #{userNo}, #{petName}, #{petKind}, #{petAge})
 		</insert>
+		
+		<!-- 이메일로 회원 아이디 찾기 -->
+		<select id="searchIdByEmail" resultType="String">
+			select userId 
+			from users
+			where userName = #{userName}
+			and email = #{email}
+		</select>
+		
+		<!-- 휴대폰번호로 회원 아이디 찾기 -->
+		<select id="searchIdByPhone" resultType="String">
+			select userId 
+			from users
+			where userName = #{userName}
+			and phone = #{phone}
+		</select>
+		
 	</mapper>

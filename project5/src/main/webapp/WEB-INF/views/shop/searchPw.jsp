@@ -8,13 +8,7 @@
 <title>로그인</title>
 
 <%@ include file="../includes/src.jsp" %>
- 	<style>
- 		.login_warn {
- 			margin-top : 10px;
- 			text-align : center;
- 			color : red;
- 		}
- 	</style>
+ 
 </head>
 <body>
 	<%@ include file="../includes/header.jsp"%>
@@ -24,7 +18,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="contact__form__title">
-					<h2>로그인</h2>
+					<h2>비밀번호 찾기</h2>
 				</div>
 			</div>
 		</div>
@@ -57,10 +51,7 @@
 	           	</div>
 	        </div>
 	        <div class="checkout__input"><a href="/shop/join">회원가입</a></div> 	
-	        <div class="checkout__input">
-	        	<a href="/shop/searchId">아이디 찾기</a> &nbsp;/&nbsp;
-	        	<a href="/shop/searchPw">비밀번호 찾기</a>
-	        </div> 
+	        <div class="checkout__input"><a href="#">아이디/비밀번호 찾기</a></div> 
 	        
 	    </form>
 	</div>

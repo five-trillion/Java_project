@@ -28,15 +28,27 @@ public class JoinServiceImpl implements JoinService {
 		return joinmapper.loginUser(user);
 	}
 
-	
 	@Override 
 	public void updateUser(UsersVO user) throws Exception {
 		joinmapper.updateUser(user);
 	}
 	
 	@Override
+	public void deleteUser(String userId) throws Exception {
+	    joinmapper.deleteUser(userId);
+	}
+	
+	@Override
 	public void insertPet(PetVO pet) throws Exception {
 		joinmapper.insertPet(pet);
 	}
- 		
+	
+	@Override
+	public UsersVO searchIdByEmail(String userName, String email) throws Exception {
+        return joinmapper.searchIdByEmail(userName, email);
+	}
+	@Override
+	public UsersVO searchIdByPhone(String userName, String phone) throws Exception {
+        return joinmapper.searchIdByPhone(userName, phone);
+	}
 }

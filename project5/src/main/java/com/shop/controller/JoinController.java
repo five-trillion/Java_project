@@ -5,8 +5,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -114,6 +117,66 @@ public class JoinController {
 		joinservice.updateUser(user);
 		System.out.println("회원정보 수정 성공");
 		return "redirect:/";
-	}		
+	}
+	
+	//회원 탈퇴
+	@RequestMapping(value="/mypage-delete", method = RequestMethod.POST)
+	public String deletePOST(HttpServletRequest request, HttpSession session) {
+		UsersVO loginUser = (UsersVO) session.getAttribute("user");
+		if(loginUser != null) {
+			try {
+				joinservice.deleteUser(loginUser.getUserId());
+				session.invalidate();
+			} catch	(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return "redirect:/";
+	}
+	
+	//회원 아이디 찾기 페이지 이동
+	@RequestMapping(value="searchId", method=RequestMethod.GET)
+	public void searchIdGET() {
+		System.out.println("아이디 찾기 페이지 진입");
+	}
+	
+	// 아이디 찾기
+	@RequestMapping(value="searchId", method=RequestMethod.POST) 
+	public String searchIdPOST(Model model, @RequestParam String userName, @RequestParam String email, @RequestParam String phone, @RequestParam String searchType, RedirectAttributes rttr) {
+		 try {
+		        UsersVO searchUser = null;
+
+		        // 라디오 버튼에 따라 검색 조건 다르게 설정
+		        if ("email".equals(searchType)) {
+		            searchUser = joinservice.searchIdByEmail(userName, email);
+		            System.out.println(searchUser);
+		        } else if ("phone".equals(searchType)) {
+		            searchUser = joinservice.searchIdByPhone(userName, phone);
+		        }
+
+		        if (searchUser != null) {
+		            // 일치하는 회원이 있다면 해당 회원의 아이디를 FlashAttribute에 추가하여 전달
+		            rttr.addFlashAttribute("userId", searchUser.getUserId());
+		        } else {
+		            // 일치하는 회원이 없으면 메시지 전달
+		            rttr.addFlashAttribute("notFound", true);
+		        }
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+
+	    return "redirect:/shop/showId";
+	}
+	
+	//회원 아이디 찾기 결과 페이지 이동
+	@RequestMapping(value="showId", method=RequestMethod.GET)
+	public void showIdGET() {
+		System.out.println("아이디 찾기 결과 페이지 진입");
+	}
+	
+	@RequestMapping(value="searchPw", method=RequestMethod.GET)
+	public void searchPwGET() {
+		System.out.println("비밀번호 찾기 페이지 진입");
+	}
 }
 

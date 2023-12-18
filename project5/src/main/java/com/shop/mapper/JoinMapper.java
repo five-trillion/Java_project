@@ -16,6 +16,13 @@ public interface JoinMapper {
 	// 회원정보 수정
 	public void updateUser(UsersVO user) throws Exception;
 	
+	// 회원 탈퇴
+	public void deleteUser(String userId) throws Exception;
+	
 	// 반려견 정보 기입
 	public void insertPet(PetVO pet) throws Exception;
+	
+	// 회원 아이디 찾기 
+	public UsersVO searchIdByEmail(String userName, String email)throws Exception;
+	public UsersVO searchIdByPhone(String userName, String phone)throws Exception;
 }
