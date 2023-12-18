@@ -17,3 +17,14 @@
 	background-color: red;
 	border: 1px solid black;
 }
+
+.btnBox .btn {
+	margin-right: 20px;
+}
+#container > main > #half {
+	width: 50%;
+}
+
+#eventY {
+	width: 0px;
+}

@@ -16,4 +16,6 @@ public class ReviewVO {
 	private Integer rating; //평점
 	private String userImg; //고객 등록 이미지 URL
 	private int reviCnt; //리뷰 조회 수
+	
+	private String userNick; //게시물 작성자 닉네임(회원번호로 users 테이블에 있는 nick을 담을 임의의 변수)
 }

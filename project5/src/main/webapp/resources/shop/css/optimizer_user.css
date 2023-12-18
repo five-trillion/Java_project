@@ -4916,7 +4916,7 @@ a.more_btn {
 
 .page_wrap {
     width: 988px;
-    margin: 0 auto;
+    margin: 70px auto 0;
 }
 
 .page_wrap .fr-box.fr-basic {
@@ -5681,7 +5681,7 @@ select[id="oemail3"] {
     border: 1px solid var(--acr1);
     margin-bottom: 30px;
     margin-top: -20px;
-    border-top: 0;
+    border-top: 1px solid var(--acr1);
 }
 
 .mileage_box ul {
@@ -7452,3 +7452,42 @@ h1,h3 {
 }
 
 .xans-layout-logobottom img
+
+.order_result .ec-base-table table{border:none;    border-top: 1px solid var(--acr1);}
+.order_result  .ec-base-table table:before{display:none;}
+.order_result .ec-base-table thead th{border-left:none;background: none;font-size: 12px;}
+.order_result .ec-base-table td{border-top:none;    border-bottom: 1px solid var(--acr3);}
+.order_result .n_board table tr td{    border-bottom: 1px solid var(--acr3);}
+.order_result  .ec-base-table.typeList td{padding:15px 0;}
+
+.order_result .n_board table tr td .prd_info{width: 60%;}
+.order_result .n_board table tr td .thumbnail,
+.order_result .n_board table tr td .prd_price,
+.order_result .n_board table tr td .prd_cnt,
+.order_result .n_board table tr td .prd_tot{width: 10%;}
+.order_result .ec-base-table .thumbnail img{max-width: 30px;}
+.order_result .ec-base-table.typeList tfoot td{background:none;}
+.order_result .ec-base-table.typeList tfoot td.totalP{padding: 0 0 15px 0;}
+.order_result .ec-base-table.typeList tfoot td.totalDet{border-bottom: 0;}
+
+.order_result .totalArea .ec-base-table .center{display: flex;justify-content: space-evenly;align-items: center;border-top: 1px solid var(--acr1);}
+.order_result .totalArea .ec-base-table .center > div{flex: 1;}
+.order_result .totalArea .ec-base-table .center > div strong.td_t{display: block;border-bottom: 1px solid var(--acr3);margin-bottom: 10px;height: 40px;line-height: 40px;}
+.order_result .orderArea .ec-base-table td > span.row{display: inline-block;width: 130px;vertical-align: middle;font-weight: 600; padding: 0 25px;}
+
+
+@media all and (max-width:768px) {
+    .order_result  .n_board table tr td{display: block;}
+    .order_result  .n_board table tr td .td_t{width:100%;display: block;margin-bottom: 5px;}
+    #btn_bank_go{margin-top: 10px;display: block;}
+    
+    .order_result .ec-base-table.typeList tbody td{    padding-left: 50px !important;}
+    .order_result .n_board table tr td .thumbnail {position: absolute;left: 0;}
+    .order_result .n_board table tr td .thumbnail,
+    .order_result .n_board table tr td .prd_price,
+    .order_result .n_board table tr td .prd_cnt,
+    .order_result .n_board table tr td .prd_tot{width: 100%;margin-top: 5px;}
+    .order_result .n_board table tr td .prd_price{display:none;}
+    .order_result .orderArea .ec-base-table td > span.row{display: block;padding-bottom: 5px;width: 100%;}
+
+}

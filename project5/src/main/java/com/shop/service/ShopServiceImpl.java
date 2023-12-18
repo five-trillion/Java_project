@@ -5,9 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
+import com.shop.domain.CartVO;
+import com.shop.domain.DeliveryVO;
+import com.shop.domain.OrderDetailVO;
+import com.shop.domain.OrderInfoVO;
+import com.shop.domain.OrderVO;
 import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
+import com.shop.domain.UsersVO;
 import com.shop.mapper.ShopMapper;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +32,7 @@ public class ShopServiceImpl implements ShopService {
 	public List<BoardVO> freepopList() throws Exception {
 		// TODO Auto-generated method stub
 		try {
-			System.out.println("=====Service.freepopList=====");
+//			System.out.println("=====Service.freepopList=====");
 			return mapper.freepopList();
 		} catch (Exception e) {
 		      log.error("Error fetching freelist", e);
@@ -71,7 +78,7 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public List<ProductVO> prodList() throws Exception{
 		try {
-			System.out.println("=====Service.prodList=====");
+//			System.out.println("=====Service.prodList=====");
 			return mapper.prodList();
 		} catch (Exception e) {
 		      log.error("Error fetching prodlist", e);
@@ -80,9 +87,21 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
+	public List<ProductVO> prodbrandList(String brand) throws Exception{
+//		System.out.println("=====Service.prodbrandList=====");
+		return mapper.prodbrandList(brand);
+	}
+	
+	@Override
+	public List<ProductVO> prodcatList(String category) throws Exception{
+//		System.out.println("=====Service.prodcategoryList=====");
+		return mapper.prodcatList(category);
+	}
+	
+	@Override
 	public ProductVO prodDetail(String prodNo) throws Exception{
 		try {
-			System.out.println("=====Service.prodDetail=====");
+//			System.out.println("=====Service.prodDetail=====");
 			return mapper.prodDetail(prodNo);
 		} catch (Exception e) {
 		      log.error("Error fetching proddetail", e);
@@ -93,7 +112,7 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public int updateProdCnt(String prodNo) throws Exception {
 		try {
-			System.out.println("=====Service.prodcnt=====");
+//			System.out.println("=====Service.prodcnt=====");
 			return mapper.updateProdCnt(prodNo);
 		} catch (Exception e) {
 		      log.error("Error fetching prodcnt", e);
@@ -104,7 +123,7 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public List<ProductVO> prodpopList() throws Exception {
 		try {
-			System.out.println("=====Service.prodpopList=====");
+//			System.out.println("=====Service.prodpopList=====");
 			return mapper.prodpopList();
 		} catch (Exception e) {
 		      log.error("Error fetching prodpoplist", e);
@@ -113,13 +132,30 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public List<ReviewVO> reviewList() throws Exception {
-		return mapper.reviewList();
+	public List<ProductVO> search(String keyword) throws Exception{
+		return mapper.search(keyword);
 	}
 	
 	@Override
-	public List<ReviewVO> reviewdList() throws Exception {
-		return mapper.reviewdList();
+	public List<ReviewVO> reviewList() throws Exception {
+		try {
+//			System.out.println("=====Service.prodreviList=====");
+			return mapper.reviewList();
+		} catch (Exception e) {
+		      log.error("Error fetching prodrevilist", e);
+		      return null;
+		}
+	}
+	
+	@Override
+	public List<ReviewVO> reviewdList(String prodNo) throws Exception {
+		try {
+//			System.out.println("=====Service.prodrevidList=====");
+			return mapper.reviewdList(prodNo);
+		} catch (Exception e) {
+		      log.error("Error fetching prodrevidlist", e);
+		      return null;
+		}
 	}
 	
 	@Override
@@ -146,4 +182,96 @@ public class ShopServiceImpl implements ShopService {
 	public int reviewDelete(int reviNo) throws Exception {
 		return mapper.reviewDelete(reviNo);
 	}
+	
+	@Override
+	public int addCart(CartVO cartVO) throws Exception {
+		System.out.println("=====Service.addcart=====");
+		CartVO countCart = mapper.countCart(cartVO);
+		if (countCart != null) {
+			return 2;
+		}
+		try {
+			return mapper.addCart(cartVO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	@Override
+	public int updateCart(CartVO cartVO) throws Exception{
+		return mapper.updateCart(cartVO);
+	}
+	
+	@Override
+	public int deleteCart(int cartNo) throws Exception{
+		return mapper.deleteCart(cartNo);
+	}
+	
+	@Override
+	public List<CartVO> getCart(long userNo) throws Exception {
+		System.out.println("=====Service.getcart=====");
+		return mapper.getCart(userNo);
+	}
+	
+	@Override
+	public int removeCart(CartVO cartVO) throws Exception {
+		return mapper.removeCart(cartVO);
+	}
+	
+	@Override
+	public void orderInfo(OrderInfoVO orderVO) throws Exception {
+		mapper.orderInfo(orderVO);
+	}
+	
+	@Override
+	public void orderDetail(OrderDetailVO orderdtVO) throws Exception{
+		mapper.orderDetail(orderdtVO);
+	}
+	
+	@Override
+	public void deliInfo(DeliveryVO deliVO) throws Exception {
+		mapper.deliInfo(deliVO);
+	}
+	
+	@Override
+	public List<OrderVO> getCom(String orderNo) throws Exception{
+		return mapper.getCom(orderNo);
+	}
+	
+	@Override
+	public List<OrderVO> getorder(long userNo) throws Exception{
+		return mapper.getorder(userNo);
+	}
+	
+	@Override
+	public List<OrderVO> getordetail(String orderNo) throws Exception {
+		return mapper.getordetail(orderNo);
+	}
+	
+	@Override
+	public List<OrderVO> getProd(long userNo) throws Exception {
+		return mapper.getProd(userNo);
+	}
+	
+	@Override
+	public List<ReviewVO> getRevi(long userNo) throws Exception {
+		return mapper.getRevi(userNo);
+	}
+	
+	@Override
+	public List<BoardVO> getLounge(long userNo) throws Exception {
+		return mapper.getLounge(userNo);
+	}
+	
+	@Override
+	public List<BoardReplyVO> getReply(long userNo) throws Exception {
+		return mapper.getReply(userNo);
+	}
+	
+	@Override
+	public List<BoardVO> getQna(long userNo) throws Exception {
+		return mapper.getQna(userNo);
+	}
+	
 }

@@ -39,7 +39,11 @@
 		
 		<!-- 애완동물 정보 입력 -->
 		<insert id="insertPet">
-			insert into pet 
+			insert into pet (petNo, userNo, petName, petKind, petAge)
 			values (default, #{userNo}, #{petName}, #{petKind}, #{petAge})
 		</insert>
+		<!-- 애완동물 정보 조회 -->
+		<select id="getPet" resultType="com.shop.domain.PetVO">
+			select * from pet where userNo = #{userNo}
+		</select>
 	</mapper>

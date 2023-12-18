@@ -41,4 +41,11 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
  <script src="${contextPath}/resources/assets/js/jquery-3.7.1.min.js"></script>
+ <script>
+	 function detailShow (attr, key) {
+			let clientX = document.body.clientWidth;
+			let clientY = document.body.clientHeight;
+			window.open(`/admin/adminReportDetail?${attr}=${key}`,'_blank', 'width=500, height=500, top=clientX/2, left=clientY/2')"			
+		}
+ </script>
 </head>

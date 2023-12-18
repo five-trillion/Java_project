@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+.loginForm {
+	margin: 0 auto;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+}
+
+.loginForm .col-lg-8 {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+}
+.loginForm .col-lg-8 .checkout__input {
+	width: 100%;
+}
+.checkout__input__checkbox label.loginCheck {
+	padding-left: 20px;
+}
+
+/* 로그인폼 까지 ---------------------*/
+.joinForm .joinBox {
+	margin : 0 auto;
+}
+.joinForm .joinBox .checkout__input {
+	display: flex;
+	align-items: center;
+}
+.joinForm .joinBox .checkout__input input{
+	width: 100%;
+}
+.joinForm .joinBox .checkout__input .phoneBox {
+	display: flex;
+	align-items: center;
+}
+.joinForm .joinBox .chekcout_input .phoneBox input{
+	width: auto;
+}
+.joinForm .joinBox .checkout__input p{
+	margin: 0;
+	width: 30%;
+}
+.joinForm .joinBox .inputBox {
+	display: flex;
+}
+.joinForm .joinBox .inputBox {
+	display: flex;
+	align-items: center;
+}
+
+.joinForm .joinBox .checkout__input p {
+	width: 30%;
+}
+
+.joinForm .joinBox .inputBox input {
+	
+}
+.joinForm .joinBox .checkout__input .phoneBox {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.joinForm .joinBox .checkout__input .phoneBox input{
+	margin: 0;
+}
+.joinForm .joinBox input[list=tel1List] {
+	padding: 0 10px;
+}
+.joinForm .joinBox .checkout__input.highText {
+	align-items: start;
+}
+.joinForm .joinBox .checkout__input.highText p{
+	margin-top : 5px;
+}
+.joinForm .joinBox .checkout__input .inputBlock {
+	width: 100%;
+	display: grid;
+	grid-template: 33.333333% 33.333333% 33.333333%/ 1fr 1fr 1fr;
+}
+.joinForm .joinBox .checkout__input .inputBlock input {
+	margin: 0;
+}
+.joinForm .joinBox .checkout__input .inputBlock input:nth-of-type(1) {
+	grid-row: 1 / 2;
+}
+.joinForm .joinBox .checkout__input .inputBlock input:nth-of-type(2) {
+	grid-column: 3 / 4;
+	padding: 0 10px;
+}
+.joinForm .joinBox .checkout__input .inputBlock input:nth-of-type(3) {
+	grid-column: 1 / 4;
+	grid-row: 2/3;
+}
+.joinForm .joinBox .checkout__input .inputBlock input:nth-of-type(4) {
+	grid-column: 1 / 4;
+	grid-row: 3/4;
+}
+.relative {
+	position : relative;
+}
+.joinForm .joinBox .idMsg {
+	position: absolute;
+	left: 25%;
+	top: 80%;
+}
+/* 회원가입폼 까지 ----------------------------- */

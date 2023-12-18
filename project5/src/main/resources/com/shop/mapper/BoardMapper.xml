@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.shop.mapper.BoardMapper">
+	
+		<!-- ============================== 공지사항 ============================== -->
+	
+		<!-- 전체 게시물 목록(페이징) -->
+    	<select id="getNoticeListPaging" resultType="com.shop.domain.BoardVO">
+    		select * from (
+                	select b.* , u.nick as userNick
+					from board b
+					join users u on b.userNo = u.userNo
+					where b.boardClass = 1
+					<if test="keyword != null">
+						and b.boardTitle like concat('%', #{keyword}, '%')
+					</if>  
+					order by b.boardReg desc) as T1 
+       		limit #{skip},#{amount}
+    	 </select>
+    	 
+    	 <!-- 게시물 총 개수 -->
+    	<select id="getNoticeTotal" resultType="int">
+	    	select count(*) 
+	    	from board
+	    	where boardClass = 1
+	    	<if test="keyword != null">
+	    		and boardTitle like concat ('%', #{keyword}, '%')
+	    	</if>
+    	</select>
+  
+		<!-- 조회 수 처리 -->
+		<update id="updateNoticeCnt" parameterType="java.lang.Long">
+			update board 
+			set boardCnt = boardCnt + 1 
+			where boardNo = #{boardNo}
+		</update>
+		
+		<!-- 상세조회 -->
+		<select id="noticeDetail" parameterType="java.lang.Long" resultType="com.shop.domain.BoardVO">
+			select b.*, u.nick as userNick 
+			from board b
+			join users u on b.userNo = u.userNo
+			where boardNo = #{boardNo}
+		</select>
+		
+		<!-- ================================ QnA ================================ -->
+		
+		<!-- 전체 게시물 목록(페이징) -->
+		<select id="getQnaListPaging" resultType="com.shop.domain.BoardVO">
+    		select * from (
+                	select b.* , u.nick as userNick
+					from board b
+					join users u on b.userNo = u.userNo
+					where b.boardClass = 2
+					<if test="keyword != null">
+						and b.boardTitle like concat('%', #{keyword}, '%')
+					</if>  
+					order by b.boardReg desc) as T2 
+       		limit #{skip},#{amount}
+    	</select>
+    	 
+    	<!-- 게시물 총 개수 -->
+		<select id="getQnaTotal" resultType="int">
+			select count(*) 
+			from board
+			where boardClass = 2
+			<if test="keyword != null">
+				and boardTitle like concat ('%', #{keyword}, '%')
+			</if>
+		</select>
+		
+		<!-- 조회 수 처리 -->
+		<update id="updateQnaCnt" parameterType="java.lang.Long">
+			update board 
+			set boardCnt = boardCnt + 1 
+			where boardNo = #{boardNo}
+		</update>
+		
+		<!-- 상세조회 -->
+		<select id="qnaDetail" parameterType="java.lang.Long" resultType="com.shop.domain.BoardVO">
+			select b.*, u.nick as userNick 
+			from board b
+			join users u on b.userNo = u.userNo
+			where boardNo = #{boardNo}
+		</select>
+		
+		<!-- 게시물 작성 -->
+		<insert id="qnaRegister" parameterType="com.shop.domain.BoardVO">
+			INSERT INTO board(boardNo, userNo, boardClass, boardTitle, boardContent, boardReg, <!-- boardImg, --> boardCnt)
+	  		VALUES(default, #{userNo}, 2, #{boardTitle}, #{boardContent}, default, <!-- #{boardImg}, --> 0)
+	  	</insert>
+		
+		<!-- 게시물 수정 -->
+		<update id="qnaUpdate" parameterType="com.shop.domain.BoardVO">
+			update board
+			   set boardTitle = #{boardTitle},
+			   		boardContent= #{boardContent},
+			   		boardUpdate = default
+			   		<!-- boardImg = #{boardImg} -->
+			 where boardNo = #{boardNo}
+		</update>
+		
+		<!-- 게시물 삭제 -->
+		<delete id="qnaDelete" parameterType="com.shop.domain.BoardVO">
+			delete from board
+			where boardNo = #{boardNo} 
+		</delete>   
+		
+		<!-- ============================= 자유게시판 ============================= -->
+		
+		<!-- 인기글 조회 -->
+		<select id="freepopList" resultType="com.shop.domain.BoardVO">
+			select * 
+			from board
+			where boardClass = 3
+			order by boardNo desc
+			limit 3
+		</select>
+		
+		<!-- 전체 게시물 목록(페이징) -->
+		<select id="getFreeListPaging" resultType="com.shop.domain.BoardVO">
+    		select * from (
+                	select b.* , u.nick as userNick
+					from board b
+					join users u on b.userNo = u.userNo
+					where b.boardClass = 3
+					<if test="keyword != null">
+						and b.boardTitle like concat('%', #{keyword}, '%')
+					</if>  
+					order by b.boardReg desc) as T3 
+       		limit #{skip},#{amount}
+    	</select>
+    	 
+    	<!-- 게시물 총 개수 -->
+		<select id="getFreeTotal" resultType="int">
+			select count(*) 
+			from board
+			where boardClass = 3
+			<if test="keyword != null">
+				and boardTitle like concat ('%', #{keyword}, '%')
+			</if>
+
+		</select>
+		
+		<!-- 조회 수 처리 -->
+		<update id="updateFreeCnt" parameterType="java.lang.Long">
+			update board 
+			set boardCnt = boardCnt + 1 
+			where boardNo = #{boardNo}
+		</update>
+		
+		<!-- 상세조회 -->
+		<select id="freeDetail" parameterType="java.lang.Long" resultType="com.shop.domain.BoardVO">
+			select b.*, u.nick as userNick 
+			from board b
+			join users u on b.userNo = u.userNo
+			where boardNo = #{boardNo}
+		</select>
+		
+		<!-- 게시물 작성 -->
+		<insert id="freeRegister" parameterType="com.shop.domain.BoardVO">
+			INSERT INTO board(boardNo, userNo, boardClass, boardTitle, boardContent, boardReg, boardImg, boardCnt)
+	  		VALUES(default, #{userNo}, 3, #{boardTitle}, #{boardContent}, default, #{boardImg}, 0)
+	  	</insert>
+		
+		<!-- 게시물 수정 -->
+		<update id="freeUpdate" parameterType="com.shop.domain.BoardVO">
+			update board
+			   set boardTitle = #{boardTitle},
+			   		boardContent= #{boardContent},
+			   		boardUpdate = default
+			   		<!-- boardImg = #{boardImg} -->
+			 where boardNo = #{boardNo}
+		</update>
+		
+		<!-- 게시물 삭제 -->
+		<delete id="freeDelete" parameterType="com.shop.domain.BoardVO">
+			delete from board
+			where boardNo = #{boardNo} 
+		</delete>   
+		
+		<!-- 조회수 증가 -->
+		<update id="updateFreeBoardCnt" parameterType="java.lang.Integer">
+			update board
+			   set boardCnt = boardCnt + 1
+			 where boardNo = #{boardNo}
+		</update>
+		
+	</mapper>

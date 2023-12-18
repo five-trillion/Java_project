@@ -16,13 +16,7 @@
 		<%@include file="../includes/mp_header.jsp" %>
 		<div class="page_wrap">
 		    <div class="xans-element- xans-myshop xans-myshop-mileagehistorypackage "><!--css(/css/module/myshop/mileageHistoryPackage.css)-->
-		<div class="ec-base-tab">
-		            <ul class="menu col-3">
-		<li class="selected"><a href="/myshop/mileage/historyList.html" class="fs15">적립내역보기</a></li>
-		                <li><a href="/myshop/mileage/unavailList.html" class="fs15">미가용적립내역보기</a></li>
-		                <li><a href="/myshop/mileage/couponList.html" class="fs15">미가용쿠폰/회원등급적립내역</a></li>
-		            </ul>
-		</div>
+		
 		<div class="xans-element- xans-myshop xans-myshop-summary mileage_box"><ul>
 		<li class="">
 		<strong class="title fs12">사용가능 적립금</strong> <span class="data fs30"><span id="xans_myshop_summary_avail_mileage">0원</span>&nbsp;</span>
@@ -34,9 +28,6 @@
 		</li>
 		                <li class="">
 		<strong class="title fs12">사용된 적립금</strong> <span class="data fs21"><span id="xans_myshop_summary_used_mileage">0원</span>&nbsp;</span>
-		</li>
-		                <li class="">
-		<strong class="title fs12">미가용 적립금</strong> <span class="data fs21"><span id="xans_myshop_summary_unavail_mileage">0원</span>&nbsp;</span>
 		</li>
 		                <li class="">
 		<strong class="title fs12">환불예정 적립금</strong> <span class="data fs21"><span id="xans_myshop_summary_returned_mileage">0원</span>&nbsp;</span>
@@ -114,5 +105,8 @@
 	
 	<%@include file="../includes/footer.jsp" %>
 	
+	<script>
+	$(".mileage").addClass("on");
+	</script>
 </body>
 </html>
