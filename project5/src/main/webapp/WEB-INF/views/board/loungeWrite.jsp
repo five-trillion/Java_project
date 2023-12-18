@@ -26,45 +26,36 @@
 					<div class="page_title fs60">
 						<font color="#555555">자유게시판</font>
 					</div>
-					<p class="imgArea displaynone"></p>
-				</div>
-				<div class="boardSort">
-					<span
-						class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
 				</div>
 				<form method="post" id="frm" name="frm" action="/board/loungeWrite" enctype="multipart/form-data">  
 					<div class="n_board line typeList gBorder">
-						<table border="1" summary="">
+						<table>
 							<caption>게시판 목록</caption>
-							<thead class="xans-element- xans-board xans-board-listheader-1002 xans-board-listheader xans-board-1002 ">
-								<tr>
-									<td>
-										<input type="hidden" id="userNo" name="userNo" value="${user.userNo}">
-										<div class="chk fs12">제목</div>
-										<div class="subject left fs12">
-											<input type="text" id="boardTitle" name="boardTitle" required>
-										</div>
-									</td>
-								</tr>
-							</thead>
-							<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
-								<tr>
-									<td>
-										<div class="chk fs13">내용</div>
-										<div class="subject left fs13">
-											<textarea style="background-color:white;" rows="10" cols="50" id="boardContent" name="boardContent" required></textarea>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="chk fs13">첨부</div>
-										<div class="subject left fs13">
-											<input type="file" id="uploadFile" name="uploadFile">
-										</div>
-									</td>
-								</tr>
-							</tbody>
+							<tr>
+								<td>
+									<input type="hidden" id="userNo" name="userNo" value="${user.userNo}">
+									<div class="chk fs13">제목</div>
+									<div class="subject left fs13">
+										<input type="text" id="boardTitle" name="boardTitle" required>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="chk fs13">내용</div>
+									<div class="subject left fs13">
+										<textarea style="background-color:white;" rows="10" cols="50" id="boardContent" name="boardContent" required></textarea>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="chk fs13">첨부</div>
+									<div class="subject left fs13">
+										<input type="file" id="uploadFile" name="uploadFile">
+									</div>
+								</td>
+							</tr>
 						</table>
 						<div class="boardbtn" style="text-align:center; margin:20px auto;">
 							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge'">목록</button>
@@ -91,7 +82,7 @@
 	}
 	
 	$("input[type='file']").on("change",function(e) {
-		let formData =new FormData();
+		let formData = new FormData();
 		let fileInput = $('input[name="uploadFile"]');
 		let fileList = fileInput[0].files;
 		let fileObj = fileList[0];
@@ -113,8 +104,6 @@
 			dataType : 'json'
 		});
 	});
-	
-	//여기서부터
 	
 	let regExp = new RegExp("(.*?)\.(jpg|png)$");
 	let maxSize = 1048576;

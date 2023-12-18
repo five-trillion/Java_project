@@ -9,6 +9,17 @@
 <title>공지사항 게시물 상세페이지</title>
 <%@ include file="../includes/src.jsp"%>
 <style>
+	.n_board table tr .boardread_top {
+		display:block;
+	}
+	.board_title {
+		font-size:30px;
+		text-align:center;
+	}
+	.board_writer_date {
+		font-size:15px;
+		text-align:right;
+	}
 	.boardbtn {
 		text-align: center;
    		padding: 30px;
@@ -32,52 +43,40 @@
 					<div class="page_title fs60">
 						<font color="#555555">NOTICE</font>
 					</div>
-					<p class="imgArea displaynone"></p>
-				</div>
-				<div class="boardSort">
-					<span
-						class="xans-element- xans-board xans-board-replysort-1002 xans-board-replysort xans-board-1002 "></span>
 				</div>
 				<div class="n_board line typeList gBorder">
-					<table border="1">
+					<table>
 						<caption>게시판 목록</caption>
-						<tr>
-							<td>
-								<input type="hidden" id="boardNo" name="boardNo" value="${noticeDetail.boardNo}">
-								<div class="chk fs12">제목</div>
-								<div class="subject left fs12">
-									<c:out value="${noticeDetail.boardTitle}"></c:out>
-								</div>
-							</td>
-							<td>
-								<div class="chk fs12">작성자</div>
-								<div class="subject left fs12">
-									<c:out value="${noticeDetail.userNick}"></c:out> 
-								</div>
-							</td>
-							<td>
-								<div class="chk fs12">작성일</div>
-								<div class="subject left fs12">
-									<fmt:formatDate pattern="yyyy-MM-dd" value="${noticeDetail.boardReg}"/>
-								</div>
-							</td>
-							<td>
-								<div class="chk fs12">수정일</div>
-								<div class="subject left fs12">
-									<fmt:formatDate pattern="yyyy-MM-dd" value="${noticeDetail.boardUpdate}"/>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="chk fs13">내용</div>
-								<div class="subject left fs13">
-									<c:out value="${noticeDetail.boardContent}"></c:out>
-								</div>
-							</td>
-						</tr>
+						<thead>
+							<tr>
+								<td class="boardread_top">
+									<div class="board_title">
+										<c:out value="${noticeDetail.boardTitle}"></c:out>
+									</div>
+									<div> </div>
+									<div class="board_writer_date">
+										작성자 <b><c:out value="${noticeDetail.userNick}"/></b>&nbsp;&nbsp;&nbsp;
+										작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${noticeDetail.boardReg}"/></b>
+									</div>
+								</td>
+							</tr>
+						</thead>	
+						<tbody>
+							<tr>
+								<td>
+									<div class="subject left fs13">
+										<%-- 관리자 페이지에서 파일첨부 --%> 
+										<%--<c:if test = "${noticeDetail.boardImg ne null}">
+											<img src="${contextPath}/resources/upload/notice/${noticeDetail.boardImg}">
+										</c:if> 
+										<br><br>--%>
+										<c:out value="${noticeDetail.boardContent}"></c:out>
+									</div>
+								</td>
+							</tr>
+						</tbody>
 					</table>
-		
+					<!-- paging -->
 					<div class="boardbtn">
 						<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
 						<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>

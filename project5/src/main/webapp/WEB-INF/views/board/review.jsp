@@ -56,7 +56,7 @@
 			<div class="xans-element- xans-board xans-board-listpackage-1002 xans-board-listpackage xans-board-1002 ">
 				<div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
 					<div class="page_title fs60">
-						<font color="#555555">자유게시판</font>
+						<font color="#555555">리뷰게시판</font>
 					</div>
 				</div>
 				<div class="n_board line typeList gBorder">
@@ -75,24 +75,24 @@
 							</tr>
 						</thead>
 						<tbody class="xans-element- xans-board xans-board-notice-1002 xans-board-notice xans-board-1002 center">
-							<c:forEach items="${freeList}" var="board" varStatus="status">
+							<c:forEach items="${reviewList}" var="review" varStatus="status">
 								<tr>
 									<td>
 										<div class="chk fs13">
 											${pageMaker.total - (pageMaker.cri.pageNum - 1) * pageMaker.cri.amount - status.index}
 										</div>
 										<div class="subject left fs13">
-											<a href='/board/loungeRead?boardNo=<c:out value="${board.boardNo}"/>&pageNum=${pageNum}&amount=${amount}'>
-											<c:out value="${board.boardTitle}"/></a>
+											<a href='/board/reviewRead?reviNo=<c:out value="${review.reviNo}"/>&pageNum=${pageNum}&amount=${amount}'>
+											<c:out value="${review.reviTitle}"/></a>
 										</div>
 										<div class="writer fs13">
-											<c:out value="${board.userNick}"/>
+											<c:out value="${review.userNick}"/>
 										</div>
 										<div class=" fs13 writer_date">
-											<fmt:formatDate pattern="yyyy-MM-dd" value="${board.boardReg}"/>
+											<fmt:formatDate pattern="yyyy-MM-dd" value="${review.reviReg}"/>
 										</div>
 										<div class=" fs13 hit">
-											<c:out value="${board.boardCnt}"/>
+											<c:out value="${review.reviCnt}"/>
 										</div>
 									</td>
 								</tr>
@@ -123,7 +123,7 @@
 									class="btnSubmitFix sizeS"> 글쓰기
 								</button> 
 						    	<div class="search_area">
-						            <input type="text" name="keyword" value="${search.keyword }">
+						            <input type="text" name="keyword" value="${pageMaker.cri.keyword }">
 						            <button>검색</button>
 						        </div>
 			    			</div>    

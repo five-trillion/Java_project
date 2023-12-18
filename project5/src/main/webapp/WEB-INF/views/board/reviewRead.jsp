@@ -50,7 +50,7 @@
 			<div class="xans-element- xans-board xans-board-listpackage-1002 xans-board-listpackage xans-board-1002 ">
 				<div class="xans-element- xans-board xans-board-title-1002 xans-board-title xans-board-1002 ">
 					<div class="page_title fs60">
-						<font color="#555555">자유게시판</font>
+						<font color="#555555">리뷰게시판</font>
 					</div>
 				</div>
 				<form method="get" id="frm" name="frm" action="/board/loungeModify" enctype="multipart/form-data">
@@ -60,14 +60,14 @@
 							<thead>
 								<tr>
 									<td class="boardread_top">
-										<input type="hidden" id="boardNo" name="boardNo" value="${freeDetail.boardNo}">
+										<input type="hidden" id="reviNo" name="reviNo" value="${reviewDetail.reviNo}">
 										<div class="board_title">
-											<c:out value="${freeDetail.boardTitle}"></c:out>
+											<c:out value="${reviewDetail.reviTitle}"></c:out>
 										</div>
 										<div> </div>
 										<div class="board_writer_date">
 											작성자 <b><c:out value="${freeDetail.userNick}"/></b>&nbsp;&nbsp;&nbsp;
-											작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${freeDetail.boardReg}"/></b>
+											작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reviewDetail.reviReg}"/></b>
 										</div>
 									</td>
 								</tr>
@@ -76,26 +76,26 @@
 								<tr>
 									<td>
 										<div class="subject left fs13">
-											<c:if test = "${freeDetail.boardImg ne null}">
-												<img src="${contextPath}/resources/upload/lounge/${freeDetail.boardImg}">
+											<c:if test = "${reviewDetail.userImg ne null}">
+												<img src="${contextPath}/resources/upload/lounge/${reviewDetail.userImg}">
 											</c:if>
 											<br><br>
-											<c:out value="${freeDetail.boardContent}"></c:out>
+											<c:out value="${reviewDetail.reviContent}"></c:out>
 										</div>
 									</td>
 								</tr>
 							</tbody>
 						</table>
-						<input type="hidden" name="boardTitle" value="${freeDetail.boardTitle}">
-						<input type="hidden" name="boardContent" value="${freeDetail.boardContent}">
+						<input type="hidden" name="boardTitle" value="${reviewDetail.reviTitle}">
+						<input type="hidden" name="boardContent" value="${reviewDetail.reviContent}">
 						<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
 						<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
 						<div class="boardbtn">
-							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/lounge?pageNum=${cri.pageNum}&amount=${cri.amount}'">목록</button>
-							<c:if test="${user.userNo ne freeDetail.userNo}"> 
+							<button type="button" id="lounge" name="lounge" onclick="location.href='/board/review?pageNum=${cri.pageNum}&amount=${cri.amount}'">목록</button>
+							<c:if test="${user.userNo ne reviewDetail.userNo}"> 
 								<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()" disabled>수정</button>
 							</c:if>		
-							<c:if test="${user.userNo eq freeDetail.userNo}"> 
+							<c:if test="${user.userNo eq reviewDetail.userNo}"> 
 								<button type="button" id="modifybtn" name="modifybtn" onclick="submitForm()">수정</button>
 							</c:if>
 						</div>
@@ -104,7 +104,7 @@
 				
 				<!-- 댓글 -->
 				
-				<form method="post" id="replyfrm" name="replyfrm" action="/reply/boRepWrite">
+				<form method="post" id="replyfrm" name="replyfrm" action="/reply/reviRepWrite">
 					<div class="n_board line typeList gBorder">
 						<table>
 							<thead>
@@ -117,11 +117,11 @@
 							<tbody>
 								<tr>
 									<td>
-										<input type="hidden" name="boardNo" value="${freeDetail.boardNo}">
+										<input type="hidden" name="reviNo" value="${reviewDetail.reviNo}">
 										<input type="hidden" name="userNo" value="${user.userNo}">
 										<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>'>
 										<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>'>
-										<textarea id="boRepContent" name="boRepContent" rows="5"></textarea>
+										<textarea id="reviRepContent" name="reviRepContent" rows="5"></textarea>
 										<div class="boardbtn">
 											<button type="button" id="registerBtn" name="registerBtn" onclick="checkLoginAndRedirect()">등록</button>
 										</div>
@@ -131,23 +131,23 @@
 									<c:forEach var="reply" items="${reply}">
 										<td>
 											<div style="width:900px;">
-												<c:if test="${freeDetail.userNo eq reply.userNo}">
+												<c:if test="${reviewDetail.userNo eq reply.userNo}">
 													작성자 <b><c:out value="${reply.userNick}"/></b>&nbsp;&nbsp;&nbsp;
-													작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.boRepReg}"/></b><br>
+													작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.reviRepReg}"/></b><br>
 													<!-- 게시글 작성자의 댓글 구분 -->
-													<p style="color:#FF0033;"><c:out value="${reply.boRepContent}"/></p>
+													<p style="color:#FF0033;"><c:out value="${reply.reviRepContent}"/></p>
 												</c:if>
-												<c:if test="${freeDetail.userNo ne reply.userNo}">
+												<c:if test="${reviewDetail.userNo ne reply.userNo}">
 													작성자 <b><c:out value="${reply.userNick}"/></b>&nbsp;&nbsp;&nbsp;
-													작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.boRepReg}"/></b><br>
-													<p><c:out value="${reply.boRepContent}"/></p>
+													작성일 <b><fmt:formatDate pattern="yyyy-MM-dd" value="${reply.reviRepReg}"/></b><br>
+													<p><c:out value="${reply.reviRepContent}"/></p>
 												</c:if>
 											</div>
 											<div>
 												<c:if test="${user.userNo eq reply.userNo}">
 													<button type="button" class="btn btn-primary" data-toggle="modal" 
-													data-target="#replyModal" data-replyid="${reply.boRepNo}" 
-													data-replycontent="${reply.boRepContent}">수정</button> 
+													data-target="#replyModal" data-replyid="${reply.reviRepNo}" 
+													data-replycontent="${reply.reviRepContent}">수정</button> 
 												</c:if>
 											</div>
 										</td>
@@ -177,7 +177,7 @@
 	                    <div class="form-group">
 	                        <label for="replyContent">댓글 내용</label>
 	                        <textarea class="form-control" id="replyContent" name="replyContent" rows="3"></textarea>
-	                    	<input type="hidden" name="boardNo" value="${freeDetail.boardNo}">
+	                    	<input type="hidden" name="boardNo" value="${reviewDetail.reviNo}">
 	                    </div>
 	                    <button type="button" class="btn btn-primary" onclick="modifyReply()">수정</button>
 	                    <button type="button" class="btn btn-danger" onclick="deleteReply()">삭제</button>
@@ -221,16 +221,16 @@
     function modifyReply() {
         var replyId = $('#replyId').val();
         var replyContent = $('#replyContent').val();
-        var boardNo = $('#boardNo').val();
+        var reviNo = $('#reviNo').val();
         var pageNum = $('input[name=pageNum]').val();
         var amount = $('input[name=amount]').val();
 		$.ajax({
             type: 'POST',
-            url: '/reply/boRepModify', // 수정 처리를 수행할 컨트롤러의 URL
+            url: '/reply/reviRepModify', // 수정 처리를 수행할 컨트롤러의 URL
             data: {
-                boRepNo: replyId,
-                boRepContent: replyContent,
-                boardNo: boardNo,
+                reviRepNo: replyId,
+                reviRepContent: replyContent,
+                reviNo: reviNo,
                 pageNum: pageNum,
                 amount: amount
             },
@@ -250,16 +250,16 @@
     // 댓글 삭제 함수
     function deleteReply() {
         var replyId = $('#replyId').val();
-        var boardNo = $('#boardNo').val();
+        var reviNo = $('#reviNo').val();
         var pageNum = $('input[name=pageNum]').val();
         var amount = $('input[name=amount]').val();
        
 		 $.ajax({
             type: 'POST',
-            url: '/reply/boRepDelete', // 삭제 처리를 수행할 컨트롤러의 URL
+            url: '/reply/reviRepDelete', // 삭제 처리를 수행할 컨트롤러의 URL
             data: {
-                boRepNo: replyId,
-                boardNo: boardNo,
+            	reviRepNo: replyId,
+            	reviNo: reviNo,
                 pageNum: pageNum,
                 amount: amount
             },
