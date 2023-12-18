@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shop.domain.BoardReplyVO;
 import com.shop.domain.BoardVO;
 import com.shop.domain.CartVO;
 import com.shop.domain.DeliveryVO;
@@ -87,13 +88,13 @@ public class ShopServiceImpl implements ShopService {
 	
 	@Override
 	public List<ProductVO> prodbrandList(String brand) throws Exception{
-		System.out.println("=====Service.prodbrandList=====");
+//		System.out.println("=====Service.prodbrandList=====");
 		return mapper.prodbrandList(brand);
 	}
 	
 	@Override
 	public List<ProductVO> prodcatList(String category) throws Exception{
-		System.out.println("=====Service.prodcategoryList=====");
+//		System.out.println("=====Service.prodcategoryList=====");
 		return mapper.prodcatList(category);
 	}
 	
@@ -131,9 +132,14 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
+	public List<ProductVO> search(String keyword) throws Exception{
+		return mapper.search(keyword);
+	}
+	
+	@Override
 	public List<ReviewVO> reviewList() throws Exception {
 		try {
-			System.out.println("=====Service.prodreviList=====");
+//			System.out.println("=====Service.prodreviList=====");
 			return mapper.reviewList();
 		} catch (Exception e) {
 		      log.error("Error fetching prodrevilist", e);
@@ -238,9 +244,34 @@ public class ShopServiceImpl implements ShopService {
 		return mapper.getorder(userNo);
 	}
 	
-	//마이페이지 주문상세조회
-	public List<OrderVO> getordetail(String orderNo, String prodNo) throws Exception {
-		return mapper.getordetail(orderNo, prodNo);
+	@Override
+	public List<OrderVO> getordetail(String orderNo) throws Exception {
+		return mapper.getordetail(orderNo);
+	}
+	
+	@Override
+	public List<OrderVO> getProd(long userNo) throws Exception {
+		return mapper.getProd(userNo);
+	}
+	
+	@Override
+	public List<ReviewVO> getRevi(long userNo) throws Exception {
+		return mapper.getRevi(userNo);
+	}
+	
+	@Override
+	public List<BoardVO> getLounge(long userNo) throws Exception {
+		return mapper.getLounge(userNo);
+	}
+	
+	@Override
+	public List<BoardReplyVO> getReply(long userNo) throws Exception {
+		return mapper.getReply(userNo);
+	}
+	
+	@Override
+	public List<BoardVO> getQna(long userNo) throws Exception {
+		return mapper.getQna(userNo);
 	}
 	
 }
