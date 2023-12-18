@@ -19,12 +19,12 @@
 		
 		<div class="xans-element- xans-myshop xans-myshop-summary mileage_box"><ul>
 		<li class="">
-		<strong class="title fs12">사용가능 적립금</strong> <span class="data fs30"><span id="xans_myshop_summary_avail_mileage">0원</span>&nbsp;</span>
+		<strong class="title fs12">사용가능 적립금</strong> <span class="data fs30"><span id="xans_myshop_summary_avail_mileage">${user.point}원</span>&nbsp;</span>
 		</li>
 		            </ul>
 		<ul>
 		<li class="">
-		<strong class="title fs12">총 적립금</strong> <span class="data fs21"><span id="xans_myshop_summary_total_mileage">0원</span>&nbsp;</span>
+		<strong class="title fs12">총 적립금</strong> <span class="data fs21"><span id="xans_myshop_summary_total_mileage">${user.point}원</span>&nbsp;</span>
 		</li>
 		                <li class="">
 		<strong class="title fs12">사용된 적립금</strong> <span class="data fs21"><span id="xans_myshop_summary_used_mileage">0원</span>&nbsp;</span>

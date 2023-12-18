@@ -103,7 +103,22 @@
                         <button type="button" class="primary-btn" id="order-btn">구매하기</button>
                         <script>
                         $("#order-btn").on("click", function(e) {
-                        	self.location="/checkout";
+							e.preventDefault();
+							
+					        var prodNo = $("#prodNo").val();
+					        var orderCnt = $(".quantity_input").val();
+					
+				            var data = {
+				                prodNo: prodNo,
+				                orderCnt: orderCnt
+				            };
+							
+				            $.ajax({
+				                url: '/cart/{userNo}',
+				                method: 'GET',
+				                data: JSON.stringify(data),
+				                contentType: 'application/json; charset=utf-8',
+				                success: self.location="/checkout";
                         });
                         </script>
                         <ul>

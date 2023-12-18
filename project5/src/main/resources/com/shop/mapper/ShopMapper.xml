@@ -240,10 +240,11 @@
 	</select>
 	
 	<select id="getRevi" resultType="com.shop.domain.ReviewVO">
-		select * 
-		from review
+		select r.*, p.prodName 
+		from review r inner join product p
+		on r.prodNo = p.prodNo
 		where userNo = #{userNo}
-		order by boRepNo desc
+		order by reviNo desc
 	</select>
 	
 	<select id="getLounge" resultType="com.shop.domain.BoardVO">
@@ -258,7 +259,7 @@
 		select * 
 		from board_reply
 		where userNo = #{userNo}
-		order by reviNo desc
+		order by boRepNo desc
 	</select>
 	
 	<select id="getQna" resultType="com.shop.domain.BoardVO">
