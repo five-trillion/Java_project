@@ -237,6 +237,7 @@
 		from order_info oi, order_detail od, product p 
 		where oi.orderNo = od.orderNo and od.prodNo=p.prodNo
 		and userNo=#{userNo}
+		and orderSta = 3
 	</select>
 	
 	<select id="getRevi" resultType="com.shop.domain.ReviewVO">

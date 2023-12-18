@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.shop.domain.BoardVO;
 import com.shop.domain.Criteria;
+import com.shop.domain.ProductVO;
 import com.shop.domain.ReviewVO;
 import com.shop.mapper.BoardMapper;
 
@@ -147,6 +148,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public ReviewVO reviewDetail(long reviNo) throws Exception {
 		return boardmapper.reviewDetail(reviNo);
+	}
+	
+	@Override
+	public ProductVO getproduct(String prodNo) throws Exception{
+		return boardmapper.getproduct(prodNo);
 	}
 	
 	@Override
