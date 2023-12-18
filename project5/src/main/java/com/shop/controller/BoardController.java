@@ -21,6 +21,7 @@ import com.shop.domain.BoardVO;
 import com.shop.domain.Criteria;
 import com.shop.domain.PageMakerVO;
 import com.shop.domain.ReviewReplyVO;
+import com.shop.domain.ReviewVO;
 import com.shop.domain.UsersVO;
 import com.shop.service.BoardService;
 import com.shop.service.ReplyService;
@@ -324,5 +325,47 @@ public class BoardController {
 			List<ReviewReplyVO> reply = replyservice.getReviewReplyList(reviNo);
 			model.addAttribute("reply",reply);
 			System.out.println(reply);
-		} 
-} 
+		}
+		
+	//자유게시판 글쓰기 페이지 이동
+	@RequestMapping(value="/reviewWrite", method=RequestMethod.GET) 
+	public void reviewWriteGET(RedirectAttributes rttr, HttpSession session) {
+		UsersVO user = (UsersVO) session.getAttribute("user");
+		if(user != null) {
+			System.out.println("자유게시판 글쓰기 페이지 진입");
+		} else {
+			System.out.println("자유게시판 글쓰기 실패");
+			rttr.addFlashAttribute("needLogin", "로그인이 필요합니다.");
+		}	
+	} 
+	
+	//자유게시판 게시물 작성
+	@RequestMapping(value="/reviewWrite", method=RequestMethod.POST)
+	public String reviewWritePOST(ReviewVO review, UsersVO user, RedirectAttributes rttr, HttpSession session, @RequestParam("uploadFile") MultipartFile uploadFile) throws Exception {
+		String uploadFolder = "D:/Java_project/project5/src/main/webapp/resources/upload/review/";
+		review.setUserNo(user.getUserNo());
+		// 파일 저장 
+		if (uploadFile != null && !uploadFile.isEmpty()) {
+			// 파일 이름 
+			String uploadFileName = uploadFile.getOriginalFilename();
+			// 고유 식별자 적용 파일 이름
+			String uuid = UUID.randomUUID().toString();
+			uploadFileName = uuid + "_" + uploadFileName;
+			// 파일 위치, 파일 이름을 합친 File 객체 
+			File saveFile = new File(uploadFolder, uploadFileName);
+			review.setUserImg(uploadFileName);
+			try {
+				uploadFile.transferTo(saveFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+			review.setUserNo(user.getUserNo());
+			System.out.println("자유게시판 글쓰기 성공");
+			boardservice.reviewRegister(review);
+			rttr.addFlashAttribute("result", "write success");
+			return "redirect:/board/lounge";
+		}
+	
+
+}

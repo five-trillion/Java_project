@@ -19,7 +19,7 @@ public class OrderVO {
 	private int orderListNo; //주문순서번호
 	private String prodNo; //상품코드
 	private int orderCnt; //주문수량
-	private int totalPrice; //합계액
+	private int prodSum; //합계액
 	
 	private String deliNo; //배송번호
 	private Date deliStart; //배송 시작일

@@ -44,7 +44,7 @@
 		                        </td>
 		                        <td class="shoping__cart__total">
 		                            <fmt:formatNumber pattern="###,###,###.##" value="${order.totalPrice}" />
-		                            <input type="hidden" id="totalPrice" name="totalPrice" value="${order.totalPrice}">
+		                            <input type="hidden" id="prodSum" name="prodSum" value="${order.totalPrice}">
 		                        </td>
 		                    </tr>
 		                    <c:set var="orderSum" value="${orderSum + order.salePrice * order.orderCnt}"/>
@@ -150,7 +150,7 @@
                             
                             <div class="checkout__input">
                                 <p>배송메세지</p>
-                                <input type="text" id="deliMsg" name="deliMsg" style="width: 565px;">
+                                <input type="text" id="deliMsg" name="deliMsg" style="width: 565px;" placeholder="100자 이내로 입력">
                             </div>
                         </div>
                     </div>

@@ -200,7 +200,7 @@
 	   
 	<!-- 주문 상세 정보 --> 
 	<insert id="orderDetail">
-	 insert into order_detail(orderNo, orderListNo, prodNo, orderCnt, totalPrice)
+	 insert into order_detail(orderNo, orderListNo, prodNo, orderCnt, prodSum)
 	     select #{orderNo}, #{orderListNo}, prodNo, orderCnt, (select salePrice from product where prodNo=c.prodNo)*orderCnt
 	         from cart c
 	</insert> 

@@ -119,7 +119,7 @@
 				            </ul> 
 				        	<div class="board_search_wrap">
 					            <button type="button" id="writeForm" name="writeForm" 
-									onclick="checkLoginAndRedirect('/board/loungeWrite')" style="float:left"
+									onclick="location.href='/board/loungeWrite'" style="float:left"
 									class="btnSubmitFix sizeS"> 글쓰기
 								</button> 
 						    	<div class="search_area">
