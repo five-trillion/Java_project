@@ -99,7 +99,8 @@
 		                        					</div>
 												</div>
 												<div class=" fs13 writer_date">
-													<input type="button" class="site-btn" value="리뷰작성">
+													<input type="button" class="site-btn" id="writeForm" name="writeForm" 
+														onclick="location.href='/board/reviewWrite'" value="리뷰작성">
 												</div>
 											</td>
 										</tr>
@@ -209,7 +210,7 @@
 											class="xans-record-">
 											<td>
 												<div class="subject left fs13">
-													<a href='/board/loungeRead?boardNo=<c:out value="${loun.boardNo}"/>'>
+													<a href='/board/loungeRead?boardNo=<c:out value="${loun.boardNo}"/>&pageNum=${pageNum}&amount=${amount}'>
 													<c:out value="${loun.boardTitle}"/></a>
 												</div>
 												<div class=" fs13 writer_date">
@@ -257,7 +258,7 @@
 											class="xans-record-">
 											<td>
 												<div class="subject left fs13">
-													<a href='/board/loungeRead?boardNo=<c:out value="${repl.boardNo}"/>'>
+													<a href='/board/loungeRead?boardNo=<c:out value="${repl.boardNo}"/>&pageNum=${pageNum}&amount=${amount}'>
 													<c:out value="${repl.boRepContent}"/></a>
 												</div>
 												<div class=" fs13 writer_date">
