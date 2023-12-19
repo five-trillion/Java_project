@@ -83,7 +83,7 @@
 		from board b
 		join users u on b.userNo = u.userNo
 		where b.boardClass = 3
-		order by b.boardNo desc
+		order by b.boardCnt desc
 		limit 3
 	</select>
 	
@@ -232,7 +232,7 @@
 		and oi.orderNo = #{orderNo}
 	</select>
 	
-	<delete id="deleteOrder" parameterType="java.lang.Integer">
+	<delete id="deleteOrder" parameterType="java.lang.String">
 		delete from order_info where orderNo = #{orderNo};
 		delete from order_detail where orderNo = #{orderNo};
 		delete from delivery where orderNo = #{orderNo};

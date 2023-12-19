@@ -29,6 +29,9 @@
 	    height: 50px;
 	    display: inline-block;
 	}
+	.subject {
+		margin: 0 auto;
+	}
 </style>
 </head>
 
@@ -66,10 +69,9 @@
 								<td>
 									<div class="subject left fs13">
 										<%-- 관리자 페이지에서 파일첨부 --%> 
-										<%--<c:if test = "${noticeDetail.boardImg ne null}">
+										<c:if test = "${noticeDetail.boardImg ne null}">
 											<img src="${contextPath}/resources/upload/notice/${noticeDetail.boardImg}">
 										</c:if> 
-										<br><br>--%>
 										<c:out value="${noticeDetail.boardContent}"></c:out>
 									</div>
 								</td>

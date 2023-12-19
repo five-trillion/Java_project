@@ -16,7 +16,7 @@
 		text-align: center;
 	}
 	.typeList {
-		width: 80%;
+		width: 988px;
 		margin: 0 auto;
 	}
 </style>
