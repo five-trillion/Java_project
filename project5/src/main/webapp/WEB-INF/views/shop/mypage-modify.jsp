@@ -15,6 +15,9 @@
  		display: grid;
  		grid-template: 
  	}
+ 	.checkout__form {
+ 		width: 988px;
+ 	}
  	</style>
 </head>
 

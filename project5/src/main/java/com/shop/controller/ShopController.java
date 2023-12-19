@@ -257,6 +257,11 @@ public class ShopController {
 		}
 		return "mypage/order_detail";
 	}
+	@RequestMapping(value="order/delete",method = RequestMethod.POST)
+	public String deleteorder(OrderVO orderVO) throws Exception {
+		service.deleteOrder(orderVO.getOrderNo());
+		return "redirect:/mypage/order";
+	}
 	@RequestMapping(value="mypage/content", method = RequestMethod.GET)
 	public String mypage_content(HttpSession session, Model model) {
 		try {
