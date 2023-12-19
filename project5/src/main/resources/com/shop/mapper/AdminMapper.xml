@@ -165,7 +165,8 @@
     FROM order_info oi
     INNER JOIN order_detail od ON oi.orderNo = od.orderNo
     INNER JOIN delivery d ON oi.orderNo = d.orderNo
-    INNER JOIN product p ON od.prodNo = p.prodNo;
+    INNER JOIN product p ON od.prodNo = p.prodNo
+    WHERE oi.orderSta = 3;
 </select>
 
 <update id="deliInfo">
