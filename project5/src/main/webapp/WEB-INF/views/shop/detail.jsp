@@ -51,7 +51,7 @@
                             <span><c:out value="${fn:length(rlist)}"/> reviews</span>
                         </div>
                         <div class="product__details__price"><fmt:formatNumber value="${prd.salePrice}" pattern="###,###,###.##"/>원</div>
-                        <p>${prd.prodInfo}</p>
+                        <p>${fn.replace(prd.prodInfo,"\n","<br>")}</p>
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
