@@ -135,7 +135,7 @@
 				                            <p class="fs12">
 				                                ${order.odst}
 				                            </p>                            
-				                            <a href="#none" class="btnNormal" onclick="">주문취소</a>
+				                            <a href="#none" class="btnNormal delete_btn" data-orderno="${order.orderNo}">주문취소</a>
 				                            <a href="exchange.html" class="btnNormal">교환신청</a>
 				                            <a href="return.html" class="btnNormal">반품신청</a>
 				                            <a href="#" class="btnSubmit snap_review_write_btn" style="display: none;" data-params="" data-detail="">구매후기</a>
@@ -196,12 +196,25 @@
 	</div>
 	</div>
 	
+	<!-- 삭제 form -->
+	<form action="/order/delete" method="post" class="delete_form">
+		<input type="hidden" id="orderNo" name="orderNo" class="delete_orderNo">
+		<input type="hidden" id="userNo" name="userNo" value="${user.userNo}">
+	</form>
+	
 	<%@include file="../includes/footer.jsp" %>
 	<script>
 	$(".order").addClass("on");
 	
 	$(".nice-select").css({"display":"none"});
 	$("#order_status").css({"display":"block"});
+	
+	$(".delete_btn").on("click", function(e){
+		e.preventDefault();
+		const orderNo = $(this).data("orderno");
+		$(".delete_orderNo").val(orderNo);
+		$(".delete_form").submit();
+	});
 	
 	$(document).ready(function(){
 		$('ul.menu li').click(function(){

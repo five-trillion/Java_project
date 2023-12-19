@@ -70,7 +70,6 @@
 									<div class="subject left fs12">제목</div>
 									<div class="writer fs12">작성자</div>
 									<div class=" fs12 writer_date">작성일</div>
-									<div class=" fs12 hit">조회수</div>
 								</td>
 							</tr>
 						</thead>
@@ -90,9 +89,6 @@
 										</div>
 										<div class=" fs13 writer_date">
 											<fmt:formatDate pattern="yyyy-MM-dd" value="${review.reviReg}"/>
-										</div>
-										<div class=" fs13 hit">
-											<c:out value="${review.reviCnt}"/>
 										</div>
 									</td>
 								</tr>

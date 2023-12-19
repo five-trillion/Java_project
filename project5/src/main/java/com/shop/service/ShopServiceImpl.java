@@ -250,6 +250,11 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
+	public int deleteOrder(String orderNo) throws Exception{
+		return mapper.deleteOrder(orderNo);
+	}
+	
+	@Override
 	public List<OrderVO> getProd(long userNo) throws Exception {
 		return mapper.getProd(userNo);
 	}

@@ -125,6 +125,9 @@ public interface ShopService {
 	//마이페이지 주문상세조회
 	public List<OrderVO> getordetail(String orderNo) throws Exception;
 	
+	//주문 삭제
+	public int deleteOrder(String orderNo) throws Exception;
+	
 	// =====================================================
 	
 	//마이페이지 리뷰작성페이지 띄우기
