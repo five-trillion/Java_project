@@ -222,7 +222,7 @@
 			return val;
 		}
 	</script>
-	<%@ include file="../includes/footer.jsp"%>
+	
 	<script>
 		$("#userId").val(getCookie("saveid"));
 	</script>

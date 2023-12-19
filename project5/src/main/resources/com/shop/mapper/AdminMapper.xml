@@ -176,7 +176,7 @@
         oi.orderSta = 3,
         d.deliStart = current_timestamp
         WHERE d.orderNo = oi.orderNo
-        AND oi.orderNo = #{orderNo};
+        AND oi.orderNo = #{orderNo}
     </update>
     
     <select id="orderUnsetList" resultMap="orderInfoResult, orderDetailResult, productResult, deliveryResult">

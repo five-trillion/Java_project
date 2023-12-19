@@ -220,7 +220,8 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
     public void deliInfo(String orderNo, String deliInfo) {
-        mapper.deliInfo(orderNo, deliInfo);
+        System.out.println("deliinfo service");
+		mapper.deliInfo(orderNo, deliInfo);
     }
 	
 	@Override

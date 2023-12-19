@@ -52,7 +52,7 @@
 												<td><fmt:formatDate value="${orderlist.orderDate}" type="date"></fmt:formatDate></td>
 												<td>${orderlist.orderDetailList[0].prodInfo.prodName}..외</td>
 												<td>${orderlist.orderSum}</td>
-												<td>${orderlist.orderSta}</td>
+												<td>배송준비</td>
 												<td>
 													<!-- Large Modal -->
 													

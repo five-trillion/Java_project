@@ -52,7 +52,7 @@
 												<td><fmt:formatDate value="${orderUnsetList.orderDate}" type="date"></fmt:formatDate></td>
 												<td>${orderUnsetList.orderDetailList[0].prodInfo.prodName}..외</td>
 												<td>${orderUnsetList.orderSum}</td>
-												<td>${orderUnsetList.orderSta}</td>
+												<td>주문완료</td>
 												<td>
 													<!-- Large Modal -->
 													<%-- <div class="btn btn-primary modalBtn" data-bs-toggle="modal" data-bs-target="#orderModal${orderlist.orderNo}"> --%>

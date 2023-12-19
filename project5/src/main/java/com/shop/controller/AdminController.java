@@ -80,7 +80,9 @@ public class AdminController {
 	@PostMapping("/adminProdInsert") 
 	public String prodRegister(ProductVO pVo, MultipartHttpServletRequest mf) throws IOException { 
 		
-		String uploadPath = "D:/Java_project/project5/src/main/webapp/resources/upload/product/";
+		String uploadPath1 = "D:/Java_project/project5/src/main/webapp/resources/upload/product/main/";
+		String uploadPath2 = "D:/Java_project/project5/src/main/webapp/resources/upload/product/info/";
+		String uploadPath3 = "D:/Java_project/project5/src/main/webapp/resources/upload/product/detail/";
 		MultipartFile mainImgMulti = mf.getFile("mainImgMulti");
 		MultipartFile prodImgMulti = mf.getFile("prodImgMulti");
 		MultipartFile mini1ImgMulti = mf.getFile("mini1ImgMulti");
@@ -89,12 +91,12 @@ public class AdminController {
 		MultipartFile mini4ImgMulti = mf.getFile("mini4ImgMulti");
 
 		
-		pVo.setProdMainImg(prodFileUpload(mainImgMulti, uploadPath));
-		pVo.setProdImg1(prodFileUpload(mini1ImgMulti, uploadPath));
-		pVo.setProdImg2(prodFileUpload(mini2ImgMulti, uploadPath));
-		pVo.setProdImg3(prodFileUpload(mini3ImgMulti, uploadPath));
-		pVo.setProdImg4(prodFileUpload(mini4ImgMulti, uploadPath));
-		pVo.setDetailImg(prodFileUpload(prodImgMulti, uploadPath));
+		pVo.setProdMainImg(prodFileUpload(mainImgMulti, uploadPath1));
+		pVo.setProdImg1(prodFileUpload(mini1ImgMulti, uploadPath3));
+		pVo.setProdImg2(prodFileUpload(mini2ImgMulti, uploadPath3));
+		pVo.setProdImg3(prodFileUpload(mini3ImgMulti, uploadPath3));
+		pVo.setProdImg4(prodFileUpload(mini4ImgMulti, uploadPath3));
+		pVo.setDetailImg(prodFileUpload(prodImgMulti, uploadPath2));
 		
 		System.out.println(pVo);
 		
@@ -205,8 +207,10 @@ public class AdminController {
     public ResponseEntity<String> getDeliInfo(@RequestParam("orderNo") String orderNo,
                                              @RequestParam("deliInfo") String deliInfo) {
         // 서비스를 통해 주문 정보 업데이트
-        adminService.deliInfo(orderNo, deliInfo);
-
+		String orderString = orderNo.substring(0, 8) + "_" + orderNo.substring(8, orderNo.length());
+		
+        adminService.deliInfo(orderString, deliInfo);
+        System.out.println(orderString +"/"+ deliInfo);
         // 성공적으로 업데이트되었다고 가정하고 응답
         return ResponseEntity.ok("Delivery info updated successfully.");
     }

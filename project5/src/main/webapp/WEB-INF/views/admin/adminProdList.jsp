@@ -49,7 +49,7 @@
 											<tr>
 												<td scope="row">${prodList.prodNo}</td>
 												<td>
-												<img alt="상품 메인 이미지" src="${contextPath}/resources/upload/product/${prodList.prodMainImg}" style="width: 100px;">
+												<img alt="상품 메인 이미지" src="${contextPath}/resources/upload/product/main/${prodList.prodMainImg}" style="width: 100px;">
 												</td><!-- 상품 이미지용 -->
 												<td>${prodList.prodName}</td>
 												<td><fmt:formatDate value="${prodList.prodReg}" type="date"></fmt:formatDate></td>
