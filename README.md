@@ -1,5 +1,4 @@
 # :heart: ERP PROJECT
-![KakaoTalk_20240205_161816193](https://github.com/skgusskgusgg/ERP-PROJECT-Java/assets/92068041/e646635e-452f-4a16-a867-1c7f280792a1)
 
 > ### 상품 판매과 커뮤니티가 공존하는 애견용품 사이트입니다.
 
