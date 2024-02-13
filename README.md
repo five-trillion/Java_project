@@ -1,4 +1,4 @@
-# :heart: ERP PROJECT
+# :heart: E-COMMERCE PROJECT
 
 > ### 상품 판매과 커뮤니티가 공존하는 애견용품 사이트입니다.
 
